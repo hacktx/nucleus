@@ -4,7 +4,7 @@ require_once('lib/OmegaCore.php');
 
 # You must be authed to view the application
 if(!Session::isActive()) {
-   header('Location: index.php');
+   header('Location: login.php');
 }
 
 # Members have nothing to do here
