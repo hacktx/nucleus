@@ -17,7 +17,7 @@ echo '
 <body>
   <div id="crest"></div>
   <div id="login">
-    <button id="signin" href="login">Login</button>
+    <button id="signin">Login</button>
     <button id="signup">Sign Up</button>
   </div>
 </body>
