@@ -1,8 +1,26 @@
+/* Global */
 body {
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background-size: 100%;
-  background: #277FB2 url('../img/bg.png') no-repeat;
+  background: #293FB5 url('../img/bg.png') no-repeat;
+}
+
+/* Front Page */
+#crest {
+  height: 350px;
+  width: 400px;
+  background: url('../img/crest.png') no-repeat;
+  background-size: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
