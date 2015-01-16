@@ -17,6 +17,14 @@ class User {
     return $this->token;
   }
 
+  public function isMember() {
+    return $this->isMember;
+  }
+
+  public function isAdmin() {
+    return $this->isAdmin;
+  }
+
   public static function genByUsername(): User {
     return new User();
   }

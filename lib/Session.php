@@ -2,6 +2,8 @@
 
 class Session {
   public static function init() {
+    session_start();
+
     if (isset($_SESSION['user'])) {
       return User::genByUsername($_SESSION['user']);
     }
@@ -29,4 +31,8 @@ class Session {
   public static function isActive() {
     return isset($_SESSION['user']);
   } 
+
+  public static function getUser() {
+    return $_SESSION['user'];
+  }
 }
