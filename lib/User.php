@@ -1,19 +1,32 @@
-<?hh
+<?php
 
 class User {
-  public function getUsername(): string {
+
+  public static function create(
+    username,
+    password,
+    email,
+    fname,
+    lname
+  ) {
+    DB::insert('users')
+      ->fields('username', 'password', 'email', 'fname', 'lname')
+      ->values(username, password, email fname, lname);
+  }
+
+  public function getUsername() {
     return $this->username;
   }
 
-  public function getPassword(): string {
+  public function getPassword() {
     return $this->password;
   }
 
-  public function getEmail(): string {
+  public function getEmail() {
     return $this->email;
   }
 
-  public function getToken(): ?string {
+  public function getToken() {
     return $this->token;
   }
 
@@ -25,19 +38,19 @@ class User {
     return $this->isAdmin;
   }
 
-  public static function genByUsername(): User {
-    return new User();
+  public static function genByUsername(username) {
+    return constructFromQuery('username', username);
   }
 
-  public static function genByEmail(): User {
-    return new User();
+  public static function genByEmail(email) {
+    return constructFromQuery('email', email);
   }
 
-  public static function genByToken(): User {
-    return new User();
+  public static function genByToken(token) {
+    return constructFromQuery('token', token);
   }
 
-  private static function constructFromQuery(): User {
-    return new User();
+  private static function constructFromQuery(field, query) {
+    $query = DB::select('*')->from('users')->where(field . '=' . value);
   }
 }

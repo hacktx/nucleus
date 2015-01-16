@@ -30,7 +30,7 @@ class Session {
 
   public static function isActive() {
     return isset($_SESSION['user']);
-  } 
+  }
 
   public static function getUser() {
     return $_SESSION['user'];
