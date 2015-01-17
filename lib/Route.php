@@ -37,6 +37,29 @@ class Route {
         </li>;
     }
 
+    $nav_buttons =
+      <ul class="nav navbar-nav">
+        <li class={$path === 'dashboard' ? 'active' : ''}>
+          <a href="/dashboard">Dashboard</a>
+        </li>
+      </ul>;
+
+    if(!$user->isMember()) {
+      $nav_buttons->appendChild(
+        <li class={$path === 'apply' ? 'active' : ''}>
+          <a href="/apply">Apply</a>
+        </li>
+      );
+    }
+
+    if($user->isAdmin()) {
+      $nav_buttons->appendChild(
+        <li class={$path === 'review' ? 'active' : ''}>
+          <a href="/review">Review</a>
+        </li>
+      );
+    }
+
     # Render all the things
     print
       <x:frag>
@@ -62,6 +85,7 @@ class Route {
                 <a class="navbar-brand" href="/">Omega</a>
               </div>
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                {$nav_buttons}
                 <ul class="nav navbar-nav navbar-right">
                   {$login}
                 </ul>
