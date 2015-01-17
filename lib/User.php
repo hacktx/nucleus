@@ -34,6 +34,10 @@ class User {
     return self::createFromQuery($query);
   }
 
+  public function getID() {
+    return $this->id;
+  }
+
   public function getUsername() {
     return $this->username;
   }
@@ -77,6 +81,7 @@ class User {
 
   private static function createFromQuery(array $query): User {
     $user = new User();
+    $user->id = $query['id'];
     $user->username = $query['username'];
     $user->password = $query['password'];
     $user->email = $query['email'];
