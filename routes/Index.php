@@ -4,12 +4,7 @@ class Index {
   public static function get(): :xhp {
     # If a user is logged in, redirect them to where they belong
     if(Session::isActive()) {
-      $user = Session::getUser();
-      if($user->isMember()) {
-        header('Location: /dashboard');
-      } else {
-        header('Location: /apply');
-      }
+      header('Location: /dashboard');
     }
 
     return
