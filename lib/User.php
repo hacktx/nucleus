@@ -46,6 +46,14 @@ class User {
     return $this->email;
   }
 
+  public function getFirstName() {
+    return $this->fname;
+  }
+
+  public function getLastName() {
+    return $this->lname;
+  }
+
   public function isMember() {
     return $this->isMember;
   }

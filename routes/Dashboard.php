@@ -11,8 +11,32 @@ class Dashboard {
     if (!$user->isMember()) {
       header('Location: apply.php');
     }
-    
+
+    $email_hash = md5(strtolower(trim($user->getEmail())));
+    $gravatar_url = 'http://www.gravatar.com/avatar/' . $email_hash . '?s=300';
+
+    $badges = <p />;
+    if($user->isMember()) {
+      $badges->appendChild(<span class="label label-success label-as-badge">Member</span>);
+    }
+    if($user->isAdmin()) {
+      $badges->appendChild(<span class="label label-success label-as-badge">Admin</span>);
+    }
+
     return
-      <h1>Dashboard</h1>;
+      <div class="well">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="thumbnail">
+              <img src={$gravatar_url} alt="..." />
+            </div>
+          </div>
+          <div class="col-md-9">
+            <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
+            <p>{$user->getEmail()}</p>
+            {$badges}
+          </div>
+        </div>
+      </div>;
   }
 }
