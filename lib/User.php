@@ -27,7 +27,7 @@ class User {
       'email' => $email,
       'fname' => $fname,
       'lname' => $lname,
-      'member' => false,
+      'member_status' => 0,
       'admin' => false
     ));
     $query = DB::queryFirstRow("SELECT * FROM users WHERE username=%s", $username);
@@ -58,12 +58,24 @@ class User {
     return $this->lname;
   }
 
-  public function isMember() {
-    return $this->isMember;
+  public function isApplicant(): bool {
+    return $this->member_status == 0;
+  }
+
+  public function isPledge(): bool {
+    return $this->member_status == 1;
+  }
+
+  public function isMember():bool {
+    return $this->member_status == 2;
   }
 
   public function isAdmin() {
     return $this->isAdmin;
+  }
+
+  public static function genByID($user_id): ?User {
+    return self::constructFromQuery('id', $user_id);
   }
 
   public static function genByUsername($username): ?User {
@@ -87,7 +99,7 @@ class User {
     $user->email = $query['email'];
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
-    $user->isMember = $query['member'];
+    $user->member_status = $query['member_status'];
     $user->isAdmin = $query['admin'];
     return $user;
   }
