@@ -8,7 +8,13 @@ class User {
     $email,
     $fname,
     $lname
-  ): User {
+  ): ?User {
+    # Make sure a users doesn't already exist with that username
+    DB::query("SELECT * FROM users WHERE username=%s", $username);
+    if(DB::count() != 0) {
+      return null;
+    }
+
     # Create the password hash
     $salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
     $salt = sprintf("$2a$%02d$", 10) . $salt;
@@ -20,7 +26,9 @@ class User {
       'password' => $hash,
       'email' => $email,
       'fname' => $fname,
-      'lname' => $lname
+      'lname' => $lname,
+      'member' => false,
+      'admin' => false
     ));
     $query = DB::queryFirstRow("SELECT * FROM users WHERE username=%s", $username);
     return self::createFromQuery($query);
@@ -47,19 +55,15 @@ class User {
   }
 
   public static function genByUsername($username): ?User {
-    return constructFromQuery('username', $username);
+    return self::constructFromQuery('username', $username);
   }
 
   public static function genByEmail($email): ?User {
-    return constructFromQuery('email', $email);
-  }
-
-  public static function genByToken($token): ?User {
-    return constructFromQuery('token', $token);
+    return self::constructFromQuery('email', $email);
   }
 
   private static function constructFromQuery($field, $query): ?User {
-    $query = DB::queryFirstRow("SELECT * FROM users WHERE " . $field ."=%s", $username);
+    $query = DB::queryFirstRow("SELECT * FROM users WHERE " . $field ."=%s", $query);
     return self::createFromQuery($query);
   }
 

@@ -38,6 +38,9 @@ class Signup {
       $_POST['fname'],
       $_POST['lname']
     );
+    if(!$user) {
+      header('Location: /signup');
+    }
     Session::create($user);
     header('Location: /apply');
   }

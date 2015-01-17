@@ -11,7 +11,7 @@ class Session {
     $cookie = Cookie::find('id');
     if ($cookie) {
       $user = User::genByToken($cookie->getValue());
-      $_SESSION['user'] = $user->getUsername();
+      $_SESSION['user'] = $user;
       return $user;
     }
 
@@ -19,7 +19,7 @@ class Session {
   }
 
   public static function create(User $user): void {
-    $_SESSION['user'] = $user->getUsername();
+    $_SESSION['user'] = $user;
   }
 
   public static function destroy(): void {

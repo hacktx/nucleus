@@ -6,7 +6,7 @@ class Auth {
     bool $remember = false
   ): bool {
     $user = User::genByUsername($username);
-    if ($user && hash_equals($user->getHash(), crypt($password, $user->getHash()))) {
+    if ($user && hash_equals($user->getPassword(), crypt($password, $user->getPassword()))) {
       Session::create($user);
       if ($remember) {
         Cookie::create('id', hash('md5', $user->getUsername));
