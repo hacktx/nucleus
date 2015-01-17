@@ -14,15 +14,35 @@ class Signup {
     }
 
     return
-      <form method="post" action="/signup">
-        <input type="text" name="uname" placeholder="Username" />
-        <input type="password" name="password" placeholder="Password" />
-        <input type="password" name="password2" placeholder="Confirm password" />
-        <input type="email" name="email" placeholder="email" />
-        <input type="text" name="fname" placeholder="First Name" />
-        <input type="text" name="lname" placeholder="Last Name" />
-        <button type="submit">Submit</button>
-      </form>;
+      <div class="well col-md-4 col-md-offset-4">
+        <form method="post" action="/signup">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" name="uname" placeholder="Username" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password" />
+          </div>
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" class="form-control" name="password2" placeholder="Confirm password" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Email" />
+          </div>
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="fname" placeholder="First Name" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lname" placeholder="Last Name" />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>;
   }
 
   public static function post(): void {

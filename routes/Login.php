@@ -21,12 +21,12 @@ class Login {
       <div class="well col-md-4 col-md-offset-4">
         <form method="post" action="/login">
           <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Username" />
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Username" />
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password" />
           </div>
           <div class="checkbox">
             <label>
