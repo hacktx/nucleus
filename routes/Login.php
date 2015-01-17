@@ -9,12 +9,7 @@ class Login {
     }
 
     if(Session::isActive()) {
-      $user = Session::getUser();
-      if($user->isMember()) {
-        header('Location: /dashboard');
-      } else {
-        header('Location: /apply');
-      }
+      header('Location: /dashboard');
     }
 
     return
@@ -53,10 +48,8 @@ class Login {
     $user = Session::getUser();
     if(!$user) {
       header('Location: /login');
-    } elseif ($user->isMember()) {
-      header('Location: /dashboard');
     } else {
-      header('Location: /apply');
+      header('Location: /dashboard');
     }
   }
 }
