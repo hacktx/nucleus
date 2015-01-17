@@ -1,4 +1,4 @@
-<?php
+<?hh
 
 class AutoLoader {
   public static function loadFile($class) {
