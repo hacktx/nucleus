@@ -8,8 +8,12 @@ body {
   background: #293FB5 url('../img/bg.png') no-repeat;
 }
 
-.label-as-badge {
-  border-radius: 1em;
+.sorry {
+  text-align: center;
+}
+
+.wide {
+  width: 100%;
 }
 
 /* Front Page */
