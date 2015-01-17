@@ -18,14 +18,5 @@ class Auth {
 
   public static function logout(): void {
     Session::destroy();
-    $cookie = Cookie::find('id');
-    if ($cookie) {
-      $user = User::genByToken($cookie->getValue());
-      if ($user) {
-        $user->setToken(null);
-        $user->save();
-      }
-      $cookie->destroy();
-    }
   }
 }

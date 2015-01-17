@@ -1,16 +1,29 @@
 <?hh
 
 class Login {
-  public static function get(): :body {
+  public static function get(): :xhp {
+    parse_str($_SERVER['QUERY_STRING'], $query_params);
+    if(isset($query_params['action']) && $query_params['action'] === 'logout') {
+      Auth::logout();
+      header('Location: /');
+    }
+
+    if(Session::isActive()) {
+      $user = Session::getUser();
+      if($user->isMember()) {
+        header('Location: /dashboard');
+      } else {
+        header('Location: /apply');
+      }
+    }
+
     return
-      <body>
-        <form method="post" action="/login">
-          <input type="text" name="username" placeholder="Username" />
-          <input type="password" name="password" placeholder="Password" />
-          <input type="checkbox" name="remember" placeholder="Remember" />
-          <button type="submit">Submit</button>
-        </form>
-      </body>;
+      <form method="post" action="/login">
+        <input type="text" name="username" placeholder="Username" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="checkbox" name="remember" placeholder="Remember" />
+        <button type="submit">Submit</button>
+      </form>;
   }
 
   public static function post(): void {
