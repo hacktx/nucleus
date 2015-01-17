@@ -13,12 +13,10 @@ class Index {
     }
 
     return
-      <x:frag>
+      <div class="col-md-6 col-md-offset-3 masthead">
         <div id="crest"></div>
-        <div id="login">
-          <a id="signin" class="btn btn-default" href="/login">Login</a>
-          <a id="signup" class="btn btn-default" href="/signup">Sign Up</a>
-        </div>
-      </x:frag>;
+        <p><a id="signin" class="btn btn-default" role="button" href="/login">Login</a></p>
+        <p><a id="signup" class="btn btn-default" role="button" href="/signup">Sign Up</a></p>
+      </div>;
   }
 }

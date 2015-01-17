@@ -6,7 +6,6 @@ body {
   width: 100%;
   background-size: 100%;
   background: #293FB5 url('../img/bg.png') no-repeat;
-  margin-top: 70px;
 }
 
 .label-as-badge {
@@ -23,9 +22,6 @@ body {
   margin-right: auto;
 }
 
-#login {
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+.masthead p {
   text-align: center;
 }
