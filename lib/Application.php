@@ -14,9 +14,14 @@ class Application {
     $q6
   ): void {
     # Make sure the user doesn't already have an application active
-    DB::query("SELECT * FROM applications WHERE user_id=%s", $user_id);
+    $query = DB::query("SELECT * FROM applications WHERE user_id=%s", $user_id);
 
     if(DB::count() != 0) {
+      # The user has submitted their app, don't allow them to update
+      if($query['submitted']) {
+        header('Location: /dashboard');
+      }
+
       # An application exists, just update it
       DB::update('applications', array(
         'gender' => $gender,
@@ -39,9 +44,18 @@ class Application {
         'q3' => $q3,
         'q4' => $q4,
         'q5' => $q5,
-        'q6' => $q6
+        'q6' => $q6,
+        'status' => 1
       ));
     }
+  }
+
+  public function getID(): int {
+    return $this->id;
+  }
+
+  public function getUserID(): int {
+    return $this->user_id;
   }
 
   public function getGender(): ?string {
@@ -76,8 +90,24 @@ class Application {
     return isset($this->q6) ? $this->q6 : null;
   }
 
-  public static function genByUser(User $user): ?Application {
-    $query = DB::queryFirstRow("SELECT * FROM applications WHERE user_id=%s", $user->getID());
+  public function isStarted(): bool {
+    return $this->status == 1;
+  }
+
+  public function isSubmitted(): bool {
+    return $this->status == 2;
+  }
+
+  public static function genByUser(User $user): Application {
+    return self::constructFromQuery('user_id', $user->getID());
+  }
+
+  public static function genByID(int $app_id): Application {
+    return self::constructFromQuery('id', $app_id);
+  }
+
+  private static function constructFromQuery($field, $query): Application {
+    $query = DB::queryFirstRow("SELECT * FROM applications WHERE " . $field . "=%s", $query);
     if($query === null) {
       return new Application();
     }
@@ -86,6 +116,8 @@ class Application {
 
   private static function createFromQuery(array $query): Application {
     $application = new Application();
+    $application->id = $query['id'];
+    $application->user_id = $query['user_id'];
     $application->gender = $query['gender'];
     $application->year = $query['year'];
     $application->q1 = $query['q1'];
@@ -94,6 +126,7 @@ class Application {
     $application->q4 = $query['q4'];
     $application->q5 = $query['q5'];
     $application->q6 = $query['q6'];
+    $application->status = $query['status'];
     return $application;
   }
 }
