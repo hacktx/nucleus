@@ -1,7 +1,7 @@
-<?php
+<?hh
 
 class Session {
-  public static function init() {
+  public static function init(): ?User {
     session_start();
 
     if (isset($_SESSION['user'])) {
@@ -18,21 +18,21 @@ class Session {
     return null;
   }
 
-  public static function create(User $user) {
+  public static function create(User $user): void {
     $_SESSION['user'] = $user->getUsername();
   }
 
-  public static function destroy() {
+  public static function destroy(): void {
     if (isset($_SESSION['user'])) {
       unset($_SESSION['user']);
     }
   }
 
-  public static function isActive() {
+  public static function isActive(): bool {
     return isset($_SESSION['user']);
   }
 
-  public static function getUser() {
+  public static function getUser(): ?User {
     return $_SESSION['user'];
   }
 }

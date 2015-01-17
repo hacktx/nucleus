@@ -28,6 +28,9 @@ class Signup {
   }
 
   public static function post(): void {
+    if($_POST['password'] != $_POST['password2']) {
+      header('Location /signup');
+    }
     $user = User::create(
       $_POST['uname'],
       $_POST['password'],
@@ -36,6 +39,6 @@ class Signup {
       $_POST['lname']
     );
     Session::create($user);
-    header('Location: apply.php');
+    header('Location: /apply');
   }
 }
