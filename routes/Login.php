@@ -14,7 +14,7 @@ class Login {
   }
 
   public static function post(): void {
-    $remember = $_POST['remember'] === null ? false : true;
+    $remember = isset($_POST['remember']) && $_POST['remember'];
     Auth::login($_POST['username'], $_POST['password'], $remember);
 
     # Redirect to where we need to go

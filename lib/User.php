@@ -74,6 +74,8 @@ class User {
     $user->email = $query['email'];
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
+    $user->isMember = $query['member'];
+    $user->isAdmin = $query['admin'];
     return $user;
   }
 }

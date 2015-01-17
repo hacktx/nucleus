@@ -6,9 +6,9 @@ class Index {
     if(Session::isActive()) {
       $user = Session::getUser();
       if($user->isMember()) {
-        header('Location: dashboard.php');
+        header('Location: /dashboard');
       } else {
-        header('Location: apply.php');
+        header('Location: /apply');
       }
     }
 

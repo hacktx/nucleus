@@ -17,9 +17,6 @@ class Apply {
  
     return
       <body>
-        <form method='post' action='/apply'>
-          <input type='text' />
-        </form>
       </body>;
   }
 }
