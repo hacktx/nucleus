@@ -111,7 +111,4 @@ class Members {
 
     header('Location: /members');
   }
-
-  private static function setMemberStatus(int $status, int $user_id): void {
-      }
 }
