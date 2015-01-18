@@ -15,12 +15,12 @@ class Dashboard {
     if($user->isApplicant()) {
       $badges->appendChild(<span class="label label-warning">Applicant</span>);
       $application = Application::genByUser($user);
-      if(!$application->isStarted()) {
+      if(!$application->isStarted() && !$application->isSubmitted()) {
         $status = <a href="/apply" class="btn btn-primary btn-lg wide">Start Application</a>;
       } elseif($application->isStarted() && !$application->isSubmitted()) {
         $status = <a href="/apply" class="btn btn-primary btn-lg wide">Finish Application</a>;
       } else {
-        $status = <h3>Application Status:<span class="label label-info">Under review</span></h3>;
+        $status = <h3>Application Status: <span class="label label-info">Under review</span></h3>;
       }
       $applicant_info =
         <div class="panel-body">
