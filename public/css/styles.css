@@ -17,6 +17,10 @@ body {
   width: 100%;
 }
 
+.label {
+  margin-right: 7px;
+}
+
 /* Front Page */
 #crest {
   height: 350px;

@@ -78,7 +78,7 @@ class Route {
       );
       $nav_buttons->appendChild(
         <li class={$path === 'events/admin' ? 'active' : ''}>
-          <a href="/events/admin">Events Admin</a>
+          <a href="/events/admin">Events</a>
         </li>
       );
     }
