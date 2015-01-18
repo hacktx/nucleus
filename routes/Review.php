@@ -178,6 +178,7 @@ class Review {
             </form>
           </div>
         </div>
+        {self::getReviews($application)}
       </div>;
   }
 
@@ -201,5 +202,30 @@ class Review {
     );
 
     header('Location: /review?app_id=' . $_POST['id']);
+  }
+
+  private static function getReviews(Application $application): ?:xhp {
+    $query = DB::query("SELECT * FROM reviews WHERE application_id=%s", $application->getID());
+    if(empty($query)) {
+      # No reviews currently exist
+      return null;
+    }
+
+    # Loop through the reviews
+    $reviews = <ul class="list-group" />;
+    foreach($query as $row) {
+      $user = User::genByID($row['user_id']);
+      $reviews->appendChild(
+        <li class="list-group-item">
+          <h4>{$user->getFirstName() . ' ' . $user->getLastName()}</h4>
+          <p>{$row['comments']}</p>
+        </li>
+      );
+    }
+
+    return
+      <div class="panel panel-default">
+        {$reviews}
+      </div>;
   }
 }
