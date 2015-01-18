@@ -8,13 +8,6 @@ class Session {
       return $_SESSION['user'];
     }
 
-    /*$cookie = Cookie::find('id');
-    if ($cookie) {
-      //$user = User::genByToken($cookie->getValue());
-      $_SESSION['user'] = $user;
-      return $user;
-    }*/
-
     return null;
   }
 

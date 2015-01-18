@@ -23,11 +23,6 @@ class Login {
             <label>Password</label>
             <input type="password" class="form-control" name="password" placeholder="Password" />
           </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="remember" /> Remember Me
-            </label>
-          </div>
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
       </div>;
@@ -41,8 +36,7 @@ class Login {
     }
 
     # Authenticate
-    $remember = isset($_POST['remember']) && $_POST['remember'];
-    Auth::login($_POST['username'], $_POST['password'], $remember);
+    Auth::login($_POST['username'], $_POST['password']);
 
     # Redirect to where we need to go
     $user = Session::getUser();

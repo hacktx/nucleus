@@ -2,15 +2,11 @@
 class Auth {
   public static function login(
     string $username,
-    string $password,
-    bool $remember = false
+    string $password
   ): bool {
     $user = User::genByUsername($username);
     if ($user && hash_equals($user->getPassword(), crypt($password, $user->getPassword()))) {
       Session::create($user);
-      if ($remember) {
-        Cookie::create('id', hash('md5', $user->getUsername()));
-      }
       return true;
     }
     return false;
