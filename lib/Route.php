@@ -27,6 +27,7 @@ class Route {
 
     $login = <li><a href="/login">Login</a></li>;
 
+    # User dropdown if there's an active session
     $user = Session::getuser();
     if($user) {
       $login =
@@ -34,10 +35,12 @@ class Route {
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{$user->getUsername()} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/login?action=logout">Logout</a></li>
+            <li><a href="/login?action=refresh">Refresh Permissions</a></li>
           </ul>
         </li>;
     }
 
+    # Show the dashboard link if there's an active session
     if(Session::isActive()) {
       $nav_buttons =
         <ul class="nav navbar-nav">
@@ -47,6 +50,7 @@ class Route {
         </ul>;
     }
 
+    # Applicants get a link to the application page
     if($user && $user->isApplicant()) {
       $nav_buttons->appendChild(
         <li class={$path === 'apply' ? 'active' : ''}>
@@ -55,12 +59,17 @@ class Route {
       );
     }
 
-    if($user && $user->isAdmin()) {
+    # Admins and Reviewers can review applications
+    if($user && ($user->isAdmin() || $user->isReviewer())) {
       $nav_buttons->appendChild(
         <li class={$path === 'review' ? 'active' : ''}>
           <a href="/review">Review</a>
         </li>
       );
+    }
+
+    # Admins get member management
+    if($user && $user->isAdmin()) {
       $nav_buttons->appendChild(
         <li class={$path === 'members' ? 'active' : ''}>
           <a href="/members">Members</a>
