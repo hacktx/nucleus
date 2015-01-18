@@ -9,7 +9,8 @@ class Route {
       'login' => 'Login',
       'review' => 'Review',
       'dashboard' => 'Dashboard',
-      'members' => 'Members'
+      'members' => 'Members',
+      'events/admin' => 'EventsAdmin'
     };
 
     $path = trim($path, '/');
@@ -75,6 +76,11 @@ class Route {
           <a href="/members">Members</a>
         </li>
       );
+      $nav_buttons->appendChild(
+        <li class={$path === 'events/admin' ? 'active' : ''}>
+          <a href="/events/admin">Events Admin</a>
+        </li>
+      );
     }
 
     # Render all the things
@@ -85,7 +91,7 @@ class Route {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>Omega | Texas LAN</title>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-          <link rel="stylesheet" type="text/css" href="css/styles.css" />
+          <link rel="stylesheet" type="text/css" href="/css/styles.css" />
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         </head>

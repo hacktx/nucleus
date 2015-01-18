@@ -12,6 +12,7 @@ class Dashboard {
 
     $badges = <p />;
     $applicant_info = null;
+    $events = null;
     if($user->isApplicant()) {
       $badges->appendChild(<span class="label label-warning">Applicant</span>);
       $application = Application::genByUser($user);
@@ -24,9 +25,7 @@ class Dashboard {
       }
       $applicant_info =
         <div class="panel-body">
-          <div class="col-md-12">
-            {$status}
-          </div>
+          {$status}
         </div>;
     }
     if($user->isPledge()) {
@@ -34,6 +33,35 @@ class Dashboard {
     }
     if($user->isMember()) {
       $badges->appendChild(<span class="label label-success">Member</span>);
+      $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
+      $event_list =
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>DateTime</th>
+          </tr>
+        </table>;
+      foreach($query as $row) {
+        $event_list->appendChild(
+          <tr>
+            <td>{$row['name']}</td>
+            <td>{$row['location']}</td>
+            <td>{$row['datetime']}</td>
+          </tr>
+        );
+      }
+      if(!empty($query)) {
+        $events =
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1 class="panel-title">Upcoming Events</h1>
+            </div>
+            <div class="panel-body">
+              {$event_list}
+            </div>
+          </div>;
+      }
     }
     if($user->isReviewer()) {
       $badges->appendChild(<span class="label label-success">Reviewer</span>);
@@ -43,18 +71,21 @@ class Dashboard {
     }
 
     return
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="col-md-3">
-            <img src={$gravatar_url} class="img-thumbnail" />
+      <x:frag>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-md-3">
+              <img src={$gravatar_url} class="img-thumbnail" />
+            </div>
+            <div class="col-md-9">
+              <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
+              <p>{$user->getEmail()}</p>
+              {$badges}
+            </div>
           </div>
-          <div class="col-md-9">
-            <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
-            <p>{$user->getEmail()}</p>
-            {$badges}
-          </div>
+          {$applicant_info}
         </div>
-        {$applicant_info}
-      </div>;
+        {$events}
+      </x:frag>;
   }
 }
