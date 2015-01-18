@@ -40,7 +40,7 @@ class Signup {
             <label>Last Name</label>
             <input type="text" class="form-control" name="lname" placeholder="Last Name" />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" class="btn btn-default">Submit</button>
         </form>
       </div>;
   }

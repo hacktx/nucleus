@@ -8,7 +8,8 @@ class Route {
       'signup' => 'Signup',
       'login' => 'Login',
       'review' => 'Review',
-      'dashboard' => 'Dashboard'
+      'dashboard' => 'Dashboard',
+      'members' => 'Members'
     };
 
     $path = trim($path, '/');
@@ -37,14 +38,16 @@ class Route {
         </li>;
     }
 
-    $nav_buttons =
-      <ul class="nav navbar-nav">
-        <li class={$path === 'dashboard' ? 'active' : ''}>
-          <a href="/dashboard">Dashboard</a>
-        </li>
-      </ul>;
+    if(Session::isActive()) {
+      $nav_buttons =
+        <ul class="nav navbar-nav">
+          <li class={$path === 'dashboard' ? 'active' : ''}>
+            <a href="/dashboard">Dashboard</a>
+          </li>
+        </ul>;
+    }
 
-    if(!$user->isMember()) {
+    if($user && $user->isApplicant()) {
       $nav_buttons->appendChild(
         <li class={$path === 'apply' ? 'active' : ''}>
           <a href="/apply">Apply</a>
@@ -52,10 +55,15 @@ class Route {
       );
     }
 
-    if($user->isAdmin()) {
+    if($user && $user->isAdmin()) {
       $nav_buttons->appendChild(
         <li class={$path === 'review' ? 'active' : ''}>
           <a href="/review">Review</a>
+        </li>
+      );
+      $nav_buttons->appendChild(
+        <li class={$path === 'members' ? 'active' : ''}>
+          <a href="/members">Members</a>
         </li>
       );
     }

@@ -61,7 +61,10 @@ class Apply {
             <textarea class="form-control" rows="3" id="q6" name="q6">{$application->getQ6()}</textarea>
           </div>
           <span class="help-block">All fields are required</span>
-          <button type="submit" class="btn btn-default">Save</button>
+          <div class="btn-toolbar">
+            <button type="submit" class="btn btn-default">Save</button>
+            <button type="submit" name="submit" value="1" class="btn btn-primary">Submit</button>
+          </div>
         </form>
       </div>;
   }

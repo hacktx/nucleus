@@ -88,6 +88,9 @@ class User {
 
   private static function constructFromQuery($field, $query): ?User {
     $query = DB::queryFirstRow("SELECT * FROM users WHERE " . $field ."=%s", $query);
+    if(!$query) {
+      return null;
+    }
     return self::createFromQuery($query);
   }
 
