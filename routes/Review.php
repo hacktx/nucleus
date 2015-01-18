@@ -27,6 +27,7 @@ class Review {
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Review</th>
       </tr>
     );
 
@@ -39,6 +40,7 @@ class Review {
           <td>{$row['id']}</td>
           <td>{$user->getFirstName() . ' ' . $user->getLastName()}</td>
           <td>{$user->getEmail()}</td>
+          <td><a href={'/review?app_id=' . $row['id']} class="btn btn-primary">Review</a></td>
         </tr>
       );
     }
@@ -50,16 +52,18 @@ class Review {
   }
 
   private static function singleApplication(string $app_id): :xhp {
-    $application = Application::genByID($app_id);
+    $application = Application::genByID((int)$app_id);
     $user = User::genByID($application->getUserID());
 
     return
-      <div class="panel panel-default col-md-8 col-md-offset-2">
-        <div class="panel-heading">
-          <h3 class="panel-title">{$user->getFirstName() . ' ' . $user->getLastName()}</h3>
-        </div>
-        <div class="panel-body">
-          Panel content
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{$user->getFirstName() . ' ' . $user->getLastName()}</h3>
+          </div>
+          <div class="panel-body">
+            Panel content
+          </div>
         </div>
       </div>;
   }
