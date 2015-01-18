@@ -6,6 +6,7 @@ body {
   width: 100%;
   background-size: 100%;
   background: #293FB5 url('../img/bg.png') no-repeat;
+  background-attachment: fixed;
 }
 
 .sorry {
@@ -29,3 +30,4 @@ body {
 .masthead p {
   text-align: center;
 }
+

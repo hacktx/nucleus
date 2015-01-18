@@ -60,7 +60,7 @@ class Application {
   }
 
   public function getID(): int {
-    return $this->id;
+    return (int)$this->id;
   }
 
   public function getUserID(): int {
