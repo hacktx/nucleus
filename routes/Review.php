@@ -47,7 +47,7 @@ class Review {
       }
 
       # Get the current user's review
-      DB::query("SELECT * FROM reviews WHERE user_id=%s AND application_id=%s", $row['user_id'], $row['id']);
+      DB::query("SELECT * FROM reviews WHERE user_id=%s AND application_id=%s", Session::getUser()->getID(), $row['id']);
 
       # Append the applicant to the table as a new row
       $table->appendChild(
@@ -69,7 +69,7 @@ class Review {
   private static function singleApplication(string $app_id): :xhp {
     $application = Application::genByID((int)$app_id);
     $user = User::genByID($application->getUserID());
-    $review = AppReview::genByUserAndApp($user, $application);
+    $review = AppReview::genByUserAndApp(Session::getUser(), $application);
 
     # Admins get special actions like delete and promote
     $admin_controls = null;
