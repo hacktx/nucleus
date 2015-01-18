@@ -35,6 +35,9 @@ class Dashboard {
     if($user->isMember()) {
       $badges->appendChild(<span class="label label-success">Member</span>);
     }
+    if($user->isReviewer()) {
+      $badges->appendChild(<span class="label label-success">Reviewer</span>);
+    }
     if($user->isAdmin()) {
       $badges->appendChild(<span class="label label-success">Admin</span>);
     }

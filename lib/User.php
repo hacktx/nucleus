@@ -27,8 +27,7 @@ class User {
       'email' => $email,
       'fname' => $fname,
       'lname' => $lname,
-      'member_status' => 0,
-      'admin' => false
+      'member_status' => 0
     ));
     $query = DB::queryFirstRow("SELECT * FROM users WHERE username=%s", $username);
     return self::createFromQuery($query);
@@ -70,8 +69,12 @@ class User {
     return $this->member_status == 2;
   }
 
-  public function isAdmin() {
-    return $this->isAdmin;
+  public function isAdmin(): bool {
+    return (bool)$this->admin;
+  }
+
+  public function isReviewer(): bool {
+    return (bool)$this->reviewer;
   }
 
   public static function genByID($user_id): ?User {
@@ -103,7 +106,8 @@ class User {
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
     $user->member_status = $query['member_status'];
-    $user->isAdmin = $query['admin'];
+    $user->admin = $query['admin'];
+    $user->reviewer = $query['reviewer'];
     return $user;
   }
 }

@@ -5,6 +5,8 @@ class Members {
     if(!Session::isActive()) {
       header('Location: /login');
     }
+
+    # Only admins can view this page
     $user = Session::getUser();
     if(!$user->isAdmin()) {
       return
@@ -33,7 +35,6 @@ class Members {
   }
 
   private static function getMembersByStatus(int $status): :table {
-    $query = DB::query("SELECT * FROM users WHERE member_status=%s", $status);
     $members =
       <table class="table table-striped">
         <tr>
@@ -42,7 +43,11 @@ class Members {
           <th>Actions</th>
         </tr>
       </table>;
+
+    # Loop through all users with the specified status
+    $query = DB::query("SELECT * FROM users WHERE member_status=%s", $status);
     foreach($query as $row) {
+      # Generate the action buttons based off the user's role and status
       $buttons = <form class="btn-toolbar" method="post" action="/members" />;
       if($row['member_status'] == 0) {
         $buttons->appendChild(
@@ -61,14 +66,30 @@ class Members {
             Promote to member
           </button>
         );
-      } elseif ($row['admin'] == false) {
-        $buttons->appendChild(
-          <button name="admin" class="btn btn-primary" value={$row['id']} type="submit">
-            Make admin
-          </button>
-        );
+      } else {
+        if ($row['admin'] == false) {
+          $buttons->appendChild(
+            <button name="admin" class="btn btn-primary" value={$row['id']} type="submit">
+              Make admin
+            </button>
+          );
+        }
+        if (!$row['reviewer']) {
+          $buttons->appendChild(
+            <button name="makeReviewer" class="btn btn-primary" value={$row['id']} type="submit">
+              Make Reviewer
+            </button>
+          );
+        } else {
+          $buttons->appendChild(
+            <button name="removeReviewer" class="btn btn-danger" value={$row['id']} type="submit">
+              Remove Reviewer
+            </button>
+          );
+        }
       }
 
+      # Append the row to the table
       $members->appendChild(
         <tr>
           <td>{$row['fname'] . ' ' . $row['lname']}</td>
@@ -88,7 +109,7 @@ class Members {
 
     # Check auth level
     $user = Session::getUser();
-    if(!$user->isAdmin) {
+    if(!$user->isAdmin()) {
       header('Location /members');
     }
 
@@ -105,8 +126,16 @@ class Members {
       ), "id=%s", $_POST['member']);
     } elseif (isset($_POST['admin'])) {
       DB::update('users', array(
-        'is_admin' => true
+        'admin' => true
       ), "id=%s", $_POST['admin']);
+    } elseif (isset($_POST['makeReviewer'])) {
+      DB::update('users', array(
+        'reviewer' => true
+      ), "id=%s", $_POST['makeReviewer']);
+    } elseif (isset($_POST['removeReviewer'])) {
+       DB::update('users', array(
+        'reviewer' => false
+      ), "id=%s", $_POST['removeReviewer']);
     }
 
     header('Location: /members');

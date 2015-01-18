@@ -5,8 +5,10 @@ class Review {
     if(!Session::isActive()) {
       header('Location: /login');
     }
+
+    # Only reviewers and admins can view this page
     $user = Session::getUser();
-    if(!$user->isAdmin()) {
+    if(!$user->isAdmin() && !$user->isReviewer()) {
       return
         <h1 class="sorry">You do not have access to view this page</h1>;
     }
@@ -14,8 +16,10 @@ class Review {
     parse_str($_SERVER['QUERY_STRING'], $query_params);
 
     if(isset($query_params['app_id'])) {
+      # We want to look at a single application
       return self::singleApplication($query_params['app_id']);
     } else {
+      # We're not looking for a single, so show the list
       return self::applicationList();
     }
   }
@@ -31,11 +35,21 @@ class Review {
       </tr>
     );
 
+    # Loop through all the applications that are submitted
     $query = DB::query("SELECT * FROM applications WHERE status=2");
-
     foreach($query as $row) {
+      # Get the user the application belongs to
       $user = User::genByID($row['user_id']);
+
+      # Skip the user if they're no longer an applicant
+      if(!$user->isApplicant()) {
+        continue;
+      }
+
+      # Get the current user's review
       DB::query("SELECT * FROM reviews WHERE user_id=%s AND application_id=%s", $row['user_id'], $row['id']);
+
+      # Append the applicant to the table as a new row
       $table->appendChild(
         <tr class={DB::count() != 0 ? "success" : ""}>
           <td>{$row['id']}</td>
@@ -56,6 +70,27 @@ class Review {
     $application = Application::genByID((int)$app_id);
     $user = User::genByID($application->getUserID());
     $review = AppReview::genByUserAndApp($user, $application);
+
+    # Admins get special actions like delete and promote
+    $admin_controls = null;
+    if($user->isAdmin()) {
+      $admin_controls =
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h1 class="panel-title">Admin Actions</h1>
+          </div>
+          <div class="panel-body">
+            <form class="btn-toolbar" method="post" action="/members">
+              <button name="pledge" class="btn btn-primary" value={$row['id']} type="submit">
+                Promote to Pledge
+              </button>
+              <button name="delete" class="btn btn-danger" value={$row['id']} type="submit">
+                Delete this application
+              </button>
+            </form>
+          </div>
+        </div>;
+    }
 
     return
       <div class="col-md-8 col-md-offset-2">
@@ -99,6 +134,7 @@ class Review {
             <p>{$application->getQ6()}</p>
           </div>
         </div>
+        {$admin_controls}
         <div class="panel panel-default">
           <div class="panel-heading">
             <h1 class="panel-title">Review</h1>
@@ -146,6 +182,17 @@ class Review {
   }
 
   public static function post(): void {
+    if(!Session::isActive()) {
+      header('Location: /login');
+    }
+
+    # Only reviewers and admins can perform these actions
+    $user = Session::getUser();
+    if(!$user->isAdmin() && !$user->isReviewer()) {
+      header('Location /review');
+    }
+
+    # Upsert the review
     AppReview::upsert(
       $_POST['review'],
       (int)$_POST['weight'],
