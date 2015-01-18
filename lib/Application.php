@@ -2,7 +2,7 @@
 
 class Application {
 
-  public static function create(
+  public static function upsert(
     $user_id,
     $gender,
     $year,
@@ -12,7 +12,7 @@ class Application {
     $q4,
     $q5,
     $q6
-  ): void {
+  ): Application {
     # Make sure the user doesn't already have an application active
     $query = DB::query("SELECT * FROM applications WHERE user_id=%s", $user_id);
 
@@ -48,6 +48,15 @@ class Application {
         'status' => 1
       ));
     }
+
+    $query = DB::queryFirstRow("SELECT * FROM applications WHERE user_id=%s", $user_id);
+    return self::createFromQuery($query);
+  }
+
+  public function submit(): void {
+    DB::update('applications', array(
+      'status' => 2
+    ), 'id', $this->id);
   }
 
   public function getID(): int {
@@ -55,7 +64,7 @@ class Application {
   }
 
   public function getUserID(): int {
-    return $this->user_id;
+    return (int)$this->user_id;
   }
 
   public function getGender(): ?string {
