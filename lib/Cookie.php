@@ -1,4 +1,4 @@
-<?php
+<?hh
 
 class Cookie {
   public static function create($key, $value) {
