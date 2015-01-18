@@ -2,10 +2,22 @@
 
 class Login {
   public static function get(): :xhp {
+    # Check to see if we're going to perform an action
     parse_str($_SERVER['QUERY_STRING'], $query_params);
-    if(isset($query_params['action']) && $query_params['action'] === 'logout') {
-      Auth::logout();
-      header('Location: /');
+    if(isset($query_params['action'])) {
+      # Log the user out
+      if($query_params['action'] === 'logout') {
+        Auth::logout();
+        header('Location: /');
+      }
+
+      # Refresh the session user
+      if($query_params['action'] === 'refresh') {
+        $user = Session::getUser();
+        Auth::logout();
+        $user = User::genByID($user->getID());
+        Session::create($user);
+      }
     }
 
     if(Session::isActive()) {
