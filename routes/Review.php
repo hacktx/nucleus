@@ -73,7 +73,7 @@ class Review {
 
     # Admins get special actions like delete and promote
     $admin_controls = null;
-    if($user->isAdmin()) {
+    if(Session::getUser()->isAdmin()) {
       $admin_controls =
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -81,10 +81,10 @@ class Review {
           </div>
           <div class="panel-body">
             <form class="btn-toolbar" method="post" action="/members">
-              <button name="pledge" class="btn btn-primary" value={$row['id']} type="submit">
+              <button name="pledge" class="btn btn-primary" value={$user->getID()} type="submit">
                 Promote to Pledge
               </button>
-              <button name="delete" class="btn btn-danger" value={$row['id']} type="submit">
+              <button name="delete" class="btn btn-danger" value={$user->getID()} type="submit">
                 Delete this application
               </button>
             </form>
