@@ -60,6 +60,6 @@ class Signup {
       header('Location: /signup');
     }
     Session::create($user);
-    header('Location: /apply');
+    header('Location: /dashboard');
   }
 }
