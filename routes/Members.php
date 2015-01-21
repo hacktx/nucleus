@@ -115,27 +115,17 @@ class Members {
 
     # Update the proper field
     if(isset($_POST['delete'])) {
-      DB::delete('users', 'id=%s', $_POST['delete']);
+      User::deleteByID($_POST['delete']);
     } elseif (isset($_POST['pledge'])) {
-      DB::update('users', array(
-        'member_status' => 1
-      ), "id=%s", $_POST['pledge']);
+      User::updateStatusByID(1, $_POST['pledge']);
     } elseif (isset($_POST['member'])) {
-      DB::update('users', array(
-        'member_status' => 2
-      ), "id=%s", $_POST['member']);
+      User::updateStatusByID(2, $_POST['member']);
     } elseif (isset($_POST['admin'])) {
-      DB::update('users', array(
-        'admin' => true
-      ), "id=%s", $_POST['admin']);
+      User::setRoleByID('admin', true, $_POST['admin']);
     } elseif (isset($_POST['makeReviewer'])) {
-      DB::update('users', array(
-        'reviewer' => true
-      ), "id=%s", $_POST['makeReviewer']);
+      User::setRoleByID('reviewer', true, $_POST['makeReviewer']);
     } elseif (isset($_POST['removeReviewer'])) {
-       DB::update('users', array(
-        'reviewer' => false
-      ), "id=%s", $_POST['removeReviewer']);
+      User::setRoleByID('reviewer', false, $_POST['removeReviewer']);
     }
 
     header('Location: /members');

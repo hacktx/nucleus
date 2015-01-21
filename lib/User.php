@@ -89,6 +89,18 @@ class User {
     return self::constructFromQuery('email', $email);
   }
 
+  public static function updateStatusByID(int $status, int $user_id): void {
+    DB::update('users', array('member_status' => $status), "id=%s", $user_id);
+  }
+
+  public static function setRoleByID(string $role, bool $value, int $user_id): void {
+    BD::update('users', array($role => $value), "id=%s", $user_id);
+  }
+
+  public static function deleteByID($user_id): void {
+    DB::delete('users', 'id=%s', $user_id);
+  }
+
   private static function constructFromQuery($field, $query): ?User {
     $query = DB::queryFirstRow("SELECT * FROM users WHERE " . $field ."=%s", $query);
     if(!$query) {
