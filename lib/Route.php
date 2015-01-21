@@ -41,6 +41,8 @@ class Route {
         </li>;
     }
 
+    $nav_buttons = null;
+
     # Show the dashboard link if there's an active session
     if(Session::isActive()) {
       $nav_buttons =

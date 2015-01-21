@@ -26,6 +26,6 @@ class Session {
   }
 
   public static function getUser(): ?User {
-    return $_SESSION['user'];
+    return isset($_SESSION['user']) ? $_SESSION['user'] : null;
   }
 }
