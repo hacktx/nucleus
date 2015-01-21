@@ -1,0 +1,7 @@
+{
+  "require": {
+    "mailgun/mailgun-php": "~1.7.2",
+    "sergeytsalkov/meekrodb": "*",
+    "facebook/xhp-lib": "dev-master"
+  }
+}

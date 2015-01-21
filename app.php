@@ -1,14 +1,16 @@
 <?hh
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 # Get the autoloader going
 require_once('lib/AutoLoader.php');
 spl_autoload_register('AutoLoader::loadFile');
 
-# Get XHP ready
-require_once('lib/xhp/init.php');
+# Load in external libraries
+require 'vendor/autoload.php';
 
-# Get Mailgun ready
-require_once('lib/mailgun-php/vendor/autoload.php');
+# Setup Mailgun and email
 use Mailgun\Mailgun;
 Email::$mg = new Mailgun('key');
 Email::$domain = 'example.com';
