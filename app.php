@@ -1,8 +1,5 @@
 <?hh
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 # Get the autoloader going
 require_once('lib/AutoLoader.php');
 spl_autoload_register('AutoLoader::loadFile');
