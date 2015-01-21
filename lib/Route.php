@@ -29,7 +29,11 @@ class Route {
     $login = <li><a href="/login">Login</a></li>;
 
     # User dropdown if there's an active session
-    $user = Session::getuser();
+    $user = null;
+    if(Session::isActive()) {
+      $user = Session::getUser();
+    }
+
     if($user) {
       $login =
         <li>
