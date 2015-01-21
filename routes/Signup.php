@@ -48,6 +48,7 @@ class Signup {
   public static function post(): void {
     if($_POST['password'] != $_POST['password2']) {
       header('Location /signup');
+      return;
     }
     $user = User::create(
       $_POST['uname'],
@@ -58,6 +59,7 @@ class Signup {
     );
     if(!$user) {
       header('Location: /signup');
+      return;
     }
     Session::create($user);
     header('Location: /dashboard');

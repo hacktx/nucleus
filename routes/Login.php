@@ -3,12 +3,14 @@
 class Login {
   public static function get(): :xhp {
     # Check to see if we're going to perform an action
+    $query_params = array();
     parse_str($_SERVER['QUERY_STRING'], $query_params);
     if(isset($query_params['action'])) {
       # Log the user out
       if($query_params['action'] === 'logout') {
         Auth::logout();
         header('Location: /');
+        return;
       }
 
       # Refresh the session user
@@ -22,6 +24,7 @@ class Login {
 
     if(Session::isActive()) {
       header('Location: /dashboard');
+      return;
     }
 
     return

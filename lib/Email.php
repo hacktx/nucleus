@@ -1,9 +1,9 @@
 <?hh
 
 class Email {
-  public static Mailgun $mg;
-  public static string $domain;
-  public static string $from;
+  public static Mailgun $mg = null;
+  public static string $domain = 'example.com';
+  public static string $from = 'hello@example.com';
 
   public static function send(
     string $list,
