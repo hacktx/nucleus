@@ -27,16 +27,19 @@ class Review {
   private static function applicationList(): :xhp {
     $table = <table class="table table-bordered table-striped" />;
     $table->appendChild(
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Review</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Review</th>
+        </tr>
+      </thead>
     );
 
     # Loop through all the applications that are submitted
     $query = DB::query("SELECT * FROM applications WHERE status=2");
+    $table_body = <tbody class="list" />;
     foreach($query as $row) {
       # Get the user the application belongs to
       $user = User::genByID($row['user_id']);
@@ -50,20 +53,28 @@ class Review {
       DB::query("SELECT * FROM reviews WHERE user_id=%s AND application_id=%s", Session::getUser()->getID(), $row['id']);
 
       # Append the applicant to the table as a new row
-      $table->appendChild(
+      $table_body->appendChild(
         <tr class={DB::count() != 0 ? "success" : ""}>
           <td>{$row['id']}</td>
-          <td>{$user->getFirstName() . ' ' . $user->getLastName()}</td>
-          <td>{$user->getEmail()}</td>
+          <td class="name">{$user->getFirstName() . ' ' . $user->getLastName()}</td>
+          <td class="email">{$user->getEmail()}</td>
           <td><a href={'/review?app_id=' . $row['id']} class="btn btn-primary">Review</a></td>
         </tr>
       );
     }
 
+    $table->appendChild($table_body);
+
     return
-      <div class="well">
-        {$table}
-      </div>;
+      <x:frag>
+        <div id="applications" class="well">
+          <input class="search form-control" placeholder="Search" />
+          <br/>
+          {$table}
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+        <script src="/js/review.js"></script>
+      </x:frag>;
   }
 
   private static function singleApplication(string $app_id): :xhp {
