@@ -95,6 +95,19 @@ class Route {
       );
     }
 
+    $flash = null;
+    if(Flash::exists('error')) {
+      $flash =
+        <div class="alert alert-danger" role="alert">
+          {Flash::get('error')}
+        </div>;
+    } elseif (Flash::exists('success')) {
+      $flash =
+        <div class="alert alert-success" role="alert">
+          {Flash::get('success')}
+        </div>;
+    }
+
     # Render all the things
     print
       <x:frag>
@@ -129,6 +142,7 @@ class Route {
             </div>
           </nav>
           <div class="container">
+            {$flash}
             {$output}
           </div>
         </body>
