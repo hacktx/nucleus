@@ -5,6 +5,9 @@ class AutoLoader {
     if(file_exists('lib/' . $class . '.php')) {
       require_once('lib/' . $class . '.php');
       return true;
+    } elseif (file_exists('lib/dao/' . $class . '.php')) {
+      require_once('lib/dao/' . $class . '.php');
+      return true;
     }
     return false;
   }
