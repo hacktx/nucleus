@@ -1,6 +1,6 @@
 <?hh
 
-class Dashboard {
+class DashboardController {
   public static function get(): :xhp {
     if(!Session::isActive()) {
       header('Location: /');

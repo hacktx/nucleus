@@ -1,6 +1,6 @@
 <?hh
 
-class Login {
+class LoginController {
   public static function get(): :xhp {
     # Check to see if we're going to perform an action
     $query_params = array();

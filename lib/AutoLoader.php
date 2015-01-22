@@ -8,6 +8,9 @@ class AutoLoader {
     } elseif (file_exists('lib/dao/' . $class . '.php')) {
       require_once('lib/dao/' . $class . '.php');
       return true;
+    } elseif (file_exists('routes/' . $class . '.php')) {
+      require_once('routes/' . $class . '.php');
+      return true;
     }
     return false;
   }

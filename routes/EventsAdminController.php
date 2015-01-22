@@ -1,6 +1,6 @@
 <?hh
 
-class EventsAdmin {
+class EventsAdminController {
   public static function get(): :xhp {
     if(!Session::isActive()) {
       header('Location: /login');

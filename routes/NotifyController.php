@@ -1,6 +1,6 @@
 <?hh
 
-class Notify {
+class NotifyController {
   public static function get(): :xhp {
     if(!Session::isActive()) {
       header('Location: /login');

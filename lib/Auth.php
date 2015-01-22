@@ -15,4 +15,24 @@ class Auth {
   public static function logout(): void {
     Session::destroy();
   }
+
+  public static function verifyStatus(?array $status): void {
+    # Null status array requires no minimum member status
+    if(!$status) {
+      return;
+    }
+
+    if(!Session::isActive()) {
+      Flash::set('error', 'You must be logged in to view this page');
+      Route::redirect('/login');
+    }
+
+    $status = array();
+
+    return;
+  }
+
+  public static function verifyRoles(?array $roles): void {
+    return;
+  }
 }

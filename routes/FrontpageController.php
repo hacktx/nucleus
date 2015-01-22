@@ -1,6 +1,6 @@
 <?hh
 
-class Index {
+class FrontpageController {
   public static function get(): :xhp {
     # If a user is logged in, redirect them to where they belong
     if(Session::isActive()) {

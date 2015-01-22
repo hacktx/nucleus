@@ -1,6 +1,6 @@
 <?hh
 
-class Review {
+class ReviewSingleController {
   public static function get(): :xhp {
     if(!Session::isActive()) {
       header('Location: /login');
@@ -13,71 +13,8 @@ class Review {
         <h1 class="sorry">You do not have access to view this page</h1>;
     }
 
-    parse_str($_SERVER['QUERY_STRING'], $query_params);
+    $app_id = (int)$_SESSION['app_id'];
 
-    if(isset($query_params['app_id'])) {
-      # We want to look at a single application
-      return self::singleApplication($query_params['app_id']);
-    } else {
-      # We're not looking for a single, so show the list
-      return self::applicationList();
-    }
-  }
-
-  private static function applicationList(): :xhp {
-    $table = <table class="table table-bordered table-striped" />;
-    $table->appendChild(
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Review</th>
-        </tr>
-      </thead>
-    );
-
-    # Loop through all the applications that are submitted
-    $query = DB::query("SELECT * FROM applications WHERE status=2");
-    $table_body = <tbody class="list" />;
-    foreach($query as $row) {
-      # Get the user the application belongs to
-      $user = User::genByID($row['user_id']);
-
-      # Skip the user if they're no longer an applicant
-      if(!$user->isApplicant()) {
-        continue;
-      }
-
-      # Get the current user's review
-      DB::query("SELECT * FROM reviews WHERE user_id=%s AND application_id=%s", Session::getUser()->getID(), $row['id']);
-
-      # Append the applicant to the table as a new row
-      $table_body->appendChild(
-        <tr class={DB::count() != 0 ? "success" : ""}>
-          <td>{$row['id']}</td>
-          <td class="name">{$user->getFirstName() . ' ' . $user->getLastName()}</td>
-          <td class="email">{$user->getEmail()}</td>
-          <td><a href={'/review?app_id=' . $row['id']} class="btn btn-primary">Review</a></td>
-        </tr>
-      );
-    }
-
-    $table->appendChild($table_body);
-
-    return
-      <x:frag>
-        <div id="applications" class="well">
-          <input class="search form-control" placeholder="Search" />
-          <br/>
-          {$table}
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
-        <script src="/js/review.js"></script>
-      </x:frag>;
-  }
-
-  private static function singleApplication(string $app_id): :xhp {
     $application = Application::genByID((int)$app_id);
     $user = User::genByID($application->getUserID());
     $review = AppReview::genByUserAndApp(Session::getUser(), $application);
