@@ -23,4 +23,7 @@ DB::$dbName = 'omega';
 DB::$port = 3306;
 
 # Call the dispatcher to do its thing
-Route::dispatch($_SERVER["REQUEST_URI"], $_SERVER['REQUEST_METHOD']);
+Route::dispatch(
+  parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH),
+  $_SERVER['REQUEST_METHOD']
+);
