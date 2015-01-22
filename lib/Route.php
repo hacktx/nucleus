@@ -98,12 +98,14 @@ class Route {
     $flash = null;
     if(Flash::exists('error')) {
       $flash =
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           {Flash::get('error')}
         </div>;
     } elseif (Flash::exists('success')) {
       $flash =
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           {Flash::get('success')}
         </div>;
     }
