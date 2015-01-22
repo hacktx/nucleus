@@ -10,7 +10,8 @@ class Route {
       'review' => 'Review',
       'dashboard' => 'Dashboard',
       'members' => 'Members',
-      'events/admin' => 'EventsAdmin'
+      'events/admin' => 'EventsAdmin',
+      'notify' => 'Notify'
     };
 
     $path = trim($path, '/');
@@ -87,6 +88,11 @@ class Route {
           <a href="/events/admin">Events</a>
         </li>
       );
+      $nav_buttons->appendChild(
+        <li class={$path === 'notify' ? 'active' : ''}>
+          <a href="/notify">Send Notification</a>
+        </li>
+      );
     }
 
     # Render all the things
@@ -100,6 +106,7 @@ class Route {
           <link rel="stylesheet" type="text/css" href="/css/styles.css" />
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
         </head>
         <body>
           <nav class="navbar navbar-default navbar-static-top">

@@ -12,7 +12,7 @@ class Email {
   ): void {
     self::$mg->sendMessage(self::$domain, array(
       'from' => self::$from,
-      'to' => $list . '@' . self::$domain,
+      'to' => $list,
       'subject' => $subject,
       'text' => $body
     ));
