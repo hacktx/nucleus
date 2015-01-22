@@ -2,6 +2,10 @@
 
 class User {
 
+  public const Applicant = 0;
+  public const Pledge = 1;
+  public const Member = 2;
+
   public static function create(
     $username,
     $password,
