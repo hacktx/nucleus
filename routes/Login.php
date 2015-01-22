@@ -9,8 +9,7 @@ class Login {
       # Log the user out
       if($query_params['action'] === 'logout') {
         Auth::logout();
-        header('Location: /');
-        return;
+        Route::redirect('/');
       }
 
       # Refresh the session user
@@ -23,8 +22,7 @@ class Login {
     }
 
     if(Session::isActive()) {
-      header('Location: /dashboard');
-      return;
+      Route::redirect('/dashboard');
     }
 
     return
@@ -46,8 +44,7 @@ class Login {
   public static function post(): void {
     # Make sure all required fields were filled out
     if(!isset($_POST['username']) || !isset($_POST['password'])) {
-      header('Location: /login');
-      return;
+      Route::redirect('/login');
     }
 
     # Authenticate
@@ -56,9 +53,9 @@ class Login {
     # Redirect to where we need to go
     $user = Session::getUser();
     if(!$user) {
-      header('Location: /login');
+      Route::redirect('/login');
     } else {
-      header('Location: /dashboard');
+      Route::redirect('/dashboard');
     }
   }
 }

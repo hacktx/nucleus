@@ -134,4 +134,9 @@ class Route {
         </body>
       </x:frag>;
   }
+
+  public static function redirect(string $path): void {
+    header('Location: ' . $path);
+    exit();
+  }
 }
