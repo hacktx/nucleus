@@ -1,6 +1,6 @@
 <?hh
 
-class Apply {
+class ApplyController {
   public static function get(): :xhp {
     # You must be authed to view the application
     if(!Session::isActive()) {
@@ -15,6 +15,7 @@ class Apply {
 
     $application = Application::genByUser($user);
 
+    $alert = null;
     if($application->isSubmitted()) {
       $alert =
         <div class="alert alert-info" role="alert">
@@ -125,6 +126,6 @@ class Apply {
       $application->submit();
     }
 
-    header('Location: /apply');
+    Route::redirect('/apply');
   }
 }

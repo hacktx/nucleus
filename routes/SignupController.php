@@ -1,6 +1,6 @@
 <?hh
 
-class Signup {
+class SignupController {
 
   public static function get(): :xhp {
 
@@ -47,8 +47,8 @@ class Signup {
 
   public static function post(): void {
     if($_POST['password'] != $_POST['password2']) {
-      header('Location /signup');
-      return;
+      Flash::set('error', 'Passwords do not match');
+      Route::redirect('/signup');
     }
     $user = User::create(
       $_POST['uname'],
@@ -58,10 +58,10 @@ class Signup {
       $_POST['lname']
     );
     if(!$user) {
-      header('Location: /signup');
-      return;
+      Flash::set('error', 'Username is taken');
+      Route::redirect('/signup');
     }
     Session::create($user);
-    header('Location: /dashboard');
+    Route::redirect('/dashboard');
   }
 }
