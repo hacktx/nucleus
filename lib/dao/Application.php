@@ -31,7 +31,8 @@ class Application {
     if(DB::count() != 0) {
       # The user has submitted their app, don't allow them to update
       if($query['submitted']) {
-        header('Location: /dashboard');
+        Flash::set('error', 'You have already submitted an application');
+        Route::redirect('/dashboard');
       }
 
       # An application exists, just update it
