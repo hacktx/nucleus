@@ -58,15 +58,15 @@ class User {
     return $this->password;
   }
 
-  public function getEmail() {
+  public function getEmail(): string {
     return $this->email;
   }
 
-  public function getFirstName() {
+  public function getFirstName(): string {
     return $this->fname;
   }
 
-  public function getLastName() {
+  public function getLastName(): string {
     return $this->lname;
   }
 
