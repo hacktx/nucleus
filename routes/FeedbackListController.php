@@ -20,11 +20,11 @@ class FeedbackListController {
       $user = User::genByID($row['id']);
 
       # Get the current user's review
-      DB::query("SELECT * FROM feedback WHERE reviewer_id=%s AND user_id=%s", Session::getUser()->getID(), $row['id']);
+      $feedback = Feedback::gen($row['id'], Session::getUser()->getID());
 
       # Append the applicant to the table as a new row
       $table_body->appendChild(
-        <tr class={DB::count() != 0 ? "success" : ""}>
+        <tr class={$feedback->getComments() != '' ? "success" : ""}>
           <td class="name">{$user->getFirstName() . ' ' . $user->getLastName()}</td>
           <td><a href={'/feedback/' . $row['id']} class="btn btn-primary">Review</a></td>
         </tr>

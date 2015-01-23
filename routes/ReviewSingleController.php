@@ -132,9 +132,9 @@ class ReviewSingleController {
   }
 
   private static function getReviews(Application $application): ?:xhp {
-    $query = DB::query("SELECT * FROM reviews WHERE application_id=%s", $application->getID());
 
     # Loop through the reviews
+    $query = DB::query("SELECT * FROM reviews WHERE application_id=%s", $application->getID());
     $reviews = <ul class="list-group" />;
     foreach($query as $row) {
       $user = User::genByID($row['user_id']);
@@ -146,9 +146,14 @@ class ReviewSingleController {
       );
     }
 
+    # Loop through member feedback
     $query = DB::query("SELECT * FROM feedback WHERE user_id=%s", $application->getUserID());
     $feedback = <ul class="list-group" />;
     foreach($query as $row) {
+      # Skip empty feedback
+      if($row['comments'] === '') {
+        continue;
+      }
       $user = User::genByID($row['reviewer_id']);
       $feedback->appendChild(
         <li class="list-group-item">
