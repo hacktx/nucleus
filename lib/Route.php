@@ -51,6 +51,19 @@ class Route {
         'status' => array(User::Member),
         'roles' => array('admin')
       },
+      '/feedback' => Map {
+        'controller' => 'FeedbackListController',
+        'methods' => 'GET',
+        'status' => array(User::Member)
+      },
+      '/feedback/{id}' => Map {
+        'controller' => 'FeedbackSingleController',
+        'methods' => 'GET|POST',
+        'tokens' => Map {
+          'id' => '\d+'
+        },
+        'status' => array(User::Member),
+      },
       '/events/admin' => Map {
         'controller' => 'EventsAdminController',
         'methods' => 'GET|POST',

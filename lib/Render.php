@@ -57,6 +57,15 @@ class Render {
         );
       }
 
+      # Members can see the feedback portal
+      if($user->isMember()) {
+        $nav_buttons->appendChild(
+          <li class={($controller === 'FeedbackListController' || $controller === 'FeedbackSingleController') ? 'active' : ''}>
+            <a href="/feedback">Applicant Feedback</a>
+          </li>
+        );
+      }
+
       # Admins and Reviewers can access the review portal
       if($user->isAdmin() || $user->isReviewer()) {
         $nav_buttons->appendChild(

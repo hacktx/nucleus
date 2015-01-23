@@ -133,10 +133,6 @@ class ReviewSingleController {
 
   private static function getReviews(Application $application): ?:xhp {
     $query = DB::query("SELECT * FROM reviews WHERE application_id=%s", $application->getID());
-    if(empty($query)) {
-      # No reviews currently exist
-      return null;
-    }
 
     # Loop through the reviews
     $reviews = <ul class="list-group" />;
@@ -150,9 +146,35 @@ class ReviewSingleController {
       );
     }
 
+    $query = DB::query("SELECT * FROM feedback WHERE user_id=%s", $application->getUserID());
+    $feedback = <ul class="list-group" />;
+    foreach($query as $row) {
+      $user = User::genByID($row['reviewer_id']);
+      $feedback->appendChild(
+        <li class="list-group-item">
+          <h4>{$user->getFirstName() . ' ' . $user->getLastName()}</h4>
+          <p>{$row['comments']}</p>
+        </li>
+      );
+    }
+
     return
-      <div class="panel panel-default">
-        {$reviews}
+      <div class="panel panel-default" role="tabpanel">
+        <div class="panel-heading">
+          <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#reviews" aria-controls="home" role="tab" data-toggle="tab">Reviews</a>
+            </li>
+            <li role="presentation">
+              <a href="#feedback" aria-controls="profile" role="tab" data-toggle="tab">Member Feedback</a>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content">
+          <br/>
+          <div role="tabpanel" class="tab-pane active" id="reviews">{$reviews}</div>
+          <div role="tabpanel" class="tab-pane" id="feedback">{$feedback}</div>
+        </div>
       </div>;
   }
 }
