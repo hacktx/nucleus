@@ -70,7 +70,12 @@ class DashboardController {
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="col-md-3">
-              <img src={$gravatar_url} class="img-thumbnail" />
+              <div class="thumbnail">
+                <img src={$gravatar_url} class="img-thumbnail" />
+                <div class="caption">
+                  <p><a href="https://en.gravatar.com/emails/" class="wide btn btn-primary" role="button">Change on Gravatar</a></p>
+                </div>
+              </div>
             </div>
             <div class="col-md-9">
               <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
