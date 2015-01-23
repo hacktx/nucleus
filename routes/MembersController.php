@@ -36,6 +36,7 @@ class MembersController {
     # Loop through all users with the specified status
     $query = DB::query("SELECT * FROM users WHERE member_status=%s", $status);
     foreach($query as $row) {
+      $roles = Roles::getRoles((int)$row['id']);
       # Generate the action buttons based off the user's role and status
       $buttons = <form class="btn-toolbar" method="post" action="/members" />;
       if($row['member_status'] == 0) {
@@ -56,14 +57,14 @@ class MembersController {
           </button>
         );
       } else {
-        if ($row['admin'] == false) {
+        if (!in_array(Roles::Admin, $roles)) {
           $buttons->appendChild(
             <button name="admin" class="btn btn-primary" value={$row['id']} type="submit">
               Make admin
             </button>
           );
         }
-        if (!$row['reviewer']) {
+        if (!in_array(Roles::Reviewer, $roles)) {
           $buttons->appendChild(
             <button name="makeReviewer" class="btn btn-primary" value={$row['id']} type="submit">
               Make Reviewer
@@ -92,31 +93,21 @@ class MembersController {
   }
 
   public static function post(): void {
-    if(!Session::isActive()) {
-      header('Location: /login');
-    }
-
-    # Check auth level
-    $user = Session::getUser();
-    if(!$user->isAdmin()) {
-      header('Location /members');
-    }
-
     # Update the proper field
     if(isset($_POST['delete'])) {
       User::deleteByID((int)$_POST['delete']);
     } elseif (isset($_POST['pledge'])) {
-      User::updateStatusByID(1, (int)$_POST['pledge']);
+      User::updateStatusByID(User::Pledge, (int)$_POST['pledge']);
     } elseif (isset($_POST['member'])) {
-      User::updateStatusByID(2, (int)$_POST['member']);
+      User::updateStatusByID(User::Member, (int)$_POST['member']);
     } elseif (isset($_POST['admin'])) {
-      User::setRoleByID('admin', true, (int)$_POST['admin']);
+      Roles::insert(Roles::Admin, (int)$_POST['admin']);
     } elseif (isset($_POST['makeReviewer'])) {
-      User::setRoleByID('reviewer', true, (int)$_POST['makeReviewer']);
+      Roles::insert(Roles::Reviewer, (int)$_POST['makeReviewer']);
     } elseif (isset($_POST['removeReviewer'])) {
-      User::setRoleByID('reviewer', false, (int)$_POST['removeReviewer']);
+      Roles::delete(Roles::Reviewer, (int)$_POST['removeReviewer']);
     }
 
-    header('Location: /members');
+    Route::redirect('/members');
   }
 }

@@ -114,17 +114,6 @@ class User {
     DB::update('users', array('member_status' => $status), "id=%s", $user_id);
   }
 
-  public static function addRoleByID(string $role, int $user_id): void {
-    DB::insert('roles', array(
-      'user_id' => $user_id,
-      'role' => $role
-    ));
-  }
-
-  public static function removeRoleByID(string $role, int $user_id): void {
-    DB::delete('roles', 'user_id=%s AND role=%s', $user_id, $role);
-  }
-
   public static function deleteByID($user_id): void {
     DB::delete('users', 'id=%s', $user_id);
   }
@@ -136,13 +125,8 @@ class User {
       return null;
     }
     $user = self::createFromQuery($query);
+    $user->roles = Roles::getRoles($user->getID());
 
-    # Get the roles
-    $query = DB::query("SELECT role FROM roles WHERE user_id=%s", $user->getID());
-    $roles = array_map(function($value) {
-      return $value['role'];
-    }, $query);
-    $user->roles = $roles;
     return $user;
   }
 
