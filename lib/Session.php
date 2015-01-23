@@ -4,8 +4,11 @@ class Session {
   public static function init(): ?User {
     session_start();
 
+    # If there's an active user in the session, refresh it
     if (isset($_SESSION['user'])) {
-      return $_SESSION['user'];
+      $user = User::genByID($_SESSION['user']->getID());
+      $_SESSION['user'] = $user;
+      return $user;
     }
 
     return null;

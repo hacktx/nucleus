@@ -11,16 +11,6 @@ class LoginController {
         Auth::logout();
         Route::redirect('/');
       }
-
-      # Refresh the session user
-      if($query_params['action'] === 'refresh') {
-        $user = Session::getUser();
-        Auth::logout();
-        $user = User::genByID($user->getID());
-        if($user) {
-          Session::create($user);
-        }
-      }
     }
 
     if(Session::isActive()) {
