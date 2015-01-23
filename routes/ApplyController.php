@@ -2,6 +2,7 @@
 
 class ApplyController {
   public static function get(): :xhp {
+    $user = Session::getUser();
     $application = Application::genByUser($user);
 
     $alert = null;

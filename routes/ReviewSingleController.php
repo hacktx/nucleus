@@ -1,4 +1,4 @@
-<?hh
+<?hh //decl
 
 class ReviewSingleController {
   public static function get(): :xhp {

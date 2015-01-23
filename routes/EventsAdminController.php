@@ -15,16 +15,17 @@ class EventsAdminController {
       </table>;
 
     $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
-    foreach($query as $row) {
+    $events = Event::getAll();
+    foreach($events as $event) {
       $upcoming_events->appendChild(
         <tr>
-          <td>{$row['id']}</td>
-          <td>{$row['name']}</td>
-          <td>{$row['location']}</td>
-          <td>{$row['datetime']}</td>
+          <td>{$event['id']}</td>
+          <td>{$event['name']}</td>
+          <td>{$event['location']}</td>
+          <td>{$event['datetime']}</td>
           <td>
             <form method="post" action="/events/admin">
-              <button name="delete" class="btn btn-danger" value={$row['id']} type="submit">
+              <button name="delete" class="btn btn-danger" value={$event['id']} type="submit">
                 Delete
               </button>
             </form>
@@ -75,8 +76,9 @@ class EventsAdminController {
   public static function post(): void {
     # We're deleting an event
     if(isset($_POST['delete'])) {
-      DB::delete('events', 'id=%s', $_POST['delete']);
-      header('Location: /events/admin');
+      Event::deleteByID((int)$_POST['delete']);
+      Flash::set('success', 'Event deleted successfully');
+      Route::redirect('/events/admin');
     }
 
     # All fields must be present
@@ -84,10 +86,12 @@ class EventsAdminController {
        !isset($_POST['location']) ||
        !isset($_POST['date']) ||
        !isset($_POST['time'])) {
-      header('Location: /events/admin');
+      Flash::set('error', 'All fields must be filled out');
+      Route::redirect('/events/admin');
     }
 
     Event::create($_POST['name'], $_POST['location'], $_POST['date'], $_POST['time']);
-    header('Location: /events/admin');
+    Flash::set('success', 'Event created successfully');
+    Route::redirect('/events/admin');
   }
 }

@@ -2,18 +2,18 @@
 
 class User {
 
-  const Applicant = 'applicant';
-  const Pledge = 'pledge';
-  const Member = 'member';
+  const Applicant = 0;
+  const Pledge = 1;
+  const Member = 2;
 
-  private int $id;
-  private string $username;
-  private string $password;
-  private string $email;
-  private string $fname;
-  private string $lname;
-  private string $member_status;
-  private array $roles;
+  private int $id = 0;
+  private string $username = '';
+  private string $password = '';
+  private string $email = '';
+  private string $fname = '';
+  private string $lname = '';
+  private int $member_status = 0;
+  private array $roles = array();
 
   public static function create(
     $username,
@@ -74,8 +74,21 @@ class User {
     return $this->roles;
   }
 
-  public function getStatus(): string {
+  public function getStatusID(): int {
     return $this->member_status;
+  }
+
+  public function getStatus(): string {
+    switch($this->member_status) {
+      case self::Applicant:
+        return 'applicant';
+      case self::Pledge:
+        return 'pledge';
+      case self::Member:
+        return 'member';
+      default:
+        return 'unknown';
+    }
   }
 
   public function isApplicant(): bool {
@@ -138,20 +151,7 @@ class User {
     $user->email = $query['email'];
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
-    $user->member_status = self::getStatusByStatusID((int)$query['member_status']);
+    $user->member_status = (int)$query['member_status'];
     return $user;
-  }
-
-  private static function getStatusByStatusID(int $status_id): string {
-    switch($status_id) {
-      case 0:
-        return self::Applicant;
-      case 1:
-        return self::Pledge;
-      case 2:
-        return self::Member;
-      default:
-        return 'unknown';
-    }
   }
 }

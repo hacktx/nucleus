@@ -6,26 +6,22 @@ class Event {
     string $location,
     string $date,
     string $time
-  ): Event {
+  ): void {
     $unix_timestamp = strtotime($date . ' ' . $time);
     $mysql_timestamp = date('Y-m-d H:i:s',$unix_timestamp);
     DB::insert('events', array(
       'name' => $name,
       'location' => $location,
-      'datetime' => $mysql_timestamp 
+      'datetime' => $mysql_timestamp
     ));
-
-    $id = DB::insertId();
-    $query = DB::queryFirstRow("SELECT * FROM events WHERE id=%s", $id);
-    return self::createFromQuery($query);
   }
 
-  private static function createFromQuery(array $query): Event {
-    $event = new Event();
-    $event->id = $query['id'];
-    $event->name = $query['name'];
-    $event->location = $query['location'];
-    $event->datetime = $query['datetime'];
-    return $event;
+  public static function getAll(): array {
+    $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
+    return $query ? $query : array();
+  }
+
+  public static function deleteByID(int $id) {
+    DB::delete('events', 'id=%s', $id);
   }
 }

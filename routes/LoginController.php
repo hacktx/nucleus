@@ -17,7 +17,9 @@ class LoginController {
         $user = Session::getUser();
         Auth::logout();
         $user = User::genByID($user->getID());
-        Session::create($user);
+        if($user) {
+          Session::create($user);
+        }
       }
     }
 

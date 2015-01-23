@@ -28,7 +28,7 @@ class Auth {
     }
 
     $user = Session::getUser();
-    if(!in_array($user->getStatus(), $status)) {
+    if(!in_array($user->getStatusID(), $status)) {
       Flash::set('error', 'You do not have permission to view this page');
       Route::redirect('/dashboard');
     }

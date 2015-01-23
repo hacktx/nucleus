@@ -2,10 +2,10 @@
 
 class AppReview {
 
-  private string $comments;
-  private string $rating;
-  private int $user_id;
-  private int $application_id;
+  private string $comments = '';
+  private string $rating = '';
+  private int $user_id = 0;
+  private int $application_id = 0;
 
   public static function upsert(
     string $comments,
