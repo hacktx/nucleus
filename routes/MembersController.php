@@ -2,17 +2,6 @@
 
 class MembersController {
   public static function get(): :xhp {
-    if(!Session::isActive()) {
-      header('Location: /login');
-    }
-
-    # Only admins can view this page
-    $user = Session::getUser();
-    if(!$user->isAdmin()) {
-      return
-        <h1 class="sorry">You do not have access to view this page</h1>;
-    }
-
     return
       <div class="well" role="tabpanel">
         <ul class="nav nav-tabs" role="tablist">

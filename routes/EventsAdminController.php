@@ -2,17 +2,6 @@
 
 class EventsAdminController {
   public static function get(): :xhp {
-    if(!Session::isActive()) {
-      header('Location: /login');
-    }
-
-    # User must be an admin to modify events
-    $user = Session::getUser();
-    if(!$user->isAdmin()) {
-      return
-        <h1 class="sorry">You do not have access to view this page</h1>;
-    }
-
     # Generate a table of all future events
     $upcoming_events =
       <table class="table">
@@ -84,16 +73,6 @@ class EventsAdminController {
   }
 
   public static function post(): void {
-    if(!Session::isActive()) {
-      header('Location: /login');
-    }
-
-    # User has to be an admin to modify events
-    $user = Session::getUser();
-    if(!$user->isAdmin()) {
-      header('Location: /events/admin');
-    }
-
     # We're deleting an event
     if(isset($_POST['delete'])) {
       DB::delete('events', 'id=%s', $_POST['delete']);

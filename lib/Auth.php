@@ -27,12 +27,32 @@ class Auth {
       Route::redirect('/login');
     }
 
-    $status = array();
+    $user = Session::getUser();
+    if(!in_array($user->getStatus(), $status)) {
+      Flash::set('error', 'You do not have permission to view this page');
+      Route::redirect('/dashboard');
+    }
 
     return;
   }
 
   public static function verifyRoles(?array $roles): void {
-    return;
+    # Null roles array requires no specific roles
+    if(!$roles) {
+      return;
+    }
+
+    if(!Session::isActive()) {
+      Flash::set('error', 'You must be logged in to view this page');
+      Route::redirect('/login');
+    }
+
+    $user = Session::getUser();
+    $intersection = array_intersect($roles, $user->getRoles());
+
+    if(empty($intersection)) {
+      Flash::set('error', 'You do not have the required roles to access this page');
+      Route::redirect('/dashboard');
+    }
   }
 }

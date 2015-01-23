@@ -2,6 +2,18 @@
 
 class Application {
 
+  private int $id;
+  private int $user_id;
+  private string $gender;
+  private string $year;
+  private string $q1;
+  private string $q2;
+  private string $q3;
+  private string $q4;
+  private string $q5;
+  private string $q6;
+  private int $status;
+
   public static function upsert(
     $user_id,
     $gender,

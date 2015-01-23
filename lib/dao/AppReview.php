@@ -1,6 +1,12 @@
 <?hh
 
 class AppReview {
+
+  private string $comments;
+  private string $rating;
+  private int $user_id;
+  private int $application_id;
+
   public static function upsert(
     string $comments,
     int $rating,
@@ -40,8 +46,8 @@ class AppReview {
     $review = new AppReview();
     $review->comments = $query['comments'];
     $review->rating = $query['rating'];
-    $review->user_id = $query['user_id'];
-    $review->application_id = $query['application_id'];
+    $review->user_id = (int)$query['user_id'];
+    $review->application_id = (int)$query['application_id'];
     return $review;
   }
 }

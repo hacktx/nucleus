@@ -2,17 +2,6 @@
 
 class ReviewSingleController {
   public static function get(): :xhp {
-    if(!Session::isActive()) {
-      header('Location: /login');
-    }
-
-    # Only reviewers and admins can view this page
-    $user = Session::getUser();
-    if(!$user->isAdmin() && !$user->isReviewer()) {
-      return
-        <h1 class="sorry">You do not have access to view this page</h1>;
-    }
-
     $app_id = (int)$_SESSION['route_params']['id'];
 
     $application = Application::genByID((int)$app_id);
@@ -131,16 +120,6 @@ class ReviewSingleController {
   }
 
   public static function post(): void {
-    if(!Session::isActive()) {
-      header('Location: /login');
-    }
-
-    # Only reviewers and admins can perform these actions
-    $user = Session::getUser();
-    if(!$user->isAdmin() && !$user->isReviewer()) {
-      header('Location /review');
-    }
-
     # Upsert the review
     AppReview::upsert(
       $_POST['review'],

@@ -2,19 +2,19 @@
 
 class DashboardController {
   public static function get(): :xhp {
-    if(!Session::isActive()) {
-      header('Location: /');
-    }
     $user = Session::getUser();
 
     $email_hash = md5(strtolower(trim($user->getEmail())));
     $gravatar_url = 'http://www.gravatar.com/avatar/' . $email_hash . '?s=300';
 
     $badges = <p />;
+    $badges->appendChild(
+      <span class="label label-warning">{ucwords($user->getStatus())}</span>
+    );
+
     $applicant_info = null;
     $events = null;
     if($user->isApplicant()) {
-      $badges->appendChild(<span class="label label-warning">Applicant</span>);
       $application = Application::genByUser($user);
       if(!$application->isStarted() && !$application->isSubmitted()) {
         $status = <a href="/apply" class="btn btn-primary btn-lg wide">Start Application</a>;
@@ -28,11 +28,7 @@ class DashboardController {
           {$status}
         </div>;
     }
-    if($user->isPledge()) {
-      $badges->appendChild(<span class="label label-info">Pledge</span>);
-    }
     if($user->isMember()) {
-      $badges->appendChild(<span class="label label-success">Member</span>);
       $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
       $event_list =
         <table class="table">
@@ -63,11 +59,10 @@ class DashboardController {
           </div>;
       }
     }
-    if($user->isReviewer()) {
-      $badges->appendChild(<span class="label label-success">Reviewer</span>);
-    }
-    if($user->isAdmin()) {
-      $badges->appendChild(<span class="label label-success">Admin</span>);
+
+    $roles = $user->getRoles();
+    foreach($roles as $role) {
+      $badges->appendChild(<span class="label label-success">{ucwords($role)}</span>);
     }
 
     return

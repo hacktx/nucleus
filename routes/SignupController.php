@@ -5,12 +5,7 @@ class SignupController {
   public static function get(): :xhp {
 
     if(Session::isActive()) {
-      $user = Session::getUser();
-      if($user->isMember()) {
-        header('Location: dashboard.php');
-      } else {
-        header('Location: apply.php');
-      }
+      Route::redirect('/dashboard');
     }
 
     return

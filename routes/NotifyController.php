@@ -2,15 +2,6 @@
 
 class NotifyController {
   public static function get(): :xhp {
-    if(!Session::isActive()) {
-      header('Location: /login');
-      return;
-    }
-    if(!Session::getUser()->isAdmin()) {
-      return
-        <h1 class="sorry">You do not have access to view this page</h1>;
-    }
-
     # Get the mailing lists and parse them
     $lists = Email::getLists();
     $options = <select class="form-control" name="email" />;
@@ -47,20 +38,13 @@ class NotifyController {
   }
 
   public static function post(): void {
-    if(!Session::isActive()) {
-      header('Location: /login');
-      return;
-    }
-    if(!Session::getUser()->isAdmin()) {
-      header('Location: /notify');
-      return;
-    }
     if(!isset($_POST['email']) || !isset($_POST['subject']) || !isset($_POST['body'])) {
-      header('Location: /notify');
-      return;
+      Flash::set('error', 'All fields must be filled out');
+      Route::redirect('/notify');
     }
 
     Email::send($_POST['email'], $_POST['subject'], $_POST['body']);
-    header('Location: /notify');
+    Flash::set('success', 'Your email was sent successfully');
+    Route::redirect('/notify');
   }
 }
