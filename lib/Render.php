@@ -91,7 +91,6 @@ class Render {
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{$user->getUsername()} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/login?action=logout">Logout</a></li>
-            <li><a href="/login?action=refresh">Refresh Permissions</a></li>
           </ul>
         </li>;
     }
