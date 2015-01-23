@@ -2,17 +2,6 @@
 
 class ApplyController {
   public static function get(): :xhp {
-    # You must be authed to view the application
-    if(!Session::isActive()) {
-       header('Location: /login');
-    }
-
-    # Members have nothing to do here
-    $user = Session::getUser();
-    if($user->isMember()) {
-      header('Location: /dashboard');
-    }
-
     $application = Application::genByUser($user);
 
     $alert = null;
