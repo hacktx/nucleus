@@ -40,7 +40,10 @@ class LoginController {
     }
 
     # Authenticate
-    Auth::login($_POST['username'], $_POST['password']);
+    if(!Auth::login($_POST['username'], $_POST['password'])) {
+      Flash::set('error', 'Login failed');
+      Route::redirect('/login');
+    }
 
     # Redirect to where we need to go
     $user = Session::getUser();
