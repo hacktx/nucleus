@@ -115,17 +115,17 @@ class MembersController {
 
     # Update the proper field
     if(isset($_POST['delete'])) {
-      User::deleteByID($_POST['delete']);
+      User::deleteByID((int)$_POST['delete']);
     } elseif (isset($_POST['pledge'])) {
-      User::updateStatusByID(1, $_POST['pledge']);
+      User::updateStatusByID(1, (int)$_POST['pledge']);
     } elseif (isset($_POST['member'])) {
-      User::updateStatusByID(2, $_POST['member']);
+      User::updateStatusByID(2, (int)$_POST['member']);
     } elseif (isset($_POST['admin'])) {
-      User::setRoleByID('admin', true, $_POST['admin']);
+      User::setRoleByID('admin', true, (int)$_POST['admin']);
     } elseif (isset($_POST['makeReviewer'])) {
-      User::setRoleByID('reviewer', true, $_POST['makeReviewer']);
+      User::setRoleByID('reviewer', true, (int)$_POST['makeReviewer']);
     } elseif (isset($_POST['removeReviewer'])) {
-      User::setRoleByID('reviewer', false, $_POST['removeReviewer']);
+      User::setRoleByID('reviewer', false, (int)$_POST['removeReviewer']);
     }
 
     header('Location: /members');

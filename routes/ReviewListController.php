@@ -35,7 +35,7 @@ class ReviewListController {
           <td>{$row['id']}</td>
           <td class="name">{$user->getFirstName() . ' ' . $user->getLastName()}</td>
           <td class="email">{$user->getEmail()}</td>
-          <td><a href={'/review?app_id=' . $row['id']} class="btn btn-primary">Review</a></td>
+          <td><a href={'/review/' . $row['id']} class="btn btn-primary">Review</a></td>
         </tr>
       );
     }

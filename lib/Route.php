@@ -93,10 +93,14 @@ class Route {
         isset($route->params['roles']) ? $route->params['roles'] : null
       );
 
+      # Set the params in the session for use in the controllers
+      $_SESSION['route_params'] = $route->params;
+
       # Render the page
       $controller = new ($route->params['controller']);
       Render::go($controller::$method(), $route->params['controller']);
     } else {
+      # No route detected, 404
       Render::go(FourOhFourController::get(), 'FourOhFourController');
     }
 

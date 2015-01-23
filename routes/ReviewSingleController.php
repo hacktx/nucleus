@@ -13,7 +13,7 @@ class ReviewSingleController {
         <h1 class="sorry">You do not have access to view this page</h1>;
     }
 
-    $app_id = (int)$_SESSION['app_id'];
+    $app_id = (int)$_SESSION['route_params']['id'];
 
     $application = Application::genByID((int)$app_id);
     $user = User::genByID($application->getUserID());
@@ -149,7 +149,7 @@ class ReviewSingleController {
       Application::genByID((int)$_POST['id'])
     );
 
-    header('Location: /review?app_id=' . $_POST['id']);
+    Route::redirect('/review/' . $_POST['id']);
   }
 
   private static function getReviews(Application $application): ?:xhp {

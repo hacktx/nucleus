@@ -98,7 +98,7 @@ class User {
   }
 
   public static function setRoleByID(string $role, bool $value, int $user_id): void {
-    BD::update('users', array($role => $value), "id=%s", $user_id);
+    DB::update('users', array($role => $value), "id=%s", $user_id);
   }
 
   public static function deleteByID($user_id): void {
