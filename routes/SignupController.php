@@ -18,6 +18,7 @@ class SignupController {
           <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" name="password" placeholder="Password" />
+            <p class="help-block">Password much be longer than 6 characters</p>
           </div>
           <div class="form-group">
             <label>Confirm Password</label>
@@ -41,10 +42,26 @@ class SignupController {
   }
 
   public static function post(): void {
+    if($_POST['uname'] == '' || $_POST['password'] == '' ||
+       $_POST['password2'] == '' || $_POST['email'] == '' ||
+       $_POST['fname'] == '' || $_POST['lname'] == '') {
+      Flash::set('error', 'All fields are required');
+      Route::redirect('/signup');
+    }
+
+    # Verify password length
+    if(strlen($_POST['password']) < 6) {
+      Flash::set('error', 'Password much be longer than 6 characters');
+      Route::redirect('/signup');
+    }
+
+    # Verify passwords match
     if($_POST['password'] != $_POST['password2']) {
       Flash::set('error', 'Passwords do not match');
       Route::redirect('/signup');
     }
+
+    # Create the user
     $user = User::create(
       $_POST['uname'],
       $_POST['password'],
@@ -52,10 +69,13 @@ class SignupController {
       $_POST['fname'],
       $_POST['lname']
     );
+
+    # User creation failed
     if(!$user) {
       Flash::set('error', 'Username is taken');
       Route::redirect('/signup');
     }
+
     Session::create($user);
     Route::redirect('/dashboard');
   }
