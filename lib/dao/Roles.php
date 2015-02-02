@@ -3,6 +3,7 @@
 class Roles {
   const Admin = 'admin';
   const Reviewer = 'reviewer';
+  const EventAdmin = 'events';
 
   public static function insert(string $role, int $user_id): void {
     DB::insert('roles', array(

@@ -68,13 +68,13 @@ class Route {
         'controller' => 'EventsAdminController',
         'methods' => 'GET|POST',
         'status' => array(User::Member),
-        'roles' => array('admin')
+        'roles' => array(Roles::Admin, Roles::EventAdmin)
       },
       '/events/{id}' => Map {
         'controller' => 'EventAttendanceController',
         'methods' => 'GET|POST',
         'status' => array(User::Member),
-        'roles' => array('admin')
+        'roles' => array(Roles::Admin, Roles::EventAdmin)
       },
       '/notify' => Map {
         'controller' => 'NotifyController',

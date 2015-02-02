@@ -111,6 +111,10 @@ class User {
     return in_array('reviewer', $this->roles);
   }
 
+  public function isEventAdmin(): bool {
+    return in_array(Roles::EventAdmin, $this->roles);
+  }
+
   public static function genByID($user_id): ?User {
     return self::constructFromQuery('id', $user_id);
   }

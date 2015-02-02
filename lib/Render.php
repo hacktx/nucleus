@@ -75,16 +75,20 @@ class Render {
         );
       }
 
+      # Admins and event admins can access the events portal
+      if($user->isAdmin() || $user->isEventAdmin()) {
+        $nav_buttons->appendChild(
+          <li class={$controller === 'EventsAdminController' ? 'active' : ''}>
+            <a href="/events/admin">Events</a>
+          </li>
+        );
+      }
+
       # Admin only actions
       if($user->isAdmin()) {
         $nav_buttons->appendChild(
           <li class={$controller === 'MembersController' ? 'active' : ''}>
             <a href="/members">Members</a>
-          </li>
-        );
-        $nav_buttons->appendChild(
-          <li class={$controller === 'EventsAdminController' ? 'active' : ''}>
-            <a href="/events/admin">Events</a>
           </li>
         );
         $nav_buttons->appendChild(

@@ -77,6 +77,19 @@ class MembersController {
             </button>
           );
         }
+        if (!in_array(Roles::EventAdmin, $roles)) {
+          $buttons->appendChild(
+            <button name="makeEventsAdmin" class="btn btn-primary" value={$row['id']} type="submit">
+              Make Events Admin
+            </button>
+          );
+        } else {
+          $buttons->appendChild(
+            <button name="removeEventsAdmin" class="btn btn-danger" value={$row['id']} type="submit">
+              Remove Events Admin
+            </button>
+          );
+        }
       }
 
       # Append the row to the table
@@ -106,6 +119,10 @@ class MembersController {
       Roles::insert(Roles::Reviewer, (int)$_POST['makeReviewer']);
     } elseif (isset($_POST['removeReviewer'])) {
       Roles::delete(Roles::Reviewer, (int)$_POST['removeReviewer']);
+    } elseif (isset($_POST['makeEventsAdmin'])) {
+      Roles::insert(Roles::EventAdmin, (int)$_POST['makeEventsAdmin']);
+    } elseif (isset($_POST['removeEventsAdmin'])) {
+      Roles::delete(Roles::EventAdmin, (int)$_POST['removeEventsAdmin']);
     }
 
     Route::redirect('/members');
