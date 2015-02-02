@@ -163,6 +163,16 @@ class ReviewSingleController {
       );
     }
 
+    $query = DB::query("SELECT events.name FROM events INNER JOIN attendance ON events.id = attendance.event_id WHERE user_id=%s", $application->getUserID());
+    $events = <ul class="list-group" />;
+    foreach($query as $row) {
+      $events->appendChild(
+        <li class="list-group-item">
+          <h4>{$row['name']}</h4>
+        </li>
+      );
+    }
+
     return
       <div class="panel panel-default" role="tabpanel">
         <div class="panel-heading">
@@ -173,12 +183,16 @@ class ReviewSingleController {
             <li role="presentation">
               <a href="#feedback" aria-controls="profile" role="tab" data-toggle="tab">Member Feedback</a>
             </li>
+            <li role="presentation">
+              <a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Events Attended</a>
+            </li>
           </ul>
         </div>
         <div class="tab-content">
           <br/>
           <div role="tabpanel" class="tab-pane active" id="reviews">{$reviews}</div>
           <div role="tabpanel" class="tab-pane" id="feedback">{$feedback}</div>
+          <div role="tabpanel" class="tab-pane" id="events">{$events}</div>
         </div>
       </div>;
   }
