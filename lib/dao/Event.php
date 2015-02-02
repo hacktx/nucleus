@@ -21,6 +21,23 @@ class Event {
     return $query ? $query : array();
   }
 
+  public static function genByID(int $id): ?Event {
+    $query = DB::queryFirstRow("SELECT * FROM events WHERE id=%s", $id);
+    if(!$query) {
+      return null;
+    }
+    $event = new Event();
+    $event->id = $query['id'];
+    $event->name = $query['name'];
+    $event->location = $query['location'];
+    $event->datetime = $query['datetime'];
+    return $event;
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
   public static function deleteByID(int $id) {
     DB::delete('events', 'id=%s', $id);
   }

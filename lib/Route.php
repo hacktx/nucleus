@@ -70,6 +70,12 @@ class Route {
         'status' => array(User::Member),
         'roles' => array('admin')
       },
+      '/events/{id}' => Map {
+        'controller' => 'EventAttendanceController',
+        'methods' => 'GET|POST',
+        'status' => array(User::Member),
+        'roles' => array('admin')
+      },
       '/notify' => Map {
         'controller' => 'NotifyController',
         'methods' => 'GET|POST',

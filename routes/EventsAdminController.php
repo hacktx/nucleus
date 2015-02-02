@@ -14,12 +14,11 @@ class EventsAdminController {
         </tr>
       </table>;
 
-    $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
     $events = Event::getAll();
     foreach($events as $event) {
       $upcoming_events->appendChild(
         <tr>
-          <td>{$event['id']}</td>
+          <td><a href={'/events/' . $event['id']}>{$event['id']}</a></td>
           <td>{$event['name']}</td>
           <td>{$event['location']}</td>
           <td>{$event['datetime']}</td>
