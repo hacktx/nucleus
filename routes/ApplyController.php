@@ -113,6 +113,11 @@ class ApplyController {
     );
 
     if(isset($_POST['submit'])) {
+      if($_POST['q1'] === '' || $_POST['q2'] === '' || $_POST['q3'] === '' ||
+         $_POST['q4'] === '' || $_POST['q5'] === '' || $_POST['q6'] === '') {
+        Flash::set('error', 'All fields are required');
+        Route::redirect('/apply');
+      }
       $application->submit();
     }
 
