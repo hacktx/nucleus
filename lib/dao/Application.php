@@ -69,7 +69,7 @@ class Application {
   public function submit(): void {
     DB::update('applications', array(
       'status' => 2
-    ), 'id', $this->id);
+    ), 'id=%s', $this->id);
   }
 
   public function getID(): int {
