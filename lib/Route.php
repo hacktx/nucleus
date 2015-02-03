@@ -49,7 +49,7 @@ class Route {
         'controller' => 'MembersController',
         'methods' => 'GET|POST',
         'status' => array(User::Member),
-        'roles' => array('admin')
+        'roles' => array(Roles::Admin)
       },
       '/feedback' => Map {
         'controller' => 'FeedbackListController',
@@ -68,19 +68,19 @@ class Route {
         'controller' => 'EventsAdminController',
         'methods' => 'GET|POST',
         'status' => array(User::Member),
-        'roles' => array(Roles::Admin, Roles::EventAdmin)
+        'roles' => array(Roles::Admin, Roles::Officer)
       },
       '/events/{id}' => Map {
         'controller' => 'EventAttendanceController',
         'methods' => 'GET|POST',
         'status' => array(User::Member),
-        'roles' => array(Roles::Admin, Roles::EventAdmin)
+        'roles' => array(Roles::Admin, Roles::Officer)
       },
       '/notify' => Map {
         'controller' => 'NotifyController',
         'methods' => 'GET|POST',
         'status' => array(User::Member),
-        'roles' => array('admin')
+        'roles' => array(Roles::Admin, Roles::Officer)
       }
     };
 

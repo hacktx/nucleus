@@ -111,8 +111,8 @@ class User {
     return in_array('reviewer', $this->roles);
   }
 
-  public function isEventAdmin(): bool {
-    return in_array(Roles::EventAdmin, $this->roles);
+  public function isOfficer(): bool {
+    return in_array(Roles::Officer, $this->roles);
   }
 
   public static function genByID($user_id): ?User {

@@ -77,16 +77,16 @@ class MembersController {
             </button>
           );
         }
-        if (!in_array(Roles::EventAdmin, $roles)) {
+        if (!in_array(Roles::Officer, $roles)) {
           $buttons->appendChild(
-            <button name="makeEventsAdmin" class="btn btn-primary" value={$row['id']} type="submit">
-              Make Events Admin
+            <button name="makeOfficer" class="btn btn-primary" value={$row['id']} type="submit">
+              Make Officer
             </button>
           );
         } else {
           $buttons->appendChild(
-            <button name="removeEventsAdmin" class="btn btn-danger" value={$row['id']} type="submit">
-              Remove Events Admin
+            <button name="removeOfficer" class="btn btn-danger" value={$row['id']} type="submit">
+              Remove Officer
             </button>
           );
         }
@@ -119,10 +119,10 @@ class MembersController {
       Roles::insert(Roles::Reviewer, (int)$_POST['makeReviewer']);
     } elseif (isset($_POST['removeReviewer'])) {
       Roles::delete(Roles::Reviewer, (int)$_POST['removeReviewer']);
-    } elseif (isset($_POST['makeEventsAdmin'])) {
-      Roles::insert(Roles::EventAdmin, (int)$_POST['makeEventsAdmin']);
-    } elseif (isset($_POST['removeEventsAdmin'])) {
-      Roles::delete(Roles::EventAdmin, (int)$_POST['removeEventsAdmin']);
+    } elseif (isset($_POST['makeOfficer'])) {
+      Roles::insert(Roles::Officer, (int)$_POST['makeOfficer']);
+    } elseif (isset($_POST['removeOfficer'])) {
+      Roles::delete(Roles::Officer, (int)$_POST['removeOfficer']);
     }
 
     Route::redirect('/members');
