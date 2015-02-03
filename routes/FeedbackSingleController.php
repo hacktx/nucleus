@@ -5,6 +5,9 @@ class FeedbackSingleController {
     $user_id = (int)$_SESSION['route_params']['id'];
     $user = User::genByID($user_id);
 
+    $email_hash = md5(strtolower(trim($user->getEmail())));
+    $gravatar_url = 'http://www.gravatar.com/avatar/' . $email_hash . '?s=200';
+
     $feedback = Feedback::gen($user_id, Session::getUser()->getID());
 
     return
@@ -12,6 +15,11 @@ class FeedbackSingleController {
         <div class="panel panel-default">
           <div class="panel-heading">
             <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
+          </div>
+          <div class="panel-body">
+            <p class="text-center">
+              <img src={$gravatar_url} class="img-thumbnail" />
+            </p>
           </div>
         </div>
         <div class="panel panel-default">
