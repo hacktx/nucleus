@@ -18,7 +18,7 @@ class SignupController {
           <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" name="password" placeholder="Password" />
-            <p class="help-block">Password much be longer than 6 characters</p>
+            <p class="help-block">Password must be longer than 6 characters</p>
           </div>
           <div class="form-group">
             <label>Confirm Password</label>
