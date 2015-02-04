@@ -51,7 +51,7 @@ class SignupController {
 
     # Verify password length
     if(strlen($_POST['password']) < 6) {
-      Flash::set('error', 'Password much be longer than 6 characters');
+      Flash::set('error', 'Password must be longer than 6 characters');
       Route::redirect('/signup');
     }
 
