@@ -128,7 +128,7 @@ class ReviewSingleController {
       Application::genByID((int)$_POST['id'])
     );
 
-    Route::redirect('/review');
+    Route::redirect('/review#' . $_POST['id']);
   }
 
   private static function getReviews(Application $application): ?:xhp {

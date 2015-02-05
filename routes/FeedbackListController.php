@@ -25,6 +25,7 @@ class FeedbackListController {
       # Append the applicant to the table as a new row
       $table_body->appendChild(
         <tr class={$feedback->getComments() != '' ? "success" : ""}>
+          <td>{$row['id']}</td>
           <td class="name">{$user->getFirstName() . ' ' . $user->getLastName()}</td>
           <td><a href={'/feedback/' . $row['id']} class="btn btn-primary">Review</a></td>
         </tr>
