@@ -6,7 +6,7 @@ class FeedbackSingleController {
     $user = User::genByID($user_id);
 
     $email_hash = md5(strtolower(trim($user->getEmail())));
-    $gravatar_url = 'http://www.gravatar.com/avatar/' . $email_hash . '?s=200';
+    $gravatar_url = 'https://secure.gravatar.com/avatar/' . $email_hash . '?s=200';
 
     $feedback = Feedback::gen($user_id, Session::getUser()->getID());
 

@@ -5,7 +5,7 @@ class DashboardController {
     $user = Session::getUser();
 
     $email_hash = md5(strtolower(trim($user->getEmail())));
-    $gravatar_url = 'http://www.gravatar.com/avatar/' . $email_hash . '?s=300';
+    $gravatar_url = 'https://secure.gravatar.com/avatar/' . $email_hash . '?s=300';
 
     $badges = <p />;
     $badges->appendChild(
