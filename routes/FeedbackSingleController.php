@@ -50,6 +50,6 @@ class FeedbackSingleController {
     );
 
     Flash::set('success', 'Feedback submitted!');
-    Route::redirect('/feedback');
+    Route::redirect('/feedback#' . $_POST['id']);
   }
 }

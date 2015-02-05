@@ -31,8 +31,7 @@ class ReviewListController {
 
       # Append the applicant to the table as a new row
       $table_body->appendChild(
-        <tr class={DB::count() != 0 ? "success" : ""}>
-          <td>{$row['id']}</td>
+        <tr class={DB::count() != 0 ? "success" : ""} id={$row['id']}>
           <td class="name">{$user->getFirstName() . ' ' . $user->getLastName()}</td>
           <td class="email">{$user->getEmail()}</td>
           <td><a href={'/review/' . $row['id']} class="btn btn-primary">Review</a></td>
