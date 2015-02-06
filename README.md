@@ -5,9 +5,9 @@ Member identity system and application portal
 ### Setup HHVM
 Omega runs on Hack, which requires [HHVM](http://hhvm.com/). To install HHVM, follow the instructions [on their website](http://docs.hhvm.com/manual/en/install-intro.install.php).
 
-### Setup Ngnix
+### Setup Nginx
 All Omega requests route through app.php in the root of the project, with static resources being pulled from the public folder.
-This requires a custom Ngnix rule. Here is an example:
+This requires a custom Nginx rule. Here is an example:
 ```
 server {
   listen 80;
@@ -23,7 +23,7 @@ server {
 }
 ```
 Note the `include hhvm.conf;`. The HHVM install should have created this file in `/etc/nginx` on installation.
-If not, [these](http://fideloper.com/hhvm-nginx-laravel) are good instructions on how to configure ngnix to use HHVM.
+If not, [these](http://fideloper.com/hhvm-nginx-laravel) are good instructions on how to configure nginx to use HHVM.
 
 ### Setup MySQL
 Omega is backed by MySQL and the schema can be found at [TexasLAN/Omega-schema](https://github.com/TexasLAN/Omega-schema).
