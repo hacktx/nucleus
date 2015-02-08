@@ -29,11 +29,19 @@ class ReviewSingleController {
         </div>;
     }
 
+    $email_hash = md5(strtolower(trim($user->getEmail())));
+    $gravatar_url = 'https://secure.gravatar.com/avatar/' . $email_hash . '?s=200';
+
     return
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
+          </div>
+          <div class="panel-body">
+            <p class="text-center">
+              <img src={$gravatar_url} class="img-thumbnail" />
+            </p>
           </div>
           <table class="table">
             <tr>
