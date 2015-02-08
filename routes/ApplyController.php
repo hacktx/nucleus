@@ -5,11 +5,19 @@ class ApplyController {
     $user = Session::getUser();
     $application = Application::genByUser($user);
 
+    $disabled =
+      $application->isSubmitted() || !Settings::get('applications_open');
+
     $alert = null;
     if($application->isSubmitted()) {
       $alert =
         <div class="alert alert-info" role="alert">
           Your application has been submitted and can no longer be edited.
+        </div>;
+    } else if (!Settings::get('applications_open')) {
+      $alert =
+        <div class="alert alert-info" role="alert">
+          Applications are currently closed
         </div>;
     }
 
@@ -18,7 +26,7 @@ class ApplyController {
         {$alert}
         <div class="well">
           <form method="post" action="/apply">
-            <fieldset disabled={$application->isSubmitted()}>
+            <fieldset disabled={$disabled}>
               <div class="form-group">
                 <label for="gender" class="control-label">Gender</label>
                 <select class="form-control" id="gender" name="gender">
@@ -99,6 +107,11 @@ class ApplyController {
   }
 
   public static function post(): void {
+    if(!Settings::get('applications_open')) {
+      Flash::set('error', 'Applications are currently closed');
+      Route::redirect('/dashboard');
+    }
+
     $user = Session::getUser();
     $application = Application::upsert(
       $user->getID(),

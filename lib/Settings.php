@@ -1,14 +1,17 @@
 <?hh
 
 class Settings {
-  public static function get(string $key): mixed {
-    $query = DB::queryFirstRow("SELECT * FROM settings WHERE key=%s", $key);
-    return $query['value'];
+  public static function get(string $key): bool {
+    $query = DB::queryFirstRow("SELECT * FROM settings WHERE name=%s", $key);
+    if (!$query) {
+      return false;
+    }
+    return filter_var($query['value'], FILTER_VALIDATE_BOOLEAN);
   }
 
   public static function set(string $key, mixed $value): void {
     DB::insertUpdate('settings', array(
-      'key' => $key,
+      'name' => $key,
       'value' => $value
     ));
   }
