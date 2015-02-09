@@ -2,7 +2,7 @@
 
 class ReviewListController {
   public static function get(): :xhp {
-    $table = <table class="table table-bordered table-striped" />;
+    $table = <table class="table table-bordered table-striped sortable" />;
     $table->appendChild(
       <thead>
         <tr>
@@ -11,7 +11,7 @@ class ReviewListController {
           <th>Email</th>
           <th>{'# Reviews'}</th>
           <th>Avg Rating</th>
-          <th>Review</th>
+          <th id="reviewth">Review</th>
         </tr>
       </thead>
     );
@@ -62,6 +62,8 @@ class ReviewListController {
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
         <script src="/js/review.js"></script>
+        <script src="/js/moment.min.js"></script>
+        <script src="/js/bootstrap-sortable.js"></script>
       </x:frag>;
   }
 }
