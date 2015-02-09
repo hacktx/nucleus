@@ -32,6 +32,9 @@ class ReviewSingleController {
     $email_hash = md5(strtolower(trim($user->getEmail())));
     $gravatar_url = 'https://secure.gravatar.com/avatar/' . $email_hash . '?s=200';
 
+    $query = DB::queryFirstRow("SELECT AVG(rating) FROM reviews WHERE application_id=%s", $app_id);
+    $avg_rating = number_format($query['AVG(rating)'], 2);
+
     return
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
@@ -121,6 +124,14 @@ class ReviewSingleController {
               </div>
               <button type="submit" name="id" value={$application->getID()} class="btn btn-default">Submit</button>
             </form>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h1 class="panel-title">Average Rating</h1>
+          </div>
+          <div class="panel-body">
+            <h1 class="text-center">{$avg_rating . ' / 5.00'}</h1>
           </div>
         </div>
         {self::getReviews($application)}

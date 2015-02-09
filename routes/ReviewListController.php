@@ -9,6 +9,8 @@ class ReviewListController {
           <th>ID</th>
           <th>Name</th>
           <th>Email</th>
+          <th>{'# Reviews'}</th>
+          <th>Avg Rating</th>
           <th>Review</th>
         </tr>
       </thead>
@@ -26,6 +28,13 @@ class ReviewListController {
         continue;
       }
 
+      $query = DB::queryFirstRow("SELECT COUNT(*) FROM reviews WHERE application_id=%s", $row['id']);
+      $count = $query['COUNT(*)'];
+
+      # Get the average rating
+      $query = DB::queryFirstRow("SELECT AVG(rating) FROM reviews WHERE application_id=%s", $row['id']);
+      $avg_rating = number_format($query['AVG(rating)'], 2);
+
       # Get the current user's review
       DB::query("SELECT * FROM reviews WHERE user_id=%s AND application_id=%s", Session::getUser()->getID(), $row['id']);
 
@@ -35,7 +44,9 @@ class ReviewListController {
           <td>{$row['id']}</td>
           <td class="name">{$user->getFirstName() . ' ' . $user->getLastName()}</td>
           <td class="email">{$user->getEmail()}</td>
-          <td><a href={'/review/' . $row['id']} class="btn btn-primary">Review</a></td>
+          <td class="text-center">{$count}</td>
+          <td class="text-center">{$avg_rating}</td>
+          <td class="text-center"><a href={'/review/' . $row['id']} class="btn btn-primary">Review</a></td>
         </tr>
       );
     }
