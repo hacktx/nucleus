@@ -31,7 +31,7 @@ Once MySQL is installed, create a database 'omega' and a user with access to tha
 user or set them as environment variables (`DB_USER`, `DB_PASS`).
 
 ### Install dependencies
-Omega uses [Composer](https://getcomposer.org/) to manage dependencies. Once Omega is downloaded, run `composer install` in the root of the project.
+Omega uses [Composer](https://getcomposer.org/) to manage dependencies. Once Omega is downloaded, run `hhvm -d enable_xhp=1 composer.phar install` in the root of the project.
 
 ## How Omega works
 Omega follows a Router -> Controller paradigm, where the Views are built right into the entire system. 
