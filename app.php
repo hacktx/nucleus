@@ -1,9 +1,5 @@
 <?hh
 
-# Get the autoloader going
-require_once('lib/AutoLoader.php');
-spl_autoload_register('AutoLoader::loadFile');
-
 # Load in external libraries
 require 'vendor/autoload.php';
 

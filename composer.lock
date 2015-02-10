@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d70e4b66b5d001010c8b2d0db00a6030",
+    "hash": "73f29e21c341ba56bc1f8377ca4db1ca",
     "packages": [
         {
             "name": "aura/router",
@@ -62,17 +62,20 @@
         },
         {
             "name": "facebook/xhp-lib",
-            "version": "dev-master",
+            "version": "dev-hack",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/xhp-lib.git",
-                "reference": "c232a2187c51ffb9d153186e7dfbebf4bd0a7c20"
+                "reference": "dc4fdbb2525c9f1cb7951c1b7505c55e577485c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/xhp-lib/zipball/c232a2187c51ffb9d153186e7dfbebf4bd0a7c20",
-                "reference": "c232a2187c51ffb9d153186e7dfbebf4bd0a7c20",
+                "url": "https://api.github.com/repos/facebook/xhp-lib/zipball/dc4fdbb2525c9f1cb7951c1b7505c55e577485c6",
+                "reference": "dc4fdbb2525c9f1cb7951c1b7505c55e577485c6",
                 "shasum": ""
+            },
+            "require": {
+                "ext-xhp": "*"
             },
             "type": "library",
             "autoload": {
@@ -82,8 +85,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "PHP-3.01",
-                "Zend-2.0"
+                "BSD-3-Clause"
             ],
             "description": "Class library for XHP",
             "homepage": "https://github.com/facebook/xhp-lib",
@@ -93,7 +95,7 @@
                 "hhvm",
                 "xhp"
             ],
-            "time": "2015-01-13 18:18:33"
+            "time": "2015-02-09 23:39:17"
         },
         {
             "name": "guzzle/guzzle",
@@ -272,17 +274,17 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.6.3",
+            "version": "v2.6.4",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "40ff70cadea3785d83cac1c8309514b36113064e"
+                "reference": "f75989f3ab2743a82fe0b03ded2598a2b1546813"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/40ff70cadea3785d83cac1c8309514b36113064e",
-                "reference": "40ff70cadea3785d83cac1c8309514b36113064e",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/f75989f3ab2743a82fe0b03ded2598a2b1546813",
+                "reference": "f75989f3ab2743a82fe0b03ded2598a2b1546813",
                 "shasum": ""
             },
             "require": {
@@ -326,7 +328,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-05 14:28:40"
+            "time": "2015-02-01 16:10:57"
         }
     ],
     "packages-dev": [],

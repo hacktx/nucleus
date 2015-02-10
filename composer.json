@@ -2,7 +2,12 @@
   "require": {
     "mailgun/mailgun-php": "~1.7.2",
     "sergeytsalkov/meekrodb": "*",
-    "facebook/xhp-lib": "dev-master",
+    "facebook/xhp-lib": "dev-hack",
     "aura/router": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "": ["routes/", "lib/", "lib/dao/"]
+    }
   }
 }
