@@ -6,8 +6,6 @@
     "aura/router": "*"
   },
   "autoload": {
-    "psr-4": {
-      "": ["routes/", "lib/", "lib/dao/"]
-    }
+    "classmap": ["components/", "routes/", "lib/"]
   }
 }
