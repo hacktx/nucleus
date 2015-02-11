@@ -5,6 +5,7 @@ class User {
   const Applicant = 0;
   const Pledge = 1;
   const Member = 2;
+  const Disabled = 3;
 
   private int $id = 0;
   private string $username = '';
@@ -86,6 +87,8 @@ class User {
         return 'pledge';
       case self::Member:
         return 'member';
+      case self::Disabled:
+        return 'disabled';
       default:
         return 'unknown';
     }
@@ -101,6 +104,10 @@ class User {
 
   public function isMember(): bool {
     return $this->member_status == self::Member;
+  }
+
+  public function isDisabled(): bool {
+    return $this->member_status == self::Disabled;
   }
 
   public function isAdmin(): bool {

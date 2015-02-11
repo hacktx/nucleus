@@ -13,7 +13,6 @@ class DashboardController {
     );
 
     $applicant_info = null;
-    $events = null;
     if($user->isApplicant()) {
       $application = Application::genByUser($user);
       if(!$application->isStarted() && !$application->isSubmitted()) {
@@ -29,6 +28,7 @@ class DashboardController {
         </div>;
     }
 
+    $events = null;
     $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
     $event_list =
       <table class="table">
@@ -48,7 +48,7 @@ class DashboardController {
         </tr>
       );
     }
-    if(!empty($query)) {
+    if(!empty($query) && !$user->isDisabled()) {
       $events =
         <div class="panel panel-default">
           <div class="panel-heading">

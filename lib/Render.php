@@ -41,7 +41,7 @@ class Render {
       $user = Session::getUser();
     }
 
-    if($user) {
+    if($user && !$user->isDisabled()) {
       $nav_buttons =
         <ul class="nav navbar-nav">
           <li class={$controller === 'DashboardController' ? 'active' : ''}>

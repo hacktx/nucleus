@@ -43,7 +43,7 @@ class Route {
       '/dashboard' => Map {
         'controller' => 'DashboardController',
         'methods' => 'GET',
-        'status' => array(User::Applicant, User::Pledge, User::Member)
+        'status' => array(User::Applicant, User::Pledge, User::Member, User::Disabled)
       },
       '/members' => Map {
         'controller' => 'MembersController',

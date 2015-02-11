@@ -66,16 +66,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/xhp-lib.git",
-                "reference": "dc4fdbb2525c9f1cb7951c1b7505c55e577485c6"
+                "reference": "3ba76cab75f67817159f521b021bb5e0502ff75e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/xhp-lib/zipball/dc4fdbb2525c9f1cb7951c1b7505c55e577485c6",
-                "reference": "dc4fdbb2525c9f1cb7951c1b7505c55e577485c6",
+                "url": "https://api.github.com/repos/facebook/xhp-lib/zipball/3ba76cab75f67817159f521b021bb5e0502ff75e",
+                "reference": "3ba76cab75f67817159f521b021bb5e0502ff75e",
                 "shasum": ""
             },
             "require": {
-                "ext-xhp": "*"
+                "hhvm": "*"
             },
             "type": "library",
             "autoload": {
@@ -95,7 +95,7 @@
                 "hhvm",
                 "xhp"
             ],
-            "time": "2015-02-09 23:39:17"
+            "time": "2015-02-11 03:14:48"
         },
         {
             "name": "guzzle/guzzle",
