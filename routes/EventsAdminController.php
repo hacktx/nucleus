@@ -16,16 +16,15 @@ class EventsAdminController {
 
     $events = Event::getAll();
     foreach($events as $event) {
-      $timestamp = strtotime($event['datetime']);
       $upcoming_events->appendChild(
         <tr>
-          <td><a href={'/events/' . $event['id']}>{$event['id']}</a></td>
-          <td>{$event['name']}</td>
-          <td>{$event['location']}</td>
-          <td>{date('n/j/Y \@ g:i A', $timestamp)}</td>
+          <td><a href={'/events/' . $event->getID()}>{$event->getID()}</a></td>
+          <td>{$event->getName()}</td>
+          <td>{$event->getLocation()}</td>
+          <td>{$event->getDatetime()}</td>
           <td>
             <form method="post" action="/events/admin">
-              <button name="delete" class="btn btn-danger" value={$event['id']} type="submit">
+              <button name="delete" class="btn btn-danger" value={$event->getID()} type="submit">
                 Delete
               </button>
             </form>

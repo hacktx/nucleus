@@ -1,6 +1,24 @@
 <?hh
 
 class Event {
+
+  private int $id = 0;
+  private string $name = '';
+  private string $location = '';
+  private string $datetime = '';
+
+  function __construct(
+    int $id,
+    string $name,
+    string $location,
+    string $datetime
+  ): void {
+    $this->id = $id;
+    $this->name = $name;
+    $this->location = $location;
+    $this->datetime = $datetime;
+  }
+
   public static function create(
     string $name,
     string $location,
@@ -16,9 +34,19 @@ class Event {
     ));
   }
 
-  public static function getAll(): array {
+  public static function getAll(): array<Event> {
     $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
-    return $query ? $query : array();
+    if(!$query) {
+      return array();
+    }
+    return array_map(function($value) {
+      return new Event(
+        (int)$value['id'],
+        $value['name'],
+        $value['location'],
+        $value['datetime']
+      );
+    }, $query);
   }
 
   public static function genByID(int $id): ?Event {
@@ -26,19 +54,32 @@ class Event {
     if(!$query) {
       return null;
     }
-    $event = new Event();
-    $event->id = $query['id'];
-    $event->name = $query['name'];
-    $event->location = $query['location'];
-    $event->datetime = $query['datetime'];
-    return $event;
+    return new Event(
+      (int)$query['id'],
+      $query['name'],
+      $query['location'],
+      $query['datetime']
+    );
+  }
+
+  public static function deleteByID(int $id) {
+    DB::delete('events', 'id=%s', $id);
+  }
+
+  public function getID(): int {
+    return $this->id;
   }
 
   public function getName(): string {
     return $this->name;
   }
 
-  public static function deleteByID(int $id) {
-    DB::delete('events', 'id=%s', $id);
+  public function getLocation(): string {
+    return $this->location;
+  }
+
+  public function getDatetime(): string {
+    $timestamp = strtotime($this->datetime);
+    return date('n/j/Y \@ g:i A', $timestamp);
   }
 }

@@ -18,12 +18,11 @@ final class :omega:event-list extends :x:element {
       </table>;
 
     foreach($events as $event) {
-      $timestamp = strtotime($event['datetime']);
       $event_list->appendChild(
         <tr>
-          <td>{$event['name']}</td>
-          <td>{$event['location']}</td>
-          <td>{date('n/j/Y \@ g:i A', $timestamp)}</td>
+          <td>{$event->getName()}</td>
+          <td>{$event->getLocation()}</td>
+          <td>{$event->getDatetime()}</td>
         </tr>
       );
     }
