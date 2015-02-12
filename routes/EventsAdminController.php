@@ -14,7 +14,7 @@ class EventsAdminController {
         </tr>
       </table>;
 
-    $events = Event::getAll();
+    $events = Event::genAllFuture();
     foreach($events as $event) {
       $upcoming_events->appendChild(
         <tr>

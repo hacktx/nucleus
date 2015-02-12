@@ -2,7 +2,7 @@
 
 final class :omega:event-list extends :x:element {
   final protected function render(): ?:xhp {
-    $events = Event::getAll();
+    $events = Event::genAllFuture();
 
     if(empty($events)) {
       return null;

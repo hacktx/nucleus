@@ -34,8 +34,12 @@ class Event {
     ));
   }
 
-  public static function getAll(): array<Event> {
-    $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
+  public static function genAllFuture(): array<Event> {
+    $query = DB::query("
+      SELECT * FROM events
+      WHERE datetime >= CURDATE()
+      ORDER BY datetime"
+    );
     if(!$query) {
       return array();
     }
