@@ -10,7 +10,7 @@ class EventsAdminController {
           <th>Name</th>
           <th>Location</th>
           <th>When</th>
-          <th>Delete</th>
+          <th>Actions</th>
         </tr>
       </table>;
 
