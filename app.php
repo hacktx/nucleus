@@ -3,6 +3,9 @@
 # Load in external libraries
 require 'vendor/autoload.php';
 
+# Set the app's timezone to central
+date_default_timezone_set('America/Chicago');
+
 # Setup Mailgun and email
 use Mailgun\Mailgun;
 Email::$mg = new Mailgun('key');
