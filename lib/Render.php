@@ -17,72 +17,15 @@ class Render {
 
   private static function getNavbar(?string $controller): :nav {
 
-    $nav_buttons = null;
-    $login = <li><a href="/login">Login</a></li>;
-
-    # User dropdown if there's an active session
     $user = null;
     if(Session::isActive()) {
       $user = Session::getUser();
     }
 
+    $nav_buttons = null;
+    $login = <li><a href="/login">Login</a></li>;
     if($user && !$user->isDisabled()) {
-      $nav_buttons =
-        <ul class="nav navbar-nav">
-          <li class={$controller === 'DashboardController' ? 'active' : ''}>
-            <a href="/dashboard">Dashboard</a>
-          </li>
-        </ul>;
-
-      # Applicants can see the application portal
-      if($user->isApplicant()) {
-        $nav_buttons->appendChild(
-          <li class={$controller === 'ApplyController' ? 'active' : ''}>
-            <a href="/apply">Apply</a>
-          </li>
-        );
-      }
-
-      # Members can see the feedback portal
-      if($user->isMember()) {
-        $nav_buttons->appendChild(
-          <li class={($controller === 'FeedbackListController' || $controller === 'FeedbackSingleController') ? 'active' : ''}>
-            <a href="/feedback">Applicant Feedback</a>
-          </li>
-        );
-      }
-
-      # Admins and Reviewers can access the review portal
-      if($user->isAdmin() || $user->isReviewer()) {
-        $nav_buttons->appendChild(
-          <li class={($controller === 'ReviewListController' || $controller === 'ReviewSingleController') ? 'active' : ''}>
-            <a href="/review">Review</a>
-          </li>
-        );
-      }
-
-      # Admins and event admins can access the events portal
-      if($user->isAdmin() || $user->isOfficer()) {
-        $nav_buttons->appendChild(
-          <li class={$controller === 'EventsAdminController' ? 'active' : ''}>
-            <a href="/events/admin">Events</a>
-          </li>
-        );
-        $nav_buttons->appendChild(
-          <li class={$controller === 'NotifyController' ? 'active' : ''}>
-            <a href="/notify">Send Notification</a>
-          </li>
-        );
-      }
-
-      # Admin only actions
-      if($user->isAdmin()) {
-        $nav_buttons->appendChild(
-          <li class={$controller === 'MembersController' ? 'active' : ''}>
-            <a href="/members">Members</a>
-          </li>
-        );
-      }
+      $nav_buttons = <omega:nav-buttons user={$user} controller={$controller} />;
 
       # Logout dropdown
       $login =

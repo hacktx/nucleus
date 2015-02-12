@@ -29,33 +29,14 @@ class DashboardController {
     }
 
     $events = null;
-    $query = DB::query("SELECT * FROM events WHERE datetime >= CURDATE()");
-    $event_list =
-      <table class="table">
-        <tr>
-          <th>Name</th>
-          <th>Location</th>
-          <th>When</th>
-        </tr>
-      </table>;
-    foreach($query as $row) {
-      $timestamp = strtotime($row['datetime']);
-      $event_list->appendChild(
-        <tr>
-          <td>{$row['name']}</td>
-          <td>{$row['location']}</td>
-          <td>{date('n/j/Y \@ g:i A', $timestamp)}</td>
-        </tr>
-      );
-    }
-    if(!empty($query) && !$user->isDisabled()) {
+    if(!$user->isDisabled()) {
       $events =
         <div class="panel panel-default">
           <div class="panel-heading">
             <h1 class="panel-title">Upcoming Events</h1>
           </div>
           <div class="panel-body">
-            {$event_list}
+            <omega:event-list />
           </div>
         </div>;
     }
