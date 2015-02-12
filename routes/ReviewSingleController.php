@@ -185,10 +185,9 @@ class ReviewSingleController {
     $attendances = Attendance::genAllForUser($application->getUserID());
     $events = <ul class="list-group" />;
     foreach($attendances as $attendance) {
-      $event = Event::genByID($attendance->getEventID());
       $events->appendChild(
         <li class="list-group-item">
-          <h4>{$event->getName()}</h4>
+          <h4>{$attendance->getEventName()}</h4>
         </li>
       );
     }
