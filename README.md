@@ -31,10 +31,10 @@ Once MySQL is installed, create a database 'omega' and a user with access to tha
 user or set them as environment variables (`DB_USER`, `DB_PASS`).
 
 ### Install dependencies
-Omega uses [Composer](https://getcomposer.org/) to manage dependencies. Once Omega is downloaded, run `hhvm -d enable_xhp=1 composer.phar install` in the root of the project.
+Omega uses [Composer](https://getcomposer.org/) to manage dependencies. Once Omega is downloaded, run `composer install` in the root of the project.
 
 ## How Omega works
-Omega follows a Router -> Controller paradigm, where the Views are built right into the entire system. 
+Omega follows a Router -> Controller paradigm, where the Views are built right into the entire system
 
 ### The Router
 All app requests start at `app.php` in the root of the project. This is done via the Nginx rule described above. From there, all services are setup, such as the Session manager, DB interface class, and Email system. This is also where the autoloader is brought into context. So that a manual "require" is not needed each time you use a class, they're simply required on usage by the autoloader in `lib/`. Once all this is done, the Route class is called, which lives in `lib/Route.php`. Inside of this file lives the `$routes` map, containing paths as the keys and Maps like the one below as the values:
