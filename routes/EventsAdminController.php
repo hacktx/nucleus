@@ -16,7 +16,7 @@ class EventsAdminController {
 
     $events = Event::getAll();
     foreach($events as $event) {
-      $timestamp = strtotime($row['datetime']);
+      $timestamp = strtotime($event['datetime']);
       $upcoming_events->appendChild(
         <tr>
           <td><a href={'/events/' . $event['id']}>{$event['id']}</a></td>
