@@ -11,7 +11,7 @@ class ReviewListController {
           <th>Email</th>
           <th>{'# Reviews'}</th>
           <th>Avg Rating</th>
-          <th id="reviewth">Review</th>
+          <th data-defaultsort="disabled">Review</th>
         </tr>
       </thead>
     );
