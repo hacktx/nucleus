@@ -9,19 +9,20 @@ class EventsAdminController {
           <th>ID</th>
           <th>Name</th>
           <th>Location</th>
-          <th>DateTime</th>
+          <th>When</th>
           <th>Delete</th>
         </tr>
       </table>;
 
     $events = Event::getAll();
     foreach($events as $event) {
+      $timestamp = strtotime($row['datetime']);
       $upcoming_events->appendChild(
         <tr>
           <td><a href={'/events/' . $event['id']}>{$event['id']}</a></td>
           <td>{$event['name']}</td>
           <td>{$event['location']}</td>
-          <td>{$event['datetime']}</td>
+          <td>{date('n/j/Y \@ g:i A', $timestamp)}</td>
           <td>
             <form method="post" action="/events/admin">
               <button name="delete" class="btn btn-danger" value={$event['id']} type="submit">
