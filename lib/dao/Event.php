@@ -62,7 +62,7 @@ class Event {
     );
   }
 
-  public static function deleteByID(int $id) {
+  public static function deleteByID(int $id): void {
     DB::delete('events', 'id=%s', $id);
   }
 
