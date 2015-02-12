@@ -1,4 +1,4 @@
-<?hh
+<?hh //decl
 
 class EventAttendanceController {
   public static function get(): :xhp {

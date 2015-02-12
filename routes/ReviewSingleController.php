@@ -182,12 +182,13 @@ class ReviewSingleController {
       );
     }
 
-    $query = DB::query("SELECT events.name FROM events INNER JOIN attendance ON events.id = attendance.event_id WHERE user_id=%s", $application->getUserID());
+    $attendances = Attendance::genAllForUser($application->getUserID());
     $events = <ul class="list-group" />;
-    foreach($query as $row) {
+    foreach($attendances as $attendance) {
+      $event = Event::genByID($attendance->getEventID());
       $events->appendChild(
         <li class="list-group-item">
-          <h4>{$row['name']}</h4>
+          <h4>{$event->getName()}</h4>
         </li>
       );
     }

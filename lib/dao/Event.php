@@ -7,7 +7,7 @@ class Event {
   private string $location = '';
   private string $datetime = '';
 
-  function __construct(
+  public function __construct(
     int $id,
     string $name,
     string $location,
