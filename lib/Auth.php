@@ -5,6 +5,9 @@ class Auth {
     string $password
   ): bool {
     $user = User::genByUsername($username);
+    if(!$user) {
+      $user = User::genByEmail($username);
+    }
     if ($user && hash_equals($user->getPassword(), crypt($password, $user->getPassword()))) {
       Session::create($user);
       return true;
