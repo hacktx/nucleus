@@ -87,6 +87,12 @@ class Route {
         'methods' => 'GET|POST',
         'status' => array(User::Member),
         'roles' => array(Roles::Admin, Roles::Officer)
+      },
+      '/settings' => Map {
+        'controller' => 'SettingsController',
+        'methods' => 'GET|POST',
+        'status' => array(User::Member),
+        'roles' => array(Roles::Admin)
       }
     };
 
