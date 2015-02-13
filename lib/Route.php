@@ -70,8 +70,14 @@ class Route {
         'status' => array(User::Member),
         'roles' => array(Roles::Admin, Roles::Officer)
       },
-      '/events/{id}' => Map {
+      '/events/attendance/{id}' => Map {
         'controller' => 'EventAttendanceController',
+        'methods' => 'GET|POST',
+        'status' => array(User::Member),
+        'roles' => array(Roles::Admin, Roles::Officer)
+      },
+      '/events/{id}' => Map {
+        'controller' => 'EventCheckinController',
         'methods' => 'GET|POST',
         'status' => array(User::Member),
         'roles' => array(Roles::Admin, Roles::Officer)

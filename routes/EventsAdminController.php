@@ -33,6 +33,34 @@ class EventsAdminController {
       );
     }
 
+    $past_events =
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>When</th>
+          <th>Actions</th>
+        </tr>
+      </table>;
+
+    $events = Event::genAllPast();
+    foreach($events as $event) {
+      $past_events->appendChild(
+        <tr>
+          <td>{$event->getID()}</td>
+          <td>{$event->getName()}</td>
+          <td>{$event->getLocation()}</td>
+          <td>{$event->getDatetime()}</td>
+          <td>
+            <a href={'/events/attendance/' . $event->getID()} class="btn btn-primary">
+              View Attendance
+            </a>
+          </td>
+        </tr>
+      );
+    }
+
     return
       <div class="col-md-12">
         <div class="panel panel-default">
@@ -67,6 +95,14 @@ class EventsAdminController {
           </div>
           <div class="panel-body">
             {$upcoming_events}
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h1 class="panel-title">Past Events</h1>
+          </div>
+          <div class="panel-body">
+            {$past_events}
           </div>
         </div>
       </div>;

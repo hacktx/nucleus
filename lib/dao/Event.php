@@ -53,6 +53,25 @@ class Event {
     }, $query);
   }
 
+  public static function genAllPast(): array<Event> {
+    $query = DB::query("
+      SELECT * FROM events
+      WHERE datetime < CURDATE()
+      ORDER BY datetime"
+    );
+    if(!$query) {
+      return array();
+    }
+    return array_map(function($value) {
+      return new Event(
+        (int)$value['id'],
+        $value['name'],
+        $value['location'],
+        $value['datetime']
+      );
+    }, $query);
+  }
+
   public static function genByID(int $id): ?Event {
     $query = DB::queryFirstRow("SELECT * FROM events WHERE id=%s", $id);
     if(!$query) {
