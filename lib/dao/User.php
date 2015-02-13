@@ -23,8 +23,11 @@ class User {
     $fname,
     $lname
   ): ?User {
-    # Make sure a users doesn't already exist with that username
-    DB::query("SELECT * FROM users WHERE username=%s", $username);
+    # Make sure a user doesn't already exist with that username or email
+    DB::query(
+      "SELECT * FROM users WHERE username=%s OR email=%s", 
+      $username, $email
+    );
     if(DB::count() != 0) {
       return null;
     }

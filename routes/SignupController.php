@@ -72,7 +72,7 @@ class SignupController {
 
     # User creation failed
     if(!$user) {
-      Flash::set('error', 'Username is taken');
+      Flash::set('error', 'Username or Email is taken');
       Route::redirect('/signup');
     }
 
