@@ -72,7 +72,7 @@ class Route {
       },
       '/events/attendance/{id}' => Map {
         'controller' => 'EventAttendanceController',
-        'methods' => 'GET|POST',
+        'methods' => 'GET',
         'status' => array(User::Member),
         'roles' => array(Roles::Admin, Roles::Officer)
       },
