@@ -12,10 +12,15 @@ class OAuthAuthorize {
         die;
     }
 
-    return 
-      <div class="well col-md-4 col-md-offset-4">
+    return
+      <div class="well col-md-6 col-md-offset-3">
         <form method="post">
-          <h1>Do you authorize this application to view your profile information?</h1>
+          <h1>{$server->getAuthorizeController()->getClientId()}</h1>
+          <h3>would like to access the folling info:</h3>
+          <ul class="list-group">
+            <li class="list-group-item">{$server->getAuthorizeController()->getScope()}</li>
+          </ul>
+          <hr/>
           <button type="submit" name="authorized" value="yes" class="btn btn-primary">Authorize</button>
           <button type="submit" name="authorized" value="no" class="btn btn-default">Cancel</button>
         </form>

@@ -102,7 +102,11 @@ class Route {
         'controller' => 'OAuthAuthorize',
         'methods' => 'GET|POST',
         'status' => array(User::Member)
-      }
+      },
+      '/api/users/me' => Map {
+        'controller' => 'UserAPI',
+        'methods' => 'GET'
+      } 
     };
 
     # Add the routes to Aura
@@ -138,7 +142,18 @@ class Route {
 
       # Render the page
       $controller = new ($route->params['controller']);
-      Render::go($controller::$method(), $route->params['controller']);
+
+      $content = $controller::$method();
+
+      if(is_object($content) && is_a($content, :xhp::class)) {
+        Render::go($content, $route->params['controller']);
+      } elseif (is_object($content) && is_a($content, Map::class)) {
+        print json_encode($content);
+        die;
+      } else {
+        die;
+      }
+
     } else {
       # No route detected, 404
       Render::go(FourOhFourController::get(), 'FourOhFourController');
