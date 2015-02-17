@@ -16,8 +16,8 @@ class OAuthAuthorize {
       <div class="well col-md-4 col-md-offset-4">
         <form method="post">
           <h1>Do you authorize this application to view your profile information?</h1>
-          <input type="submit" name="authorized" value="yes" />
-          <input type="submit" name="authorized" value="no" />
+          <button type="submit" name="authorized" value="yes" class="btn btn-primary">Authorize</button>
+          <button type="submit" name="authorized" value="no" class="btn btn-default">Cancel</button>
         </form>
       </div>;
   }
