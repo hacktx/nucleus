@@ -93,6 +93,15 @@ class Route {
         'methods' => 'GET|POST',
         'status' => array(User::Member),
         'roles' => array(Roles::Admin)
+      },
+      '/api/oauth/token' => Map {
+        'controller' => 'OAuthToken',
+        'methods' => 'POST',
+      },
+      '/api/oauth/authorize' => Map {
+        'controller' => 'OAuthAuthorize',
+        'methods' => 'GET|POST',
+        'status' => array(User::Member)
       }
     };
 
