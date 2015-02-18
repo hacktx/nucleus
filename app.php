@@ -18,8 +18,6 @@ DB::$password = getenv('DB_PASS');
 DB::$dbName = 'omega';
 DB::$port = 3306;
 
-OAuth::$dsn = 'mysql:dbname=omega;host=localhost';
-
 # Get the user session going
 Session::init();
 

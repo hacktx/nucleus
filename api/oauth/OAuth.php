@@ -2,15 +2,14 @@
 
 class OAuth {
 
-  public static string $dsn = '';
-
   private OAuth2\Server $server;
 
   public function __construct(): void {
     // Setup storage
+    $dsn = 'mysql:dbname=' . DB::$dbName . ';host=' . DB::$host;
     $storage = new OAuth2\Storage\Pdo(
       array(
-        'dsn' => self::$dsn,
+        'dsn' => $dsn,
         'username' => DB::$user,
         'password' => DB::$password
       )
@@ -42,5 +41,5 @@ class OAuth {
 
   public function getOAuthServer(): OAuth2\Server {
     return $this->server;
-  } 
+  }
 }
