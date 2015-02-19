@@ -50,6 +50,9 @@ class LoginController {
     if(!$user) {
       Route::redirect('/login');
     } else {
+      if(Flash::exists('redirect')) {
+        Route::redirect(Flash::get('redirect'));
+      }
       Route::redirect('/dashboard');
     }
   }

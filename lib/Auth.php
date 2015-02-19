@@ -27,6 +27,7 @@ class Auth {
 
     if(!Session::isActive()) {
       Flash::set('error', 'You must be logged in to view this page');
+      Flash::set('redirect', $_SERVER['REQUEST_URI']);
       Route::redirect('/login');
     }
 
@@ -47,6 +48,7 @@ class Auth {
 
     if(!Session::isActive()) {
       Flash::set('error', 'You must be logged in to view this page');
+      Flash::set('redirect', $_SERVER['REQUEST_URI']);
       Route::redirect('/login');
     }
 
