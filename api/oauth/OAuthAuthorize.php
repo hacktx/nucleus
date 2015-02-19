@@ -16,7 +16,7 @@ class OAuthAuthorize {
       <div class="well col-md-6 col-md-offset-3">
         <form method="post">
           <h1>{$server->getAuthorizeController()->getClientId()}</h1>
-          <h3>would like to access the folling info:</h3>
+          <h3>would like to access the following info:</h3>
           <ul class="list-group">
             <li class="list-group-item">{$server->getAuthorizeController()->getScope()}</li>
           </ul>
