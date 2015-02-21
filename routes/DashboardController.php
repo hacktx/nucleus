@@ -30,15 +30,18 @@ class DashboardController {
 
     $events = null;
     if(!$user->isDisabled()) {
-      $events =
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h1 class="panel-title">Upcoming Events</h1>
-          </div>
-          <div class="panel-body">
-            <omega:event-list />
-          </div>
-        </div>;
+      $events = Event::genAllFuture();
+      if(!empty($events)) {
+        $events =
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1 class="panel-title">Upcoming Events</h1>
+            </div>
+            <div class="panel-body">
+              <omega:event-list events={$events} />
+            </div>
+          </div>;
+      }
     }
 
     $roles = $user->getRoles();

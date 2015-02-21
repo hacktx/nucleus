@@ -1,12 +1,11 @@
 <?hh
 
 final class :omega:event-list extends :x:element {
-  final protected function render(): ?:xhp {
-    $events = Event::genAllFuture();
+  attribute
+    array<Event> events = array();
 
-    if(empty($events)) {
-      return null;
-    }
+  final protected function render(): :xhp {
+    $events = $this->getAttribute('events');
 
     $event_list =
       <table class="table">
