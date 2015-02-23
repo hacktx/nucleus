@@ -114,4 +114,23 @@ class Auth {
       Route::redirect('/dashboard');
     }
   }
+
+  public static function requestPasswordReset(string $username): bool {
+    $user = User::genByUsername($username);
+    if(!$user) {
+      return false;
+    }
+
+    $resetHash = sha1(uniqid(mt_rand(), true));
+    $user->setPasswordReset($resetHast);
+
+    Email::send(
+      $user->getEmail(),
+      'Omega password reset',
+      'To reset your password, follow this link:
+       http://omega.texaslan.org/password?token=' . $resetHash
+    );
+
+    return true;
+  }
 }
