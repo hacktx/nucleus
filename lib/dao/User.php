@@ -55,6 +55,7 @@ class User {
     DB::update('users', array(
       'token' => $token
     ), 'id=%s', $this->id);
+    $this->token = $token;
   }
 
   public function getID():int {
