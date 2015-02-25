@@ -13,6 +13,7 @@ class User {
   private string $email = '';
   private string $fname = '';
   private string $lname = '';
+  private static $token = '';
   private int $member_status = 0;
   private array $roles = array();
 
@@ -48,6 +49,12 @@ class User {
     ));
 
     return self::genByUsername($username);
+  }
+
+  public function setToken(string $token): void {
+    DB::update('users', array(
+      'token' => $token
+    ), 'id=%s', $this->id);
   }
 
   public function getID():int {
@@ -165,6 +172,7 @@ class User {
     $user->email = $query['email'];
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
+    $user->token = $query['token'];
     $user->member_status = (int)$query['member_status'];
     return $user;
   }
