@@ -9,6 +9,8 @@ class Session {
       $user = User::genByID($_SESSION['user']->getID());
       $_SESSION['user'] = $user;
       return $user;
+    } elseif(Auth::loginWithCookie()) {
+      return Session::getUser();
     }
 
     return null;

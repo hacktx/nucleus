@@ -28,6 +28,11 @@ class LoginController {
             <label>Password</label>
             <input type="password" class="form-control" name="password" placeholder="Password" />
           </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="remember" /> Remember Me
+            </label>
+          </div>
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
       </div>;
@@ -52,6 +57,9 @@ class LoginController {
     } else {
       if(Flash::exists('redirect')) {
         Route::redirect(Flash::get('redirect'));
+      }
+      if(isset($_POST['remember'])) {
+        Auth::rememberMe();
       }
       Route::redirect('/dashboard');
     }
