@@ -26,7 +26,7 @@ class User {
   ): ?User {
     # Make sure a user doesn't already exist with that username or email
     DB::query(
-      "SELECT * FROM users WHERE username=%s OR email=%s", 
+      "SELECT * FROM users WHERE username=%s OR email=%s",
       $username, $email
     );
     if(DB::count() != 0) {
@@ -143,6 +143,15 @@ class User {
 
   public static function genByEmail($email): ?User {
     return self::constructFromQuery('email', $email);
+  }
+
+  public static function genByIDAndToken(int $user_id, string $token): ?User {
+    $query = DB::queryFirstRow("SELECT * FROM users WHERE id=%s AND token=%s", $user_id, $token);
+    if(!$query) {
+      return null;
+    }
+    $user = self::createFromQuery($query);
+    return $user;
   }
 
   public static function updateStatusByID(int $status, int $user_id): void {
