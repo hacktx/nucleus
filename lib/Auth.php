@@ -34,7 +34,7 @@ class Auth {
       return false;
     }
     
-    $user = User::genByIDAndToken($user_id, $token);
+    $user = User::genByIDAndToken((int)$user_id, $token);
     
     if($user) {
       // User with token exists, setup the session
