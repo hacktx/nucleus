@@ -29,7 +29,7 @@ class Route {
         'controller' => 'ReviewListController',
         'methods' => 'GET',
         'status' => array(User::Member),
-        'roles' => array('reviewer', 'admin')
+        'roles' => array(Roles::Reviewer, Roles::Admin)
       },
       '/review/{id}' => Map {
         'controller' => 'ReviewSingleController',
