@@ -19,16 +19,6 @@ body {
   margin-right: 7px;
 }
 
-/* Front Page */
-#crest {
-  height: 350px;
-  max-width: 400px;
-  background: url('../img/crest.png') no-repeat;
-  background-size: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .masthead p {
   text-align: center;
 }

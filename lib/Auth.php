@@ -126,9 +126,9 @@ class Auth {
 
     Email::send(
       $user->getEmail(),
-      'Omega password reset',
+      'Nucleus password reset',
       'To reset your password, follow this link:
-       http://omega.texaslan.org/password?token=' . $resetHash
+       http://nucleus.example.com/password?token=' . $resetHash
     );
 
     return true;

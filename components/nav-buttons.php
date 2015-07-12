@@ -1,6 +1,6 @@
 <?hh
 
-final class :omega:nav-buttons extends :x:element {
+final class :nucleus:nav-buttons extends :x:element {
   attribute
     User user,
     string controller;

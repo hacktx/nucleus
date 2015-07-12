@@ -38,7 +38,7 @@ class DashboardController {
               <h1 class="panel-title">Upcoming Events</h1>
             </div>
             <div class="panel-body">
-              <omega:event-list events={$events} />
+              <nucleus:event-list events={$events} />
             </div>
           </div>;
       }

@@ -1,6 +1,6 @@
 <?hh
 
-final class :omega:event-list extends :x:element {
+final class :nucleus:event-list extends :x:element {
   attribute
     array<Event> events = array();
 

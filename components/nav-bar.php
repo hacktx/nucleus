@@ -1,6 +1,6 @@
 <?hh
 
-final class :omega:nav-bar extends :x:element {
+final class :nucleus:nav-bar extends :x:element {
   attribute
     User user,
     string controller;
@@ -12,7 +12,7 @@ final class :omega:nav-bar extends :x:element {
     $nav_buttons = null;
     $login = <li><a href="/login">Login</a></li>;
     if($user && !$user->isDisabled()) {
-      $nav_buttons = <omega:nav-buttons user={$user} controller={$controller} />;
+      $nav_buttons = <nucleus:nav-buttons user={$user} controller={$controller} />;
 
       # Logout dropdown
       $login =
@@ -34,7 +34,7 @@ final class :omega:nav-bar extends :x:element {
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Omega</a>
+            <a class="navbar-brand" href="/">Nucleus</a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             {$nav_buttons}

@@ -9,9 +9,9 @@ class Render {
 
     print
       <x:frag>
-        <omega:head />
+        <nucleus:head />
         <body>
-          <omega:nav-bar user={$user} controller={$controller}/>
+          <nucleus:nav-bar user={$user} controller={$controller}/>
           <div class="container">
             {self::getFlash()}
             {$content}
