@@ -3,8 +3,7 @@
     "mailgun/mailgun-php": "~1.7.2",
     "sergeytsalkov/meekrodb": "*",
     "facebook/xhp-lib": "dev-hack",
-    "aura/router": "*",
-    "bshaffer/oauth2-server-php": "v1.6"
+    "aura/router": "*"
   },
   "autoload": {
     "classmap": ["components/", "api/", "routes/", "lib/"]
