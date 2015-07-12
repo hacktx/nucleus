@@ -165,23 +165,6 @@ class ReviewSingleController {
       );
     }
 
-    # Loop through member feedback
-    $query = DB::query("SELECT * FROM feedback WHERE user_id=%s", $application->getUserID());
-    $feedback = <ul class="list-group" />;
-    foreach($query as $row) {
-      # Skip empty feedback
-      if($row['comments'] === '') {
-        continue;
-      }
-      $user = User::genByID($row['reviewer_id']);
-      $feedback->appendChild(
-        <li class="list-group-item">
-          <h4>{$user->getFirstName() . ' ' . $user->getLastName()}</h4>
-          <p>{$row['comments']}</p>
-        </li>
-      );
-    }
-
     $attendances = Attendance::genAllForUser($application->getUserID());
     $events = <ul class="list-group" />;
     foreach($attendances as $attendance) {
@@ -200,9 +183,6 @@ class ReviewSingleController {
               <a href="#reviews" aria-controls="home" role="tab" data-toggle="tab">Reviews</a>
             </li>
             <li role="presentation">
-              <a href="#feedback" aria-controls="profile" role="tab" data-toggle="tab">Member Feedback</a>
-            </li>
-            <li role="presentation">
               <a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Events Attended</a>
             </li>
           </ul>
@@ -210,7 +190,6 @@ class ReviewSingleController {
         <div class="tab-content">
           <br/>
           <div role="tabpanel" class="tab-pane active" id="reviews">{$reviews}</div>
-          <div role="tabpanel" class="tab-pane" id="feedback">{$feedback}</div>
           <div role="tabpanel" class="tab-pane" id="events">{$events}</div>
         </div>
       </div>;
