@@ -51,19 +51,6 @@ class Route {
         'status' => array(User::Member),
         'roles' => array(Roles::Admin)
       },
-      '/feedback' => Map {
-        'controller' => 'FeedbackListController',
-        'methods' => 'GET',
-        'status' => array(User::Member)
-      },
-      '/feedback/{id}' => Map {
-        'controller' => 'FeedbackSingleController',
-        'methods' => 'GET|POST',
-        'tokens' => Map {
-          'id' => '\d+'
-        },
-        'status' => array(User::Member),
-      },
       '/events/admin' => Map {
         'controller' => 'EventsAdminController',
         'methods' => 'GET|POST',
@@ -93,15 +80,6 @@ class Route {
         'methods' => 'GET|POST',
         'status' => array(User::Member),
         'roles' => array(Roles::Admin)
-      },
-      '/api/oauth/token' => Map {
-        'controller' => 'OAuthToken',
-        'methods' => 'POST',
-      },
-      '/api/oauth/authorize' => Map {
-        'controller' => 'OAuthAuthorize',
-        'methods' => 'GET|POST',
-        'status' => array(User::Member)
       },
       '/api/users/me' => Map {
         'controller' => 'UserAPI',
