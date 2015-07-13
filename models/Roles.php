@@ -1,5 +1,11 @@
 <?hh
 
+enum UserRole: string {
+  Admin = 'admin';
+  Reviewer = 'reviewer';
+  Officer = 'officer';
+}
+
 class Roles {
   const Admin = 'admin';
   const Reviewer = 'reviewer';

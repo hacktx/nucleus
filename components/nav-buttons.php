@@ -5,7 +5,7 @@ final class :nucleus:nav-buttons extends :x:element {
     User user,
     string controller;
 
-  final protected function render(): ?:xhp {
+  final protected function render(): :ul {
     $user = $this->getAttribute('user');
     $controller = $this->getAttribute('controller');
 

@@ -26,16 +26,9 @@ class URIMapGenerator {
     require_once($file);
     $classes = self::getClassesFromFile($file);
     foreach ($classes as $class) {
-      $controller = (new $class);
-      if(method_exists($controller, 'getPath')) {
-        $path = $controller->getPath();
-        if($path) {
-          $paths[$path] = Map {
-            'controller' => $class,
-            'status' => $controller->getConfig()['status'],
-            'roles' => $controller->getConfig()['roles'],
-          };
-        }
+      $controller = new $class();
+      if($controller instanceof BaseController) {
+        $paths[$controller->getPath()] = $class;
       }
     }
     return $paths;

@@ -1,7 +1,7 @@
 <?hh
 
 final class :nucleus:head extends :x:element {
-  final protected function render(): :xhp {
+  final protected function render(): :head {
     return
       <head>
         <meta charset="UTF-8" />

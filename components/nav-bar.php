@@ -5,7 +5,7 @@ final class :nucleus:nav-bar extends :x:element {
     User user,
     string controller;
 
-  final protected function render(): :xhp {
+  final protected function render(): :nav {
     $user = $this->getAttribute('user');
     $controller = $this->getAttribute('controller');
 

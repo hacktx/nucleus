@@ -1,5 +1,12 @@
 <?hh
 
+enum UserState: int {
+  Application = 0;
+  Pledge = 1;
+  Member = 2;
+  Disabled = 3;
+}
+
 class User {
 
   const Applicant = 0;
@@ -13,7 +20,7 @@ class User {
   private string $email = '';
   private string $fname = '';
   private string $lname = '';
-  private static $token = '';
+  private string $token = '';
   private int $member_status = 0;
   private array $roles = array();
 

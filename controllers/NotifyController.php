@@ -32,7 +32,7 @@ class NotifyController {
               </div>
               <div class="form-group">
                 <label>Body</label>
-                <textarea class="form-control" rows="3" name="body"></textarea>
+                <textarea class="form-control" rows={3} name="body"></textarea>
               </div>
               <button type="submit" class="btn btn-default">Send</button>
             </form>

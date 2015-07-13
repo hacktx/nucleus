@@ -122,7 +122,7 @@ class Auth {
     }
 
     $resetHash = sha1(uniqid(mt_rand(), true));
-    $user->setPasswordReset($resetHast);
+    $user->setPasswordReset($resetHash);
 
     Email::send(
       $user->getEmail(),

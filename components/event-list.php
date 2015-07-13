@@ -4,7 +4,7 @@ final class :nucleus:event-list extends :x:element {
   attribute
     array<Event> events = array();
 
-  final protected function render(): :xhp {
+  final protected function render(): :table {
     $events = $this->getAttribute('events');
 
     $event_list =

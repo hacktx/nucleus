@@ -101,7 +101,7 @@ class MembersController {
       $form->appendChild(
         <div class="checkbox">
           <label>
-            <input type="checkbox" id={$role} name={$role} /> {ucwords($role)}
+            <input type="checkbox" id={(string)$role} name={(string)$role} /> {ucwords($role)}
           </label>
         </div>
       );
@@ -143,11 +143,11 @@ class MembersController {
         $user_roles = Roles::getRoles((int)$_POST['id']);
         if(isset($_POST[$role])) {
           if(!in_array($role, $user_roles)) {
-            Roles::insert($role, (int)$_POST['id']);
+            Roles::insert((string)$role, (int)$_POST['id']);
           }
         } else {
           if(in_array($role, $user_roles)) {
-            Roles::delete($role, (int)$_POST['id']);
+            Roles::delete((string)$role, (int)$_POST['id']);
           }
         }
       }

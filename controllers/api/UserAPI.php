@@ -14,6 +14,11 @@ class UserAPI {
     $token = $server->getAccessTokenData(OAuth2\Request::createFromGlobals());
     $user_id = $token['user_id'];
     $user = User::genByID($user_id);
+
+    if(!$user) {
+      return Map {};
+    }
+
     return Map {
       'id' => $user->getID(),
       'username' => $user->getUsername(),

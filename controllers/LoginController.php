@@ -60,7 +60,7 @@ class LoginController {
       Route::redirect('/login');
     } else {
       if(Flash::exists('redirect')) {
-        Route::redirect(Flash::get('redirect'));
+        Route::redirect((string)Flash::get('redirect'));
       }
       if(isset($_POST['remember'])) {
         Auth::rememberMe();
