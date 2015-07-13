@@ -2,10 +2,10 @@
   "require": {
     "mailgun/mailgun-php": "~1.7.2",
     "sergeytsalkov/meekrodb": "*",
-    "facebook/xhp-lib": "dev-hack",
+    "facebook/xhp-lib": "2.x",
     "aura/router": "*"
   },
   "autoload": {
-    "classmap": ["components/", "api/", "routes/", "lib/"]
+    "classmap": ["components/", "controllers/", "models/", "lib/"]
   }
 }

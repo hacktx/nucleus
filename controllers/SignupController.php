@@ -2,6 +2,10 @@
 
 class SignupController {
 
+  public static function getPath(): string {
+    return '/signup';
+  }
+
   public static function get(): :xhp {
 
     if(Session::isActive()) {

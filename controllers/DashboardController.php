@@ -1,6 +1,10 @@
 <?hh
 
 class DashboardController {
+  public static function getPath(): string {
+    return '/dashboard';
+  }
+
   public static function get(): :xhp {
     $user = Session::getUser();
 

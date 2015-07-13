@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "edeef95f4ab1964754f57d2323f06a4f",
+    "hash": "eee02ea50bc2543fd6be178fedaa494b",
     "packages": [
         {
             "name": "aura/router",
@@ -65,16 +65,16 @@
         },
         {
             "name": "facebook/xhp-lib",
-            "version": "dev-hack",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/xhp-lib.git",
-                "reference": "2786dc7e08af6dbfdab02d774245258049a24cee"
+                "reference": "87cfd8fea00ec19dc0e4fb682cae111601c66adb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/xhp-lib/zipball/2786dc7e08af6dbfdab02d774245258049a24cee",
-                "reference": "2786dc7e08af6dbfdab02d774245258049a24cee",
+                "url": "https://api.github.com/repos/facebook/xhp-lib/zipball/87cfd8fea00ec19dc0e4fb682cae111601c66adb",
+                "reference": "87cfd8fea00ec19dc0e4fb682cae111601c66adb",
                 "shasum": ""
             },
             "require": {
@@ -85,6 +85,11 @@
                 "phpunit/phpunit": "4.5.*"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -102,7 +107,7 @@
                 "hhvm",
                 "xhp"
             ],
-            "time": "2015-06-29 21:06:20"
+            "time": "2015-06-29 21:19:41"
         },
         {
             "name": "guzzle/guzzle",
@@ -344,9 +349,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "facebook/xhp-lib": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

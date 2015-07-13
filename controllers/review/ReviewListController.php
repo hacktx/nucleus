@@ -1,6 +1,10 @@
 <?hh //decl
 
 class ReviewListController {
+  public static function getPath(): string {
+    return '/review';
+  }
+
   public static function get(): :xhp {
     $table = <table class="table table-bordered table-striped sortable" />;
     $table->appendChild(

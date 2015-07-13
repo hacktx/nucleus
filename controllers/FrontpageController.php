@@ -1,6 +1,10 @@
 <?hh
 
 class FrontpageController {
+  public static function getPath(): string {
+    return '/';
+  }
+
   public static function get(): :xhp {
     # If a user is logged in, redirect them to where they belong
     if(Session::isActive()) {

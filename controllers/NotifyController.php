@@ -1,6 +1,10 @@
 <?hh
 
 class NotifyController {
+  public static function getPath(): string {
+    return '/notify';
+  }
+
   public static function get(): :xhp {
     # Get the mailing lists and parse them
     $lists = Email::getLists();

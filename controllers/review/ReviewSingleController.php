@@ -1,6 +1,10 @@
 <?hh //decl
 
 class ReviewSingleController {
+  public static function getPath(): string {
+    return '/review/{id}';
+  }
+
   public static function get(): :xhp {
     $app_id = (int)$_SESSION['route_params']['id'];
 

@@ -1,6 +1,14 @@
 <?hh
 
-class ApplyController {
+class ApplyController extends BaseController {
+  public static function getPath(): string {
+    return '/apply';
+  }
+
+  public static function getConfig(): Map<string, mixed> {
+    return Map {};
+  }
+
   public static function get(): :xhp {
     $user = Session::getUser();
     $application = Application::genByUser($user);
@@ -53,7 +61,7 @@ class ApplyController {
               </div>
               <div class="form-group">
                 <label for="q1" class="control-label">Why do you want to rush Lambda Alpha Nu?</label>
-                <textarea class="form-control" rows="3" id="q1" name="q1">
+                <textarea class="form-control" rows=3 id="q1" name="q1">
                   {$application->getQ1()}
                 </textarea>
               </div>
@@ -61,7 +69,7 @@ class ApplyController {
                 <label for="q2" class="control-label">
                   Talk about yourself in a couple of sentences.
                 </label>
-                <textarea class="form-control" rows="3" id="q2" name="q2">
+                <textarea class="form-control" rows=3 id="q2" name="q2">
                   {$application->getQ2()}
                 </textarea>
               </div>
@@ -69,7 +77,7 @@ class ApplyController {
                 <label for="q3" class="control-label">
                   What is your major and why did you choose it?
                 </label>
-                <textarea class="form-control" rows="3" id="q3" name="q3">
+                <textarea class="form-control" rows=3 id="q3" name="q3">
                   {$application->getQ3()}
                 </textarea>
               </div>
@@ -77,7 +85,7 @@ class ApplyController {
                 <label for="q4" class="control-label">
                   What do you do in your spare time?
                 </label>
-                <textarea class="form-control" rows="3" id="q4" name="q4">
+                <textarea class="form-control" rows=3 id="q4" name="q4">
                   {$application->getQ4()}
                 </textarea>
               </div>
