@@ -11,8 +11,7 @@ class URIMapGenerator extends Robo\Task\BaseTask implements Robo\Contract\TaskIn
     $this->printTaskInfo('Generating URI Map');
     $routes = URIMapGenerator::getRoutesMap();
     $map = var_export($routes, true);
-    $template = '<?hh
-      return ' . str_replace("HH\\", "", $map) . ';';
+    $template = "<?hh\nreturn " . str_replace("HH\\", "", $map) . ";";
     file_put_contents('build/URIMap.php', $template);
     $this->printTaskSuccess("Finished Generating URI Map");
     return Robo\Result::success($this, "Finished Generating URI Map");
