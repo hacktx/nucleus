@@ -1,8 +1,14 @@
 <?hh
 
-class NotifyController {
+class NotifyController extends BaseController {
   public static function getPath(): string {
     return '/notify';
+  }
+
+  public static function getConfig(): ControllerConfig {
+    return (new ControllerConfig())
+      ->setUserState(array(UserState::Member))
+      ->setUserRoles(array(UserRole::Admin, UserRole::Officer));
   }
 
   public static function get(): :xhp {

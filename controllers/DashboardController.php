@@ -1,8 +1,18 @@
 <?hh
 
-class DashboardController {
+class DashboardController extends BaseController {
   public static function getPath(): string {
     return '/dashboard';
+  }
+
+  public static function getConfig(): ControllerConfig {
+    return (new ControllerConfig())
+      ->setUserState(array(
+        UserState::Applicant,
+        UserState::Pledge,
+        UserState::Member,
+        UserState::Disabled
+      ));
   }
 
   public static function get(): :xhp {

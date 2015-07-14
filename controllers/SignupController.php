@@ -1,6 +1,6 @@
 <?hh //decl
 
-class SignupController {
+class SignupController extends BaseController {
 
   public static function getPath(): string {
     return '/signup';

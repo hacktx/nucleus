@@ -1,8 +1,14 @@
 <?hh //decl
 
-class ReviewListController {
+class ReviewListController extends BaseController {
   public static function getPath(): string {
     return '/review';
+  }
+
+  public static function getConfig(): ControllerConfig {
+    return (new ControllerConfig())
+      ->setUserStatus(array(User::Member))
+      ->setUserRoles(array(Roles::Reviewer, Roles::Admin));
   }
 
   public static function get(): :xhp {

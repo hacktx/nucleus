@@ -7,29 +7,6 @@ class Route {
     # auth levels and access roles to view each page
     $routes = require('build/URIMap.php');
     $tmp = Map {
-      '/' => Map {
-        'controller' => 'FrontpageController',
-        'methods' => 'GET'
-      },
-      '/signup' => Map {
-        'controller' => 'SignupController',
-        'methods' => 'GET|POST'
-      },
-      '/login' => Map {
-        'controller' => 'LoginController',
-        'methods' => 'GET|POST'
-      },
-      '/apply' => Map {
-        'controller' => 'ApplyController',
-        'methods' => 'GET|POST',
-        'status' => array(User::Applicant)
-      },
-      '/review' => Map {
-        'controller' => 'ReviewListController',
-        'methods' => 'GET',
-        'status' => array(User::Member),
-        'roles' => array(Roles::Reviewer, Roles::Admin)
-      },
       '/review/{id}' => Map {
         'controller' => 'ReviewSingleController',
         'methods' => 'GET|POST',
@@ -38,17 +15,6 @@ class Route {
         },
         'status' => array(User::Member),
         'roles' => array('reviewer', 'admin')
-      },
-      '/dashboard' => Map {
-        'controller' => 'DashboardController',
-        'methods' => 'GET',
-        'status' => array(User::Applicant, User::Pledge, User::Member, User::Disabled)
-      },
-      '/members' => Map {
-        'controller' => 'MembersController',
-        'methods' => 'GET|POST',
-        'status' => array(User::Member),
-        'roles' => array(Roles::Admin)
       },
       '/events/admin' => Map {
         'controller' => 'EventsAdminController',
@@ -64,12 +30,6 @@ class Route {
       },
       '/events/{id}' => Map {
         'controller' => 'EventCheckinController',
-        'methods' => 'GET|POST',
-        'status' => array(User::Member),
-        'roles' => array(Roles::Admin, Roles::Officer)
-      },
-      '/notify' => Map {
-        'controller' => 'NotifyController',
         'methods' => 'GET|POST',
         'status' => array(User::Member),
         'roles' => array(Roles::Admin, Roles::Officer)

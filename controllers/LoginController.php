@@ -1,10 +1,10 @@
 <?hh
 
-class LoginController {
+class LoginController extends BaseController {
   public static function getPath(): string {
     return '/login';
   }
-  
+
   public static function get(): :xhp {
     # Check to see if we're going to perform an action
     $query_params = array();

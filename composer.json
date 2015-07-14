@@ -2,8 +2,7 @@
   "require": {
     "mailgun/mailgun-php": "~1.7.2",
     "sergeytsalkov/meekrodb": "*",
-    "facebook/xhp-lib": "2.x",
-    "aura/router": "*"
+    "facebook/xhp-lib": "2.x"
   },
   "require-dev": {
     "codegyre/robo": "*"
