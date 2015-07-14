@@ -42,22 +42,6 @@ class DashboardController extends BaseController {
         </div>;
     }
 
-    $events = null;
-    if(!$user->isDisabled()) {
-      $events = Event::genAllFuture();
-      if(!empty($events)) {
-        $events =
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h1 class="panel-title">Upcoming Events</h1>
-            </div>
-            <div class="panel-body">
-              <nucleus:event-list events={$events} />
-            </div>
-          </div>;
-      }
-    }
-
     $roles = $user->getRoles();
     foreach($roles as $role) {
       $badges->appendChild(<span class="label label-success">{ucwords($role)}</span>);
@@ -83,7 +67,6 @@ class DashboardController extends BaseController {
           </div>
           {$applicant_info}
         </div>
-        {$events}
       </x:frag>;
   }
 }

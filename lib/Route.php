@@ -16,24 +16,6 @@ class Route {
         'status' => array(User::Member),
         'roles' => array('reviewer', 'admin')
       },
-      '/events/admin' => Map {
-        'controller' => 'EventsAdminController',
-        'methods' => 'GET|POST',
-        'status' => array(User::Member),
-        'roles' => array(Roles::Admin, Roles::Officer)
-      },
-      '/events/attendance/{id}' => Map {
-        'controller' => 'EventAttendanceController',
-        'methods' => 'GET',
-        'status' => array(User::Member),
-        'roles' => array(Roles::Admin, Roles::Officer)
-      },
-      '/events/{id}' => Map {
-        'controller' => 'EventCheckinController',
-        'methods' => 'GET|POST',
-        'status' => array(User::Member),
-        'roles' => array(Roles::Admin, Roles::Officer)
-      },
       '/settings' => Map {
         'controller' => 'SettingsController',
         'methods' => 'GET|POST',

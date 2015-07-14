@@ -34,13 +34,8 @@ final class :nucleus:nav-buttons extends :x:element {
       );
     }
 
-    # Admins and event admins can access the events portal
+    # Admins and officers can access the notification portal
     if($user->isAdmin() || $user->isOfficer()) {
-      $nav_buttons->appendChild(
-        <li class={$controller === 'EventsAdminController' ? 'active' : ''}>
-          <a href="/events/admin">Events</a>
-        </li>
-      );
       $nav_buttons->appendChild(
         <li class={$controller === 'NotifyController' ? 'active' : ''}>
           <a href="/notify">Send Notification</a>
