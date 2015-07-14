@@ -26,27 +26,25 @@ Note the `include hhvm.conf;`. The HHVM install should have created this file in
 If not, [these](http://fideloper.com/hhvm-nginx-laravel) are good instructions on how to configure nginx to use HHVM.
 
 ### Setup MySQL
-Nucleus is backed by MySQL.
+Nucleus is backed by MySQL.  
+TODO: Add more instructions about MySQL setup.
 
 ### Install dependencies
 Nucleus uses [Composer](https://getcomposer.org/) to manage dependencies. Once Nucleus is downloaded, run `composer install` in the root of the project.
 
+### Build the URI Map and Autoloader
+Nucleus uses [Robo](robo.li) as a task runner and build tool. This should have been installed with the rest of the dependencies from Composer. To generate the URI map and the autoload map, which are required for Nucleus to run, run `vendor/bin/robo build` (or just `robo build` if you have it installed globally). Creating or deleting a file, or updating a controller's path will require a re-build.
+
 ## How Nucleus works
-Nucleus follows a Router -> Controller paradigm, where the Views are built right into the entire system
+Nucleus follows a rough MVC paradigm, with a top level router, models to contol database access, views in the form of XHP, and controllers which handle the bulk of the logic.
 
 ### The Router
-All app requests start at `app.php` in the root of the project. This is done via the Nginx rule described above. From there, all services are setup, such as the Session manager, DB interface class, and Email system. This is also where the autoloader is brought into context. So that a manual "require" is not needed each time you use a class, they're simply required on usage by the autoloader in `lib/`. Once all this is done, the Route class is called, which lives in `lib/Route.php`. Inside of this file lives the `$routes` map, containing paths as the keys and Maps like the one below as the values:
-
-```php
-'/events/admin' => Map {
-  'controller' => 'EventsAdminController',        # required
-  'methods' => 'GET|POST',                        # required
-  'status' => array(User::Member),                # optional
-  'roles' => array(Roles::Admin, Roles::Officer)  # optional
-}
-```
-
-This maps a request path to a controller and defines which HTTP methods that request is valid on. Additionally, things like the access roles and member status can be defined here, which enforces auth before delegation to the router.
+All app requests start at `app.php` in the root of the project. This is done via the Nginx rule described above. From there, all services are setup, such as the Session manager, DB interface class, and Email system. This is also where the autoloader is brought into context. So that a manual "require" is not needed each time you use a class, they're simply required on usage by the autoloader from composer. Once all this is done, the Route class is called, which lives in `lib/Route.php`. This class includes the URIMap which was generated with robo, which maps a request path to a controller. Once a controller is selected, it is instanciated, the configurations are retreived and verified, and the controller is delegated.
 
 ### The Controller
-Once the router has matched a path and determined which controller to delegate to, it calls the controller via the technique `$Controller::$method`, where `$Controller` is an instance of the controller class, and `$method` is the HTTP method the request was made one. That means to render a page from a get method, you declare a `get` method in your controller which will get called. Once this function is called, the return value should be some XHP object. This will get passed into the `Render` class which lives in `lib/Render.php`. Render constructs the page content, such as the nav bar at the top, and footer.
+Controllers are the powerhouses behind Nucleus; they carry the bulk of the logic and create the views which render into either HTML or JSON. All controllers extend `BaseController`, which requires them to define a method `getPath`. This method will return the path the controller will respond to requests on, and is used by the build step in robo to generte the URI map. Additionally, a controller can define a `getConfig` option, which allows the controller to specify things like the required user state or roles to view that controller.
+
+A controller has the option to return either an `:xhp` object, which will render into HTML in the main view, or a `Map`, which will return a JSON object. Typically, only API endpoints should return JSON.
+
+### The Model
+A model is a simple object which defines ways to retreive and populate an object from the database, and mutations to update the data in the database. They are the main way to interact with the database, and most SQL queries should be contained within them.
