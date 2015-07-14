@@ -69,9 +69,9 @@ class Auth {
     setcookie('remember_me', false, time() - (3600 * 24 * 3650), '/');
   }
 
-  public static function verifyStatus(?array $status): void {
-    // Null status array requires no minimum member status
-    if(!$status) {
+  public static function verifyStatus(array<UserStatus> $status): void {
+    // No status required
+    if (empty($status)) {
       return;
     }
 
@@ -92,9 +92,9 @@ class Auth {
     return;
   }
 
-  public static function verifyRoles(?array $roles): void {
-    // Null roles array requires no specific roles
-    if(!$roles) {
+  public static function verifyRoles(array<UserRole> $roles): void {
+    // No roles required
+    if(empty($roles)) {
       return;
     }
 

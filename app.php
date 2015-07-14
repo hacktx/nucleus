@@ -21,9 +21,9 @@ DB::$port = $configs['DB']['port'];
 
 // Setup Mailgun and email
 use Mailgun\Mailgun;
-Email::$mg = new Mailgun($config['Mailgun']['key']);
-Email::$domain = $config['Mailgun']['domain'];
-Email::$from = $config['Mailgun']['from'];
+Email::$mg = new Mailgun($configs['Mailgun']['key']);
+Email::$domain = $configs['Mailgun']['domain'];
+Email::$from = $configs['Mailgun']['from'];
 
 // Get the user session going
 Session::init();

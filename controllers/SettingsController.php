@@ -1,6 +1,16 @@
 <?hh
 
-class SettingsController {
+class SettingsController extends BaseController {
+  public static function getPath(): string {
+    return '/settings';
+  }
+
+  public static function getConfig(): ControllerConfig {
+    return (new ControllerConfig())
+      ->setUserState(array(UserState::Member))
+      ->setUserRoles(array(UserRole::Admin));
+  }
+
   public static function get(): :xhp {
     $applications_open = Settings::get('applications_open');
     return

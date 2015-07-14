@@ -1,8 +1,14 @@
 <?hh //decl
 
-class ReviewSingleController {
+class ReviewSingleController extends BaseController {
   public static function getPath(): string {
-    return '/review/{id}';
+    return '/review/(?<id>\d+)';
+  }
+
+  public static function getConfig(): ControllerConfig {
+    return (new ControllerConfig())
+      ->setUserState(array(UserState::Member))
+      ->setUserRoles(array(UserRole::Reviewer, UserRole::Admin));
   }
 
   public static function get(): :xhp {
