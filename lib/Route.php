@@ -8,9 +8,10 @@ class Route {
 
     // Match the path
     foreach($routes as $route_path => $controller_name) {
+      $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
       if(preg_match(
         "@^$route_path$@i",
-        "$_SERVER[REQUEST_URI]",
+        "$uri",
         $_SESSION['route_params'])
       ) {
         $controller = new $controller_name();
