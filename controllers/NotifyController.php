@@ -49,12 +49,12 @@ class NotifyController extends BaseController {
 
   public static function post(): void {
     if(!isset($_POST['email']) || !isset($_POST['subject']) || !isset($_POST['body'])) {
-      Flash::set('error', 'All fields must be filled out');
+      Flash::set(Flash::ERROR, 'All fields must be filled out');
       Route::redirect('/notify');
     }
 
     Email::send($_POST['email'], $_POST['subject'], $_POST['body']);
-    Flash::set('success', 'Your email was sent successfully');
+    Flash::set(Flash::SUCCESS, 'Your email was sent successfully');
     Route::redirect('/notify');
   }
 }

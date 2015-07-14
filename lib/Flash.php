@@ -1,6 +1,9 @@
 <?hh
 
 class Flash {
+  const ERROR = 'error';
+  const SUCCESS = 'success';
+
   public static function set($key, $value): void {
     if(!isset($_SESSION['flash'])) {
       $_SESSION['flash'] = Map {};

@@ -50,7 +50,7 @@ class LoginController extends BaseController {
 
     # Authenticate
     if(!Auth::login($_POST['username'], $_POST['password'])) {
-      Flash::set('error', 'Login failed');
+      Flash::set(Flash::ERROR, 'Login failed');
       Route::redirect('/login');
     }
 

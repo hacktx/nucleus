@@ -77,7 +77,7 @@ class Auth {
 
     // No actice session, so no user is logged in.
     if(!Session::isActive()) {
-      Flash::set('error', 'You must be logged in to view this page');
+      Flash::set(Flash::ERROR, 'You must be logged in to view this page');
       Flash::set('redirect', $_SERVER['REQUEST_URI']);
       Route::redirect('/login');
     }
@@ -85,7 +85,7 @@ class Auth {
     // Check the users's status against the permitted status
     $user = Session::getUser();
     if(!in_array($user->getStatusID(), $status)) {
-      Flash::set('error', 'You do not have permission to view this page');
+      Flash::set(Flash::ERROR, 'You do not have permission to view this page');
       Route::redirect('/dashboard');
     }
 
@@ -100,7 +100,7 @@ class Auth {
 
     // No actice session, so no user is logged in.
     if(!Session::isActive()) {
-      Flash::set('error', 'You must be logged in to view this page');
+      Flash::set(Flash::ERROR, 'You must be logged in to view this page');
       Flash::set('redirect', $_SERVER['REQUEST_URI']);
       Route::redirect('/login');
     }
@@ -110,7 +110,7 @@ class Auth {
     $user = Session::getUser();
     $intersection = array_intersect($roles, $user->getRoles());
     if(empty($intersection)) {
-      Flash::set('error', 'You do not have the required roles to access this page');
+      Flash::set(Flash::ERROR, 'You do not have the required roles to access this page');
       Route::redirect('/dashboard');
     }
   }

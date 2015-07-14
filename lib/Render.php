@@ -21,17 +21,17 @@ class Render {
   }
 
   private static function getFlash(): ?:div {
-    if(Flash::exists('error')) {
+    if(Flash::exists(Flash::ERROR)) {
       return
         <div class="alert alert-danger alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          {Flash::get('error')}
+          {Flash::get(Flash::ERROR)}
         </div>;
-    } elseif (Flash::exists('success')) {
+    } elseif (Flash::exists(Flash::SUCCESS)) {
       return
         <div class="alert alert-success alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          {Flash::get('success')}
+          {Flash::get(Flash::SUCCESS)}
         </div>;
     }
     return null;

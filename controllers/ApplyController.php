@@ -117,7 +117,7 @@ class ApplyController extends BaseController {
 
   public static function post(): void {
     if(!Settings::get('applications_open')) {
-      Flash::set('error', 'Applications are currently closed');
+      Flash::set(Flash::ERROR, 'Applications are currently closed');
       Route::redirect('/dashboard');
     }
 
@@ -137,7 +137,7 @@ class ApplyController extends BaseController {
     if(isset($_POST['submit'])) {
       if($_POST['q1'] === '' || $_POST['q2'] === '' || $_POST['q3'] === '' ||
          $_POST['q4'] === '' || $_POST['q5'] === '' || $_POST['q6'] === '') {
-        Flash::set('error', 'All fields are required');
+        Flash::set(Flash::ERROR, 'All fields are required');
         Route::redirect('/apply');
       }
       $application->submit();
