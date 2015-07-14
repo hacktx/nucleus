@@ -1,7 +1,6 @@
 <?hh
 
 class MembersController extends BaseController {
-
   public static function getPath(): string {
     return '/members';
   }
@@ -11,6 +10,7 @@ class MembersController extends BaseController {
       ->setUserState(array(UserState::Member))
       ->setUserRoles(array(UserRole::Admin));
   }
+
   public static function get(): :xhp {
     return
       <div class="well" role="tabpanel">

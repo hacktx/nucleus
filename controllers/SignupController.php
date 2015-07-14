@@ -1,7 +1,6 @@
 <?hh //decl
 
 class SignupController extends BaseController {
-
   public static function getPath(): string {
     return '/signup';
   }
