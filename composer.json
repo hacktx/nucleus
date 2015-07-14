@@ -5,6 +5,9 @@
     "facebook/xhp-lib": "2.x",
     "aura/router": "*"
   },
+  "require-dev": {
+    "codegyre/robo": "*"
+  },
   "autoload": {
     "classmap": ["components/", "controllers/", "models/", "lib/"]
   }

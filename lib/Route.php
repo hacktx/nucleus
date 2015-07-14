@@ -1,13 +1,12 @@
 <?hh // decl
 
-use Aura\Router\RouterFactory;
-
 class Route {
   public static function dispatch(string $path, string $method): void {
 
     # All the routes that exist within the application. This includes required
     # auth levels and access roles to view each page
-    $routes = Map {
+    $routes = require('build/URIMap.php');
+    $tmp = Map {
       '/' => Map {
         'controller' => 'FrontpageController',
         'methods' => 'GET'
@@ -87,56 +86,32 @@ class Route {
       } 
     };
 
-    # Add the routes to Aura
-    $router_factory = new RouterFactory;
-    $router = $router_factory->newInstance();
-    foreach ($routes as $route_path => $settings) {
-      $tokens = array('REQUEST_METHOD' => $settings['methods']);
-      if(isset($settings['tokens'])) {
-        $tokens = array_merge($tokens, $settings['tokens']->toArray());
+    // Match the path
+    foreach($routes as $route_path => $controller_name) {
+      if(preg_match(
+        "@$route_path@i",
+        "$_SERVER[REQUEST_METHOD]$_SERVER[REQUEST_URI]",
+        $vars)
+      ) {
+        $controller = new $controller_name();
+        invariant($controller instanceof BaseController);
+
+        Auth::verifyStatus($controller->getConfig()->getUserState());
+        Auth::verifyRoles($controller->getConfig()->getUserRoles());
+
+        $content = $controller::$method();
+        if(is_object($content) && is_a($content, :xhp::class)) {
+          Render::go($content, $controller_name);
+        } elseif (is_object($content) && is_a($content, Map::class)) {
+          print json_encode($content);
+        }
+
+        return;
       }
-      $router->add($route_path, $route_path)
-        ->addTokens($tokens)
-        ->addValues(array(
-          'controller' => $settings['controller'],
-          'member_status' => isset($settings['status']) ? $settings['status'] : null,
-          'roles' => isset($settings['roles']) ? $settings['roles'] : null
-        ));
     }
 
-    # Match the path
-    $route = $router->match($path, $_SERVER);
-    if($route) {
-      # Make sure the user has access to view the page they're trying to
-      Auth::verifyStatus(
-        isset($route->params['member_status']) ? $route->params['member_status'] : null
-      );
-      Auth::verifyRoles(
-        isset($route->params['roles']) ? $route->params['roles'] : null
-      );
-
-      # Set the params in the session for use in the controllers
-      $_SESSION['route_params'] = $route->params;
-
-      # Render the page
-      $controller = new ($route->params['controller']);
-
-      $content = $controller::$method();
-
-      if(is_object($content) && is_a($content, :xhp::class)) {
-        Render::go($content, $route->params['controller']);
-      } elseif (is_object($content) && is_a($content, Map::class)) {
-        print json_encode($content);
-        die;
-      } else {
-        die;
-      }
-
-    } else {
-      # No route detected, 404
-      Render::go(FourOhFourController::get(), 'FourOhFourController');
-    }
-
+    // No path was matched
+    Render::go(FourOhFourController::get(), 'FourOhFourController');
   }
 
   public static function redirect(string $path): void {

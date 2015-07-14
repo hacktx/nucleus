@@ -1,6 +1,6 @@
 <?hh
 
-class FrontpageController {
+class FrontpageController extends BaseController {
   public static function getPath(): string {
     return '/';
   }

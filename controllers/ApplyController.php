@@ -6,7 +6,8 @@ class ApplyController extends BaseController {
   }
 
   public static function getConfig(): ControllerConfig {
-    return new ControllerConfig();
+    return (new ControllerConfig())
+      ->setUserState(array(UserState::Applicant));
   }
 
   public static function get(): :xhp {

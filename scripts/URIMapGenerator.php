@@ -1,9 +1,26 @@
 <?hh
 
-class URIMapGenerator {
-  public static function getRoutesMap(): Map<string, string> {
+trait URIGenerator {
+  public function taskGenURIMap() {
+    return new URIMapGenerator();
+  }
+}
+
+class URIMapGenerator extends Robo\Task\BaseTask implements Robo\Contract\TaskInterface {
+  public function run(): Robo\Result {
+    $this->printTaskInfo('Generating URI Map');
+    $routes = URIMapGenerator::getRoutesMap();
+    $map = var_export($routes, true);
+    $template = '<?hh
+      return ' . str_replace("HH\\", "", $map) . ';';
+    file_put_contents('build/URIMap.php', $template);
+    $this->printTaskSuccess("Finished Generating URI Map");
+    return Robo\Result::success($this, "Finished Generating URI Map");
+  }
+
+  private static function getRoutesMap(): Map<string, string> {
     // Get all the php files in the cwd
-    $directory = new RecursiveDirectoryIterator(getcwd() . '/routes');
+    $directory = new RecursiveDirectoryIterator(getcwd() . '/controllers');
     $iterator = new RecursiveIteratorIterator($directory);
     $files = new RegexIterator(
       $iterator,
@@ -23,7 +40,6 @@ class URIMapGenerator {
 
   private static function getPathsFromFile(string $file): Map<string, string> {
     $paths = Map {};
-    require_once($file);
     $classes = self::getClassesFromFile($file);
     foreach ($classes as $class) {
       $controller = new $class();
@@ -50,19 +66,3 @@ class URIMapGenerator {
     return $classes;
   }
 }
-
-$routes = URIMapGenerator::getRoutesMap();
-$template =
-'<?hh
-/**
- * The contents of this file are auto-generated. Any changes made by hand will
- * be lost. To update the contents of this file, run "rider build" from the
- * root of your rider project.
- */
-
-class URIMap {
-  public static function getURIMap(): Map<string, string> {
-    return ' . var_export($routes, true) . ';
-  }
-}';
-file_put_contents('build/URIMap.php', $template);

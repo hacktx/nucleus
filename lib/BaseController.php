@@ -2,5 +2,8 @@
 
 abstract class BaseController {
   abstract public static function getPath(): string;
-  abstract public static function getConfig(): ControllerConfig;
+
+  public static function getConfig(): ControllerConfig {
+    return (new ControllerConfig());
+  }
 }

@@ -1,7 +1,7 @@
 <?hh
 
 enum UserState: int {
-  Application = 0;
+  Applicant = 0;
   Pledge = 1;
   Member = 2;
   Disabled = 3;
