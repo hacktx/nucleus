@@ -9,13 +9,10 @@ class Route {
     // Match the path
     foreach($routes as $route_path => $controller_name) {
       if(preg_match(
-        "@$route_path@i",
-        "$_SERVER[REQUEST_METHOD]$_SERVER[REQUEST_URI]",
+        "@^$route_path$@i",
+        "$_SERVER[REQUEST_URI]",
         $_SESSION['route_params'])
       ) {
-        echo var_dump($_SESSION['route_params']);
-        echo $controller_name;
-        die;
         $controller = new $controller_name();
         invariant($controller instanceof BaseController);
 
