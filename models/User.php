@@ -158,7 +158,7 @@ class User {
     $user->email = $query['email'];
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
-    $user->access_token = $query['token'];
+    $user->token = $query['token'];
     $user->member_status = UserState::assert($query['member_status']);
     return $user;
   }

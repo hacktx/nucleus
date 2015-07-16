@@ -19,11 +19,11 @@ DB::$password = $configs['DB']['password'];
 DB::$dbName = $configs['DB']['name'];
 DB::$port = $configs['DB']['port'];
 
-// Setup Mailgun and email
-use Mailgun\Mailgun;
-Email::$mg = new Mailgun($configs['Mailgun']['key']);
-Email::$domain = $configs['Mailgun']['domain'];
-Email::$from = $configs['Mailgun']['from'];
+// Setup email
+Email::initialize(new SendGridEmailClient(
+  $configs['SendGrid']['api_key'],
+  $configs['SendGrid']['from_email']
+));
 
 // Setup Parse
 ParseClient::initialize(

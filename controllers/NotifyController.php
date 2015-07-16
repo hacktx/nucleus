@@ -12,14 +12,6 @@ class NotifyController extends BaseController {
   }
 
   public static function get(): :xhp {
-    # Get the mailing lists and parse them
-    $lists = Email::getLists();
-    $options = <select class="form-control" name="email" />;
-    foreach($lists as $list) {
-      $options->appendChild(
-        <option>{$list->address}</option>
-      );
-    }
     return
       <div class="col-md-12">
         <div class="panel panel-default">
@@ -30,7 +22,7 @@ class NotifyController extends BaseController {
             <form method="post" action="/notify">
               <div class="form-group">
                 <label>Mailing List</label>
-                {$options}
+                <input type="text" class="form-control" name="email" />
               </div>
               <div class="form-group">
                 <label>Subject</label>
