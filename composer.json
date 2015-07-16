@@ -1,8 +1,9 @@
 {
   "require": {
-    "mailgun/mailgun-php": "~1.7.2",
-    "sergeytsalkov/meekrodb": "*",
-    "facebook/xhp-lib": "2.x"
+    "facebook/xhp-lib": "2.x",
+    "parse/php-sdk" : "~1.1.*",
+    "sendgrid/sendgrid": "~3.2",
+    "sergeytsalkov/meekrodb": "*"
   },
   "require-dev": {
     "codegyre/robo": "*"

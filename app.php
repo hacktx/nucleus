@@ -25,6 +25,13 @@ Email::$mg = new Mailgun($configs['Mailgun']['key']);
 Email::$domain = $configs['Mailgun']['domain'];
 Email::$from = $configs['Mailgun']['from'];
 
+// Setup Parse
+ParseClient::initialize(
+  $configs['Parse']['app_id'],
+  $configs['Parse']['rest_key'],
+  $configs['Parse']['master_key']
+);
+
 // Get the user session going
 Session::init();
 

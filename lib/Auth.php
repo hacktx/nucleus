@@ -1,18 +1,18 @@
 <?hh
 class Auth {
   public static function login(
-    string $username,
+    string $id,
     string $password
   ): bool {
-    $user = User::genByUsername($username);
-    if(!$user) {
-      $user = User::genByEmail($username);
+    $user = User::genByID($id);
+
+    if (!$user) {
+      return false;
     }
-    if ($user && hash_equals($user->getPassword(), crypt($password, $user->getPassword()))) {
-      Session::create($user);
-      return true;
-    }
-    return false;
+
+    Session::create($user);
+
+    return true;
   }
   
   public static function loginWithCookie(): bool {
@@ -113,24 +113,5 @@ class Auth {
       Flash::set(Flash::ERROR, 'You do not have the required roles to access this page');
       Route::redirect('/dashboard');
     }
-  }
-
-  public static function requestPasswordReset(string $username): bool {
-    $user = User::genByUsername($username);
-    if(!$user) {
-      return false;
-    }
-
-    $resetHash = sha1(uniqid(mt_rand(), true));
-    $user->setPasswordReset($resetHash);
-
-    Email::send(
-      $user->getEmail(),
-      'Nucleus password reset',
-      'To reset your password, follow this link:
-       http://nucleus.example.com/password?token=' . $resetHash
-    );
-
-    return true;
   }
 }
