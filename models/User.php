@@ -8,12 +8,6 @@ enum UserState: int {
 }
 
 class User {
-
-  const Applicant = 0;
-  const Pledge = 1;
-  const Member = 2;
-  const Disabled = 3;
-
   private int $id = 0;
   private string $email = '';
   private string $fname = '';
@@ -94,19 +88,19 @@ class User {
   }
 
   public function isApplicant(): bool {
-    return $this->member_status == self::Applicant;
+    return $this->member_status == UserState::Applicant;
   }
 
   public function isPledge(): bool {
-    return $this->member_status == self::Pledge;
+    return $this->member_status == UserState::Pledge;
   }
 
   public function isMember(): bool {
-    return $this->member_status == self::Member;
+    return $this->member_status == UserState::Member;
   }
 
   public function isDisabled(): bool {
-    return $this->member_status == self::Disabled;
+    return $this->member_status == UserState::Disabled;
   }
 
   public function isAdmin(): bool {
@@ -138,7 +132,7 @@ class User {
     return $user;
   }
 
-  public static function updateStatusByID(int $status, int $user_id): void {
+  public static function updateStatusByID(UserState $status, int $user_id): void {
     DB::update('users', array('member_status' => $status), "id=%s", $user_id);
   }
 

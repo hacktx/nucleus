@@ -47,7 +47,7 @@ class MembersController extends BaseController {
       $roles = Roles::getRoles((int)$row['id']);
       # Generate the action buttons based off the user's role and status
       $buttons = <form class="btn-toolbar" method="post" action="/members" />;
-      if($row['member_status'] == User::Applicant) {
+      if($row['member_status'] == UserState::Applicant) {
         $buttons->appendChild(
           <button name="pledge" class="btn btn-primary" value={$row['id']} type="submit">
             Promote to pledge
@@ -58,7 +58,7 @@ class MembersController extends BaseController {
             Delete
           </button>
         );
-      } elseif ($row['member_status'] == User::Pledge) {
+      } elseif ($row['member_status'] == UserState::Pledge) {
         $buttons->appendChild(
           <button name="member" class="btn btn-primary" value={$row['id']} type="submit">
             Promote to member
@@ -144,9 +144,9 @@ class MembersController extends BaseController {
     if(isset($_POST['delete'])) {
       User::deleteByID((int)$_POST['delete']);
     } elseif (isset($_POST['pledge'])) {
-      User::updateStatusByID(User::Pledge, (int)$_POST['pledge']);
+      User::updateStatusByID(UserState::Pledge, (int)$_POST['pledge']);
     } elseif (isset($_POST['member'])) {
-      User::updateStatusByID(User::Member, (int)$_POST['member']);
+      User::updateStatusByID(UserState::Member, (int)$_POST['member']);
     } else {
       $refl = new ReflectionClass('Roles');
       foreach($refl->getConstants() as $role) {
