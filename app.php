@@ -26,7 +26,7 @@ Email::initialize(new SendGridEmailClient(
 ));
 
 // Setup Parse
-ParseClient::initialize(
+Parse\ParseClient::initialize(
   $configs['Parse']['app_id'],
   $configs['Parse']['rest_key'],
   $configs['Parse']['master_key']

@@ -8,6 +8,5 @@ class RoboFile extends \Robo\Tasks {
 
   function build() {
     $this->taskGenURIMap()->run();
-    $this->taskComposerDumpAutoload()->run();
   }
 }
