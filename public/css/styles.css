@@ -23,3 +23,28 @@ body {
   text-align: center;
 }
 
+/*===== Members Page =====*/
+.accepted {
+  background: #FFFB00;
+}
+
+.pending {
+  background: #6e6a6e;
+}
+
+.waitlisted {
+  background: #12A5FF;
+}
+
+.rejected {
+  background: #D0041B;
+}
+
+.circle {
+  float: right;
+  width: 20px;
+  height: 20px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}

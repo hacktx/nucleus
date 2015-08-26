@@ -15,13 +15,7 @@ final class :nucleus:nav-bar extends :x:element {
       $nav_buttons = <nucleus:nav-buttons user={$user} controller={$controller} />;
 
       # Logout dropdown
-      $login =
-        <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{$user->getFirstName() . ' ' . $user->getLastName()} <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/login?action=logout">Logout</a></li>
-          </ul>
-        </li>;
+      $login = <li><a href="/login?action=logout">Logout</a></li>;
     }
 
     return
