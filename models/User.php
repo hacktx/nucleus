@@ -1,10 +1,10 @@
 <?hh
 
 enum UserState: int {
-  Applicant = 0;
-  Pledge = 1;
-  Member = 2;
-  Disabled = 3;
+  Pending = 0;
+  Accepted = 1;
+  Waitlisted = 2;
+  Rejected = 3;
 }
 
 class User {
@@ -14,30 +14,27 @@ class User {
   private string $lname = '';
   private string $access_token = '';
   private string $token = '';
-  private UserState $member_status = UserState::Disabled;
+  private UserState $status = UserState::Pending;
   private array<UserRole> $roles = array();
 
   public static function create(
-    int $id,
-    string $email,
-    string $fname,
-    string $lname
+    League\OAuth2\Client\Provider\MLHUser $mlh_user
   ): ?User {
-    # Make sure a user doesn't already exist with that username or email
     DB::query(
       "SELECT * FROM users WHERE id=%d OR email=%s",
-      $id, $email
+      $mlh_user->getId(), $mlh_user->getEmail()
     );
+
     if(DB::count() != 0) {
       return null;
     }
 
-    # Insert the user
     DB::insert('users', array(
-      'email' => $email,
-      'fname' => $fname,
-      'lname' => $lname,
-      'member_status' => UserState::Applicant
+      'id' => $mlh_user->getId(),
+      'email' => $mlh_user->getEmail(),
+      'fname' => $mlh_user->getFirstName(),
+      'lname' => $mlh_user->getLastName(),
+      'status' => UserState::Pending,
     ));
 
     return self::genByID($id);
@@ -70,49 +67,24 @@ class User {
     return $this->roles;
   }
 
-  public function getStatusID(): UserState {
-    return $this->member_status;
+  public function getStatus(): UserState {
+    return $this->status;
   }
 
-  public function getStatus(): string {
-    switch($this->member_status) {
-      case UserState::Applicant:
-        return 'applicant';
-      case UserState::Pledge:
-        return 'pledge';
-      case UserState::Member:
-        return 'member';
-      case UserState::Disabled:
-        return 'disabled';
-    }
+  public function isPending(): bool {
+    return $this->status == UserState::Pending;
   }
 
-  public function isApplicant(): bool {
-    return $this->member_status == UserState::Applicant;
+  public function isAccepted(): bool {
+    return $this->status == UserState::Accepted;
   }
 
-  public function isPledge(): bool {
-    return $this->member_status == UserState::Pledge;
+  public function isWaitlisted(): bool {
+    return $this->status == UserState::Waitlisted;
   }
 
-  public function isMember(): bool {
-    return $this->member_status == UserState::Member;
-  }
-
-  public function isDisabled(): bool {
-    return $this->member_status == UserState::Disabled;
-  }
-
-  public function isAdmin(): bool {
-    return in_array('admin', $this->roles);
-  }
-
-  public function isReviewer(): bool {
-    return in_array('reviewer', $this->roles);
-  }
-
-  public function isOfficer(): bool {
-    return in_array(Roles::Officer, $this->roles);
+  public function isRejected(): bool {
+    return $this->status == UserState::Rejected;
   }
 
   public static function genByID($user_id): ?User {

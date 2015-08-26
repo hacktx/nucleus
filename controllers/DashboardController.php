@@ -8,10 +8,10 @@ class DashboardController extends BaseController {
   public static function getConfig(): ControllerConfig {
     return (new ControllerConfig())
       ->setUserState(array(
-        UserState::Applicant,
-        UserState::Pledge,
-        UserState::Member,
-        UserState::Disabled
+        UserState::Pending,
+        UserState::Accepted,
+        UserState::Waitlisted,
+        UserState::Rejected
       ));
   }
 
@@ -26,20 +26,21 @@ class DashboardController extends BaseController {
       <span class="label label-warning">{ucwords($user->getStatus())}</span>
     );
 
-    $applicant_info = null;
-    if($user->isApplicant()) {
-      $application = Application::genByUser($user);
-      if(!$application->isStarted() && !$application->isSubmitted()) {
-        $status = <a href="/apply" class="btn btn-primary btn-lg wide">Start Application</a>;
-      } elseif($application->isStarted() && !$application->isSubmitted()) {
-        $status = <a href="/apply" class="btn btn-primary btn-lg wide">Finish Application</a>;
-      } else {
-        $status = <h3>Application Status: <span class="label label-info">Under review</span></h3>;
-      }
-      $applicant_info =
-        <div class="panel-body">
-          {$status}
-        </div>;
+    $status = null;
+    $user_status = $user->getStatus();
+    switch($user_status) {
+      case UserState::Pending:
+        $status = "Under Review";
+        break;
+      case UserState::Accepted:
+        $status = "Accepted";
+        break;
+      case UserState::Waitlisted:
+        $status = "Wait Listed";
+        break;
+      case UserState::Rejected:
+        $status = "Rejected";
+        break;
     }
 
     $roles = $user->getRoles();
@@ -65,7 +66,9 @@ class DashboardController extends BaseController {
               {$badges}
             </div>
           </div>
-          {$applicant_info}
+          <div class="panel-body">
+            <h3>Application Status: <span class="label label-info">{$status}</span></h3>
+          </div>
         </div>
       </x:frag>;
   }

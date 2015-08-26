@@ -1,5 +1,6 @@
 {
   "require": {
+    "bobertforever/oauth2-mlh": "dev-master",
     "facebook/xhp-lib": "2.x",
     "parse/php-sdk" : "1.1.*",
     "sendgrid/sendgrid": "~3.2",

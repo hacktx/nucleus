@@ -1,16 +1,11 @@
 <?hh
 
-enum UserRole: string {
-  Admin = 'admin';
-  Reviewer = 'reviewer';
-  Officer = 'officer';
+enum UserRole: int {
+  Superuser = 0;
+  Organizer = 1;
 }
 
 class Roles {
-  const Admin = 'admin';
-  const Reviewer = 'reviewer';
-  const Officer = 'officer';
-
   public static function insert(string $role, int $user_id): void {
     DB::insert('roles', array(
       'role' => $role,

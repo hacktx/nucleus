@@ -2,3 +2,4 @@
 vendor/*
 .c9/
 build/
+config.ini
