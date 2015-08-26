@@ -13,7 +13,7 @@ if(!file_exists('config.ini')) {
 
 $configs = parse_ini_file('config.ini', true);
 
-Config::initialize(new Map($configs));
+Config::initialize($configs);
 
 // Prepare the databae
 DB::$user = $configs['DB']['user'];

@@ -84,7 +84,7 @@ class Auth {
 
     // Check the users's status against the permitted status
     $user = Session::getUser();
-    if(!in_array($user->getStatusID(), $status)) {
+    if(!in_array($user->getStatus(), $status)) {
       Flash::set(Flash::ERROR, 'You do not have permission to view this page');
       Route::redirect('/dashboard');
     }

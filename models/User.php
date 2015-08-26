@@ -37,7 +37,7 @@ class User {
       'status' => UserState::Pending,
     ));
 
-    return self::genByID($id);
+    return self::genByID($mlh_user->getId());
   }
 
   public function setToken(string $token): void {
@@ -131,7 +131,7 @@ class User {
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
     $user->token = $query['token'];
-    $user->member_status = UserState::assert($query['member_status']);
+    $user->status = UserState::assert($query['member_status']);
     return $user;
   }
 }

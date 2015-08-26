@@ -12,8 +12,8 @@ class OAuthCallbackController extends BaseController {
     }
 
     $provider = new League\OAuth2\Client\Provider\MLH([
-      'clientId'      => Config::get('MLH')['id'],
-      'clientSecret'  => Config::get('MLH')['secret'],
+      'clientId'      => Config::get('MLH')['client_id'],
+      'clientSecret'  => Config::get('MLH')['client_secret'],
       'redirectUri'   => Config::get('MLH')['redirect'],
     ]);
 
@@ -28,6 +28,12 @@ class OAuthCallbackController extends BaseController {
 
       if(!$user) {
         $user = User::create($mlh_user);
+
+        if(!$user) {
+          Flash::set(Flash::ERROR, 'User creation failed');
+          Route::redirect('/');
+          return;
+        }
       }
 
       Session::create($user);

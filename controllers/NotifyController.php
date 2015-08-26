@@ -7,8 +7,7 @@ class NotifyController extends BaseController {
 
   public static function getConfig(): ControllerConfig {
     return (new ControllerConfig())
-      ->setUserState(array(UserState::Member))
-      ->setUserRoles(array(UserRole::Admin, UserRole::Officer));
+      ->setUserRoles(array(UserRole::Organizer));
   }
 
   public static function get(): :xhp {

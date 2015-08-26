@@ -40,50 +40,13 @@ class MembersController extends BaseController {
   private static function getMembersByStatus(int $status): :table {
     $members = <tbody />;
 
-    # Loop through all users with the specified status
     $query = DB::query("SELECT * FROM users WHERE member_status=%s", $status);
     foreach($query as $row) {
-      $roles = Roles::getRoles((int)$row['id']);
-      # Generate the action buttons based off the user's role and status
-      $buttons = <form class="btn-toolbar" method="post" action="/members" />;
-      if($row['member_status'] == UserState::Applicant) {
-        $buttons->appendChild(
-          <button name="pledge" class="btn btn-primary" value={$row['id']} type="submit">
-            Promote to pledge
-          </button>
-        );
-        $buttons->appendChild(
-          <button name="delete" class="btn btn-danger" value={$row['id']} type="submit">
-            Delete
-          </button>
-        );
-      } elseif ($row['member_status'] == UserState::Pledge) {
-        $buttons->appendChild(
-          <button name="member" class="btn btn-primary" value={$row['id']} type="submit">
-            Promote to member
-          </button>
-        );
-      } else {
-        $buttons->appendChild(
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#editRoles"
-            data-id={$row['id']}
-            data-name={$row['fname'] . ' ' . $row['lname']}
-            data-roles={json_encode($roles)}>
-            Edit Roles
-          </button>
-        );
-      }
-
       # Append the row to the table
       $members->appendChild(
         <tr>
           <td>{$row['fname'] . ' ' . $row['lname']}</td>
           <td>{$row['email']}</td>
-          <td>{$buttons}</td>
         </tr>
       );
     }
@@ -94,7 +57,6 @@ class MembersController extends BaseController {
           <tr>
             <th>Name</th>
             <th>Email</th>
-            <th data-defaultsort="disabled">Actions</th>
           </tr>
         </thead>
         {$members}
@@ -136,32 +98,5 @@ class MembersController extends BaseController {
           </div>
         </div>
       </div>;
-  }
-
-  public static function post(): void {
-    # Update the proper field
-    if(isset($_POST['delete'])) {
-      User::deleteByID((int)$_POST['delete']);
-    } elseif (isset($_POST['pledge'])) {
-      User::updateStatusByID(UserState::Pledge, (int)$_POST['pledge']);
-    } elseif (isset($_POST['member'])) {
-      User::updateStatusByID(UserState::Member, (int)$_POST['member']);
-    } else {
-      $refl = new ReflectionClass('Roles');
-      foreach($refl->getConstants() as $role) {
-        $user_roles = Roles::getRoles((int)$_POST['id']);
-        if(isset($_POST[$role])) {
-          if(!in_array($role, $user_roles)) {
-            Roles::insert((string)$role, (int)$_POST['id']);
-          }
-        } else {
-          if(in_array($role, $user_roles)) {
-            Roles::delete((string)$role, (int)$_POST['id']);
-          }
-        }
-      }
-    }
-
-    Route::redirect('/members');
   }
 }

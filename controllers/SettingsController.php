@@ -7,8 +7,7 @@ class SettingsController extends BaseController {
 
   public static function getConfig(): ControllerConfig {
     return (new ControllerConfig())
-      ->setUserState(array(UserState::Member))
-      ->setUserRoles(array(UserRole::Admin));
+      ->setUserRoles(array(UserRole::Superuser));
   }
 
   public static function get(): :xhp {
