@@ -1,8 +1,8 @@
 <?hh
 
-enum UserRole: int {
-  Superuser = 0;
-  Organizer = 1;
+enum UserRole: string {
+  Superuser = 'superuser';
+  Organizer = 'organizer';
 }
 
 class Roles {

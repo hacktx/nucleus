@@ -15,20 +15,24 @@ class MembersController extends BaseController {
       <div class="well" role="tabpanel">
         <ul class="nav nav-tabs nav-justified" role="tablist">
           <li role="presentation" class="active">
-            <a href="#members" aria-controls="home" role="tab" data-toggle="tab">Members</a>
+            <a href="#accepted" aria-controls="home" role="tab" data-toggle="tab">Accepted</a>
           </li>
           <li role="presentation">
-            <a href="#pledges" aria-controls="profile" role="tab" data-toggle="tab">Pledges</a>
+            <a href="#waitlisted" aria-controls="profile" role="tab" data-toggle="tab">Waitlisted</a>
           </li>
           <li role="presentation">
-            <a href="#applicants" aria-controls="profile" role="tab" data-toggle="tab">Applicants</a>
+            <a href="#pending" aria-controls="profile" role="tab" data-toggle="tab">Pending</a>
+          </li>
+          <li role="presentation">
+            <a href="#rejected" aria-controls="profile" role="tab" data-toggle="tab">Rejected</a>
           </li>
         </ul>
         <br />
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="members">{self::getMembersByStatus(2)}</div>
-          <div role="tabpanel" class="tab-pane" id="pledges">{self::getMembersByStatus(1)}</div>
-          <div role="tabpanel" class="tab-pane" id="applicants">{self::getMembersByStatus(0)}</div>
+          <div role="tabpanel" class="tab-pane active" id="accepted">{self::getMembersByState(UserState::Accepted)}</div>
+          <div role="tabpanel" class="tab-pane" id="waitlisted">{self::getMembersByState(UserState::Waitlisted)}</div>
+          <div role="tabpanel" class="tab-pane" id="pending">{self::getMembersByState(UserState::Pending)}</div>
+          <div role="tabpanel" class="tab-pane" id="rejected">{self::getMembersByState(UserState::Rejected)}</div>
         </div>
         {self::getModal()}
         <script src="/js/members.js"></script>
@@ -37,10 +41,10 @@ class MembersController extends BaseController {
       </div>;
   }
 
-  private static function getMembersByStatus(int $status): :table {
+  private static function getMembersByState(UserState $status): :table {
     $members = <tbody />;
 
-    $query = DB::query("SELECT * FROM users WHERE member_status=%s", $status);
+    $query = DB::query("SELECT * FROM users WHERE status=%s", $status);
     foreach($query as $row) {
       # Append the row to the table
       $members->appendChild(
