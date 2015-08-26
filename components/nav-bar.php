@@ -11,13 +11,13 @@ final class :nucleus:nav-bar extends :x:element {
 
     $nav_buttons = null;
     $login = <li><a href="/login">Login</a></li>;
-    if($user && !$user->isDisabled()) {
+    if($user) {
       $nav_buttons = <nucleus:nav-buttons user={$user} controller={$controller} />;
 
       # Logout dropdown
       $login =
         <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{$user->getUsername()} <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{$user->getFirstName() . ' ' . $user->getLastName()} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/login?action=logout">Logout</a></li>
           </ul>

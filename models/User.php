@@ -131,7 +131,7 @@ class User {
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
     $user->token = $query['token'];
-    $user->status = UserState::assert($query['member_status']);
+    $user->status = UserState::assert($query['status']);
     return $user;
   }
 }

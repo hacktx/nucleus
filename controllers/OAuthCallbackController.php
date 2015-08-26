@@ -37,6 +37,7 @@ class OAuthCallbackController extends BaseController {
       }
 
       Session::create($user);
+      Route::redirect(DashboardController::getPath());
     } catch (Exception $e) {
       Flash::set(Flash::ERROR, 'Invalid OAuth state');
       Route::redirect('/');

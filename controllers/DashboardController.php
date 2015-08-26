@@ -18,14 +18,6 @@ class DashboardController extends BaseController {
   public static function get(): :xhp {
     $user = Session::getUser();
 
-    $email_hash = md5(strtolower(trim($user->getEmail())));
-    $gravatar_url = 'https://secure.gravatar.com/avatar/' . $email_hash . '?s=300';
-
-    $badges = <p />;
-    $badges->appendChild(
-      <span class="label label-warning">{ucwords($user->getStatus())}</span>
-    );
-
     $status = null;
     $user_status = $user->getStatus();
     switch($user_status) {
@@ -43,6 +35,7 @@ class DashboardController extends BaseController {
         break;
     }
 
+    $badges = <p />;
     $roles = $user->getRoles();
     foreach($roles as $role) {
       $badges->appendChild(<span class="label label-success">{ucwords($role)}</span>);
@@ -51,16 +44,8 @@ class DashboardController extends BaseController {
     return
       <x:frag>
         <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="col-md-3">
-              <div class="thumbnail">
-                <img src={$gravatar_url} class="img-thumbnail" />
-                <div class="caption">
-                  <p><a href="https://en.gravatar.com/emails/" class="wide btn btn-primary" role="button">Change on Gravatar</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-9">
+          <div class="panel-body text-center">
+            <div class="col-md-12">
               <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
               <p>{$user->getEmail()}</p>
               {$badges}
