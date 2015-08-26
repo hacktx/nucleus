@@ -7,7 +7,7 @@ class MembersController extends BaseController {
 
   public static function getConfig(): ControllerConfig {
     return (new ControllerConfig())
-      ->setUserRoles(array(UserRole::Organizer));
+      ->setUserRoles(array(UserRole::Superuser, UserRole::Organizer));
   }
 
   public static function get(): :xhp {

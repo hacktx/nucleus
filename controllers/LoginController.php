@@ -6,6 +6,16 @@ class LoginController extends BaseController {
   }
 
   public static function get(): void {
+    $query_params = array();
+    parse_str($_SERVER['QUERY_STRING'], $query_params);
+    if(isset($query_params['action'])) {
+      // Log the user out
+      if($query_params['action'] === 'logout') {
+        Auth::logout();
+        Route::redirect('/');
+      }
+    }
+
     $provider = new League\OAuth2\Client\Provider\MLH([
       'clientId'      => Config::get('MLH')['client_id'],
       'clientSecret'  => Config::get('MLH')['client_secret'],
