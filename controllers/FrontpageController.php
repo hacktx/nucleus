@@ -13,8 +13,7 @@ class FrontpageController extends BaseController {
 
     return
       <div class="col-md-6 col-md-offset-3 masthead">
-        <p><a id="signin" class="btn btn-default" role="button" href="/login">Login</a></p>
-        <p><a id="signup" class="btn btn-default" role="button" href="/signup">Sign Up</a></p>
+        <p><a id="signin" class="btn btn-default" role="button" href="/login">Register / Login</a></p>
       </div>;
   }
 }
