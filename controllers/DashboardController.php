@@ -35,25 +35,12 @@ class DashboardController extends BaseController {
         break;
     }
 
-    $badges = <p />;
-    $roles = $user->getRoles();
-    foreach($roles as $role) {
-      $badges->appendChild(<span class="label label-success">{ucwords($role)}</span>);
-    }
-
     return
       <x:frag>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <div class="col-md-12">
-              <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
-              <p>{$user->getEmail()}</p>
-              {$badges}
-            </div>
-          </div>
-          <div class="panel-body">
-            <h3>Application Status: <span class="label label-info">{$status}</span></h3>
-          </div>
+        <div class="col-md-12 text-center">
+          <h3>Thanks for applying, {$user->getFirstName()}! Your application is</h3>
+          <h1><span class="label label-info">{$status}</span></h1>
+          <p>Can't make it? <a href={DeleteAccountController::getPath()}>Cancel My Application</a></p>
         </div>
       </x:frag>;
   }

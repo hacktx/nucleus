@@ -12,12 +12,12 @@ class Render {
         <nucleus:head />
         <body>
           <nucleus:nav-bar user={$user} controller={$controller} />
+          {self::getFlash()}
           <nucleus:clouds />
           <div class="row">
-            <img class="title-img" src="img/hacktx.svg" />
+            <img class="title-img" src="/img/hacktx.svg" />
           </div>
           <div class="container">
-            {self::getFlash()}
             {$content}
           </div>
         </body>
@@ -25,19 +25,30 @@ class Render {
   }
 
   private static function getFlash(): ?:div {
+    $content = null;
     if(Flash::exists(Flash::ERROR)) {
-      return
+      $content = 
         <div class="alert alert-danger alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           {Flash::get(Flash::ERROR)}
         </div>;
     } elseif (Flash::exists(Flash::SUCCESS)) {
-      return
+      $content =
         <div class="alert alert-success alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           {Flash::get(Flash::SUCCESS)}
         </div>;
     }
-    return null;
+
+    if (!$content) {
+      return null;
+    }
+
+    return
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          {$content}
+        </div>
+      </div>;
   }
 }

@@ -2,6 +2,15 @@
 * {
   font-family: 'Open Sans', sans-serif !important;
   font-weight: bold !important;
+  color: #FFF;
+}
+
+.panel * {
+  color: #9B9B9B;
+}
+
+h1, h3 {
+  color: #FFF;
 }
 
 body {
@@ -9,7 +18,6 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
-/*  background-color: #e9eaed; */
   background-color: #74DCFF;
 }
 
@@ -17,10 +25,6 @@ body {
   background-color: #FFF;
   border: none;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
-}
-
-.navbar-nav > li > a {
-  color: #9B9B9B !important;
 }
 
 .sorry {

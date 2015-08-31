@@ -87,6 +87,10 @@ class User {
     return $this->status == UserState::Rejected;
   }
 
+  public function delete(): void {
+    self::deleteByID($this->id);
+  }
+
   public static function genByID($user_id): ?User {
     return self::constructFromQuery('id', $user_id);
   }

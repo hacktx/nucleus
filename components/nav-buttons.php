@@ -11,8 +11,8 @@ final class :nucleus:nav-buttons extends :x:element {
 
     $nav_buttons =
       <ul class="nav navbar-nav">
-        <li class={$controller === 'DashboardController' ? 'active' : ''}>
-          <a href="/dashboard">Dashboard</a>
+        <li class={$controller === DashboardController::class ? 'active' : ''}>
+          <a href={DashboardController::getPath()}>Dashboard</a>
         </li>
       </ul>;
 
