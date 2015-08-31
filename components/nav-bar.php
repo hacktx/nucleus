@@ -15,7 +15,7 @@ final class :nucleus:nav-bar extends :x:element {
       $nav_buttons = <nucleus:nav-buttons user={$user} controller={$controller} />;
 
       # Logout dropdown
-      $login = <li><a href="/login?action=logout">LOGOUT</a></li>;
+      $login = <li><a href="/login?action=logout">Logout</a></li>;
     }
 
     return

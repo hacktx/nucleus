@@ -52,6 +52,19 @@ body {
   margin-top: 50px;
 }
 
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  color: #ffffff;
+  background-color: #9B9B9B;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+  background-color: #9B9B9B;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #9B9B9B;
+}
+
 /*===== Members Page =====*/
 .accepted {
   background: #FFFB00;
