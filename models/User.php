@@ -13,7 +13,6 @@ class User {
   private string $fname = '';
   private string $lname = '';
   private string $access_token = '';
-  private string $token = '';
   private UserState $status = UserState::Pending;
   private array<UserRole> $roles = array();
 
@@ -38,13 +37,6 @@ class User {
     ));
 
     return self::genByID($mlh_user->getId());
-  }
-
-  public function setToken(string $token): void {
-    DB::update('users', array(
-      'token' => $token
-    ), 'id=%s', $this->id);
-    $this->token = $token;
   }
 
   public function getID():int {
@@ -99,15 +91,6 @@ class User {
     return self::constructFromQuery('email', $email);
   }
 
-  public static function genByIDAndToken(int $user_id, string $token): ?User {
-    $query = DB::queryFirstRow("SELECT * FROM users WHERE id=%s AND token=%s", $user_id, $token);
-    if(!$query) {
-      return null;
-    }
-    $user = self::createFromQuery($query);
-    return $user;
-  }
-
   public static function updateStatusByID(UserState $status, int $user_id): void {
     DB::update('users', array('member_status' => $status), "id=%s", $user_id);
   }
@@ -134,7 +117,6 @@ class User {
     $user->email = $query['email'];
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
-    $user->token = $query['token'];
     $user->status = UserState::assert($query['status']);
     return $user;
   }
