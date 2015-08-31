@@ -5,7 +5,7 @@
   color: #FFF;
 }
 
-.panel * {
+.panel *, .well * {
   color: #9B9B9B;
 }
 
