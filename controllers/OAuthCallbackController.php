@@ -54,7 +54,7 @@ class OAuthCallbackController extends BaseController {
             <div class="text-right">
               <a href="https://my.mlh.io/edit" class="btn btn-default">Update</a>
               <form action={self::getPath()} method="post" style="display: inline-block;">
-                <button type="submit" class="btn btn-success">Confirm</button>
+                <button type="submit" class="btn btn-primary">Confirm</button>
               </form>
             </div>
           </div>
