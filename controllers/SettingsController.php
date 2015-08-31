@@ -14,22 +14,20 @@ class SettingsController extends BaseController {
     $applications_open = Settings::get('applications_open');
     return
       <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <form class="form" action="/settings" method="post">
-              <div class="form-group">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="applications_disabled" checked={!$applications_open}/> Disable Applications
-                  </label>
+        <form class="form" action="/settings" method="post">
+          <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="applications_disabled" checked={!$applications_open}/> Disable Applications
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Save</button>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
+          <button type="submit" class="btn btn-primary pull-right">Save</button>
+        </form>
       </div>;
   }
 
