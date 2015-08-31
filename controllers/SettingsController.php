@@ -15,9 +15,6 @@ class SettingsController extends BaseController {
     return
       <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h1 class="panel-title">Send Notification</h1>
-          </div>
           <div class="panel-body">
             <form class="form" action="/settings" method="post">
               <div class="form-group">

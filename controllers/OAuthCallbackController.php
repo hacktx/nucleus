@@ -31,6 +31,11 @@ class OAuthCallbackController extends BaseController {
         Route::redirect(DashboardController::getPath());
       }
 
+      if(!Settings::get('applications_open')) {
+        Flash::set(Flash::ERROR, 'Registration is currently closed. Please check back later!');
+        Route::redirect(FrontpageController::getPath());
+      }
+
       $_SESSION['mlh_user'] = $mlh_user;
 
       return
