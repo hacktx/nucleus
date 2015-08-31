@@ -12,6 +12,7 @@ class User {
   private string $email = '';
   private string $fname = '';
   private string $lname = '';
+  private string $created = '';
   private string $access_token = '';
   private UserState $status = UserState::Pending;
   private array<UserRole> $roles = array();
@@ -63,6 +64,10 @@ class User {
     return $this->status;
   }
 
+  public function getCreated(): string {
+    return $this->created;
+  }
+
   public function isPending(): bool {
     return $this->status == UserState::Pending;
   }
@@ -85,10 +90,6 @@ class User {
 
   public static function genByID($user_id): ?User {
     return self::constructFromQuery('id', $user_id);
-  }
-
-  public static function genByEmail($email): ?User {
-    return self::constructFromQuery('email', $email);
   }
 
   public static function updateStatusByID(UserState $status, int $user_id): void {
@@ -118,6 +119,7 @@ class User {
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
     $user->status = UserState::assert($query['status']);
+    $user->created = $query['created'];
     return $user;
   }
 }
