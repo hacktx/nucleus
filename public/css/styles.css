@@ -1,10 +1,26 @@
 /* Global */
+* {
+  font-family: 'Open Sans', sans-serif !important;
+  font-weight: bold !important;
+}
+
 body {
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #e9eaed;
+/*  background-color: #e9eaed; */
+  background-color: #74DCFF;
+}
+
+.navbar {
+  background-color: #FFF;
+  border: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
+}
+
+.navbar-nav > li > a {
+  color: #9B9B9B !important;
 }
 
 .sorry {
@@ -21,6 +37,15 @@ body {
 
 .masthead p {
   text-align: center;
+}
+
+.title-img {
+  display: block;
+  margin: auto;
+}
+
+.container {
+  margin-top: 50px;
 }
 
 /*===== Members Page =====*/
@@ -48,3 +73,4 @@ body {
   -webkit-border-radius: 50px;
   border-radius: 50px;
 }
+

@@ -11,7 +11,11 @@ class Render {
       <x:frag>
         <nucleus:head />
         <body>
-          <nucleus:nav-bar user={$user} controller={$controller}/>
+          <nucleus:nav-bar user={$user} controller={$controller} />
+          <nucleus:clouds />
+          <div class="row">
+            <img class="title-img" src="img/hacktx.svg" />
+          </div>
           <div class="container">
             {self::getFlash()}
             {$content}

@@ -1,0 +1,198 @@
+/*===== Clouds =====*/
+.clouds {
+    margin-top: 10vh;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.cloud {
+    -webkit-animation: clouds 60s infinite linear;
+    -moz-animation: clouds 60s infinite linear;
+    -ms-animation: clouds 60s infinite linear;
+    -o-animation: clouds 60s infinite linear;
+    animation: clouds 60s infinite linear;
+    position: relative;
+    margin: 33px 0 0 0;
+    width: 54px;
+    height: 10px;
+}
+
+.cloud.tiny {
+    -moz-transform: scale(0.45, 0.45);
+    -ms-transform: scale(0.45, 0.45);
+    -webkit-transform: scale(0.45, 0.45);
+    transform: scale(0.45, 0.45);
+}
+
+.cloud.small {
+    -moz-transform: scale(0.7, 0.7);
+    -ms-transform: scale(0.7, 0.7);
+    -webkit-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+}
+
+.cloud.normal {
+    -moz-transform: scale(1.15, 1.15);
+    -ms-transform: scale(1.15, 1.15);
+    -webkit-transform: scale(1.15, 1.15);
+    transform: scale(1.15, 1.15);
+}
+
+.cloud.large {
+    -moz-transform: scale(1.5, 1.5);
+    -ms-transform: scale(1.5, 1.5);
+    -webkit-transform: scale(1.5, 1.5);
+    transform: scale(1.5, 1.5);
+}
+
+.cloud img {
+    position: absolute;
+    /*border-radius: 50%;*/
+    left: -3px;
+    bottom: 0;
+    z-index: -1;
+}
+
+@-webkit-keyframes clouds {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 120%;
+    }
+}
+@-moz-keyframes clouds {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 120%;
+    }
+}
+@-ms-keyframes clouds {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 120%;
+    }
+}
+@keyframes clouds {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 120%;
+    }
+}
+.cloud-1 { /* large */
+    -webkit-animation-duration: 99s;
+    -moz-animation-duration: 99s;
+    -ms-animation-duration: 99s;
+    -o-animation-duration: 99s;
+    animation-duration: 99s;
+    margin-left: 0%;
+}
+
+.cloud-2 { /* normal */
+    -webkit-animation-duration: 142s;
+    -moz-animation-duration: 142s;
+    -ms-animation-duration: 142s;
+    -o-animation-duration: 142s;
+    animation-duration: 142s;
+    margin-left: 90%;
+}
+
+.cloud-3 { /* small */
+    -webkit-animation-duration: 152s;
+    -moz-animation-duration: 152s;
+    -ms-animation-duration: 152s;
+    -o-animation-duration: 152s;
+    animation-duration: 152s;
+    margin-left: 50%;
+}
+
+.cloud-4 { /* tiny */
+    -webkit-animation-duration: 263s;
+    -moz-animation-duration: 263s;
+    -ms-animation-duration: 263s;
+    -o-animation-duration: 263s;
+    animation-duration: 263s;
+    margin-left: 43%;
+}
+
+.cloud-5 { /* large */
+    -webkit-animation-duration: 109s;
+    -moz-animation-duration: 109s;
+    -ms-animation-duration: 109s;
+    -o-animation-duration: 109s;
+    animation-duration: 109s;
+    margin-left: 83%;
+}
+
+.cloud-6 { /* normal */
+    -webkit-animation-duration: 121s;
+    -moz-animation-duration: 121s;
+    -ms-animation-duration: 121s;
+    -o-animation-duration: 121s;
+    animation-duration: 121s;
+    margin-left: 73%;
+}
+
+.cloud-7 { /* small */
+    -webkit-animation-duration: 165s;
+    -moz-animation-duration: 165s;
+    -ms-animation-duration: 165s;
+    -o-animation-duration: 165s;
+    animation-duration: 165s;
+    margin-left: 69%;
+}
+
+.cloud-8 { /* tiny */
+    -webkit-animation-duration: 215s;
+    -moz-animation-duration: 215s;
+    -ms-animation-duration: 215s;
+    -o-animation-duration: 215s;
+    animation-duration: 215s;
+    margin-left: 100%;
+}
+
+.cloud-9 { /* small */
+    -webkit-animation-duration: 185s;
+    -moz-animation-duration: 185s;
+    -ms-animation-duration: 185s;
+    -o-animation-duration: 185s;
+    animation-duration: 185s;
+    margin-left: 10%;
+}
+
+.cloud-10 { /* normal */
+    -webkit-animation-duration: 126s;
+    -moz-animation-duration: 126s;
+    -ms-animation-duration: 126s;
+    -o-animation-duration: 126s;
+    animation-duration: 126s;
+    margin-left: 14%;
+}
+
+.cloud-11 { /* tiny */
+    -webkit-animation-duration: 195s;
+    -moz-animation-duration: 195s;
+    -ms-animation-duration: 195s;
+    -o-animation-duration: 195s;
+    animation-duration: 195s;
+    margin-left: 73%;
+}
+
+.cloud-12 { /* small */
+    -webkit-animation-duration: 180s;
+    -moz-animation-duration: 180s;
+    -ms-animation-duration: 180s;
+    -o-animation-duration: 180s;
+    animation-duration: 180s;
+    margin-left: 51%;
+}
