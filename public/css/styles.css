@@ -1,4 +1,8 @@
 /* Global */
+
+/* Open Sans - Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600italic);
+
 * {
   font-family: 'Open Sans', sans-serif !important;
   font-weight: bold !important;
@@ -11,6 +15,7 @@
 
 h1, h3 {
   color: #FFF;
+  letter-spacing: -.5px;
 }
 
 body {
@@ -35,8 +40,28 @@ body {
   width: 100%;
 }
 
+.footer-cancel p {
+  color: #4996B1;
+  font-weight: 600 !important;
+  font-size: 17px;
+  font-style: italic;
+}
+
+.footer-cancel a {
+  color: #4996B1;
+  text-decoration: underline;
+}
+
+.footer-cancel a:hover {
+  text-decoration: none;
+}
+
 .label {
-  margin-right: 7px;
+  padding: 20px 40px;
+}
+
+.label-info {
+  background-color: #9137ff;
 }
 
 .masthead p {
@@ -45,11 +70,8 @@ body {
 
 .title-img {
   display: block;
-  margin: auto;
-}
-
-.container {
-  margin-top: 50px;
+  margin: 40px auto;
+  width: 100%;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
@@ -63,6 +85,14 @@ body {
 
 .navbar-default .navbar-nav>li>a {
   color: #9B9B9B;
+}
+
+.status {
+  margin: 40px;
+}
+
+.status h1 {
+  font-size: 36px;
 }
 
 /*===== Members Page =====*/

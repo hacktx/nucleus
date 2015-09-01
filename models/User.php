@@ -12,8 +12,16 @@ class User {
   private string $email = '';
   private string $fname = '';
   private string $lname = '';
+  private string $graduation = '';
+  private string $major = '';
+  private string $shirt_size = '';
+  private string $dietary_restrictions = '';
+  private string $special_needs = '';
+  private string $birthday = '';
+  private string $gender = '';
+  private string $phone_number = '';
+  private string $school = '';
   private string $created = '';
-  private string $access_token = '';
   private UserState $status = UserState::Pending;
   private array<UserRole> $roles = array();
 
@@ -34,6 +42,15 @@ class User {
       'email' => $mlh_user->getEmail(),
       'fname' => $mlh_user->getFirstName(),
       'lname' => $mlh_user->getLastName(),
+      'graduation' => $mlh_user->getGraduation(),
+      'major' => $mlh_user->getMajor(),
+      'shirt_size' => $mlh_user->getShirtSize(),
+      'dietary_restrictions' => $mlh_user->getDietaryRestrictions(),
+      'special_needs' => $mlh_user->getSpecialNeeds(),
+      'birthday' => $mlh_user->getBirthday(),
+      'gender' => $mlh_user->getGender(),
+      'phone_number' => $mlh_user->getPhoneNumber(),
+      'school' => $mlh_user->getSchool(),
       'status' => UserState::Pending,
     ));
 
@@ -118,6 +135,15 @@ class User {
     $user->email = $query['email'];
     $user->fname = $query['fname'];
     $user->lname = $query['lname'];
+    $user->graduation = $query['graduation'];
+    $user->major = $query['major'];
+    $user->shirt_size = $query['shirt_size'];
+    $user->dietary_restrictions = $query['dietary_restrictions'];
+    $user->special_needs = $query['special_needs'];
+    $user->birthday = $query['birthday'];
+    $user->gender = $query['gender'];
+    $user->phone_number = $query['phone_number'];
+    $user->school = $query['school'];
     $user->status = UserState::assert($query['status']);
     $user->created = $query['created'];
     return $user;

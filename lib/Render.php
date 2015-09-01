@@ -14,10 +14,12 @@ class Render {
           <nucleus:nav-bar user={$user} controller={$controller} />
           {self::getFlash()}
           <nucleus:clouds />
-          <div class="row">
-            <img class="title-img" src="/img/hacktx.svg" />
-          </div>
           <div class="container">
+            <div class="row col-xs-6 col-xs-offset-3">
+              <img class="title-img" src="/img/hacktx.svg" />
+            </div>
+          </div>
+          <div class={'container ' . strtolower($controller)}>
             {$content}
           </div>
         </body>

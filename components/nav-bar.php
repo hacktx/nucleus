@@ -10,12 +10,12 @@ final class :nucleus:nav-bar extends :x:element {
     $controller = $this->getAttribute('controller');
 
     $nav_buttons = null;
-    $login = <li><a href="/login">Login</a></li>;
+    $login = <li><a href="/login">LOGIN</a></li>;
     if($user) {
       $nav_buttons = <nucleus:nav-buttons user={$user} controller={$controller} />;
 
       # Logout dropdown
-      $login = <li><a href="/login?action=logout">Logout</a></li>;
+      $login = <li><a href="/login?action=logout">LOGOUT</a></li>;
     }
 
     return

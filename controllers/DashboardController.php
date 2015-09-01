@@ -39,8 +39,12 @@ class DashboardController extends BaseController {
       <x:frag>
         <div class="col-md-12 text-center">
           <h3>Thanks for applying, {$user->getFirstName()}! Your application is</h3>
-          <h1><span class="label label-info">{$status}</span></h1>
-          <p>Can't make it? <a href={DeleteAccountController::getPath()}>Cancel My Application</a></p>
+          <div class="status">
+            <h1><span class="label label-info">{$status}</span></h1>
+          </div>
+          <div class="footer-cancel">
+            <p>Can't make it? <a href={DeleteAccountController::getPath()}>Cancel My Application</a></p>
+          </div>
         </div>
       </x:frag>;
   }
