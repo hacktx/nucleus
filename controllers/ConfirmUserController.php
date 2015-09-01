@@ -38,6 +38,7 @@ class ConfirmUserController extends BaseController {
       return
         <x:frag>
           <div class="col-md-6 col-md-offset-3">
+            <h2>Almost There!</h2>
             <p class="prompt-review">Please review your information</p>
             <div class="panel panel-default">
               <div class="panel-body">
