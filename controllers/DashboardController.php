@@ -37,12 +37,14 @@ class DashboardController extends BaseController {
 
     return
       <x:frag>
-        <div class="col-md-12 text-center">
-          <h3>Thanks for applying, {$user->getFirstName()}! Your application is</h3>
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <h3>Thanks for applying, {$user->getFirstName()}!</h3>
+          <p class="prompt-open">Your Application Status Is</p>
           <div class="status">
             <h1><span class="label label-info">{$status}</span></h1>
           </div>
-          <div class="footer-cancel">
+          <p class="info">Acceptances will roll out in ~7 days. If accepted, you will receive a confirmation email at {$user->getEmail()} with further instructions.</p>
+          <div class="footer">
             <p>Can't make it? <a href={DeleteAccountController::getPath()}>Cancel My Application</a></p>
           </div>
         </div>

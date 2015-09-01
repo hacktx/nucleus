@@ -19,8 +19,9 @@ class DeleteAccountController extends BaseController {
     return
       <x:frag>
         <div class="col-md-12 text-center">
-          <h1>Are you sure you want to delete your account?</h1>
-          <h2>This is permanent and cannot be undone.</h2>
+          <p class="emoticon">D:</p>
+          <h3>Want to delete your account?</h3>
+          <p class="prompt-open">This is permanent and cannot be undone.</p>
           <form action={self::getPath()} method="post"><button type="submit" class="btn btn-danger">Delete my account</button></form>
           <a href={DashboardController::getPath()} class="btn btn-default" role="button">Cancel</a>
         </div>

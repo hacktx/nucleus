@@ -55,9 +55,9 @@ class ConfirmUserController extends BaseController {
               </div>
             </div>
             <div class="text-right">
-              <a href="https://my.mlh.io/edit" class="btn btn-default">Update</a>
+              <a href="https://my.mlh.io/edit" class="btn btn-default">UPDATE</a>
               <form action={self::getPath()} method="post" style="display: inline-block;">
-                <button type="submit" class="btn btn-primary">Confirm</button>
+                <button type="submit" class="btn btn-primary">CONFIRM</button>
               </form>
             </div>
           </div>
