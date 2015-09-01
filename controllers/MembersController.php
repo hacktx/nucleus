@@ -45,8 +45,8 @@ class MembersController extends BaseController {
       $members->appendChild(
         <tr>
           <td>{$row['fname'] . ' ' . $row['lname']}</td>
-          <td>{$row['email']}</td>
-          <td>{$row['email']}</td>
+          <td>{$row['school']}</td>
+          <td>{$row['major']}</td>
           <td>{$status}</td>
         </tr>
       );
