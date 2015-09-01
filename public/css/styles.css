@@ -157,9 +157,14 @@ body {
 
 .title-img {
   display: block;
-  margin: 40px 20px auto;
+  margin: 40px auto;
   margin-bottom: 0;
   width: 100%;
+}
+
+.memberscontroller,
+.settingscontroller {
+  margin-top: 30px;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
