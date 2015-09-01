@@ -38,7 +38,7 @@ class ConfirmUserController extends BaseController {
       return
         <x:frag>
           <div class="col-md-6 col-md-offset-3">
-            <p>Please review your information.</p>
+            <p class="prompt-review">Please review your information</p>
             <div class="panel panel-default">
               <div class="panel-body">
                 <p>Name:<span class="pull-right">{$mlh_user->getName()}</span></p>

@@ -11,6 +11,7 @@ class Render {
       <x:frag>
         <nucleus:head />
         <body>
+          <nucleus:analytics tracking-id={Config::get('GoogleAnalytics')['tracking_id']} />
           <nucleus:nav-bar user={$user} controller={$controller} />
           {self::getFlash()}
           <nucleus:clouds />
