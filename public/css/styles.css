@@ -38,7 +38,8 @@
 }
 
 .btn-default:hover,
-.btn-default:active {
+.btn-default:active,
+.btn-default:focus {
   background-color: #74DCFF;
   border: 2px solid #fff;
   color: #fff;
@@ -51,7 +52,8 @@
 }
 
 .btn-primary:hover,
-.btn-primary:active {
+.btn-primary:active,
+.btn-primary:focus {
   background-color: #64A61B;
 }
 
@@ -205,8 +207,14 @@ body {
   border-style: solid;
 }
 
+.btn:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 #signin:hover,
-#sigin:active {
+#signin:active,
+#signin:focus {
   margin-right: 3px;
   margin-top: 3px;
   border: 0;
