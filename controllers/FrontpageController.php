@@ -16,7 +16,7 @@ class FrontpageController extends BaseController {
         <h3 class="hero-info">Austin, TX  |  Sept. 26-27</h3>
         <p class="prompt-open">Registration now open</p>
         <p><a id="signin" class="btn btn-default col-xs-12" role="button" href="/login">APPLY NOW</a></p>
-        <p class="info">Applications are acccepted on a first come first serve basis. If accepted, you will receive an confirmation email in ~7 days.</p>
+        <p class="info">Applications are acccepted on a first come first serve basis. If accepted, you will receive a confirmation email in ~7 days.</p>
         <div class="footer">
           <p class="footer-prompt">Already Have An Account? <a href={LoginController::getPath()}>Log in Here</a></p>
           <p class="footer-prompt">Having Trouble? Email Us <a href="mailto:hello@hacktx.com">hello@hacktx.com</a></p>
