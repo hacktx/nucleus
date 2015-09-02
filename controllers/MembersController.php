@@ -12,7 +12,7 @@ class MembersController extends BaseController {
 
   public static function get(): :xhp {
     return
-      <div class="well" role="tabpanel">
+      <div class="members-wrapper" role="tabpanel">
         {self::getMembers()}
         <script src="/js/members.js"></script>
         <script src="/js/moment.min.js"></script>
@@ -53,7 +53,7 @@ class MembersController extends BaseController {
     }
 
     return
-      <table class="table table-bordered table-striped sortable">
+      <table class="table table-hover sortable">
         <thead>
           <tr>
             <th class="text-center">Name</th>

@@ -57,8 +57,13 @@
   background-color: #64A61B;
 }
 
-.panel *, .well * {
+.panel *,
+.members-wrapper * {
   color: #9B9B9B;
+}
+
+.members-wrapper {
+  background-color: #D8D8D8;
 }
 
 h1, h3 {
@@ -123,13 +128,13 @@ body {
 
 .emoticon {
   font-size: 120px;
-  margin-top: 25px;
   line-height: 1em;
+  margin-top: 25px;
 }
 
 .footer {
-  margin: 120px 0;
   line-height: .8em;
+  margin: 120px 0;
   text-align: center;
 }
 
@@ -229,6 +234,14 @@ body {
   font-size: 36px;
 }
 
+.table th {
+  background-color: #D8D8D8;
+}
+
+.table td {
+  background-color: #EBE8E8;
+}
+
 /*===== Members Page =====*/
 .accepted {
   background: #FFFB00;
@@ -254,4 +267,3 @@ body {
   -webkit-border-radius: 50px;
   border-radius: 50px;
 }
-
