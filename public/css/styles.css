@@ -4,9 +4,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,600italic);
 
 * {
+  color: #FFF;
   font-family: 'Open Sans', sans-serif !important;
   font-weight: bold !important;
-  color: #FFF;
 }
 
 .alert {
@@ -17,14 +17,28 @@
 }
 
 .alert-danger {
-  border: 3px solid #EE2316;
   background-color: #FF4A3F;
+  border: 3px solid #EE2316;
 }
 
 .alert-success {
   background-color: #3fb618;
   border: 3px solid #34AB00;
 }
+
+body {
+  background-color: #74DCFF;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  top: 0;
+  width: 100%;
+}
+
+.btn:active {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+} 
 
 .btn-default,
 .btn-primary {
@@ -57,36 +71,6 @@
   background-color: #64A61B;
 }
 
-.panel *,
-.members-wrapper * {
-  color: #9B9B9B;
-}
-
-.members-wrapper {
-  background-color: #D8D8D8;
-}
-
-h1, h3 {
-  color: #FFF;
-  letter-spacing: -.5px;
-}
-
-.hero-info {
-  color: #f7f7f7;
-  margin-top: 20px;
-  text-align: center;
-  text-shadow: 1px 1px rgba(0,0,0,.2);
-}
-
-body {
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #74DCFF;
-  overflow-x: hidden;
-}
-
 .confirmusercontroller .btn-default {
   margin: 0 8px;
 }
@@ -110,6 +94,18 @@ body {
 
 .dashboardcontroller .info {
   margin-top: 53px;
+}
+
+h1, h3 {
+  color: #FFF;
+  letter-spacing: -.5px;
+}
+
+.hero-info {
+  color: #f7f7f7;
+  margin-top: 20px;
+  text-align: center;
+  text-shadow: 1px 1px rgba(0,0,0,.2);
 }
 
 .navbar {
@@ -162,21 +158,9 @@ body {
   background-color: #9137ff;
 }
 
-.title-img {
-  display: block;
-  margin: 40px auto;
-  margin-bottom: 0;
-  width: 100%;
-}
-
-.memberscontroller,
-.settingscontroller {
-  margin-top: 30px;
-}
-
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
-  color: #ffffff;
   background-color: #9B9B9B;
+  color: #ffffff;
 }
 
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
@@ -185,6 +169,20 @@ body {
 
 .navbar-default .navbar-nav>li>a {
   color: #9B9B9B;
+}
+
+.members-wrapper *,
+.panel * {
+  color: #9B9B9B;
+}
+
+.members-wrapper {
+  background-color: #D8D8D8;
+}
+
+.memberscontroller,
+.settingscontroller {
+  margin-top: 30px;
 }
 
 .prompt-review,
@@ -200,30 +198,25 @@ body {
 }
 
 #signin {
-  font-size: 24px;
-  padding: 20px;
-  text-align: center;
-  color: #9B9B9B;
-  letter-spacing: -0.5px;
   border: 0 solid #9B9B9B;
-  border-left: 3px;
   border-bottom: 3px;
+  border-left: 3px;
   border-radius: 3px;
   border-style: solid;
-}
-
-.btn:active {
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  color: #9B9B9B;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  padding: 20px;
+  text-align: center;
 }
 
 #signin:hover,
 #signin:active,
 #signin:focus {
+  background-color: #fff;
+  border: 0;
   margin-right: 3px;
   margin-top: 3px;
-  border: 0;
-  background-color: #fff;
 }
 
 .status {
@@ -240,6 +233,13 @@ body {
 
 .table td {
   background-color: #EBE8E8;
+}
+
+.title-img {
+  display: block;
+  margin: 40px auto;
+  margin-bottom: 0;
+  width: 100%;
 }
 
 /*===== Members Page =====*/
