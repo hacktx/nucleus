@@ -1,5 +1,8 @@
 # Nucleus
-Member identity system and application portal
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Code Climate](https://codeclimate.com/github/hacktx/nucleus/badges/gpa.svg)](https://codeclimate.com/github/hacktx/nucleus)
+
+Hackathon attendee identity system and application portal
 
 ## Installation
 ### Setup HHVM
