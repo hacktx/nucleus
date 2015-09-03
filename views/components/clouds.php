@@ -1,4 +1,4 @@
-<?hh
+<?hh // strict
 
 final class :nucleus:clouds extends :x:element {
   final protected function render(): :div {

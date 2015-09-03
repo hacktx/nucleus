@@ -1,4 +1,4 @@
-<?hh
+<?hh // strict
 
 final class :nucleus:dashboard extends :x:element {
   attribute

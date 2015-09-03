@@ -1,4 +1,4 @@
-<?hh
+<?hh // strict
 
 final class :nucleus:head extends :x:element {
   final protected function render(): :head {
