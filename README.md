@@ -1,5 +1,5 @@
 # Nucleus
-[![Software License](https://img.shields.io/badge/license-EPL-brightgreen.svg?style=flat-square)](LICENSE)
+[![Software License](https://img.shields.io/badge/license-EPL-brightgreen.svg)](LICENSE)
 [![Code Climate](https://codeclimate.com/github/hacktx/nucleus/badges/gpa.svg)](https://codeclimate.com/github/hacktx/nucleus)
 
 Hackathon attendee identity system and application portal
