@@ -11,6 +11,6 @@
     "codegyre/robo": "*"
   },
   "autoload": {
-    "classmap": ["components/", "controllers/", "models/", "lib/"]
+    "classmap": ["views/", "controllers/", "models/", "lib/"]
   }
 }
