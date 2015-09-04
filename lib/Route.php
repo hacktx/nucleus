@@ -23,6 +23,8 @@ class Route {
         $content = $controller::$method();
         if(is_object($content) && is_a($content, :xhp::class)) {
           Render::go($content, $controller_name);
+        } else if (is_array($content)) {
+          print json_encode($content);
         } elseif (is_object($content) && is_a($content, Map::class)) {
           print json_encode($content);
         }
