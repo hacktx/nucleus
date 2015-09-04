@@ -13,10 +13,17 @@ class SlackApiController extends BaseController {
       return;
     }
 
-    $push_data = array('alert' => $_POST['text']);
+    Announcement::create($_POST['text'], $_POST['timestamp']);
+
+    $push_data = array(
+      'alert' => $_POST['text'],
+      'sound' => 'default',
+      'badge' => 'Increment',
+    );
+
     ParsePush::send(array(
       'channels' => ["announcements"],
-      'data' => $push_data
+      'data' => $push_data,
     )); 
   }
 }
