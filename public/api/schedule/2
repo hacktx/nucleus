@@ -1,0 +1,205 @@
+[
+  {
+    "id": 6,
+    "name": "12 AM",
+    "eventsList": [
+      {
+        "id": 1,
+        "name": "Midnight Surprise!",
+        "type": "talk",
+        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
+        "startDate": "2015-09-27 00:00:00",
+        "endDate": "2015-09-27 1:00:00",
+        "location": {
+          "building": "SAC",
+          "level": "2",
+          "room": "Ballroom"
+        },
+        "description": "We be talkin about stuff",
+        "speakerList": [
+          {
+            "id": 0,
+            "name": "Bruce Wayne",
+            "organization": "Wayne Enterprises",
+            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
+            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "5 AM",
+    "eventsList": [
+      {
+        "id": 3,
+        "name": "Early Breakfast",
+        "type": "food",
+        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
+        "startDate": "2015-09-27 5:00:00",
+        "endDate": "2015-09-27 6:00:00",
+        "location": {
+          "building": "SAC",
+          "level": "2",
+          "room": "Ballroom"
+        },
+        "description": "We be talkin about stuff",
+        "speakerList": [
+          {
+            "id": 0,
+            "name": "Bruce Wayne",
+            "organization": "Wayne Enterprises",
+            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
+            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "10 AM",
+    "eventsList": [
+      {
+        "id": 3,
+        "name": "Brunch",
+        "type": "food",
+        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
+        "startDate": "2015-09-27 10:00:00",
+        "endDate": "2015-09-27 11:00:00",
+        "location": {
+          "building": "SAC",
+          "level": "2",
+          "room": "Ballroom"
+        },
+        "description": "We be talkin about stuff",
+        "speakerList": [
+          {
+            "id": 0,
+            "name": "Bruce Wayne",
+            "organization": "Wayne Enterprises",
+            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
+            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "11 AM",
+    "eventsList": [
+      {
+        "id": 3,
+        "name": "Hacking is Over",
+        "type": "dev",
+        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
+        "startDate": "2015-09-27 11:00:00",
+        "endDate": "2015-09-27 11:00:00",
+        "location": {
+          "building": "SAC",
+          "level": "2",
+          "room": "Ballroom"
+        },
+        "description": "We be talkin about stuff",
+        "speakerList": [
+          {
+            "id": 0,
+            "name": "Bruce Wayne",
+            "organization": "Wayne Enterprises",
+            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
+            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "12 PM",
+    "eventsList": [
+      {
+        "id": 3,
+        "name": "Expo Begins",
+        "type": "food",
+        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
+        "startDate": "2015-09-27 12:00:00",
+        "endDate": "2015-09-27 13:00:00",
+        "location": {
+          "building": "SAC",
+          "level": "2",
+          "room": "Ballroom"
+        },
+        "description": "We be talkin about stuff",
+        "speakerList": [
+          {
+            "id": 0,
+            "name": "Bruce Wayne",
+            "organization": "Wayne Enterprises",
+            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
+            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "1 PM",
+    "eventsList": [
+      {
+        "id": 3,
+        "name": "Closing Ceremony",
+        "type": "talk",
+        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
+        "startDate": "2015-09-27 13:00:00",
+        "endDate": "2015-09-27 14:00:00",
+        "location": {
+          "building": "SAC",
+          "level": "2",
+          "room": "Ballroom"
+        },
+        "description": "We be talkin about stuff",
+        "speakerList": [
+          {
+            "id": 0,
+            "name": "Bruce Wayne",
+            "organization": "Wayne Enterprises",
+            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
+            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "3 PM",
+    "eventsList": [
+      {
+        "id": 3,
+        "name": "Buses Depart",
+        "type": "bus",
+        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
+        "startDate": "2015-09-27 15:00:00",
+        "endDate": "2015-09-27 16:00:00",
+        "location": {
+          "building": "SAC",
+          "level": "2",
+          "room": "Ballroom"
+        },
+        "description": "We be talkin about stuff",
+        "speakerList": [
+          {
+            "id": 0,
+            "name": "Bruce Wayne",
+            "organization": "Wayne Enterprises",
+            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
+            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
+          }
+        ]
+      }
+    ]
+  }
+]

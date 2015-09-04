@@ -1,0 +1,50 @@
+[
+  {
+    "name": "MLH",
+    "logoImage": "http://hacktx.com/images/mlh_.png",
+    "website": "https://mlh.io/",
+    "level": 0
+  },
+  {
+    "name": "Microsoft",
+    "logoImage": "http://hacktx.com/images/MSFT.png",
+    "website": "http://www.microsoft.com/en-us/",
+    "level": 1
+  },
+  {
+    "name": "a16z",
+    "logoImage": "http://hacktx.com/images/a16z.png",
+    "website": "http://a16z.com/",
+    "level": 2
+  },
+  {
+    "name": "Bloomberg",
+    "logoImage": "http://hacktx.com/images/Bloomberg.png",
+    "website": "http://www.bloomberg.com/",
+    "level": 2
+  },
+  {
+    "name": "Context.io",
+    "logoImage": "http://hacktx.com/images/contextio_logo_large.png",
+    "website": "https://context.io/",
+    "level": 3
+  },
+  {
+    "name": "Indeed",
+    "logoImage": "http://hacktx.com/images/indeed.png",
+    "website": "http://www.indeed.com/",
+    "level": 3
+  },
+  {
+    "name": "Square",
+    "logoImage": "http://hacktx.com/images/square.png",
+    "website": "https://squareup.com/",
+    "level": 3
+  },
+  {
+    "name": "uShip",
+    "logoImage": "http://hacktx.com/images/uship-logo1.png",
+    "website": "https://www.uship.com/",
+    "level": 3
+  }
+]
