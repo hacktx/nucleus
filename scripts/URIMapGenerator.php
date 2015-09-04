@@ -29,7 +29,7 @@ class URIMapGenerator extends Robo\Task\BaseTask implements Robo\Contract\TaskIn
     // Get the paths from the attributes
     $path_map = Map {};
     foreach ($files as $file) {
-      $paths = self::getPathsFromFile(((array)$file)[0]);;
+      $paths = self::getPathsFromFile(((array)$file)[0]);
       if($paths) {
         $path_map->addAll($paths->items());
       }
