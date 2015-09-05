@@ -24,12 +24,13 @@ class URIMapGenerator extends Robo\Task\BaseTask implements Robo\Contract\TaskIn
     $files = new RegexIterator(
       $iterator,
       '/^.+(\.php|\.hh)$/i',
-      RecursiveRegexIterator::GET_MATCH
+      RegexIterator::MATCH,
+      RegexIterator::USE_KEY
     );
     // Get the paths from the attributes
     $path_map = Map {};
     foreach ($files as $file) {
-      $paths = self::getPathsFromFile(((array)$file)[0]);
+      $paths = self::getPathsFromFile($file->getPathname());
       if($paths) {
         $path_map->addAll($paths->items());
       }
