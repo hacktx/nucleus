@@ -28,7 +28,7 @@ class Route {
           (is_object($content) && is_a($content, Map::class))
         ) {
           header('Content-Type: application/json');
-          print json_encode($content);
+          print json_encode($content, JSON_PRETTY_PRINT);
         }
 
         return;
