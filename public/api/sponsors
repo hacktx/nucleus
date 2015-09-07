@@ -43,13 +43,13 @@
   },
   {
     "name": "IBM",
-    "logoImage": "http://hacktx.com/images/ibm.jpg",
+    "logoImage": "http://hacktx.com/images/ibm.png”,
     "website": "http://ibm.com/",
     "level": 2
   },
   {
     "name": "Civitas Learning",
-    "logoImage": "http://hacktx.com/images/Civitas_Logo.jpg",
+    "logoImage": "http://hacktx.com/images/Civitas_Logo.png”,
     "website": "http://www.civitaslearning.com/",
     "level": 2
   },
@@ -67,7 +67,7 @@
   },
   {
     "name": "Epic",
-    "logoImage": "http://hacktx.com/images/epic.jpg",
+    "logoImage": "http://hacktx.com/images/epic.png”,
     "website": "https://epic.com/",
     "level": 2
   },
