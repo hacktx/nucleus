@@ -1,6 +1,6 @@
 <?hh
 
-enum UserState: int {
+enum UserState : int {
   Pending = 0;
   Accepted = 1;
   Waitlisted = 2;
@@ -16,51 +16,55 @@ class User {
   }
 
   public static function create(
-    League\OAuth2\Client\Provider\MLHUser $mlh_user
+    League\OAuth2\Client\Provider\MLHUser $mlh_user,
   ): ?User {
     DB::query(
       "SELECT * FROM users WHERE id=%d OR email=%s",
-      $mlh_user->getId(), $mlh_user->getEmail()
+      $mlh_user->getId(),
+      $mlh_user->getEmail(),
     );
 
-    if(DB::count() != 0) {
+    if (DB::count() != 0) {
       return null;
     }
 
-    DB::insert('users', array(
-      'id' => $mlh_user->getId(),
-      'email' => $mlh_user->getEmail(),
-      'fname' => $mlh_user->getFirstName(),
-      'lname' => $mlh_user->getLastName(),
-      'graduation' => $mlh_user->getGraduation(),
-      'major' => $mlh_user->getMajor(),
-      'shirt_size' => $mlh_user->getShirtSize(),
-      'dietary_restrictions' => $mlh_user->getDietaryRestrictions(),
-      'special_needs' => $mlh_user->getSpecialNeeds(),
-      'birthday' => $mlh_user->getBirthday(),
-      'gender' => $mlh_user->getGender(),
-      'phone_number' => $mlh_user->getPhoneNumber(),
-      'school' => $mlh_user->getSchool(),
-      'status' => UserState::Pending,
-    ));
+    DB::insert(
+      'users',
+      array(
+        'id' => $mlh_user->getId(),
+        'email' => $mlh_user->getEmail(),
+        'fname' => $mlh_user->getFirstName(),
+        'lname' => $mlh_user->getLastName(),
+        'graduation' => $mlh_user->getGraduation(),
+        'major' => $mlh_user->getMajor(),
+        'shirt_size' => $mlh_user->getShirtSize(),
+        'dietary_restrictions' => $mlh_user->getDietaryRestrictions(),
+        'special_needs' => $mlh_user->getSpecialNeeds(),
+        'birthday' => $mlh_user->getBirthday(),
+        'gender' => $mlh_user->getGender(),
+        'phone_number' => $mlh_user->getPhoneNumber(),
+        'school' => $mlh_user->getSchool(),
+        'status' => UserState::Pending,
+      ),
+    );
 
     return self::genByID($mlh_user->getId());
   }
 
-  public function getID():int {
-    return (int)$this->data['id'];
+  public function getID(): int {
+    return (int) $this->data['id'];
   }
 
   public function getEmail(): string {
-    return (string)$this->data['email'];
+    return (string) $this->data['email'];
   }
 
   public function getFirstName(): string {
-    return (string)$this->data['fname'];
+    return (string) $this->data['fname'];
   }
 
   public function getLastName(): string {
-    return (string)$this->data['lname'];
+    return (string) $this->data['lname'];
   }
 
   public function getRoles(): array<UserRole> {
@@ -97,7 +101,7 @@ class User {
 
   public static function genByID($user_id): ?User {
     $query = DB::queryFirstRow("SELECT * FROM users WHERE id=%s", $user_id);
-    if(!$query) {
+    if (!$query) {
       return null;
     }
     $user = new User(new Map($query));
@@ -106,7 +110,10 @@ class User {
     return $user;
   }
 
-  public static function updateStatusByID(UserState $status, int $user_id): void {
+  public static function updateStatusByID(
+    UserState $status,
+    int $user_id,
+  ): void {
     DB::update('users', array('member_status' => $status), "id=%s", $user_id);
   }
 
