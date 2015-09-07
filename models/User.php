@@ -8,22 +8,12 @@ enum UserState: int {
 }
 
 class User {
-  private int $id = 0;
-  private string $email = '';
-  private string $fname = '';
-  private string $lname = '';
-  private string $graduation = '';
-  private string $major = '';
-  private string $shirt_size = '';
-  private string $dietary_restrictions = '';
-  private string $special_needs = '';
-  private string $birthday = '';
-  private string $gender = '';
-  private string $phone_number = '';
-  private string $school = '';
-  private string $created = '';
-  private UserState $status = UserState::Pending;
+  private Map<string, mixed> $data;
   private array<UserRole> $roles = array();
+
+  private function __construct(Map<string, mixed> $data) {
+    $this->data = $data;
+  }
 
   public static function create(
     League\OAuth2\Client\Provider\MLHUser $mlh_user
@@ -58,19 +48,19 @@ class User {
   }
 
   public function getID():int {
-    return $this->id;
+    return (int)$this->data['id'];
   }
 
   public function getEmail(): string {
-    return $this->email;
+    return (string)$this->data['email'];
   }
 
   public function getFirstName(): string {
-    return $this->fname;
+    return (string)$this->data['fname'];
   }
 
   public function getLastName(): string {
-    return $this->lname;
+    return (string)$this->data['lname'];
   }
 
   public function getRoles(): array<UserRole> {
@@ -78,35 +68,42 @@ class User {
   }
 
   public function getStatus(): UserState {
-    return $this->status;
+    return UserState::assert($this->data['status']);
   }
 
-  public function getCreated(): string {
-    return $this->created;
+  public function getCreated(): DateTime {
+    return new DateTime($this->data['created']);
   }
 
   public function isPending(): bool {
-    return $this->status == UserState::Pending;
+    return $this->data['status'] == UserState::Pending;
   }
 
   public function isAccepted(): bool {
-    return $this->status == UserState::Accepted;
+    return $this->data['status'] == UserState::Accepted;
   }
 
   public function isWaitlisted(): bool {
-    return $this->status == UserState::Waitlisted;
+    return $this->data['status'] == UserState::Waitlisted;
   }
 
   public function isRejected(): bool {
-    return $this->status == UserState::Rejected;
+    return $this->data['status'] == UserState::Rejected;
   }
 
   public function delete(): void {
-    self::deleteByID($this->id);
+    self::deleteByID($this->data['id']);
   }
 
   public static function genByID($user_id): ?User {
-    return self::constructFromQuery('id', $user_id);
+    $query = DB::queryFirstRow("SELECT * FROM users WHERE id=%s", $user_id);
+    if(!$query) {
+      return null;
+    }
+    $user = new User(new Map($query));
+    $user->roles = Roles::getRoles($user->getID());
+
+    return $user;
   }
 
   public static function updateStatusByID(UserState $status, int $user_id): void {
@@ -115,37 +112,5 @@ class User {
 
   public static function deleteByID($user_id): void {
     DB::delete('users', 'id=%s', $user_id);
-  }
-
-  private static function constructFromQuery($field, $query): ?User {
-    # Get the user
-    $query = DB::queryFirstRow("SELECT * FROM users WHERE " . $field ."=%s", $query);
-    if(!$query) {
-      return null;
-    }
-    $user = self::createFromQuery($query);
-    $user->roles = Roles::getRoles($user->getID());
-
-    return $user;
-  }
-
-  private static function createFromQuery(array $query): User {
-    $user = new User();
-    $user->id = (int)$query['id'];
-    $user->email = $query['email'];
-    $user->fname = $query['fname'];
-    $user->lname = $query['lname'];
-    $user->graduation = $query['graduation'];
-    $user->major = $query['major'];
-    $user->shirt_size = $query['shirt_size'];
-    $user->dietary_restrictions = $query['dietary_restrictions'];
-    $user->special_needs = $query['special_needs'];
-    $user->birthday = $query['birthday'];
-    $user->gender = $query['gender'];
-    $user->phone_number = $query['phone_number'];
-    $user->school = $query['school'];
-    $user->status = UserState::assert($query['status']);
-    $user->created = $query['created'];
-    return $user;
   }
 }
