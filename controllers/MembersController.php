@@ -36,6 +36,7 @@ class MembersController extends BaseController {
       $limit,
       $offset,
     );
+
     foreach ($query as $row) {
       $status = <span />;
       switch ($row['status']) {
@@ -96,21 +97,35 @@ class MembersController extends BaseController {
         </li>;
     }
 
-    $back =
-      <li class={$page == 0 ? "disabled" : ""}>
-        <a
-          href={self::getPath()."?page=".($page < 5 ? 0 : $page - 5)}
-          aria-label="Previous">
+    $beginning =
+      <li class={$page < 3 ? "disabled" : ""}>
+        <a href={self::getPath()."?page=0"} aria-label="Beginning">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>;
 
+    $back =
+      <li class={$page < 3 ? "disabled" : ""}>
+        <a
+          href={self::getPath()."?page=".($page < 5 ? 0 : $page - 5)}
+          aria-label="Previous">
+          <span aria-hidden="true">&lsaquo;</span>
+        </a>
+      </li>;
+
     $next =
-      <li>
+      <li class={$max - $page < 3 ? "disabled" : ""}>
         <a
           href=
             {self::getPath()."?page=".($max - $page > 5 ? $page + 5 : $max)}
           aria-label="Next">
+          <span aria-hidden="true">&rsaquo;</span>
+        </a>
+      </li>;
+
+    $end =
+      <li class={$max - $page < 3 ? "disabled" : ""}>
+        <a href={self::getPath()."?page=".$max} aria-label="End">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>;
@@ -118,9 +133,11 @@ class MembersController extends BaseController {
     return
       <nav>
         <ul class="pagination">
+          {$beginning}
           {$back}
           {$buttons}
           {$next}
+          {$end}
         </ul>
       </nav>;
   }
