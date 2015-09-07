@@ -31,8 +31,11 @@ class MembersController extends BaseController {
 
     $offset = $page * $limit;
 
-    $query =
-      DB::query("SELECT * FROM users LIMIT %i OFFSET %i", $limit, $offset);
+    $query = DB::query(
+      "SELECT * FROM users ORDER BY created ASC LIMIT %i OFFSET %i",
+      $limit,
+      $offset,
+    );
     foreach ($query as $row) {
       $status = <span />;
       switch ($row['status']) {
