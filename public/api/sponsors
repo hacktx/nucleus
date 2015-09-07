@@ -12,6 +12,24 @@
     "level": 1
   },
   {
+    "name": "Thomson Reuters",
+    "logoImage": "http://hacktx.com/images/thomsonreuters.png",
+    "website": "http://thomsonreuters.com/",
+    "level": 1
+  },
+  {
+    "name": "State Farm",
+    "logoImage": "http://hacktx.com/images/statefarm.png",
+    "website": "https://www.statefarm.com/",
+    "level": 1
+  },
+  {
+    "name": "Capital One",
+    "logoImage": "http://hacktx.com/images/capitalone.png",
+    "website": "https://www.capitalone.com/",
+    "level": 1
+  },
+  {
     "name": "a16z",
     "logoImage": "http://hacktx.com/images/a16z.png",
     "website": "http://a16z.com/",
@@ -22,6 +40,42 @@
     "logoImage": "http://hacktx.com/images/Bloomberg.png",
     "website": "http://www.bloomberg.com/",
     "level": 2
+  },
+  {
+    "name": "IBM",
+    "logoImage": "http://hacktx.com/images/ibm.jpg",
+    "website": "http://ibm.com/",
+    "level": 2
+  },
+  {
+    "name": "Civitas Learning",
+    "logoImage": "http://hacktx.com/images/Civitas_Logo.jpg",
+    "website": "http://www.civitaslearning.com/",
+    "level": 2
+  },
+  {
+    "name": "Bazaarvoice",
+    "logoImage": "http://hacktx.com/images/bazaarvoice.png",
+    "website": "http://www.bazaarvoice.com/",
+    "level": 2
+  },
+  {
+    "name": "RetailMeNot",
+    "logoImage": "http://hacktx.com/images/RetailMeNot.png",
+    "website": "http://www.retailmenot.com/",
+    "level": 2
+  },
+  {
+    "name": "Epic",
+    "logoImage": "http://hacktx.com/images/epic.jpg",
+    "website": "https://epic.com/",
+    "level": 2
+  },
+  {
+    "name": "hbk",
+    "logoImage": "http://hacktx.com/images/HBK.jpg",
+    "website": "https://hbk.com/",
+    "level": 3
   },
   {
     "name": "Context.io",
@@ -42,9 +96,81 @@
     "level": 3
   },
   {
+    "name": "MongoDB",
+    "logoImage": "http://hacktx.com/images/mongodb.png",
+    "website": "https://www.mongodb.org/",
+    "level": 3
+  },
+  {
+    "name": "SendGrid",
+    "logoImage": "http://hacktx.com/images/sendgrid.png",
+    "website": "https://sendgrid.com/",
+    "level": 3
+  },
+  {
+    "name": "National Instruments",
+    "logoImage": "http://hacktx.com/images/nationalinstruments.png",
+    "website": "http://www.ni.com/",
+    "level": 3
+  },
+  {
     "name": "uShip",
     "logoImage": "http://hacktx.com/images/uship-logo1.png",
     "website": "https://www.uship.com/",
+    "level": 3
+  },
+  {
+    "name": "Keen IO",
+    "logoImage": "http://hacktx.com/images/keen.png",
+    "website": "https://www.keen.io/",
+    "level": 3
+  },
+  {
+    "name": "Xyience",
+    "logoImage": "http://hacktx.com/images/Xyience.png",
+    "website": "http://www.xyience.com/",
+    "level": 3
+  },
+  {
+    "name": "GoGo SqueeZ",
+    "logoImage": "http://hacktx.com/images/gogosqueez.png",
+    "website": "http://www.gogosqueez.com/",
+    "level": 3
+  },
+  {
+    "name": "Justin's",
+    "logoImage": "http://hacktx.com/images/justins.png",
+    "website": "http://www.justins.com/",
+    "level": 3
+  },
+  {
+    "name": "Google",
+    "logoImage": "http://hacktx.com/images/google.png",
+    "website": "https://www.google.com/",
+    "level": 3
+  },
+  {
+    "name": "Thalmic Labs",
+    "logoImage": "https://www.thalmic.com/about",
+    "website": "http://hacktx.com/images/thalmic-labs.png",
+    "level": 3
+  },
+  {
+    "name": "KPCB",
+    "logoImage": "http://hacktx.com/images/kpcb.png",
+    "website": "http://www.kpcb.com/",
+    "level": 3
+  },
+  {
+    "name": "HackDFW",
+    "logoImage": "http://hacktx.com/images/hackdfw.png",
+    "website": "http://hackdfw.com/",
+    "level": 3
+  },
+  {
+    "name": "MAD",
+    "logoImage": "http://hacktx.com/images/mad_logo_15_16_no_bg.png",
+    "website": "http://utcsmad.com/",
     "level": 3
   }
 ]
