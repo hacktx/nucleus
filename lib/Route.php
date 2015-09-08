@@ -36,6 +36,7 @@ class Route {
     }
 
     // No path was matched
+    http_response_code(404);
     Render::go(FourOhFourController::get(), 'FourOhFourController');
   }
 
