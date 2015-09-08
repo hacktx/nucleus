@@ -114,7 +114,7 @@ class User {
     UserState $status,
     int $user_id,
   ): void {
-    DB::update('users', array('member_status' => $status), "id=%s", $user_id);
+    DB::update('users', array('status' => $status), "id=%s", $user_id);
   }
 
   public static function deleteByID($user_id): void {
