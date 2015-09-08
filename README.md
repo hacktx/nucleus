@@ -1,4 +1,4 @@
-![Nucleus](nucleus.png)
+![Nucleus](nucleus.png)  
 [![Software License](https://img.shields.io/badge/license-EPL-brightgreen.svg)](LICENSE)
 [![Code Climate](https://codeclimate.com/github/hacktx/nucleus/badges/gpa.svg)](https://codeclimate.com/github/hacktx/nucleus)
 [![Dependency Status](https://gemnasium.com/hacktx/nucleus.svg)](https://gemnasium.com/hacktx/nucleus)
