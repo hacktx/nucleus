@@ -36,6 +36,12 @@ final class :nucleus:nav-buttons extends :x:element {
           <a href={SettingsController::getPath()}>Site Settings</a>
         </li>
       );
+
+      $nav_buttons->appendChild(
+        <li class={$controller === VolunteerController::class ? 'active' : ''}>
+          <a href={VolunteerController::getPath()}>Volunteers</a>
+        </li>
+      );
     }
     
     return $nav_buttons;
