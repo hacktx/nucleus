@@ -24,6 +24,14 @@ class MembersController extends BaseController {
     }
     $max_page = (int) (DB::count() / 25);
 
+    $clear_filter = null;
+    if ($filter !== null) {
+      $clear_filter =
+        <div class="list-group">
+          <a class="list-group-item" href={self::getPath()}>Clear Filters</a>
+        </div>;
+    }
+
     return
       <div class="row">
         <div class="col-md-2">
@@ -57,6 +65,7 @@ class MembersController extends BaseController {
               Rejected
             </a>
           </div>
+          {$clear_filter}
         </div>
         <div class="members-wrapper col-md-10" role="tabpanel">
           {self::getMembers($page, 25, $filter)}
