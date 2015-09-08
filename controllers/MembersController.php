@@ -69,12 +69,15 @@ class MembersController extends BaseController {
   }
 
   public static function post(): void {
-    if(!isset($_POST['user']) || !isset($_POST['status'])) {
+    if (!isset($_POST['user']) || !isset($_POST['status'])) {
       http_response_code(400);
       return;
     }
 
-    User::updateStatusByID(UserState::assert($_POST['status']), (int)$_POST['user']);
+    User::updateStatusByID(
+      UserState::assert($_POST['status']),
+      (int) $_POST['user'],
+    );
   }
 
   private static function getMembers(
@@ -107,29 +110,74 @@ class MembersController extends BaseController {
       $status = <span />;
       switch ($row['status']) {
         case UserState::Pending:
-          $status = <span><span class="text">Pending</span><span class="pending circle" /></span>;
+          $status =
+            <span>
+              <span class="text">Pending</span>
+              <span class="pending circle" />
+            </span>;
           break;
         case UserState::Accepted:
-          $status = <span><span class="text">Accepted</span><span class="accepted circle" /></span>;
+          $status =
+            <span>
+              <span class="text">Accepted</span>
+              <span class="accepted circle" />
+            </span>;
           break;
         case UserState::Waitlisted:
-          $status = <span><span class="text">Waitlisted</span><span class="waitlisted circle" /></span>;
+          $status =
+            <span>
+              <span class="text">Waitlisted</span>
+              <span class="waitlisted circle" />
+            </span>;
           break;
         case UserState::Rejected:
-          $status = <span><span class="text">Rejected</span><span class="rejected circle" /></span>;
+          $status =
+            <span>
+              <span class="text">Rejected</span>
+              <span class="rejected circle" />
+            </span>;
           break;
       }
 
       $menu =
         <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button
+            type="button"
+            class="btn btn-default dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
             Options <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <li><a href="#" onclick={self::getJSCall($row['id'], UserState::Pending)}>Pending</a></li>
-            <li><a href="#" onclick={self::getJSCall($row['id'], UserState::Accepted)}>Accepted</a></li>
-            <li><a href="#" onclick={self::getJSCall($row['id'], UserState::Waitlisted)}>Waitlisted</a></li>
-            <li><a href="#" onclick={self::getJSCall($row['id'], UserState::Rejected)}>Rejected</a></li>
+            <li>
+              <a
+                href="#"
+                onclick={self::getJSCall($row['id'], UserState::Pending)}>
+                Pending
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick={self::getJSCall($row['id'], UserState::Accepted)}>
+                Accepted
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick={self::getJSCall($row['id'], UserState::Waitlisted)}>
+                Waitlisted
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick={self::getJSCall($row['id'], UserState::Rejected)}>
+                Rejected
+              </a>
+            </li>
           </ul>
         </div>;
 
@@ -139,7 +187,7 @@ class MembersController extends BaseController {
           <td>{$row['fname'].' '.$row['lname']}</td>
           <td>{$row['school']}</td>
           <td>{$row['major']}</td>
-          <td id={$row['id'] . "status"}>{$status}</td>
+          <td id={$row['id']."status"}>{$status}</td>
           <td>{$menu}</td>
         </tr>
       );
@@ -162,11 +210,15 @@ class MembersController extends BaseController {
   }
 
   private static function getJSCall(string $id, UserState $status): string {
-    $data = "{user: '" . $id . "', status: " . $status . "}";
+    $data = "{user: '".$id."', status: ".$status."}";
     return "makeCall('".self::getPath()."', ".$data.");";
   }
 
-  private static function getPagination(int $page, int $max, ?UserState $filter): :nav {
+  private static function getPagination(
+    int $page,
+    int $max,
+    ?UserState $filter,
+  ): :nav {
     $buttons = Vector {};
     for (
       $i = ($page < 2 ? 0 : $page - 2);
