@@ -32,38 +32,21 @@ class MembersController extends BaseController {
         </div>;
     }
 
+    $filters = Vector {};
+    foreach (UserState::getValues() as $name => $value) {
+      $filters[] =
+        <a
+          href={self::getPath()."?filter=".$value}
+          class={"list-group-item ".($filter === $value ? "active" : "")}>
+          {$name}
+        </a>;
+    }
+
     return
       <div class="row">
         <div class="col-md-2">
           <div class="list-group">
-            <a
-              href={self::getPath()."?filter=".UserState::Pending}
-              class=
-                {"list-group-item ".
-                ($filter === UserState::Pending ? "active" : "")}>
-              Pending
-            </a>
-            <a
-              href={self::getPath()."?filter=".UserState::Accepted}
-              class=
-                {"list-group-item ".
-                ($filter === UserState::Accepted ? "active" : "")}>
-              Accepted
-            </a>
-            <a
-              href={self::getPath()."?filter=".UserState::Waitlisted}
-              class=
-                {"list-group-item ".
-                ($filter === UserState::Waitlisted ? "active" : "")}>
-              Waitlisted
-            </a>
-            <a
-              href={self::getPath()."?filter=".UserState::Rejected}
-              class=
-                {"list-group-item ".
-                ($filter === UserState::Rejected ? "active" : "")}>
-              Rejected
-            </a>
+            {$filters}
           </div>
           {$clear_filter}
         </div>
@@ -116,27 +99,24 @@ class MembersController extends BaseController {
     }
 
     foreach ($query as $row) {
-      $state = "Pending";
-      switch ($row['status']) {
-        case UserState::Pending:
-          $state = "Pending";
-          break;
-        case UserState::Accepted:
-          $state = "Accepted";
-          break;
-        case UserState::Waitlisted:
-          $state = "Waitlisted";
-          break;
-        case UserState::Rejected:
-          $state = "Rejected";
-          break;
-      }
-
       $status =
         <span>
-          <span class="text">{$state}</span>
-          <span class={strtolower($state)." circle"} />
+          <span class="text">{UserState::getNames()[$row['status']]}</span>
+          <span
+            class=
+              {strtolower(UserState::getNames()[$row['status']])." circle"}
+          />
         </span>;
+
+      $menu_options = Vector {};
+      foreach (UserState::getValues() as $name => $value) {
+        $menu_options[] =
+          <li>
+            <a href="#" onclick={self::getJSCall($row['id'], $value)}>
+              {$name}
+            </a>
+          </li>;
+      }
 
       $menu =
         <div class="btn-group">
@@ -149,34 +129,7 @@ class MembersController extends BaseController {
             Options <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <li>
-              <a
-                href="#"
-                onclick={self::getJSCall($row['id'], UserState::Pending)}>
-                Pending
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                onclick={self::getJSCall($row['id'], UserState::Accepted)}>
-                Accepted
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                onclick={self::getJSCall($row['id'], UserState::Waitlisted)}>
-                Waitlisted
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                onclick={self::getJSCall($row['id'], UserState::Rejected)}>
-                Rejected
-              </a>
-            </li>
+            {$menu_options}
           </ul>
         </div>;
 
