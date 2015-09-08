@@ -1,9 +1,7 @@
 <?hh
 
 final class :nucleus:nav-buttons extends :x:element {
-  attribute
-    User user,
-    string controller;
+  attribute User user, string controller;
 
   final protected function render(): :ul {
     $user = $this->getAttribute('user');
@@ -17,14 +15,21 @@ final class :nucleus:nav-buttons extends :x:element {
 
     $nav_buttons =
       <ul class="nav navbar-nav">
-        <li class={$controller === DashboardController::class ? 'active' : ''}>
+        <li
+          class={$controller === DashboardController::class ? 'active' : ''}>
           <a href={DashboardController::getPath()}>Dashboard</a>
         </li>
       </ul>;
 
-    if (!empty(array_intersect(array(UserRole::Organizer, UserRole::Superuser), $roles))) {
+    if (!empty(
+          array_intersect(
+            array(UserRole::Organizer, UserRole::Superuser),
+            $roles,
+          ),
+        )) {
       $nav_buttons->appendChild(
-        <li class={$controller === MembersController::class ? 'active' : ''}>
+        <li
+          class={$controller === MembersController::class ? 'active' : ''}>
           <a href={MembersController::getPath()}>Members</a>
         </li>
       );
@@ -32,18 +37,20 @@ final class :nucleus:nav-buttons extends :x:element {
 
     if (in_array(UserRole::Superuser, $roles)) {
       $nav_buttons->appendChild(
-        <li class={$controller === SettingsController::class ? 'active' : ''}>
+        <li
+          class={$controller === SettingsController::class ? 'active' : ''}>
           <a href={SettingsController::getPath()}>Site Settings</a>
         </li>
       );
 
       $nav_buttons->appendChild(
-        <li class={$controller === VolunteerController::class ? 'active' : ''}>
+        <li
+          class={$controller === VolunteerController::class ? 'active' : ''}>
           <a href={VolunteerController::getPath()}>Volunteers</a>
         </li>
       );
     }
-    
+
     return $nav_buttons;
   }
 }
