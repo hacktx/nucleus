@@ -9,7 +9,7 @@ enum UserState : int {
 
 class User {
   private Map<string, mixed> $data;
-  private array<UserRole> $roles = array();
+  private Set<UserRole> $roles = Set {};
 
   private function __construct(Map<string, mixed> $data) {
     $this->data = $data;
@@ -67,7 +67,7 @@ class User {
     return (string) $this->data['lname'];
   }
 
-  public function getRoles(): array<UserRole> {
+  public function getRoles(): Set<UserRole> {
     return $this->roles;
   }
 

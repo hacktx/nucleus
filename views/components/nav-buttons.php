@@ -1,4 +1,4 @@
-<?hh
+<?hh // strict
 
 final class :nucleus:nav-buttons extends :x:element {
   attribute User user, string controller;
@@ -9,7 +9,7 @@ final class :nucleus:nav-buttons extends :x:element {
 
     $roles = $user->getRoles();
 
-    if (empty($roles)) {
+    if ($roles->isEmpty()) {
       return <ul class="nav navbar-nav"></ul>;
     }
 
@@ -21,12 +21,7 @@ final class :nucleus:nav-buttons extends :x:element {
         </li>
       </ul>;
 
-    if (!empty(
-          array_intersect(
-            array(UserRole::Organizer, UserRole::Superuser),
-            $roles,
-          ),
-        )) {
+    if ($roles->contains(UserRole::Organizer) || $roles->contains(UserRole::Superuser)) {
       $nav_buttons->appendChild(
         <li
           class={$controller === MembersController::class ? 'active' : ''}>
@@ -35,7 +30,7 @@ final class :nucleus:nav-buttons extends :x:element {
       );
     }
 
-    if (in_array(UserRole::Superuser, $roles)) {
+    if ($roles->contains(UserRole::Superuser)) {
       $nav_buttons->appendChild(
         <li
           class={$controller === SettingsController::class ? 'active' : ''}>
