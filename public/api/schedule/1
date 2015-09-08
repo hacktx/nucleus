@@ -1,21 +1,21 @@
 [
   {
     "id": 0,
-    "name": "10 AM",
+    "name": "9:30 AM",
     "eventsList": [
       {
         "id": 1,
         "name": "Check In",
         "type": "talk",
-        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
-        "startDate": "2015-09-26 10:00:00",
-        "endDate": "2015-09-26 12:00:00",
+        "imageUrl": "http://hacktx.com/images/hacktxBanner.png",
+        "startDate": "2015-09-26 9:30:00",
+        "endDate": "2015-09-26 11:45:00",
         "location": {
           "building": "SAC",
-          "level": "2",
-          "room": "Ballroom"
+          "level": "1",
+          "room": "Atrium"
         },
-        "description": "We be talkin about stuff",
+        "description": "Check in to HackTX, make sure to use the special check-in feature from the apps to check in quicker.",
         "speakerList": []
       }
     ]
@@ -25,27 +25,19 @@
     "name": "12 PM",
     "eventsList": [
       {
-        "id": 3,
+        "id": 2,
         "name": "Opening Ceremony",
         "type": "talk",
-        "imageUrl": "http://www.southernhillsanimalhospital.com/sites/site-1450/images/kittens.jpg",
+        "imageUrl": "http://hacktx.com/images/hacktxBanner.png",
         "startDate": "2015-09-26 12:00:00",
-        "endDate": "2015-09-26 13:00:00",
+        "endDate": "2015-09-26 12:50:00",
         "location": {
           "building": "SAC",
-          "level": "2",
-          "room": "Ballroom"
+          "level": "1",
+          "room": "Auditorium"
         },
-        "description": "We be talkin about stuff",
-        "speakerList": [
-          {
-            "id": 0,
-            "name": "Bruce Wayne",
-            "organization": "Wayne Enterprises",
-            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
-            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
-          }
-        ]
+        "description": "The opening ceremony will kickoff all what HackTX is about and what to expect for this hackathon for the next 24 hours.",
+        "speakerList": []
       }
     ]
   },
@@ -57,7 +49,7 @@
         "id": 3,
         "name": "Hacking / Lunch",
         "type": "food",
-        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
+        "imageUrl": "http://hacktx.com/images/foodBanner.png",
         "startDate": "2015-09-26 13:00:00",
         "endDate": "2015-09-26 14:00:00",
         "location": {
@@ -65,103 +57,50 @@
           "level": "2",
           "room": "Ballroom"
         },
-        "description": "We be talkin about stuff",
-        "speakerList": [
-          {
-            "id": 0,
-            "name": "Bruce Wayne",
-            "organization": "Wayne Enterprises",
-            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
-            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
-          }
-        ]
+        "description": "The hacking begins and lunch is also served! Lunch will be from Freebirds.",
+        "speakerList": []
       }
     ]
   },
   {
     "id": 3,
-    "name": "4 PM",
+    "name": "4:15 PM",
     "eventsList": [
       {
-        "id": 3,
+        "id": 4,
         "name": "Afternoon Snackage",
         "type": "food",
-        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
-        "startDate": "2015-09-26 16:00:00",
+        "imageUrl": "http://hacktx.com/images/foodBanner.png",
+        "startDate": "2015-09-26 16:15:00",
         "endDate": "2015-09-26 17:00:00",
         "location": {
           "building": "SAC",
           "level": "2",
           "room": "Ballroom"
         },
-        "description": "We be talkin about stuff",
-        "speakerList": [
-          {
-            "id": 0,
-            "name": "Bruce Wayne",
-            "organization": "Wayne Enterprises",
-            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
-            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
-          }
-        ]
+        "description": "The afternoon treat will be delish ice cream from Amy's!",
+        "speakerList": []
       }
     ]
   },
   {
     "id": 4,
-    "name": "7 PM",
+    "name": "8 PM",
     "eventsList": [
       {
-        "id": 3,
+        "id": 5,
         "name": "Dinner is Served",
         "type": "food",
-        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
-        "startDate": "2015-09-26 19:00:00",
-        "endDate": "2015-09-26 20:00:00",
+        "imageUrl": "http://hacktx.com/images/foodBanner.png",
+        "startDate": "2015-09-26 20:00:00",
+        "endDate": "2015-09-26 21:00:00",
         "location": {
           "building": "SAC",
           "level": "2",
           "room": "Ballroom"
         },
-        "description": "We be talkin about stuff",
-        "speakerList": [
-          {
-            "id": 0,
-            "name": "Bruce Wayne",
-            "organization": "Wayne Enterprises",
-            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
-            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "name": "10 PM",
-    "eventsList": [
-      {
-        "id": 3,
-        "name": "Late Night Snack",
-        "type": "talk",
-        "imageUrl": "http://i.imgur.com/I5qI3BC.jpg",
-        "startDate": "2015-09-26 22:00:00",
-        "endDate": "2015-09-26 23:00:00",
-        "location": {
-          "building": "SAC",
-          "level": "2",
-          "room": "Ballroom"
-        },
-        "description": "We be talkin about stuff",
-        "speakerList": [
-          {
-            "id": 0,
-            "name": "Bruce Wayne",
-            "organization": "Wayne Enterprises",
-            "description": "Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn't ended.",
-            "imageUrl": "http://cdn.bgr.com/2015/04/batman-v-superman-trailer.png"
-          }
-        ]
+        "description": "The dinner for this event will be from Pok-e-Jo's.",
+        "speakerList": []
       }
     ]
   }
