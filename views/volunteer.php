@@ -43,31 +43,35 @@ final class :nucleus:volunteer extends :x:element {
     return
       <form method="post" action={VolunteerController::getPath()}>
         <table class="table">
-          <tr>
-            <th>Volunteer ID</th>
-            <th>Name</th>
-            <th>Email</th>
-          </tr>
-          {$rows}
-          <tr>
-            <td>New Volunteer</td>
-            <td>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                name={'new[name]'}
-              />
-            </td>
-            <td>
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Email"
-                name={'new[email]'}
-              />
-            </td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Volunteer ID</th>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {$rows}
+            <tr>
+              <td>New Volunteer</td>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  name={'new[name]'}
+                />
+              </td>
+              <td>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  name={'new[email]'}
+                />
+              </td>
+            </tr>
+          </tbody>
         </table>
         <button type="submit" class="btn btn-default">Save</button>
       </form>;
