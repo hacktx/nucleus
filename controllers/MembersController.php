@@ -12,30 +12,87 @@ class MembersController extends BaseController {
   }
 
   public static function get(): :xhp {
+    $filter =
+      isset($_GET["filter"]) ? UserState::assert($_GET["filter"]) : null;
+
     $page = isset($_GET["page"]) ? (int) $_GET["page"] : 0;
-    DB::query("SELECT * FROM users");
+
+    if ($filter !== null) {
+      DB::query("SELECT * FROM users WHERE status=%i", $filter);
+    } else {
+      DB::query("SELECT * FROM users");
+    }
     $max_page = (int) (DB::count() / 25);
 
     return
-      <div class="members-wrapper" role="tabpanel">
-        {self::getMembers($page, 25)}
-        {self::getPagination($page, $max_page)}
+      <div class="row">
+        <div class="col-md-2">
+          <div class="list-group">
+            <a
+              href={self::getPath()."?filter=".UserState::Pending}
+              class=
+                {"list-group-item ".
+                ($filter === UserState::Pending ? "active" : "")}>
+              Pending
+            </a>
+            <a
+              href={self::getPath()."?filter=".UserState::Accepted}
+              class=
+                {"list-group-item ".
+                ($filter === UserState::Accepted ? "active" : "")}>
+              Accepted
+            </a>
+            <a
+              href={self::getPath()."?filter=".UserState::Waitlisted}
+              class=
+                {"list-group-item ".
+                ($filter === UserState::Waitlisted ? "active" : "")}>
+              Waitlisted
+            </a>
+            <a
+              href={self::getPath()."?filter=".UserState::Rejected}
+              class=
+                {"list-group-item ".
+                ($filter === UserState::Rejected ? "active" : "")}>
+              Rejected
+            </a>
+          </div>
+        </div>
+        <div class="members-wrapper col-md-10" role="tabpanel">
+          {self::getMembers($page, 25, $filter)}
+          {self::getPagination($page, $max_page, $filter)}
+        </div>
         <script src="/js/members.js"></script>
         <script src="/js/moment.min.js"></script>
         <script src="/js/bootstrap-sortable.js"></script>
       </div>;
   }
 
-  private static function getMembers(int $page, int $limit): :table {
+  private static function getMembers(
+    int $page,
+    int $limit,
+    ?UserState $filter,
+  ): :table {
     $members = <tbody />;
 
     $offset = $page * $limit;
 
-    $query = DB::query(
-      "SELECT * FROM users ORDER BY created ASC LIMIT %i OFFSET %i",
-      $limit,
-      $offset,
-    );
+    $query = [];
+    if ($filter !== null) {
+      $query =
+        DB::query(
+          "SELECT * FROM users WHERE status=%i ORDER BY created ASC LIMIT %i OFFSET %i",
+          $filter,
+          $limit,
+          $offset,
+        );
+    } else {
+      $query = DB::query(
+        "SELECT * FROM users ORDER BY created ASC LIMIT %i OFFSET %i",
+        $limit,
+        $offset,
+      );
+    }
 
     foreach ($query as $row) {
       $status = <span />;
@@ -80,7 +137,7 @@ class MembersController extends BaseController {
 
   }
 
-  private static function getPagination(int $page, int $max): :nav {
+  private static function getPagination(int $page, int $max, ?UserState $filter): :nav {
     $buttons = Vector {};
     for (
       $i = ($page < 2 ? 0 : $page - 2);
@@ -93,13 +150,13 @@ class MembersController extends BaseController {
 
       $buttons[] =
         <li class={$i == $page ? "active" : ""}>
-          <a href={self::getPath()."?page=".$i}>{$i}</a>
+          <a href={self::getLink($i, $filter)}>{$i}</a>
         </li>;
     }
 
     $beginning =
       <li class={$page < 3 ? "disabled" : ""}>
-        <a href={self::getPath()."?page=0"} aria-label="Beginning">
+        <a href={self::getLink(0, $filter)} aria-label="Beginning">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>;
@@ -107,7 +164,7 @@ class MembersController extends BaseController {
     $back =
       <li class={$page < 3 ? "disabled" : ""}>
         <a
-          href={self::getPath()."?page=".($page < 5 ? 0 : $page - 5)}
+          href={self::getLink($page < 5 ? 0 : $page - 5, $filter)}
           aria-label="Previous">
           <span aria-hidden="true">&lsaquo;</span>
         </a>
@@ -116,8 +173,7 @@ class MembersController extends BaseController {
     $next =
       <li class={$max - $page < 3 ? "disabled" : ""}>
         <a
-          href=
-            {self::getPath()."?page=".($max - $page > 5 ? $page + 5 : $max)}
+          href={self::getLink($max - $page > 5 ? $page + 5 : $max, $filter)}
           aria-label="Next">
           <span aria-hidden="true">&rsaquo;</span>
         </a>
@@ -125,7 +181,7 @@ class MembersController extends BaseController {
 
     $end =
       <li class={$max - $page < 3 ? "disabled" : ""}>
-        <a href={self::getPath()."?page=".$max} aria-label="End">
+        <a href={self::getLink($max, $filter)} aria-label="End">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>;
@@ -140,5 +196,14 @@ class MembersController extends BaseController {
           {$end}
         </ul>
       </nav>;
+  }
+
+  private static function getLink(int $page, ?UserState $filter): string {
+    $url = self::getPath()."?page=".$page;
+    if ($filter !== null) {
+      $url = $url."&filter=".$filter;
+    }
+
+    return $url;
   }
 }
