@@ -6,7 +6,12 @@ class MyMLHSync {
   public static function run(): void {
     $configs = parse_ini_file('config.ini', true);
 
-    $response = file_get_contents('https://my.mlh.io/api/v1/users?client_id='.$configs['MLH']['client_id'].'&secret='.$configs['MLH']['client_secret']);
+    $response = file_get_contents(
+      'https://my.mlh.io/api/v1/users?client_id='.
+      $configs['MLH']['client_id'].
+      '&secret='.
+      $configs['MLH']['client_secret'],
+    );
     $json = json_decode($response);
 
     DB::$user = $configs['DB']['user'];
@@ -14,7 +19,7 @@ class MyMLHSync {
     DB::$dbName = $configs['DB']['name'];
     DB::$port = $configs['DB']['port'];
 
-    foreach($json->data as $user) {
+    foreach ($json->data as $user) {
       DB::query("SELECT * FROM users WHERE id=%i", $user->id);
       if (DB::count() == 0) {
         continue;
