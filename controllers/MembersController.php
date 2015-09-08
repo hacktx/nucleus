@@ -116,37 +116,27 @@ class MembersController extends BaseController {
     }
 
     foreach ($query as $row) {
-      $status = <span />;
+      $state = "Pending";
       switch ($row['status']) {
         case UserState::Pending:
-          $status =
-            <span>
-              <span class="text">Pending</span>
-              <span class="pending circle" />
-            </span>;
+          $state = "Pending";
           break;
         case UserState::Accepted:
-          $status =
-            <span>
-              <span class="text">Accepted</span>
-              <span class="accepted circle" />
-            </span>;
+          $state = "Accepted";
           break;
         case UserState::Waitlisted:
-          $status =
-            <span>
-              <span class="text">Waitlisted</span>
-              <span class="waitlisted circle" />
-            </span>;
+          $state = "Waitlisted";
           break;
         case UserState::Rejected:
-          $status =
-            <span>
-              <span class="text">Rejected</span>
-              <span class="rejected circle" />
-            </span>;
+          $state = "Rejected";
           break;
       }
+
+      $status =
+        <span>
+          <span class="text">{$state}</span>
+          <span class={strtolower($state)." circle"} />
+        </span>;
 
       $menu =
         <div class="btn-group">
