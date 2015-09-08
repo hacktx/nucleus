@@ -7,6 +7,7 @@ class FeedbackApiController extends BaseController {
 
   public static function post(): void {
     if (!isset($_POST['id']) || !isset($_POST['rating'])) {
+      http_response_code(400);
       return;
     }
 
