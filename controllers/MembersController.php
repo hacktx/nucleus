@@ -61,15 +61,23 @@ class MembersController extends BaseController {
   }
 
   public static function post(): void {
-    if (!isset($_POST['user']) || !isset($_POST['status'])) {
+    if (!isset($_POST['user']) ||
+        (!isset($_POST['status']) && !isset($_POST['role']))) {
       http_response_code(400);
       return;
     }
 
-    User::updateStatusByID(
-      UserState::assert($_POST['status']),
-      (int) $_POST['user'],
-    );
+    if ($_POST['status'] !== "") {
+      User::updateStatusByID(
+        UserState::assert($_POST['status']),
+        (int) $_POST['user'],
+      );
+    } else if ($_POST['role'] !== "") {
+      if (!Roles::getRoles((int) $_POST['user'])
+            ->contains(UserRole::assert($_POST['role']))) {
+        Roles::insert(UserRole::assert($_POST['role']), (int) $_POST['user']);
+      }
+    }
   }
 
   private static function getMembers(
@@ -109,10 +117,23 @@ class MembersController extends BaseController {
         </span>;
 
       $menu_options = Vector {};
+      $menu_options[] =
+        <li class="dropdown-header">User States</li>;
       foreach (UserState::getValues() as $name => $value) {
         $menu_options[] =
           <li>
-            <a href="#" onclick={self::getJSCall($row['id'], $value)}>
+            <a href="#" onclick={self::getJSCall($row['id'], $value, null)}>
+              {$name}
+            </a>
+          </li>;
+      }
+
+      $menu_options[] =
+        <li class="dropdown-header">User Roles</li>;
+      foreach (UserRole::getValues() as $name => $value) {
+        $menu_options[] =
+          <li>
+            <a href="#" onclick={self::getJSCall($row['id'], null, $value)}>
               {$name}
             </a>
           </li>;
@@ -161,9 +182,13 @@ class MembersController extends BaseController {
 
   }
 
-  private static function getJSCall(string $id, UserState $status): string {
-    $data = "{user: '".$id."', status: ".$status."}";
-    return "makeCall('".self::getPath()."', ".$data.");";
+  private static function getJSCall(
+    string $id,
+    ?UserState $status,
+    ?UserRole $role,
+  ): string {
+    $data = Map {'user' => $id, 'status' => $status, 'role' => $role};
+    return "makeCall('".self::getPath()."', ".json_encode($data).");";
   }
 
   private static function getPagination(

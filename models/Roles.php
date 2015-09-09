@@ -5,6 +5,7 @@ enum UserRole: string {
   Organizer = 'organizer';
   Confirmed = 'confirmed';
   Denied = 'denied';
+  Flagged = 'flagged';
 }
 
 class Roles {
