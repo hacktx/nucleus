@@ -9,6 +9,7 @@ namespace SendGrid {
   class Email {
     public function addTo(string $email): this;
     public function setFrom(string $email): this;
+    public function setFromName(string $name): this;
     public function setSubject(string $subject): this;
     public function setText(string $text): this;
     public function setHtml(string $html): this;

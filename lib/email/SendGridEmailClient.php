@@ -13,6 +13,7 @@ class SendGridEmailClient extends EmailClient {
     $email = new SendGrid\Email();
     $email->addTo($to)
           ->setFrom($this->email)
+          ->setFromName("Team HackTX")
           ->setSubject($subject)
           ->setHtml($body);
 
