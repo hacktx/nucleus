@@ -55,8 +55,6 @@ class MembersController extends BaseController {
           {self::getPagination($page, $max_page, $filter)}
         </div>
         <script src="/js/members.js"></script>
-        <script src="/js/moment.min.js"></script>
-        <script src="/js/bootstrap-sortable.js"></script>
       </div>;
   }
 
