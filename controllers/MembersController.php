@@ -117,8 +117,7 @@ class MembersController extends BaseController {
         </span>;
 
       $menu_options = Vector {};
-      $menu_options[] =
-        <li class="dropdown-header">User States</li>;
+      $menu_options[] = <li class="dropdown-header">User States</li>;
       foreach (UserState::getValues() as $name => $value) {
         $menu_options[] =
           <li>
@@ -128,8 +127,7 @@ class MembersController extends BaseController {
           </li>;
       }
 
-      $menu_options[] =
-        <li class="dropdown-header">User Roles</li>;
+      $menu_options[] = <li class="dropdown-header">User Roles</li>;
       foreach (UserRole::getValues() as $name => $value) {
         $menu_options[] =
           <li>

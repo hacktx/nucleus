@@ -14,7 +14,3 @@ function makeCall(url, postdata) {
     $("#" + postdata['user'] + "status").find("span").find(".circle").attr('class', 'circle ' + newStatus);
   });
 }
-
-function makeRolesCall(url, postdata) {
-  $.post(url, postdata, function() {} );
-}
