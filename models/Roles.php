@@ -3,6 +3,8 @@
 enum UserRole: string {
   Superuser = 'superuser';
   Organizer = 'organizer';
+  Confirmed = 'confirmed';
+  Denied = 'denied';
 }
 
 class Roles {
