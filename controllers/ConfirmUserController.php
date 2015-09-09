@@ -6,20 +6,22 @@ class ConfirmUserController extends BaseController {
   }
 
   public static function get(): :xhp {
-    if(!$_SESSION['access_token']) {
+    if (!$_SESSION['access_token']) {
       Flash::set(Flash::ERROR, 'Something went wrong! Please try again.');
       Route::redirect(FrontpageController::getPath());
     }
 
-    if(Session::isActive()) {
+    if (Session::isActive()) {
       Route::redirect(DashboardController::getPath());
     }
 
-    $provider = new League\OAuth2\Client\Provider\MLH([
-      'clientId'      => Config::get('MLH')['client_id'],
-      'clientSecret'  => Config::get('MLH')['client_secret'],
-      'redirectUri'   => Config::get('MLH')['redirect'],
-    ]);
+    $provider = new League\OAuth2\Client\Provider\MLH(
+      [
+        'clientId' => Config::get('MLH')['client_id'],
+        'clientSecret' => Config::get('MLH')['client_secret'],
+        'redirectUri' => Config::get('MLH')['redirect'],
+      ],
+    );
 
     $token = $_SESSION['access_token'];
 
@@ -28,7 +30,7 @@ class ConfirmUserController extends BaseController {
 
       $user = User::genByID($mlh_user->getId());
 
-      if($user) {
+      if ($user) {
         Session::create($user);
         Route::redirect(DashboardController::getPath());
       }
@@ -55,9 +57,16 @@ class ConfirmUserController extends BaseController {
               </div>
             </div>
             <div class="text-right">
-              <a href="https://my.mlh.io/edit" class="btn btn-default">UPDATE</a>
-              <form action={self::getPath()} method="post" style="display: inline-block;">
-                <button type="submit" class="btn btn-primary">CONFIRM</button>
+              <a href="https://my.mlh.io/edit" class="btn btn-default">
+                UPDATE
+              </a>
+              <form
+                action={self::getPath()}
+                method="post"
+                style="display: inline-block;">
+                <button type="submit" class="btn btn-primary">
+                  CONFIRM
+                </button>
               </form>
             </div>
           </div>
@@ -76,19 +85,22 @@ class ConfirmUserController extends BaseController {
     }
 
     $user = User::create($_SESSION['mlh_user']);
-    if(!$user) {
+    if (!$user) {
       Flash::set(Flash::ERROR, 'User creation failed');
       Route::redirect('/');
       return;
     }
-    
-    $client = KeenIO\Client\KeenIOClient::factory([
-      'projectId' => Config::get('Keen')['project_id'],
-      'writeKey'  => Config::get('Keen')['write_key'],
-      'readKey'   => Config::get('Keen')['read_key']
-    ]);
+
+    $client = KeenIO\Client\KeenIOClient::factory(
+      [
+        'projectId' => Config::get('Keen')['project_id'],
+        'writeKey' => Config::get('Keen')['write_key'],
+        'readKey' => Config::get('Keen')['read_key'],
+      ],
+    );
     $user_data = $_SESSION['mlh_user']->toArray();
-    $user_data['keen']['timestamp'] = $user->getCreated();
+    $user_data['keen']['timestamp'] =
+      $user->getCreated()->format('Y-m-d H:i:s');
     $client->addEvent('sign_ups', $user_data);
 
     unset($_SESSION['mlh_user']);
