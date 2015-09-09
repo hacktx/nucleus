@@ -65,17 +65,16 @@ class MembersController extends BaseController {
       return;
     }
 
+    $user_id = (int) $_POST['user'];
+
     if ($_POST['status'] !== "") {
-      User::updateStatusByID(
-        UserState::assert($_POST['status']),
-        (int) $_POST['user'],
-      );
+      User::updateStatusByID(UserState::assert($_POST['status']), $user_id);
     } else if ($_POST['role'] !== "") {
-      if (!Roles::getRoles((int) $_POST['user'])
-            ->contains(UserRole::assert($_POST['role']))) {
-        Roles::insert(UserRole::assert($_POST['role']), (int) $_POST['user']);
+      $role = UserRole::assert($_POST['role']);
+      if (!Roles::getRoles($user_id)->contains($role)) {
+        Roles::insert($role, $user_id);
       } else {
-        Roles::delete(UserRole::assert($_POST['role']), (int) $_POST['user']);
+        Roles::delete($role, $user_id);
       }
     }
   }
