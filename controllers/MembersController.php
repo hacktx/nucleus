@@ -74,6 +74,8 @@ class MembersController extends BaseController {
       if (!Roles::getRoles((int) $_POST['user'])
             ->contains(UserRole::assert($_POST['role']))) {
         Roles::insert(UserRole::assert($_POST['role']), (int) $_POST['user']);
+      } else {
+        Roles::delete(UserRole::assert($_POST['role']), (int) $_POST['user']);
       }
     }
   }
