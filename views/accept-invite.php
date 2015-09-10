@@ -28,7 +28,7 @@ final class :nucleus:accept-invite extends :x:element {
                 Upload your resume and we will share it with our sponsors.
               </p>
               <div class="form-group btn btn-panel resume">
-                <span>Upload</span>
+                <span>SELECT FILE</span>
                 <input type="file" />
               </div>
               <hr />
@@ -111,6 +111,7 @@ final class :nucleus:accept-invite extends :x:element {
                   <input type="checkbox" /> I will at all times abide by and
                   conform to the
                   <a
+                    target="_blank"
                     href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">
                     Major League Hacking Code of Conduct
                   </a>
