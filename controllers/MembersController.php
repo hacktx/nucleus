@@ -15,12 +15,19 @@ class MembersController extends BaseController {
     $filter =
       isset($_GET["filter"]) ? UserState::assert($_GET["filter"]) : null;
 
+    $search = isset($_GET["search"]) ? (string) $_GET["search"] : null;
+
     $page = isset($_GET["page"]) ? (int) $_GET["page"] : 0;
 
+    $limit = 25;
+    $offset = $page * $limit;
+
     if ($filter !== null) {
-      DB::query("SELECT * FROM users WHERE status=%i", $filter);
+      $members = DB::query("SELECT * FROM users WHERE status=%i ORDER BY created ASC LIMIT %i OFFSET %i", $filter, $limit, $offset);
+    } elseif($search !== null) {
+      $members = DB::query("SELECT * FROM users WHERE %s in (fname, lname, email) ORDER BY created ASC LIMIT %i OFFSET %i", $search, $limit, $offset);
     } else {
-      DB::query("SELECT * FROM users");
+      $members = DB::query("SELECT * FROM users ORDER BY created ASC LIMIT %i OFFSET %i", $limit, $offset);
     }
     $max_page = (int) (DB::count() / 25);
 
@@ -51,7 +58,7 @@ class MembersController extends BaseController {
           {$clear_filter}
         </div>
         <div class="members-wrapper col-md-10" role="tabpanel">
-          {self::getMembers($page, 25, $filter)}
+          {self::getMembers($members)}
           {self::getPagination($page, $max_page, $filter)}
         </div>
         <script src="/js/members.js"></script>
@@ -79,31 +86,8 @@ class MembersController extends BaseController {
     }
   }
 
-  private static function getMembers(
-    int $page,
-    int $limit,
-    ?UserState $filter,
-  ): :table {
+  private static function getMembers(array $query): :table {
     $members = <tbody />;
-
-    $offset = $page * $limit;
-
-    $query = [];
-    if ($filter !== null) {
-      $query =
-        DB::query(
-          "SELECT * FROM users WHERE status=%i ORDER BY created ASC LIMIT %i OFFSET %i",
-          $filter,
-          $limit,
-          $offset,
-        );
-    } else {
-      $query = DB::query(
-        "SELECT * FROM users ORDER BY created ASC LIMIT %i OFFSET %i",
-        $limit,
-        $offset,
-      );
-    }
 
     foreach ($query as $row) {
       $status =
