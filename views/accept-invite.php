@@ -18,14 +18,16 @@ final class :nucleus:accept-invite extends :x:element {
                 </a>
               </div>
 
+              <hr />
+
               <h4>RESUME UPLOAD</h4>
               <p class="accept-sub-layer">You are awesome and we want to show that to our sponsors. Upload your resume and we will share it with our sponsors.</p>
-              <div class="form-group">
-                <input type="file" id="resume" />
-                <a href="#" class="btn btn-panel">
-                Choose file
-                </a>
+              <div class="form-group btn btn-panel resume">
+                <span>Upload</span>
+                <input type="file" />
               </div>
+
+              <hr />
 
               <h4>ADDITIONAL INFORMATION</h4>
               <p class="accept-sub-layer">We would love to understand the demographic breakdown of our hackers to better inform our outreach efforts. Answers to these questions will not be taken into consideration during admissions. Do not feel pressured if you "Prefer not to state" your answers.</p>
@@ -69,6 +71,8 @@ final class :nucleus:accept-invite extends :x:element {
               <div class="checkbox accept-sub-layer">
                 <label><input type="checkbox" /> Yes</label>
               </div>
+
+              <hr />
 
               <h4>CODE OF CONDUCT*</h4>
               <div class="checkbox">
