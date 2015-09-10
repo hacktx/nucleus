@@ -4,11 +4,12 @@ final class :nucleus:accept-invite extends :x:element {
   attribute User user;
 
   final protected function render(): XHPRoot {
+    $user = $this->getAttribute('user');
     return
       <form class="form" method="post" enctype="multipart/form-data">
         <div class="col-md-8 col-md-offset-2">
           <h2 style="text-align: center;">
-            Congrats! Just A Couple Things...
+            Congrats, {$user->getFirstName()}! Just A Couple Things...
           </h2>
           <div class="panel panel-default">
             <div class="panel-body accept-invite-panel">
