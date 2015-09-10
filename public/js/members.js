@@ -1,5 +1,9 @@
 function makeCall(url, postdata) {
   $.post(url, postdata, function( data ) {
+    if(postdata['status'] === null) {
+      return;
+    }
+
     newStatus = "Pending";
     switch(postdata['status']) {
       case 0: newStatus = "Pending"; break;
