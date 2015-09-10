@@ -29,9 +29,9 @@ final class :nucleus:accept-invite extends :x:element {
                 We would love to understand the demographic breakdown of our
                 hackers so we can see how we’ve been doing over time. Answers
                 to these questions will be sent anonymously and will at no
-                point be attached to identifying information. Please select
-                "Prefer not to say" if you do not wish to provide this
-                information.
+                point be attached to identifying information (such as name,
+                email, resume, etc.). Please select "Prefer not to say" if you
+                do not wish to provide this information.
               </p>
               <h5 class="accept-sub-layer">Year In School</h5>
               <div class="school-year-select accept-sub-layer">
