@@ -46,14 +46,20 @@ class BatchAcceptController extends BaseController {
       (int) $_POST['number'],
     );
 
+    $email_client = new SendGrid(Config::get('SendGrid')['api_key']);
+
     // Set the first [n] as accepted and email them
     foreach ($query as $row) {
       User::updateStatusByID(UserState::Accepted, (int) $row['id']);
-      Email::send(
-        $row['email'],
-        'HackTX Invitation - Action Required',
-        $_POST['email'],
-      );
+      $email = new SendGrid\Email();
+      $email->addTo($row['email'])
+            ->setFrom("noreply@hacktx.com")
+            ->setFromName("Team HackTX")
+            ->setSubject("HackTX Invitation - Action Required")
+            ->setHtml($_POST['email'])
+            ->addSubstitution("%first_name%", array($row['fname']));
+
+      $email_client->send($email);
     }
 
     // Mark the remaining as waitlisted

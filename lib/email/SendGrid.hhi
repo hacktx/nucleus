@@ -13,5 +13,6 @@ namespace SendGrid {
     public function setSubject(string $subject): this;
     public function setText(string $text): this;
     public function setHtml(string $html): this;
+    public function addSubstitution(string $find, array $replace): this;
   }
 }
