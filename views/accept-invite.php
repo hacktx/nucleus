@@ -5,7 +5,7 @@ final class :nucleus:accept-invite extends :x:element {
 
   final protected function render(): XHPRoot {
     return
-      <x:frag>
+      <form class="form" method="post">
         <div class="col-md-8 col-md-offset-2">
           <h2 style="text-align: center;">
             Congrats! Just A Couple Things...
@@ -29,7 +29,7 @@ final class :nucleus:accept-invite extends :x:element {
               </p>
               <div class="form-group btn btn-panel resume">
                 <span>SELECT FILE</span>
-                <input type="file" />
+                <input type="file" name="resume" />
               </div>
               <hr />
 
@@ -42,7 +42,7 @@ final class :nucleus:accept-invite extends :x:element {
                 your answers.
               </p>
               <h5 class="accept-sub-layer">Year In School</h5>
-              <form class="school-year-select accept-sub-layer">
+              <div class="school-year-select accept-sub-layer">
                 <select>
                   <option>Select one</option>
                   <option>Freshman</option>
@@ -51,7 +51,7 @@ final class :nucleus:accept-invite extends :x:element {
                   <option>Senior</option>
                   <option>Graduate</option>
                 </select>
-              </form>
+              </div>
               <h5 class="accept-sub-layer">Racial Identity</h5>
               <div class="checkbox accept-sub-layer">
                 <label>
@@ -108,7 +108,7 @@ final class :nucleus:accept-invite extends :x:element {
               <h4>CODE OF CONDUCT*</h4>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input type="checkbox" /> I will at all times abide by and
+                  <input type="checkbox" name="coc" /> I will at all times abide by and
                   conform to the
                   <a
                     target="_blank"
@@ -120,25 +120,16 @@ final class :nucleus:accept-invite extends :x:element {
               </div>
             </div>
           </div>
-          <div class="text-right">
-            <form
-              action={AcceptInviteController::getPath()}
-              method="post"
-              style="display: inline-block;">
-              <button type="submit" class="btn btn-secondary">
-                I CANT MAKE IT
-              </button>
-            </form>
-            <form
-              action={AcceptInviteController::getPath()}
-              method="post"
-              style="display: inline-block;">
-              <button type="submit" class="btn btn-primary">
-                I WILL BE THERE!
-              </button>
-            </form>
-          </div>
+          <p class="text-center">
+            <button type="submit" name="deny" class="btn btn-secondary">
+              I CANT MAKE IT
+            </button>
+            &nbsp;
+            <button type="submit" name="accept" class="btn btn-primary">
+              I WILL BE THERE!
+            </button>
+          </p>
         </div>
-      </x:frag>;
+      </form>;
   }
 }
