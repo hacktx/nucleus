@@ -38,7 +38,7 @@ body {
 .btn:active {
   box-shadow: none;
   -webkit-box-shadow: none;
-} 
+}
 
 .btn-default,
 .btn-panel,
@@ -302,6 +302,10 @@ h1, h3 {
   margin-left: 20px;
 }
 
+.accept-sub-layer input {
+  color: #9B9B9B;
+}
+
 .accept-invite-panel h4 {
   color: #74DCFF;
 }
@@ -312,7 +316,7 @@ h1, h3 {
 }
 
 .accept-invite-panel p {
-  color: #74DCFF;
+  color: #9B9B9B;
   font-size: 12px;
 }
 
@@ -324,12 +328,11 @@ h1, h3 {
 .accept-invite-panel .liability-btn a {
   color: #fff;
   display: inline-block;
-  padding: 30px;
-  border-radius: 25px;
+  padding: 20px;
 }
 
 .accept-invite-panel .liability-btn a:hover {
-  color: #74DCFF;
+  color: #9B9B9B;
   background-color: #eeeeee;
 }
 
@@ -356,21 +359,25 @@ h1, h3 {
 }
 
 .accept-invite-panel .resume:hover span {
-  color: #74DCFF;
+  color: #9B9B9B;
 }
 
 .accept-invite-panel .checkbox label {
-  color: #74DCFF;
+  color: #9B9B9B;
 }
 
 .accept-invite-panel .checkbox label a {
-  color: #74DCFF;
+  color: #9B9B9B;
   text-decoration: underline;
 }
 
 .accept-invite-panel .checkbox label a:hover {
   color: #74DCFF;
   text-decoration: none;
+}
+
+.accept-invite-panel .radio label {
+  color: #9B9B9B;
 }
 
 .school-year-select {
@@ -384,12 +391,11 @@ h1, h3 {
 .school-year-select select {
    background: transparent;
    width: 100%;
-   color: #74DCFF;
+   color: #9B9B9B;
    padding: 5px;
    font-size: 16px;
    line-height: 1;
    border: 0;
    border-radius: 0;
    height: 34px;
-   -webkit-appearance: none;
 }
