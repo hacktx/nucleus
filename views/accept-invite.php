@@ -11,7 +11,7 @@ final class :nucleus:accept-invite extends :x:element {
           <div class="panel panel-default">
             <div class="panel-body accept-invite-panel">
               <h4>LIABILITY FORM</h4>
-              <p>Signing this online liability form will improve and speed up the checkin process.</p>
+              <p class="accept-sub-layer">Signing this online liability form will improve and speed up the checkin process.</p>
               <div class="liability-btn">
                 <a href="#" class="btn btn-panel">
                 SIGN LIABILITY FORM
@@ -19,12 +19,55 @@ final class :nucleus:accept-invite extends :x:element {
               </div>
 
               <h4>RESUME UPLOAD</h4>
-              <p>You are awesome and we want to show that to our sponsors. Upload your resume and we will share it with our sponsors.</p>
+              <p class="accept-sub-layer">You are awesome and we want to show that to our sponsors. Upload your resume and we will share it with our sponsors.</p>
               <div class="form-group">
                 <input type="file" id="resume" />
                 <a href="#" class="btn btn-panel">
                 Choose file
                 </a>
+              </div>
+
+              <h4>ADDITIONAL INFORMATION</h4>
+              <p class="accept-sub-layer">We would love to understand the demographic breakdown of our hackers to better inform our outreach efforts. Answers to these questions will not be taken into consideration during admissions. Do not feel pressured if you "Prefer not to state" your answers.</p>
+
+              <h5 class="accept-sub-layer">Year In School</h5>
+              <form class="school-year-select accept-sub-layer">
+                <select>
+                  <option value="" style="display:none;"></option>
+                  <option>Freshman</option>
+                  <option>Sophomore</option>
+                  <option>Junior</option>
+                  <option>Senior</option>
+                  <option>Graduate</option>
+                </select>
+              </form>
+
+              <h5 class="accept-sub-layer">Racial Identity</h5>
+              <div class="checkbox accept-sub-layer">
+                <label><input type="checkbox" /> American Indian or Alaskan Native</label>
+              </div>
+              <div class="checkbox accept-sub-layer">
+                <label><input type="checkbox" /> Asian or Pacific Islander</label>
+              </div>
+              <div class="checkbox accept-sub-layer">
+                <label><input type="checkbox" /> Black</label>
+              </div>
+              <div class="checkbox accept-sub-layer">
+                <label><input type="checkbox" /> Hispanic</label>
+              </div>
+              <div class="checkbox accept-sub-layer">
+                <label><input type="checkbox" /> White</label>
+              </div>
+              <div class="checkbox accept-sub-layer">
+                <label><input type="checkbox" /> Prefer not to state</label>
+              </div>
+              <div class="accept-sub-layer">
+                <label><input type="text" name="otherrace" placeholder="Other"/></label>
+              </div>
+        
+              <h5 class="accept-sub-layer">Is This Your First Hackathon?</h5>
+              <div class="checkbox accept-sub-layer">
+                <label><input type="checkbox" /> Yes</label>
               </div>
 
               <h4>CODE OF CONDUCT*</h4>

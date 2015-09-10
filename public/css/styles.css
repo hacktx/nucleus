@@ -299,13 +299,22 @@ h1, h3 {
 }
 
 /*===== Members Page =====*/
+.accept-sub-layer {
+  margin-left: 20px;
+}
+
 .accept-invite-panel h4 {
+  color: #74DCFF;
+}
+
+.accept-invite-panel h5 {
+  font-size: 18px;
   color: #74DCFF;
 }
 
 .accept-invite-panel p {
   color: #74DCFF;
-  margin-left: 10px;
+  font-size: 12px;
 }
 
 .accept-invite-panel .liability-btn {
@@ -358,4 +367,24 @@ h1, h3 {
 .accept-invite-panel .checkbox label a:hover {
   color: #74DCFF;
   text-decoration: none;
+}
+
+.school-year-select {
+   width: 240px;
+   height: 34px;
+   overflow: hidden;
+   background: #fff;
+   border: 1px solid #ccc;
+}
+
+.school-year-select select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
 }
