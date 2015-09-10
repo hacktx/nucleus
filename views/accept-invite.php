@@ -36,10 +36,11 @@ final class :nucleus:accept-invite extends :x:element {
               <h4>ADDITIONAL INFORMATION</h4>
               <p class="accept-sub-layer">
                 We would love to understand the demographic breakdown of our
-                hackers to better inform our outreach efforts. Answers to these
-                questions will not be taken into consideration during
-                admissions. Do not feel pressured if you "Prefer not to state"
-                your answers.
+                hackers so we can see how we’ve been doing over time. Answers
+                to these questions will be sent anonymously and will at no
+                point be attached to identifying information. If you’re not
+                comfortable answering any of these questions, feel free to
+                leave this part blank.
               </p>
               <h5 class="accept-sub-layer">Year In School</h5>
               <div class="school-year-select accept-sub-layer">
@@ -50,6 +51,7 @@ final class :nucleus:accept-invite extends :x:element {
                   <option>Junior</option>
                   <option>Senior</option>
                   <option>Graduate</option>
+                  <option>Prefer not to say</option>
                 </select>
               </div>
               <h5 class="accept-sub-layer">Racial Identity</h5>
@@ -72,10 +74,13 @@ final class :nucleus:accept-invite extends :x:element {
               <div class="checkbox accept-sub-layer">
                 <label><input type="checkbox" /> White</label>
               </div>
-              <div class="checkbox accept-sub-layer">
-                <label><input type="checkbox" /> Prefer not to state</label>
+              <div class="checkbox accept-sub-layer opt-out">
+                <label><input type="checkbox" onclick={"optOut()"} /> Prefer not to say</label>
               </div>
-              <div class="accept-sub-layer">
+              <div class="checkbox accept-sub-layer">
+                <label><input type="checkbox" onclick={"$(\".otherrace\").toggleClass(\"hidden\")"} /> Other</label>
+              </div>
+              <div class="accept-sub-layer otherrace hidden">
                 <label>
                   <input type="text" name="otherrace" placeholder="Other" />
                 </label>
@@ -103,13 +108,24 @@ final class :nucleus:accept-invite extends :x:element {
                   No
                 </label>
               </div>
+              <div class="radio accept-sub-layer">
+                <label>
+                  <input
+                    type="radio"
+                    name="first-hackathon"
+                    id="first-hackathon"
+                    value="optout"
+                  />
+                  Prefer not to say
+                </label>
+              </div>
               <hr />
 
               <h4>CODE OF CONDUCT*</h4>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input type="checkbox" name="coc" /> I will at all times abide by and
-                  conform to the
+                  <input type="checkbox" name="coc" /> I will at all times
+                  abide by and conform to the
                   <a
                     target="_blank"
                     href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">
@@ -130,6 +146,7 @@ final class :nucleus:accept-invite extends :x:element {
             </button>
           </p>
         </div>
+        <script src="/js/accept.js"></script>
       </form>;
   }
 }
