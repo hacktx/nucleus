@@ -91,7 +91,9 @@ class AcceptInviteController extends BaseController {
     }
 
     if (isset($_POST['year'])) {
-      $data['year'] = $_POST['year'];
+      if($_POST['year'] !== "Select one") {
+        $data['year'] = $_POST['year'];
+      }
     }
 
     $race = null;
