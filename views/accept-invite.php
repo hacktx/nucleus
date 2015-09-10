@@ -58,17 +58,27 @@ final class :nucleus:accept-invite extends :x:element {
               </div>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input
-                    type="checkbox"
-                    name="race[]"
-                    value="Asian or Pacific Islander"
-                  />
-                  Asian or Pacific Islander
+                  <input type="checkbox" name="race[]" value="Asian" /> Asian
                 </label>
               </div>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input type="checkbox" name="race[]" value="Black" /> Black
+                  <input
+                    type="checkbox"
+                    name="race[]"
+                    value="Black or African American"
+                  />
+                  Black or African American
+                </label>
+              </div>
+              <div class="checkbox accept-sub-layer">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="race[]"
+                    value="Native Hawaiian or Other Pacific Islander"
+                  />
+                  Native Hawaiian or Other Pacific Islander
                 </label>
               </div>
               <div class="checkbox accept-sub-layer">
@@ -79,7 +89,12 @@ final class :nucleus:accept-invite extends :x:element {
               </div>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input type="checkbox" name="race[]" value="White" /> White
+                  <input
+                    type="checkbox"
+                    name="race[]"
+                    value="White or Caucasian"
+                  />
+                  White or Caucasian
                 </label>
               </div>
               <div class="checkbox accept-sub-layer opt-out">
