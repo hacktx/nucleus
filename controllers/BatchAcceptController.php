@@ -12,17 +12,12 @@ class BatchAcceptController extends BaseController {
   }
 
   public static function get(): :xhp {
-
-    $options = Vector {};
-    foreach (UserState::getValues() as $name => $value) {
-      $options[] = <option>{$name}</option>;
-    }
-
     return
-      <form>
+      <form method="post">
         <div class="form-group">
           <label for="number-accept">Number of people to modify</label>
           <input
+            name="number"
             type="text"
             class="form-control"
             id="number-accept"
@@ -31,7 +26,7 @@ class BatchAcceptController extends BaseController {
         </div>
         <div class="form-group">
           <label for="email-input">Email Contents</label>
-          <textarea class="form-control" rows={3} />
+          <textarea class="form-control" rows={3} name="email" />
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>;
@@ -44,19 +39,34 @@ class BatchAcceptController extends BaseController {
       Route::redirect(self::getPath());
     }
 
+    // Get [n] applicants who are pending, in order of creation
     $query = DB::query(
       "SELECT * FROM users WHERE status=%s ORDER BY created LIMIT %i",
       UserState::Pending,
       (int) $_POST['number'],
     );
 
+    // Set the first [n] as accepted and email them
     foreach ($query as $row) {
-      User::updateStatusByID(UserState::Accepted, $row['id']);
+      User::updateStatusByID(UserState::Accepted, (int) $row['id']);
       Email::send(
         $row['email'],
         'HackTX Invitation - Action Required',
         $_POST['email'],
       );
     }
+
+    // Mark the remaining as waitlisted
+    DB::query(
+      "UPDATE users SET status=%s WHERE status != %s",
+      UserState::Waitlisted,
+      UserState::Accepted,
+    );
+
+    Flash::set(
+      Flash::SUCCESS,
+      $_POST['number']." applications successfully accepted",
+    );
+    Route::redirect(self::getPath());
   }
 }
