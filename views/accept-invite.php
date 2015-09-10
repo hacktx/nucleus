@@ -5,23 +5,13 @@ final class :nucleus:accept-invite extends :x:element {
 
   final protected function render(): XHPRoot {
     return
-      <form class="form" method="post">
+      <form class="form" method="post" enctype="multipart/form-data">
         <div class="col-md-8 col-md-offset-2">
           <h2 style="text-align: center;">
             Congrats! Just A Couple Things...
           </h2>
           <div class="panel panel-default">
             <div class="panel-body accept-invite-panel">
-              <h4>LIABILITY FORM</h4>
-              <p class="accept-sub-layer">
-                Signing this online liability form will improve and speed up
-                the checkin process.
-              </p>
-              <div class="liability-btn">
-                <a href="#" class="btn btn-panel">SIGN LIABILITY FORM</a>
-              </div>
-              <hr />
-
               <h4>RESUME UPLOAD</h4>
               <p class="accept-sub-layer">
                 You are awesome and we want to show that to our sponsors.
@@ -38,52 +28,51 @@ final class :nucleus:accept-invite extends :x:element {
                 We would love to understand the demographic breakdown of our
                 hackers so we can see how we’ve been doing over time. Answers
                 to these questions will be sent anonymously and will at no
-                point be attached to identifying information. If you’re not
-                comfortable answering any of these questions, feel free to
-                "Prefer not to say".
+                point be attached to identifying information. Please select "Prefer not to say" if you do not wish to provide this information.
               </p>
               <h5 class="accept-sub-layer">Year In School</h5>
               <div class="school-year-select accept-sub-layer">
-                <select>
+                <select name="year">
                   <option>Select one</option>
-                  <option>Freshman</option>
-                  <option>Sophomore</option>
-                  <option>Junior</option>
-                  <option>Senior</option>
-                  <option>Graduate</option>
+                  <option value="freshman">Freshman</option>
+                  <option value="sophomore">Sophomore</option>
+                  <option value="junior">Junior</option>
+                  <option value="senior">Senior</option>
+                  <option value="graduate">Graduate</option>
                   <option>Prefer not to say</option>
                 </select>
               </div>
               <h5 class="accept-sub-layer">Racial Identity</h5>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input type="checkbox" /> American Indian or Alaskan Native
+                  <input type="checkbox" name="race[]" value="American Indian or Alaskan Native" /> American Indian or Alaskan Native
                 </label>
               </div>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input type="checkbox" /> Asian or Pacific Islander
+                  <input type="checkbox" name="race[]" value="Asian or Pacific Islander"/> Asian or Pacific Islander
                 </label>
               </div>
               <div class="checkbox accept-sub-layer">
-                <label><input type="checkbox" /> Black</label>
+                <label><input type="checkbox" name="race[]" value="Black"/> Black</label>
               </div>
               <div class="checkbox accept-sub-layer">
-                <label><input type="checkbox" /> Hispanic</label>
+                <label><input type="checkbox" name="race[]" value="Hispanic"/> Hispanic</label>
               </div>
               <div class="checkbox accept-sub-layer">
-                <label><input type="checkbox" /> White</label>
+                <label><input type="checkbox" name="race[]" value="White"/> White</label>
               </div>
               <div class="checkbox accept-sub-layer opt-out">
                 <label>
-                  <input type="checkbox" onclick={"optOut()"} /> Prefer not to
-                  say
+                  <input type="checkbox" onclick="optOut()" /> Prefer not to say
                 </label>
               </div>
               <div class="checkbox accept-sub-layer">
                 <label>
                   <input
                     type="checkbox"
+                    name="race[]"
+                    value="other"
                     onclick={"$(\".otherrace\").toggleClass(\"hidden\")"}
                   />
                   Other
@@ -112,7 +101,7 @@ final class :nucleus:accept-invite extends :x:element {
                     type="radio"
                     name="first-hackathon"
                     id="first-hackathon"
-                    value="yes"
+                    value="no"
                   />
                   No
                 </label>
@@ -123,7 +112,6 @@ final class :nucleus:accept-invite extends :x:element {
                     type="radio"
                     name="first-hackathon"
                     id="first-hackathon"
-                    value="optout"
                   />
                   Prefer not to say
                 </label>

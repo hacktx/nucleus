@@ -79,6 +79,18 @@ class User {
     return new DateTime($this->data['created']);
   }
 
+  public function getGender(): string {
+    return (string) $this->data['gender'];
+  }
+
+  public function getSchool(): string {
+    return (string) $this->data['school'];
+  }
+
+  public function getMajor(): string {
+    return (string) $this->data['major'];
+  }
+
   public function isPending(): bool {
     return $this->data['status'] == UserState::Pending;
   }
