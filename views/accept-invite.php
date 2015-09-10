@@ -40,7 +40,7 @@ final class :nucleus:accept-invite extends :x:element {
                 to these questions will be sent anonymously and will at no
                 point be attached to identifying information. If you’re not
                 comfortable answering any of these questions, feel free to
-                leave this part blank.
+                "Prefer not to say".
               </p>
               <h5 class="accept-sub-layer">Year In School</h5>
               <div class="school-year-select accept-sub-layer">
@@ -75,10 +75,19 @@ final class :nucleus:accept-invite extends :x:element {
                 <label><input type="checkbox" /> White</label>
               </div>
               <div class="checkbox accept-sub-layer opt-out">
-                <label><input type="checkbox" onclick={"optOut()"} /> Prefer not to say</label>
+                <label>
+                  <input type="checkbox" onclick={"optOut()"} /> Prefer not to
+                  say
+                </label>
               </div>
               <div class="checkbox accept-sub-layer">
-                <label><input type="checkbox" onclick={"$(\".otherrace\").toggleClass(\"hidden\")"} /> Other</label>
+                <label>
+                  <input
+                    type="checkbox"
+                    onclick={"$(\".otherrace\").toggleClass(\"hidden\")"}
+                  />
+                  Other
+                </label>
               </div>
               <div class="accept-sub-layer otherrace hidden">
                 <label>
