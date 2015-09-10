@@ -41,6 +41,8 @@ body {
 } 
 
 .btn-default,
+.btn-panel,
+.btn-secondary,
 .btn-primary {
   padding: 10px 40px;
 }
@@ -69,6 +71,30 @@ body {
 .btn-primary:active,
 .btn-primary:focus {
   background-color: #64A61B;
+}
+
+.btn-secondary {
+  background-color: #EE2214;
+  border: none;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus {
+  background-color: #bc1b12;
+}
+
+.btn-panel {
+  background-color: #74DCFF;
+  border: none;
+  color: #fff;
+}
+
+.btn-panel:hover,
+.btn-panel:active,
+.btn-panel:focus {
+  background-color: #fff;
+  color: #74DCFF;
 }
 
 .confirmusercontroller .btn-default {
@@ -270,4 +296,66 @@ h1, h3 {
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
+}
+
+/*===== Members Page =====*/
+.accept-invite-panel h4 {
+  color: #74DCFF;
+}
+
+.accept-invite-panel p {
+  color: #74DCFF;
+  margin-left: 10px;
+}
+
+.accept-invite-panel .liability-btn {
+  width: 100%;
+  text-align: center;
+}
+
+.accept-invite-panel .liability-btn a {
+  color: #fff;
+  display: inline-block;
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.accept-invite-panel .liability-btn a:hover {
+  color: #74DCFF;
+  background-color: #eeeeee;
+}
+
+.accept-invite-panel .form-group {
+  width: 100%;
+  text-align: center;
+}
+
+.accept-invite-panel .form-group input {
+  height: 0;
+  width: 0;
+}
+
+.accept-invite-panel .form-group a {
+  color: #fff;
+  text-align: center;
+  border-radius: 25px;
+}
+
+.accept-invite-panel .form-group a:hover {
+  color: #74DCFF;
+  background-color: #eeeeee;
+}
+
+.accept-invite-panel .checkbox label {
+  color: #74DCFF;
+}
+
+.accept-invite-panel .checkbox label a {
+  color: #74DCFF;
+  text-decoration: underline;
+}
+
+.accept-invite-panel .checkbox label a:hover {
+  color: #74DCFF;
+  text-decoration: none;
 }
