@@ -15,7 +15,8 @@ final class :nucleus:accept-invite extends :x:element {
               <h4>RESUME UPLOAD</h4>
               <p class="accept-sub-layer">
                 You are awesome and we want to show that to our sponsors.
-                Upload your resume and we will share it with our sponsors.
+                Upload your resume and we will share it with our sponsors. You
+                can do this later if you want. PDFs only.
               </p>
               <div class="form-group btn btn-panel resume">
                 <span>SELECT FILE</span>
@@ -28,7 +29,9 @@ final class :nucleus:accept-invite extends :x:element {
                 We would love to understand the demographic breakdown of our
                 hackers so we can see how we’ve been doing over time. Answers
                 to these questions will be sent anonymously and will at no
-                point be attached to identifying information. Please select "Prefer not to say" if you do not wish to provide this information.
+                point be attached to identifying information. Please select
+                "Prefer not to say" if you do not wish to provide this
+                information.
               </p>
               <h5 class="accept-sub-layer">Year In School</h5>
               <div class="school-year-select accept-sub-layer">
@@ -45,26 +48,44 @@ final class :nucleus:accept-invite extends :x:element {
               <h5 class="accept-sub-layer">Racial Identity</h5>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input type="checkbox" name="race[]" value="American Indian or Alaskan Native" /> American Indian or Alaskan Native
+                  <input
+                    type="checkbox"
+                    name="race[]"
+                    value="American Indian or Alaskan Native"
+                  />
+                  American Indian or Alaskan Native
                 </label>
               </div>
               <div class="checkbox accept-sub-layer">
                 <label>
-                  <input type="checkbox" name="race[]" value="Asian or Pacific Islander"/> Asian or Pacific Islander
+                  <input
+                    type="checkbox"
+                    name="race[]"
+                    value="Asian or Pacific Islander"
+                  />
+                  Asian or Pacific Islander
                 </label>
               </div>
               <div class="checkbox accept-sub-layer">
-                <label><input type="checkbox" name="race[]" value="Black"/> Black</label>
+                <label>
+                  <input type="checkbox" name="race[]" value="Black" /> Black
+                </label>
               </div>
               <div class="checkbox accept-sub-layer">
-                <label><input type="checkbox" name="race[]" value="Hispanic"/> Hispanic</label>
+                <label>
+                  <input type="checkbox" name="race[]" value="Hispanic" />
+                  Hispanic
+                </label>
               </div>
               <div class="checkbox accept-sub-layer">
-                <label><input type="checkbox" name="race[]" value="White"/> White</label>
+                <label>
+                  <input type="checkbox" name="race[]" value="White" /> White
+                </label>
               </div>
               <div class="checkbox accept-sub-layer opt-out">
                 <label>
-                  <input type="checkbox" onclick="optOut()" /> Prefer not to say
+                  <input type="checkbox" onclick="optOut()" /> Prefer not to
+                  say
                 </label>
               </div>
               <div class="checkbox accept-sub-layer">
