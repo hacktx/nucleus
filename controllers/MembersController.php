@@ -21,6 +21,16 @@ class MembersController extends BaseController {
 
     $limit = 25;
     $offset = $page * $limit;
+    
+    if ($filter !== null) {
+      DB::query("SELECT * FROM users WHERE status=%i", $filter);
+    } elseif($search !== null) {
+      DB::query("SELECT * FROM users WHERE %s in (fname, lname, email)", $search);
+    } else {
+      DB::query("SELECT * FROM users");
+    }
+
+    $max_page = (int) (DB::count() / 25);
 
     if ($filter !== null) {
       $members = DB::query("SELECT * FROM users WHERE status=%i ORDER BY created ASC LIMIT %i OFFSET %i", $filter, $limit, $offset);
@@ -29,7 +39,6 @@ class MembersController extends BaseController {
     } else {
       $members = DB::query("SELECT * FROM users ORDER BY created ASC LIMIT %i OFFSET %i", $limit, $offset);
     }
-    $max_page = (int) (DB::count() / 25);
 
     $clear_filter = null;
     if ($filter !== null) {
