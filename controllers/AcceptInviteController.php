@@ -55,7 +55,7 @@ class AcceptInviteController extends BaseController {
         pathinfo(basename($_FILES["resume"]["name"]), PATHINFO_EXTENSION);
       if ($file_type != "pdf") {
         http_response_code(400);
-        Flash::set(Flash::ERROR, "Résumé made be in pdf format");
+        Flash::set(Flash::ERROR, "Résumé must be in pdf format");
         Route::redirect(self::getPath());
       }
 
