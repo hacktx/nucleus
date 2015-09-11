@@ -30,7 +30,7 @@ Note the `include hhvm.conf;`. The HHVM install should have created this file in
 If not, [these](http://fideloper.com/hhvm-nginx-laravel) are good instructions on how to configure nginx to use HHVM.
 
 ### Setup MySQL
-Nucleus is backed by MySQL.  
+Nucleus is backed by MySQL. The schema can be found [here](https://github.com/hacktx/nucleus-vagrant/blob/master/provision/config/schema.sql).
 TODO: Add more instructions about MySQL setup.
 
 ### Install dependencies
