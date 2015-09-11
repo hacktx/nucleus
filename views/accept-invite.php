@@ -148,6 +148,7 @@ final class :nucleus:accept-invite extends :x:element {
                     type="radio"
                     name="first-hackathon"
                     id="first-hackathon"
+                    value="optout"
                   />
                   Prefer not to say
                 </label>

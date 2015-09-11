@@ -83,7 +83,8 @@ class AcceptInviteController extends BaseController {
       'major' => $user->getMajor(),
     };
 
-    if (isset($_POST['first-hackathon'])) {
+    if (isset($_POST['first-hackathon']) &&
+        $_POST['first-hackathon'] !== "optout") {
       $data['is_first_hackathon'] =
         $_POST['first-hackathon'] === "yes" ? true : false;
     }
@@ -94,7 +95,6 @@ class AcceptInviteController extends BaseController {
       }
     }
 
-    $race = null;
     if (isset($_POST['race'])) {
       $races = Vector {};
       foreach ($_POST['race'] as $race) {
@@ -104,8 +104,9 @@ class AcceptInviteController extends BaseController {
         }
         $races[] = $race;
       }
+
+      $data['race'] = $races;
     }
-    $data['race'] = $race;
 
     // Send demographic information to keen
     $client = KeenIO\Client\KeenIOClient::factory(
