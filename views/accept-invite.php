@@ -163,7 +163,7 @@ final class :nucleus:accept-invite extends :x:element {
                   <a
                     target="_blank"
                     href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">
-                    Major League Hacking Code of Conduct
+                    MLH Code of Conduct
                   </a>
                   while at HackTX.
                 </label>
@@ -172,7 +172,7 @@ final class :nucleus:accept-invite extends :x:element {
           </div>
           <p class="text-center">
             <button type="submit" name="deny" class="btn btn-secondary">
-              I CANT MAKE IT
+              I CAN'T MAKE IT
             </button>
             &nbsp;
             <button type="submit" name="accept" class="btn btn-primary">

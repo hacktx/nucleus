@@ -13,6 +13,11 @@
   letter-spacing: -.3px;
 }
 
+.acceptinvitecontroller h2 {
+  text-align: center;
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
+}
+
 .alert {
   border: 2px solid;
   border-radius: 3px;
@@ -370,8 +375,11 @@ h1, h3 {
   color: #9B9B9B;
 }
 
-.accept-invite-panel .checkbox label {
+.accept-invite-panel .checkbox label,
+.accept-invite-panel .radio label {
   color: #9B9B9B;
+  font-size: 14px;
+  font-weight: 600 !important;
 }
 
 .accept-invite-panel .checkbox label a {
@@ -382,10 +390,6 @@ h1, h3 {
 .accept-invite-panel .checkbox label a:hover {
   color: #74DCFF;
   text-decoration: none;
-}
-
-.accept-invite-panel .radio label {
-  color: #9B9B9B;
 }
 
 .school-year-select {
@@ -401,7 +405,8 @@ h1, h3 {
    width: 100%;
    color: #9B9B9B;
    padding: 5px;
-   font-size: 16px;
+   font-size: 14px;
+   font-weight: 600 !important;
    line-height: 1;
    border: 0;
    border-radius: 0;
