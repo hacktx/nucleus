@@ -9,6 +9,10 @@
   font-weight: bold !important;
 }
 
+.acceptinvitecontroller {
+  letter-spacing: -.3px;
+}
+
 .alert {
   border: 2px solid;
   border-radius: 3px;
@@ -317,7 +321,8 @@ h1, h3 {
 
 .accept-invite-panel p {
   color: #9B9B9B;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 400 !important;
 }
 
 .accept-invite-panel .liability-btn {

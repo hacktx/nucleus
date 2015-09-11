@@ -3,8 +3,9 @@
 final class :nucleus:dashboard extends :x:element {
   attribute
     string name,
-    string status,
-    string email;
+    string status;
+
+  children (:xhp*);
 
   final protected function render(): :div {
     return
@@ -14,10 +15,7 @@ final class :nucleus:dashboard extends :x:element {
         <div class="status">
           <h1><span class="label label-info">{$this->getAttribute('status')}</span></h1>
         </div>
-        <p class="info">Acceptances will roll out in ~7 days. If accepted, you will receive a confirmation email at {$this->getAttribute('email')} with further instructions.</p>
-        <div class="footer">
-          <p>Can't make it? <a href={DeleteAccountController::getPath()}>Cancel My Application</a></p>
-        </div>
+        {$this->getChildren()}
       </div>;
   }
 }

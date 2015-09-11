@@ -49,12 +49,10 @@ class AcceptInviteController extends BaseController {
     }
 
     // The user is uploading a resume
-    if (isset($_FILES['resume'])) {
+    if ($_FILES['resume']['name'] !== "") {
       // Make sure the resume is a PDF
-      $file_type = pathinfo(
-        basename($_FILES["resume"]["name"]),
-        PATHINFO_EXTENSION,
-      );
+      $file_type =
+        pathinfo(basename($_FILES["resume"]["name"]), PATHINFO_EXTENSION);
       if ($file_type != "pdf") {
         http_response_code(400);
         Flash::set(Flash::ERROR, "Résumé made be in pdf format");
@@ -91,7 +89,7 @@ class AcceptInviteController extends BaseController {
     }
 
     if (isset($_POST['year'])) {
-      if($_POST['year'] !== "Select one") {
+      if ($_POST['year'] !== "Select one") {
         $data['year'] = $_POST['year'];
       }
     }
