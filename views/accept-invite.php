@@ -19,9 +19,8 @@ final class :nucleus:accept-invite extends :x:element {
                 Upload your resume and we will share it with our sponsors. You
                 can do this later if you want. PDFs only.
               </p>
-              <div class="form-group btn btn-panel resume">
-                <span>SELECT FILE</span>
-                <input type="file" name="resume" />
+              <div class="form-group resume">
+                <input type="file" name="resume" /> 
               </div>
               <hr />
 
