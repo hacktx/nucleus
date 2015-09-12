@@ -13,7 +13,7 @@ final class :nucleus:dashboard extends :x:element {
         <h3>Thanks for applying, {$this->getAttribute('name')}!</h3>
         <p class="prompt-open">Your Application Status Is</p>
         <div class="status">
-          <h1><span class="label label-info">{$this->getAttribute('status')}</span></h1>
+          <h1><span class={'label label-info ' . strtolower($this->getAttribute('status'))}>{strtoupper($this->getAttribute('status'))}</span></h1>
         </div>
         {$this->getChildren()}
       </div>;

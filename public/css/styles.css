@@ -282,7 +282,7 @@ h1, h3 {
 
 /*===== Members Page =====*/
 .accepted {
-  background: #FFFB00;
+  background: #12A5FF;
 }
 
 .pending {
@@ -290,11 +290,15 @@ h1, h3 {
 }
 
 .waitlisted {
-  background: #12A5FF;
+  background: #FFFB00;
 }
 
 .rejected {
-  background: #D0041B;
+  background: #D0021B;
+}
+
+.confirmed {
+  background: #7ED321;
 }
 
 .circle {
