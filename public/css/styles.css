@@ -235,6 +235,38 @@ h1, h3 {
   text-align: center;
 }
 
+.search-bar {
+  background-color: #ebe8e8;
+  border-radius: 10em;
+  border-style: none;
+  border: 2px solid #9b9b9b;
+  color: #9b9b9b;
+  font-weight: 400 !important;
+  margin-bottom: 10px;
+  margin-top: -40px;
+  padding: 5px 15px;
+}
+
+.search-bar:focus {
+  outline: 0;
+}
+
+.search-bar ::-webkit-input-placeholder {
+   color: #9b9b9b;
+}
+
+.search-bar :-moz-placeholder { /* Firefox 18- */
+   color: #9b9b9b;  
+}
+
+.search-bar ::-moz-placeholder {  /* Firefox 19+ */
+   color: #9b9b9b;  
+}
+
+.search-bar :-ms-input-placeholder {  
+   color: #9b9b9b;  
+}
+
 #signin {
   border: 0 solid #9B9B9B;
   border-bottom: 3px;
