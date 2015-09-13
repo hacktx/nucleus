@@ -9,6 +9,14 @@
   font-weight: bold !important;
 }
 
+select {
+  color: #9B9B9B;
+}
+
+select option {
+  color: #9B9B9B;
+}
+
 .acceptinvitecontroller {
   letter-spacing: -.3px;
 }
@@ -417,7 +425,6 @@ h1, h3 {
 .school-year-select select {
    background: transparent;
    width: 100%;
-   color: #9B9B9B;
    padding: 5px;
    font-size: 14px;
    font-weight: 600 !important;
