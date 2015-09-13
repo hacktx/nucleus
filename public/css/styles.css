@@ -235,6 +235,38 @@ h1, h3 {
   text-align: center;
 }
 
+.search-bar {
+  background-color: #ebe8e8;
+  border-radius: 10em;
+  border-style: none;
+  border: 2px solid #9b9b9b;
+  color: #9b9b9b;
+  font-weight: 400 !important;
+  margin-bottom: 10px;
+  margin-top: -40px;
+  padding: 5px 15px;
+}
+
+.search-bar:focus {
+  outline: 0;
+}
+
+.search-bar ::-webkit-input-placeholder {
+   color: #9b9b9b;
+}
+
+.search-bar :-moz-placeholder { /* Firefox 18- */
+   color: #9b9b9b;  
+}
+
+.search-bar ::-moz-placeholder {  /* Firefox 19+ */
+   color: #9b9b9b;  
+}
+
+.search-bar :-ms-input-placeholder {  
+   color: #9b9b9b;  
+}
+
 #signin {
   border: 0 solid #9B9B9B;
   border-bottom: 3px;
@@ -282,7 +314,7 @@ h1, h3 {
 
 /*===== Members Page =====*/
 .accepted {
-  background: #FFFB00;
+  background: #12A5FF;
 }
 
 .pending {
@@ -290,11 +322,15 @@ h1, h3 {
 }
 
 .waitlisted {
-  background: #12A5FF;
+  background: #FFFB00;
 }
 
 .rejected {
-  background: #D0041B;
+  background: #D0021B;
+}
+
+.confirmed {
+  background: #7ED321;
 }
 
 .circle {

@@ -59,18 +59,24 @@ class MembersController extends BaseController {
     }
 
     return
-      <div class="row">
-        <div class="col-md-2">
-          <div class="list-group">
-            {$filters}
-          </div>
-          {$clear_filter}
+      <div class="memberscontroller-wrapper">
+        <div class="row text-right">
+          <input id="member-search" class="search-bar" type="search" placeholder="Search" />
         </div>
-        <div class="members-wrapper col-md-10" role="tabpanel">
-          {self::getMembers($members)}
-          {self::getPagination($page, $max_page, $filter)}
+        <div class="row">
+          <div class="col-md-2">
+            <div class="list-group">
+              {$filters}
+            </div>
+            {$clear_filter}
+          </div>
+          <div class="members-wrapper col-md-10" role="tabpanel">
+            {self::getMembers($members)}
+            {self::getPagination($page, $max_page, $filter)}
+          </div>
         </div>
         <script src="/js/members.js"></script>
+        <script src="/js/search.js"></script>
       </div>;
   }
 
