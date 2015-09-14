@@ -45,7 +45,7 @@ class EmailController extends BaseController {
       case "ac":
         $query =
           DB::query(
-            "SELECT * FROM users WHERE id IN (SELECT * FROM roles WHERE role=%s)",
+            "SELECT * FROM users WHERE id IN (SELECT user_id FROM roles WHERE role=%s)",
             UserRole::Confirmed,
           );
         break;
