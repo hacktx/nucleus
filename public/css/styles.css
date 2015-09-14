@@ -9,6 +9,10 @@
   font-weight: bold !important;
 }
 
+.panel-body * {
+  color: #9B9B9B;
+}
+
 select {
   color: #9B9B9B;
 }
@@ -264,15 +268,15 @@ h1, h3 {
 }
 
 .search-bar :-moz-placeholder { /* Firefox 18- */
-   color: #9b9b9b;  
+   color: #9b9b9b;
 }
 
 .search-bar ::-moz-placeholder {  /* Firefox 19+ */
-   color: #9b9b9b;  
+   color: #9b9b9b;
 }
 
-.search-bar :-ms-input-placeholder {  
-   color: #9b9b9b;  
+.search-bar :-ms-input-placeholder {
+   color: #9b9b9b;
 }
 
 #signin {
