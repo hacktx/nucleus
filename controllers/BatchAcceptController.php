@@ -12,16 +12,55 @@ class BatchAcceptController extends BaseController {
   }
 
   public static function get(): :xhp {
+    $states = Vector {};
+    foreach (UserState::getNames() as $value => $name) {
+      $states[] = <option value={$name}>{$name}</option>;
+    }
     return
       <form method="post">
+        <div class="form-inline">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Move</div>
+              <select class="form-control" name="place" id="place">
+                <option>First</option>
+                <option>Last</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              name="number"
+              type="text"
+              class="form-control"
+              id="number-accept"
+              placeholder="600"
+            />
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">From</div>
+              <select class="form-control" name="from" id="from">
+                {$states}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">To</div>
+              <select class="form-control" name="to" id="to">
+                {$states}
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="form-group">
-          <label for="number-accept">Number of people to modify</label>
+          <label for="subject">Email Subject</label>
           <input
-            name="number"
             type="text"
             class="form-control"
-            id="number-accept"
-            placeholder="600"
+            id="subject"
+            name="subject"
           />
         </div>
         <div class="form-group">
@@ -33,45 +72,37 @@ class BatchAcceptController extends BaseController {
   }
 
   public static function post(): void {
-    if (!isset($_POST['numer']) && !isset($_POST['email'])) {
-      http_response_code(400);
-      Flash::set(Flash::ERROR, "Something went wrong! Please try again.");
-      Route::redirect(self::getPath());
-    }
+    $from = UserState::assert($_POST['from']);
+    $to = UserState::assert($_POST['to']);
+    $order = $_POST['place'] === "first" ? "ASC" : "DESC";
 
-    // Get [n] applicants who are pending, in order of creation
+    // Get [n] applicants who are in the "from" state
     $query = DB::query(
-      "SELECT * FROM users WHERE status=%s ORDER BY created LIMIT %i",
-      UserState::Pending,
+      "SELECT * FROM users WHERE status=%s ORDER BY created %s LIMIT %i",
+      $from,
+      $order,
       (int) $_POST['number'],
     );
 
     $email_client = new SendGrid(Config::get('SendGrid')['api_key']);
 
-    // Set the first [n] as accepted and email them
+    // Move the [n] applications to the "to" state and email them
     foreach ($query as $row) {
-      User::updateStatusByID(UserState::Accepted, (int) $row['id']);
+      User::updateStatusByID($to, (int) $row['id']);
       $email = new SendGrid\Email();
       $email->addTo($row['email'])
-            ->setFrom("noreply@hacktx.com")
-            ->setFromName("Team HackTX")
-            ->setSubject("HackTX Invitation - Action Required")
-            ->setHtml($_POST['email'])
-            ->addSubstitution("%first_name%", array($row['fname']));
+        ->setFrom("noreply@hacktx.com")
+        ->setFromName("Team HackTX")
+        ->setSubject($_POST['subject'])
+        ->setHtml($_POST['email'])
+        ->addSubstitution("%first_name%", array($row['fname']));
 
       $email_client->send($email);
     }
 
-    // Mark the remaining as waitlisted
-    DB::query(
-      "UPDATE users SET status=%s WHERE status != %s",
-      UserState::Waitlisted,
-      UserState::Accepted,
-    );
-
     Flash::set(
       Flash::SUCCESS,
-      $_POST['number']." applications successfully accepted",
+      $_POST['number']." members successfully updated",
     );
     Route::redirect(self::getPath());
   }
