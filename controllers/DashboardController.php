@@ -12,6 +12,7 @@ class DashboardController extends BaseController {
         UserState::Accepted,
         UserState::Waitlisted,
         UserState::Rejected,
+        UserState::Confirmed,
       ),
     );
   }
@@ -19,8 +20,8 @@ class DashboardController extends BaseController {
   public static function get(): :xhp {
     $user = Session::getUser();
 
-    $status = null;
     $user_status = $user->getStatus();
+    $status = UserState::getNames()[$user_status];
 
     $child = null;
     if ($user_status == UserState::Pending) {
@@ -33,7 +34,7 @@ class DashboardController extends BaseController {
           </p>
           <div class="footer">
             <p>
-              Can't make it?
+              {"Can't make it?"}
               <a href={DeleteAccountController::getPath()}>
                 Cancel My Application
               </a>
@@ -41,25 +42,24 @@ class DashboardController extends BaseController {
           </div>
         </x:frag>;
     } else if ($user_status == UserState::Accepted) {
-      if ($user->getRoles()->contains(UserRole::Confirmed)) {
-        $child =
-          <p class="info">You successfully accepted your invitation!</p>;
-      } else if ($user->getRoles()->contains(UserRole::Denied)) {
-        $child =
-          <p class="info">You successfully turned down your invitation</p>;
-      } else {
-        $child =
-          <p class="info">
-            You received an invitation! Respond to it
-            <a href={AcceptInviteController::getPath()}>here</a>
-          </p>;
-      }
+      $child =
+        <p class="info">
+          You received an invitation! Respond to it
+          <a href={AcceptInviteController::getPath()}>here</a>
+        </p>;
+    } else if ($user_status == UserState::Confirmed) {
+      $child = <p class="info">You successfully accepted your invitation!</p>;
+    } else {
+      $child =
+        <p class="info">
+          We hope to see you next year! If you are interested in volunteering,
+          you can sign up <a href="http://goo.gl/forms/8Ygo93YMXS">here</a>
+        </p>;
+      $status = null;
     }
 
     return
-      <nucleus:dashboard
-        name={$user->getFirstName()}
-        status={UserState::getNames()[$user_status]}>
+      <nucleus:dashboard name={$user->getFirstName()} status={$status}>
         {$child}
       </nucleus:dashboard>;
   }

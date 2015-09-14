@@ -10,12 +10,6 @@ class AcceptInviteController extends BaseController {
   }
 
   public static function get(): :xhp {
-    $user = Session::getUser();
-    if ($user->getRoles()->contains(UserRole::Confirmed) ||
-        $user->getRoles()->contains(UserRole::Denied)) {
-      Flash::set(Flash::ERROR, "You've already responded to your invite");
-      Route::redirect(DashboardController::getPath());
-    }
     return <nucleus:accept-invite user={Session::getUser()} />;
   }
 
@@ -24,7 +18,7 @@ class AcceptInviteController extends BaseController {
 
     // The user has denied their invite
     if (isset($_POST['deny'])) {
-      Roles::insert(UserRole::Denied, $user->getID());
+      User::updateStatusByID(UserState::Rejected, $user->getID());
       Flash::set(
         Flash::SUCCESS,
         "Your invitation was successfully declined.",
@@ -119,7 +113,7 @@ class AcceptInviteController extends BaseController {
     $client->addEvent('confirmation', $data->toArray());
 
     // Set the user to confirmed
-    Roles::insert(UserRole::Confirmed, $user->getID());
+    User::updateStatusByID(UserState::Confirmed, $user->getID());
     Flash::set(Flash::SUCCESS, "You've successfully confirmed.");
     Route::redirect(DashboardController::getPath());
   }

@@ -10,6 +10,7 @@ function makeCall(url, postdata) {
       case 1: newStatus = "Accepted"; break;
       case 2: newStatus = "Waitlisted"; break;
       case 3: newStatus = "Rejected"; break;
+      case 4: newStatus = "Confirmed"; break;
     }
 
     $("#" + postdata['user'] + "status").find("span").find(".text").text(newStatus);

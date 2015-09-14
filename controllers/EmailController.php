@@ -12,15 +12,16 @@ class EmailController extends BaseController {
   }
 
   public static function get(): :xhp {
+    $options = Vector {};
+    foreach (UserState::getNames() as $value => $name) {
+      $options[] = <option value={$name}>{$name}</option>;
+    }
     return
       <form method="post">
         <div class="form-group">
           <label for="user-state">Email all people with state</label>
           <select class="form-control" id="user-state" name="userstate">
-            <option value="ac">Accepted - Confirmed</option>
-            <option value="an">Accepted - Not replied</option>
-            <option value="w">Waitlisted</option>
-            <option value="r">Rejected</option>
+            {$options}
           </select>
         </div>
         <div class="form-group">
@@ -41,37 +42,10 @@ class EmailController extends BaseController {
   }
 
   public static function post(): void {
-    switch ($_POST['userstate']) {
-      case "ac":
-        $query =
-          DB::query(
-            "SELECT * FROM users WHERE id IN (SELECT user_id FROM roles WHERE role=%s)",
-            UserRole::Confirmed,
-          );
-        break;
-      case "an":
-        $query =
-          DB::query(
-            "SELECT * FROM users WHERE status=%s AND id NOT IN (SELECT user_id FROM roles WHERE role=%s OR role=%s)",
-            UserState::Accepted,
-            UserRole::Denied,
-            UserRole::Confirmed,
-          );
-        break;
-      case "w":
-        $query = DB::query(
-          "SELECT * FROM users WHERE status=%s",
-          UserState::Waitlisted,
-        );
-        break;
-      case "r":
-        $query = DB::query(
-          "SELECT * FROM users WHERE status=%s",
-          UserState::Rejected,
-        );
-        break;
-    }
-
+    $query = DB::query(
+      "SELECT * FROM users WHERE status=%s",
+      UserState::getValues()[$_POST['userstate']],
+    );
     $count = DB::count();
 
     $email_client = new SendGrid(Config::get('SendGrid')['api_key']);

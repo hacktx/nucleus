@@ -5,6 +5,7 @@ enum UserState : int {
   Accepted = 1;
   Waitlisted = 2;
   Rejected = 3;
+  Confirmed = 4;
 }
 
 class User {
