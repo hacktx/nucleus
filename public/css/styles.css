@@ -56,6 +56,10 @@ body {
   width: 100%;
 }
 
+.caret {
+  color: #9B9B9B;
+}
+
 .btn:active {
   box-shadow: none;
   -webkit-box-shadow: none;
