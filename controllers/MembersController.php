@@ -77,15 +77,44 @@ class MembersController extends BaseController {
         </a>;
     }
 
+    $progress_bar_types = Map {
+      "Accepted" => "",
+      "Confirmed" => "progress-bar-success",
+      "Waitlisted" => "progress-bar-warning",
+      "Rejected" => "progress-bar-danger",
+    };
+
+    DB::query("SELECT * FROM users");
+    $total_users = DB::count();
+
+    $progress_bars = Vector{};
+    foreach($progress_bar_types as $state => $class) {
+      DB::query("SELECT * FROM users WHERE status=%s", UserState::getValues()[$state]);
+      $percent = DB::count()/$total_users * 100;
+      $progress_bars[] =
+        <div class={"progress-bar ".$class} style={"width: ".$percent."%"}>
+          <span>{(int)$percent."% ".$state}</span>
+        </div>;
+    }
+
     return
       <div class="memberscontroller-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="progress">
+              {$progress_bars}
+            </div>
+          </div>
+        </div>
         <div class="row text-right">
-          <input
-            id="member-search"
-            class="search-bar"
-            type="search"
-            placeholder="Search"
-          />
+          <div class="col-md-10 col-md-offset-2">
+            <input
+              id="member-search"
+              class="search-bar"
+              type="search"
+              placeholder="Search"
+            />
+          </div>
         </div>
         <div class="row">
           <div class="col-md-2">

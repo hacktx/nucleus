@@ -259,8 +259,8 @@ h1, h3 {
   color: #9b9b9b;
   font-weight: 400 !important;
   margin-bottom: 10px;
-  margin-top: -40px;
   padding: 5px 15px;
+  width: 100%;
 }
 
 .search-bar:focus {
