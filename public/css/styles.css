@@ -251,6 +251,15 @@ h1, h3 {
   text-align: center;
 }
 
+.progress {
+  height: 16px;
+}
+
+.progress .progress-bar {
+  font-size: 12px;
+  line-height: 16px;
+}
+
 .search-bar {
   background-color: #ebe8e8;
   border-radius: 10em;
@@ -260,7 +269,6 @@ h1, h3 {
   font-weight: 400 !important;
   margin-bottom: 10px;
   padding: 5px 15px;
-  width: 100%;
 }
 
 .search-bar:focus {

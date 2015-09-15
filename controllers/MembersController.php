@@ -102,13 +102,6 @@ class MembersController extends BaseController {
 
     return
       <div class="memberscontroller-wrapper">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="progress">
-              {$progress_bars}
-            </div>
-          </div>
-        </div>
         <div class="row text-right">
           <div class="col-md-10 col-md-offset-2">
             <input
@@ -117,6 +110,13 @@ class MembersController extends BaseController {
               type="search"
               placeholder="Search"
             />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="progress">
+              {$progress_bars}
+            </div>
           </div>
         </div>
         <div class="row">
