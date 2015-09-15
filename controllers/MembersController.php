@@ -46,7 +46,7 @@ class MembersController extends BaseController {
     } else if ($search !== null) {
       $members =
         DB::query(
-          "SELECT * FROM users WHERE %s in (fname, lname, email) ORDER BY created ASC LIMIT %i OFFSET %i",
+          "SELECT * FROM users WHERE %s in (CONCAT(fname, ' ', lname), fname, lname, email) ORDER BY created ASC LIMIT %i OFFSET %i",
           $search,
           $limit,
           $offset,
@@ -87,13 +87,16 @@ class MembersController extends BaseController {
     DB::query("SELECT * FROM users");
     $total_users = DB::count();
 
-    $progress_bars = Vector{};
-    foreach($progress_bar_types as $state => $class) {
-      DB::query("SELECT * FROM users WHERE status=%s", UserState::getValues()[$state]);
-      $percent = DB::count()/$total_users * 100;
+    $progress_bars = Vector {};
+    foreach ($progress_bar_types as $state => $class) {
+      DB::query(
+        "SELECT * FROM users WHERE status=%s",
+        UserState::getValues()[$state],
+      );
+      $percent = DB::count() / $total_users * 100;
       $progress_bars[] =
         <div class={"progress-bar ".$class} style={"width: ".$percent."%"}>
-          <span>{(int)$percent."% ".$state}</span>
+          <span>{(int) $percent."% ".$state}</span>
         </div>;
     }
 
