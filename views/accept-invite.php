@@ -156,7 +156,7 @@ final class :nucleus:accept-invite extends :x:element {
               <hr />
 
               <h4>CODE OF CONDUCT*</h4>
-              <div class="checkbox accept-sub-layer">
+              <div class="checkbox accept-sub-layer opt-out">
                 <label>
                   <input type="checkbox" name="coc" /> I will at all times
                   abide by and conform to the
