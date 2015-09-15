@@ -74,11 +74,11 @@ class BatchAcceptController extends BaseController {
   public static function post(): void {
     $from = UserState::getValues()[$_POST['from']];
     $to = UserState::getValues()[$_POST['to']];
-    $order = $_POST['place'] === "first" ? "ASC" : "DESC";
+    $order = $_POST['place'] === "First" ? "ASC" : "DESC";
 
     // Get [n] applicants who are in the "from" state
     $query = DB::query(
-      "SELECT * FROM users WHERE status=%s ORDER BY created %s LIMIT %i",
+      "SELECT * FROM users WHERE status=%s ORDER BY created %l LIMIT %i",
       $from,
       $order,
       (int) $_POST['number'],
