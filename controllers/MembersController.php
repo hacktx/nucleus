@@ -22,42 +22,25 @@ class MembersController extends BaseController {
     $limit = 25;
     $offset = $page * $limit;
 
+    $where = new WhereClause("and");
     if ($filter !== null) {
-      DB::query("SELECT * FROM users WHERE status=%i", $filter);
+      $where->add("status=%i", $filter);
     } else if ($search !== null) {
-      DB::query(
-        "SELECT * FROM users WHERE %s in (fname, lname, email)",
+      $where->add(
+        "%s in (CONCAT(fname, ' ', lname), fname, lname, email)",
         $search,
       );
-    } else {
-      DB::query("SELECT * FROM users");
     }
 
+    DB::query("SELECT * FROM users WHERE %l", $where);
     $max_page = (int) (DB::count() / 25);
 
-    if ($filter !== null) {
-      $members =
-        DB::query(
-          "SELECT * FROM users WHERE status=%i ORDER BY created ASC LIMIT %i OFFSET %i",
-          $filter,
-          $limit,
-          $offset,
-        );
-    } else if ($search !== null) {
-      $members =
-        DB::query(
-          "SELECT * FROM users WHERE %s in (CONCAT(fname, ' ', lname), fname, lname, email) ORDER BY created ASC LIMIT %i OFFSET %i",
-          $search,
-          $limit,
-          $offset,
-        );
-    } else {
-      $members = DB::query(
-        "SELECT * FROM users ORDER BY created ASC LIMIT %i OFFSET %i",
-        $limit,
-        $offset,
-      );
-    }
+    $members = DB::query(
+      "SELECT * FROM users WHERE %l ORDER BY created ASC LIMIT %i OFFSET %i",
+      $where,
+      $limit,
+      $offset,
+    );
 
     $clear_filter = null;
     if ($filter !== null) {
