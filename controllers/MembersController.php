@@ -108,6 +108,7 @@ class MembersController extends BaseController {
               id="member-search"
               class="search-bar"
               type="search"
+              value={$search}
               placeholder="Search"
             />
           </div>
