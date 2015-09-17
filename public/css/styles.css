@@ -147,6 +147,10 @@ body {
   margin-top: 53px;
 }
 
+.dropzone * {
+  color: #9B9B9B; 
+}
+
 h1, h3 {
   color: #FFF;
   letter-spacing: -.5px;
@@ -190,6 +194,7 @@ h1, h3 {
   font-weight: 600 !important;
   font-size: 17px;
   font-style: italic;
+  line-height: 20px;
 }
 
 .footer a {

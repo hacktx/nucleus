@@ -11,6 +11,7 @@
     "codegyre/robo": "*"
   },
   "autoload": {
-    "classmap": ["views/", "controllers/", "models/", "lib/"]
+    "classmap": ["views/", "controllers/", "models/", "lib/"],
+    "files": ["lib/functions.php"]
   }
 }
