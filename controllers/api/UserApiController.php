@@ -29,7 +29,7 @@ class UserApiController extends BaseController {
       'email' => $user->getEmail(),
       'age' => $user->getAge(),
       'confirmed' => ($user->getStatus() === UserState::Confirmed),
-      'checked_in' => false,
+      'checked_in' => ($user->getRoles()->contains(UserRole::CheckedIn)),
     };
 
     return $data;

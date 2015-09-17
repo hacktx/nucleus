@@ -4,6 +4,7 @@ enum UserRole: string {
   Superuser = 'superuser';
   Organizer = 'organizer';
   Flagged = 'flagged';
+  CheckedIn = 'checked-in';
 }
 
 class Roles {
