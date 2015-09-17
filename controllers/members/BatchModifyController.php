@@ -1,6 +1,6 @@
 <?hh
 
-class BatchAcceptController extends BaseController {
+class BatchModifyController extends BaseController {
   public static function getPath(): string {
     return '/members/batch';
   }
