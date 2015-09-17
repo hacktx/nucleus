@@ -13,24 +13,22 @@ class UserApiController extends BaseController {
     }
 
     DB::query("SELECT * FROM volunteer WHERE id=%s", $get['volunteer_id']);
-    if(DB::count() === 0) {
+    if (DB::count() === 0) {
       http_response_code(401);
       return Map {"error" => "Volunteer ID not found"};
     }
 
-    $user = DB::queryFirstRow("SELECT * FROM users WHERE email=%s", $get['email']);
-    if(DB::count() === 0) {
+    $user = User::genByEmail((string) $get['email']);
+    if (!$user) {
       http_response_code(404);
       return Map {"error" => "User not found"};
     }
 
-    $birthday = new DateTime($user['birthday']);
-    $age = $birthday->diff(new DateTime('today'))->y;
-
     $data = Map {
-      'name' => $user['fname'] . ' ' . $user['lname'],
-      'email' => $user['email'],
-      'age' => $age,
+      'name' => $user->getFirstName().' '.$user->getLastName(),
+      'email' => $user->getEmail(),
+      'age' => $user->getAge(),
+      'confirmed' => ($user->getStatus() === UserState::Confirmed),
       'checked_in' => false,
     };
 

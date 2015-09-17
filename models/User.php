@@ -92,6 +92,11 @@ class User {
     return (string) $this->data['major'];
   }
 
+  public function getAge(): int {
+    return
+      (new DateTime($this->data['birthday']))->diff(new DateTime('today'))->y;
+  }
+
   public function isPending(): bool {
     return $this->data['status'] == UserState::Pending;
   }
@@ -114,6 +119,17 @@ class User {
 
   public static function genByID($user_id): ?User {
     $query = DB::queryFirstRow("SELECT * FROM users WHERE id=%s", $user_id);
+    if (!$query) {
+      return null;
+    }
+    $user = new User(new Map($query));
+    $user->roles = Roles::getRoles($user->getID());
+
+    return $user;
+  }
+
+  public static function genByEmail(string $email): ?User {
+    $query = DB::queryFirstRow("SELECT * FROM users WHERE email=%s", $email);
     if (!$query) {
       return null;
     }
