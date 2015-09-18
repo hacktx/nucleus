@@ -27,8 +27,8 @@ class MembersController extends BaseController {
       $where->add("status=%i", $filter);
     } else if ($search !== null) {
       $where->add(
-        "%s in (CONCAT(fname, ' ', lname), fname, lname, email)",
-        $search,
+        "MATCH(fname, lname, email) AGAINST (%s IN BOOLEAN MODE)",
+        preg_replace("/(\w+)/", "+$1*", $search),
       );
     }
 
