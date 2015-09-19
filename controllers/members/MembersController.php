@@ -26,7 +26,7 @@ class MembersController extends BaseController {
 
     $where = new WhereClause("and");
     if ($filter !== null) {
-      $uri_builder->setParam('filter', (string)$filter);
+      $uri_builder->setParam('filter', $filter);
       $where->add("status=%i", $filter);
     } else if ($search !== null) {
       $uri_builder->setParam('search', $search);
