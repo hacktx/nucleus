@@ -22,10 +22,14 @@ class MembersController extends BaseController {
     $limit = 25;
     $offset = $page * $limit;
 
+    $uri_builder = new URIBuilder(self::getPath());
+
     $where = new WhereClause("and");
     if ($filter !== null) {
+      $uri_builder->setParam('filter', (string)$filter);
       $where->add("status=%i", $filter);
     } else if ($search !== null) {
+      $uri_builder->setParam('search', $search);
       $where->add(
         "MATCH(fname, lname, email) AGAINST (%s IN BOOLEAN MODE)",
         preg_replace("/(\w+)/", "+$1*", $search),
@@ -113,8 +117,7 @@ class MembersController extends BaseController {
           <div class="members-wrapper col-md-10" role="tabpanel">
             {self::getMembers($members)}
             <nucleus:pagination
-              path={self::getPath()}
-              filter={$filter}
+              uri-builder={$uri_builder}
               page={$page}
               max={$max_page}
             />
