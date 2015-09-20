@@ -206,6 +206,12 @@ h1, h3 {
   text-decoration: none;
 }
 
+.badge {
+  color: #ffffff;
+  background-color: #2f8912;
+  border-color: #2c8011;
+}
+
 .label {
   padding: 20px 40px;
 }
