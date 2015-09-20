@@ -83,6 +83,7 @@ class BatchModifyController extends BaseController {
       $order,
       (int) $_POST['number'],
     );
+    $count = DB::count();
 
     $email_client = new SendGrid(Config::get('SendGrid')['api_key']);
 
@@ -102,7 +103,7 @@ class BatchModifyController extends BaseController {
 
     Flash::set(
       Flash::SUCCESS,
-      $_POST['number']." members successfully updated",
+      $count." members successfully updated",
     );
     Route::redirect(self::getPath());
   }
