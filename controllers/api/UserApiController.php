@@ -24,12 +24,21 @@ class UserApiController extends BaseController {
       return Map {"error" => "User not found"};
     }
 
+    $waver = true;
+    if ($user->getRoles()->contains(UserRole::Flagged)) {
+      if (!file_exists('uploads/'.$user->getID().'/medical-auth.pdf') ||
+          !file_exists('uploads/'.$user->getID().'/release.pdf')) {
+        $waver = false;
+      }
+    }
+
     $data = Map {
       'name' => $user->getFirstName().' '.$user->getLastName(),
       'email' => $user->getEmail(),
       'age' => $user->getAge(),
       'confirmed' => ($user->getStatus() === UserState::Confirmed),
       'checked_in' => ($user->getRoles()->contains(UserRole::CheckedIn)),
+      'waiver_signed' => $waver,
     };
 
     return $data;
