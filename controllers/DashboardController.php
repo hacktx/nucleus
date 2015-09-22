@@ -138,7 +138,7 @@ class DashboardController extends BaseController {
     if ($files->contains('resume') && $files['resume']['name'] !== "") {
       // Make sure the resume is a PDF
       $file_type =
-        pathinfo(basename($files["file"]["name"]), PATHINFO_EXTENSION);
+        pathinfo(basename($files["resume"]["name"]), PATHINFO_EXTENSION);
       if ($file_type != "pdf") {
         http_response_code(400);
         Flash::set(Flash::ERROR, "Résumé must be in pdf format");
@@ -154,7 +154,7 @@ class DashboardController extends BaseController {
 
       // Move the file to its final home
       if (!move_uploaded_file(
-            $files['file']['tmp_name'],
+            $files['resume']['tmp_name'],
             $upload_dir."/resume.pdf",
           )) {
         Flash::set(Flash::ERROR, "Résumé was not uploaded successfully");
