@@ -1,5 +1,167 @@
 [
   {
+    "name": "MLH",
+    "logoImage": "http://hacktx.com/images/mlh_.png",
+    "website": "https://mlh.io/",
+    "level": 0
+  },
+  {
+    "name": "Microsoft",
+    "logoImage": "http://hacktx.com/images/MSFT.png",
+    "website": "http://www.microsoft.com/en-us/",
+    "level": 1
+  },
+  {
+    "name": "Thomson Reuters",
+    "logoImage": "http://hacktx.com/images/thomsonreuters.png",
+    "website": "http://thomsonreuters.com/",
+    "level": 1
+  },
+  {
+    "name": "State Farm",
+    "logoImage": "http://hacktx.com/images/statefarm.png",
+    "website": "https://www.statefarm.com/",
+    "level": 1
+  },
+  {
+    "name": "Capital One",
+    "logoImage": "http://hacktx.com/images/capitalone.png",
+    "website": "https://www.capitalone.com/",
+    "level": 1
+  },
+  {
+    "name": "a16z",
+    "logoImage": "http://hacktx.com/images/a16z.png",
+    "website": "http://a16z.com/",
+    "level": 2
+  },
+  {
+    "name": "Bloomberg",
+    "logoImage": "http://hacktx.com/images/Bloomberg.png",
+    "website": "http://www.bloomberg.com/",
+    "level": 2
+  },
+  {
+    "name": "IBM",
+    "logoImage": "http://hacktx.com/images/ibm.png",
+    "website": "http://ibm.com/",
+    "level": 2
+  },
+  {
+    "name": "Civitas Learning",
+    "logoImage": "http://hacktx.com/images/Civitas_Logo.png",
+    "website": "http://www.civitaslearning.com/",
+    "level": 2
+  },
+  {
+    "name": "Bazaarvoice",
+    "logoImage": "http://hacktx.com/images/bazaarvoice.png",
+    "website": "http://www.bazaarvoice.com/",
+    "level": 2
+  },
+  {
+    "name": "RetailMeNot",
+    "logoImage": "http://hacktx.com/images/RetailMeNot.png",
+    "website": "http://www.retailmenot.com/",
+    "level": 2
+  },
+  {
+    "name": "Epic",
+    "logoImage": "http://hacktx.com/images/epic.png",
+    "website": "https://epic.com/",
+    "level": 2
+  },
+  {
+    "name": "hbk",
+    "logoImage": "http://hacktx.com/images/HBK.jpg",
+    "website": "https://hbk.com/",
+    "level": 3
+  },
+  {
+    "name": "Context.io",
+    "logoImage": "http://hacktx.com/images/contextio_logo_large.png",
+    "website": "https://context.io/",
+    "level": 3
+  },
+  {
+    "name": "Indeed",
+    "logoImage": "http://hacktx.com/images/indeed.png",
+    "website": "http://www.indeed.com/",
+    "level": 3
+  },
+  {
+    "name": "Square",
+    "logoImage": "http://hacktx.com/images/square.png",
+    "website": "https://squareup.com/",
+    "level": 3
+  },
+  {
+    "name": "MongoDB",
+    "logoImage": "http://hacktx.com/images/mongodb.png",
+    "website": "https://www.mongodb.org/",
+    "level": 3
+  },
+  {
+    "name": "SendGrid",
+    "logoImage": "http://hacktx.com/images/sendgrid.png",
+    "website": "https://sendgrid.com/",
+    "level": 3
+  },
+  {
+    "name": "National Instruments",
+    "logoImage": "http://hacktx.com/images/nationalinstruments.png",
+    "website": "http://www.ni.com/",
+    "level": 3
+  },
+  {
+    "name": "uShip",
+    "logoImage": "http://hacktx.com/images/uship-logo1.png",
+    "website": "https://www.uship.com/",
+    "level": 3
+  },
+  {
+    "name": "Keen IO",
+    "logoImage": "http://hacktx.com/images/keen.png",
+    "website": "https://www.keen.io/",
+    "level": 3
+  },
+  {
+    "name": "Xyience",
+    "logoImage": "http://hacktx.com/images/Xyience.png",
+    "website": "http://www.xyience.com/",
+    "level": 3
+  },
+  {
+    "name": "GoGo SqueeZ",
+    "logoImage": "http://hacktx.com/images/gogosqueez.png",
+    "website": "http://www.gogosqueez.com/",
+    "level": 3
+  },
+  {
+    "name": "Justin's",
+    "logoImage": "http://hacktx.com/images/justins.png",
+    "website": "http://www.justins.com/",
+    "level": 3
+  },
+  {
+    "name": "Google",
+    "logoImage": "http://hacktx.com/images/google.png",
+    "website": "https://www.google.com/",
+    "level": 3
+  },
+  {
+    "name": "Thalmic Labs",
+    "logoImage": "http://hacktx.com/images/thalmic-labs.png",
+    "website": "https://www.thalmic.com/about",
+    "level": 3
+  },
+  {
+    "name": "KPCB",
+    "logoImage": "http://hacktx.com/images/kpcb.png",
+    "website": "http://www.kpcb.com/",
+    "level": 3
+  },
+  {
     "name": "HackDFW",
     "logoImage": "http://hacktx.com/images/hackdfw.png",
     "website": "http://hackdfw.com/",
