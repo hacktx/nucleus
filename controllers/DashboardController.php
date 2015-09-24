@@ -73,10 +73,16 @@ class DashboardController extends BaseController {
           $extra =
             <x:frag>
               <hr />
-              <p>Authorization for emergency medical treatment {$medical_auth_badge}</p>
+              <p>
+                Authorization for emergency medical treatment
+                {$medical_auth_badge} (<a href="/files/medauth_adult.pdf" target="_blank">Download</a>)
+              </p>
               <input type="file" name="medical-auth" />
               <hr />
-              <p>Release and indemnification agreement {$release_badge}</p>
+              <p>
+                Release and indemnification agreement
+                {$release_badge} (<a href="/files/release_nonstudent.pdf" target="_blank">Download</a>)
+              </p>
               <input type="file" name="release" />
             </x:frag>;
         }
@@ -165,7 +171,9 @@ class DashboardController extends BaseController {
     $flagged = $user->getRoles()->contains(UserRole::Flagged);
 
     // Upload a medical release form
-    if ($flagged && $files->contains('medical-auth') && $files['medical-auth']['name'] !== "") {
+    if ($flagged &&
+        $files->contains('medical-auth') &&
+        $files['medical-auth']['name'] !== "") {
       // Make sure the file is a PDF
       $file_type = pathinfo(
         basename($files["medical-auth"]["name"]),
@@ -201,7 +209,9 @@ class DashboardController extends BaseController {
     }
 
     // Upload a release
-    if ($flagged && $files->contains('release') && $files['release']['name'] !== "") {
+    if ($flagged &&
+        $files->contains('release') &&
+        $files['release']['name'] !== "") {
       // Make sure the file is a PDF
       $file_type =
         pathinfo(basename($files["release"]["name"]), PATHINFO_EXTENSION);
