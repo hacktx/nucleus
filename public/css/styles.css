@@ -460,3 +460,7 @@ h1, h3 {
    border-radius: 0;
    height: 34px;
 }
+
+.singlemembercontroller * {
+   color: #9B9B9B;
+}

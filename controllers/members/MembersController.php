@@ -201,7 +201,11 @@ class MembersController extends BaseController {
       // Append the row to the table
       $members->appendChild(
         <tr>
-          <td>{$row['fname'].' '.$row['lname']}</td>
+          <td>
+            <a href={"/members/".$row['id']}>
+              {$row['fname'].' '.$row['lname']}
+            </a>
+          </td>
           <td>{$row['school']}</td>
           <td>{$row['major']}</td>
           <td id={$row['id']."status"}>{$status}</td>
