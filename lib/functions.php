@@ -11,3 +11,7 @@ function getPOSTParams(): Map<string, mixed> {
 function getFILESParams(): Map<string, Map<string, mixed>> {
   return new Map($_FILES);
 }
+
+function getRouteParams(): Map<string, string> {
+  return new Map($_SESSION['route_params']);
+}
