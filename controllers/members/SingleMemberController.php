@@ -5,6 +5,12 @@ class SingleMemberController extends BaseController {
     return '/members/(?<id>\d+)';
   }
 
+  public static function getConfig(): ControllerConfig {
+    return (new ControllerConfig())->setUserRoles(
+      array(UserRole::Superuser, UserRole::Organizer),
+    );
+  }
+
   public static function get(): :xhp {
     $id = (int) self::getPathParam('id');
     $user = User::genByID($id);
@@ -23,12 +29,17 @@ class SingleMemberController extends BaseController {
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h1>{$user->getFirstName() . ' ' . $user->getLastName()}</h1>
+            <h1>{$user->getFirstName().' '.$user->getLastName()}</h1>
           </div>
           <p>Status: {UserState::getNames()[$user->getStatus()]}</p>
           <p>School: {$user->getSchool()}</p>
           <p>Major: {$user->getMajor()}</p>
-          <p>Email: <a href={'mailto:' . $user->getEmail()} target="_blank">{$user->getEmail()}</a></p> 
+          <p>
+            Email:
+            <a href={'mailto:'.$user->getEmail()} target="_blank">
+              {$user->getEmail()}
+            </a>
+          </p>
           <p>Age: {$user->getAge()}</p>
           <p>Attributes: {$roles}</p>
         </div>
