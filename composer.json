@@ -8,7 +8,8 @@
     "sergeytsalkov/meekrodb": "*"
   },
   "require-dev": {
-    "codegyre/robo": "*"
+    "codegyre/robo": "*",
+    "facebook/hack-codegen": "*"
   },
   "autoload": {
     "classmap": ["views/", "controllers/", "models/", "lib/"],

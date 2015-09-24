@@ -6,32 +6,50 @@ trait URIGenerator {
   }
 }
 
-class URIMapGenerator extends Robo\Task\BaseTask implements Robo\Contract\TaskInterface {
+use Facebook\HackCodegen as codegen;
+
+class URIMapGenerator extends Robo\Task\BaseTask
+  implements Robo\Contract\TaskInterface {
   public function run(): Robo\Result {
     $this->printTaskInfo('Generating URI Map');
     $routes = URIMapGenerator::getRoutesMap();
-    $map = var_export($routes, true);
-    $template = "<?hh\nreturn " . str_replace("HH\\", "", $map) . ";";
-    file_put_contents('build/URIMap.php', $template);
+    codegen\codegen_file(dirname(__FILE__).'/../lib/URIMap.php')
+      ->addClass(
+        codegen\codegen_class('URIMap')
+          ->setIsFinal()
+          ->addMethod(
+            codegen\codegen_method('getURIMap')
+              ->setReturnType('Map<string, string>')
+              ->setBody(
+                codegen\hack_builder()
+                  ->add('return ')
+                  ->addMap($routes)
+                  ->add(';')
+                  ->getCode(),
+              ),
+          ),
+      )
+      ->setIsStrict(true)
+      ->save();
     $this->printTaskSuccess("Finished Generating URI Map");
     return Robo\Result::success($this, "Finished Generating URI Map");
   }
 
   private static function getRoutesMap(): Map<string, string> {
     // Get all the php files in the cwd
-    $directory = new RecursiveDirectoryIterator(getcwd() . '/controllers');
+    $directory = new RecursiveDirectoryIterator(getcwd().'/controllers');
     $iterator = new RecursiveIteratorIterator($directory);
     $files = new RegexIterator(
       $iterator,
       '/^.+(\.php|\.hh)$/i',
       RegexIterator::MATCH,
-      RegexIterator::USE_KEY
+      RegexIterator::USE_KEY,
     );
     // Get the paths from the attributes
     $path_map = Map {};
     foreach ($files as $file) {
       $paths = self::getPathsFromFile($file->getPathname());
-      if($paths) {
+      if ($paths) {
         $path_map->addAll($paths->items());
       }
     }
@@ -43,7 +61,7 @@ class URIMapGenerator extends Robo\Task\BaseTask implements Robo\Contract\TaskIn
     $classes = self::getClassesFromFile($file);
     foreach ($classes as $class) {
       $controller = new $class();
-      if($controller instanceof BaseController) {
+      if ($controller instanceof BaseController) {
         $paths[$controller->getPath()] = $class;
       }
     }
@@ -57,10 +75,9 @@ class URIMapGenerator extends Robo\Task\BaseTask implements Robo\Contract\TaskIn
     for ($i = 2; $i < $count; $i++) {
       if ($tokens[$i - 2][0] == T_CLASS &&
           $tokens[$i - 1][0] == T_WHITESPACE &&
-          $tokens[$i][0] == T_STRING
-      ) {
-          $class_name = $tokens[$i][1];
-          $classes[] = $class_name;
+          $tokens[$i][0] == T_STRING) {
+        $class_name = $tokens[$i][1];
+        $classes[] = $class_name;
       }
     }
     return $classes;

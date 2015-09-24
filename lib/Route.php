@@ -4,11 +4,11 @@ class Route {
   public static function dispatch(string $path, string $method): void {
 
     // Get the auto-generated URI Map
-    $routes = require('build/URIMap.php');
+    $routes = URIMap::getURIMap();
 
     // Match the path
+    $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
     foreach($routes as $route_path => $controller_name) {
-      $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
       if(preg_match(
         "@^$route_path$@i",
         "$uri",
