@@ -36,6 +36,7 @@ class UserApiController extends BaseController {
       'name' => $user->getFirstName().' '.$user->getLastName(),
       'email' => $user->getEmail(),
       'age' => $user->getAge(),
+      'school' => $user->getSchool(),
       'confirmed' => ($user->getStatus() === UserState::Confirmed),
       'checked_in' => ($user->getRoles()->contains(UserRole::CheckedIn)),
       'waiver_signed' => $waver,
