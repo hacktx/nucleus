@@ -96,9 +96,7 @@ class DashboardController extends BaseController {
           <form
             action={self::getPath()}
             method="post"
-            enctype="multipart/form-data"
-            class="footer dropzone"
-            id="my-awesome-dropzone">
+            enctype="multipart/form-data">
             <h3>You successfully accepted your invitation!</h3>
             <br />
             <h4>
