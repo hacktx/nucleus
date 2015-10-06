@@ -1,15 +1,20 @@
-<?hh
+<?hh // strict
 
 class Render {
-  public static function go(:xhp $content, ?string $controller): void {
+  public static function go(
+    :xhp $content,
+    ?string $controller,
+    ?string $title,
+  ): void {
     $user = null;
-    if(Session::isActive()) {
+    if (Session::isActive()) {
       $user = Session::getUser();
     }
 
     print
-      <nucleus:layout user={$user} controller={$controller}>
+      <nucleus:layout user={$user} controller={$controller} title={$title}>
         {$content}
-      </nucleus:layout>;
+      </nucleus:layout>
+    ;
   }
 }

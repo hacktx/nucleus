@@ -22,7 +22,7 @@ class Route {
 
         $content = $controller::$method();
         if(is_object($content) && is_a($content, :xhp::class)) {
-          Render::go($content, $controller_name);
+          Render::go($content, $controller_name, $controller->getConfig()->getTitle());
         } elseif (
           (is_array($content)) ||
           (is_object($content) && is_a($content, Map::class))
@@ -37,7 +37,7 @@ class Route {
 
     // No path was matched
     http_response_code(404);
-    Render::go(FourOhFourController::get(), 'FourOhFourController');
+    Render::go(FourOhFourController::get(), FourOhFourController::class);
   }
 
   public static function redirect(string $path): void {

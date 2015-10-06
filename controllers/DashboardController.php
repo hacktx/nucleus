@@ -14,7 +14,7 @@ class DashboardController extends BaseController {
         UserState::Rejected,
         UserState::Confirmed,
       ),
-    );
+    )->setTitle('Dashboard');
   }
 
   public static function get(): :xhp {
@@ -75,13 +75,18 @@ class DashboardController extends BaseController {
               <hr />
               <p>
                 Authorization for emergency medical treatment
-                {$medical_auth_badge} (<a href="/files/medauth_adult.pdf" target="_blank">Download</a>)
+                {$medical_auth_badge} (
+                <a href="/files/medauth_adult.pdf" target="_blank">
+                  Download
+                </a>)
               </p>
               <input type="file" name="medical-auth" />
               <hr />
               <p>
-                Release and indemnification agreement
-                {$release_badge} (<a href="/files/release_nonstudent.pdf" target="_blank">Download</a>)
+                Release and indemnification agreement {$release_badge} (
+                <a href="/files/release_nonstudent.pdf" target="_blank">
+                  Download
+                </a>)
               </p>
               <input type="file" name="release" />
             </x:frag>;

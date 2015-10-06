@@ -22,4 +22,13 @@ class ControllerConfig {
   public function getUserRoles(): array<UserRole> {
     return $this->user_roles;
   }
+
+  public function setTitle(string $title): this {
+    $this->title = $title;
+    return $this;
+  }
+
+  public function getTitle(): string {
+    return $this->title;
+  }
 }

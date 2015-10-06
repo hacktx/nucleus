@@ -1,12 +1,19 @@
 <?hh // strict
 
 final class :nucleus:head extends :x:element {
+  attribute ?string title;
+
   final protected function render(): :head {
+    $title = "Nucleus";
+    if ($this->getAttribute('title')) {
+      $title = $this->getAttribute('title') . " | Nucleus";
+    }
+
     return
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Nucleus</title>
+        <title>{$title}</title>
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png" />
