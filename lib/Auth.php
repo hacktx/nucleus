@@ -17,7 +17,6 @@ class Auth {
   
   public static function logout(): void {
     Session::destroy();
-    setcookie('remember_me', false, time() - (3600 * 24 * 3650), '/');
   }
 
   public static function verifyStatus(array<UserStatus> $status): void {
