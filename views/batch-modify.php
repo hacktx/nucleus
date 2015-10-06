@@ -6,7 +6,7 @@ final class :nucleus:batch-modify extends :x:element {
   final protected function render(): :form {
     return 
       <form method="post">
-        <div class="form-inline">
+        <div class="form-inline form-group">
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon">Move</div>
