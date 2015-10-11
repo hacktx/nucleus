@@ -3,7 +3,7 @@
 namespace Facebook\HackCodegen;
 
 /**
- * For a given DormSchema, this class generates code for a class
+ * For a given ModelSchema, this class generates code for a class
  * that will allow to insert rows in a database.
  */
 class ModelMutatorGenerator {
@@ -210,19 +210,13 @@ class ModelMutatorGenerator {
 
       $body = hack_builder();
       if ($field->isManual()) {
-        // This part illustrates how to include a manual section, which the
-        // user can edit and it will be kept even if the code is regenerated.
-        // Notice that each section needs to have a unique name, since that's
-        // used to match the section when re-generating the code
-        $body
-          ->beginManualSection($name)
-          ->addInlineComment('You may manually change this section of code');
+        $body->beginManualSection($name);
       }
+
       $body
         ->addLine('$this->data["%s"] = %s;', $field->getDbColumn(), $value);
 
       if ($field->isManual()) {
-        // You always need to close a manual section
         $body->endManualSection();
       }
 
