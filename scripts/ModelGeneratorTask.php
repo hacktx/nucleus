@@ -10,10 +10,11 @@ class ModelGeneratorTask extends Robo\Task\BaseTask
   implements Robo\Contract\TaskInterface {
   public function run(): Robo\Result {
     $this->printTaskInfo('Generating Models');
+    self::generate();
     return Robo\Result::success($this, "Finished Generating Models");
   }
 
-  private static function getRoutesMap(): Map<string, string> {
+  private static function generate(): void {
     // Get all the php files in the cwd
     $directory = new RecursiveDirectoryIterator(getcwd().'/models/schema');
     $iterator = new RecursiveIteratorIterator($directory);
@@ -23,27 +24,17 @@ class ModelGeneratorTask extends Robo\Task\BaseTask
       RegexIterator::MATCH,
       RegexIterator::USE_KEY,
     );
-    // Get the paths from the attributes
-    $path_map = Map {};
-    foreach ($files as $file) {
-      $paths = self::getPathsFromFile($file->getPathname());
-      if ($paths) {
-        $path_map->addAll($paths->items());
-      }
-    }
-    return $path_map;
-  }
 
-  private static function getPathsFromFile(string $file): Map<string, string> {
-    $paths = Map {};
-    $classes = self::getClassesFromFile($file);
-    foreach ($classes as $class) {
-      $controller = new $class();
-      if ($controller instanceof BaseController) {
-        $paths[$controller->getPath()] = $class;
+    foreach ($files as $file) {
+      $classes = self::getClassesFromFile($file);
+      foreach ($classes as $class) {
+        $controller = new $class();
+        if ($controller instanceof ModelSchema) {
+          (new ModelGenerator($controller))->generate(); 
+          (new ModelMutatorGenerator($controller))->generate(); 
+        }
       }
     }
-    return $paths;
   }
 
   private static function getClassesFromFile(string $file): Vector<string> {

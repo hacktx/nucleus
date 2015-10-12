@@ -46,10 +46,7 @@ class ModelGenerator {
       ' where '.$this->schema->getIdField().'=$id';
 
     $body = hack_builder()
-      ->addLine('$conn = new PDO(\'%s\');', $this->schema->getDsn())
-      ->add('$cursor = ')
-      ->addMultilineCall('$conn->query', Vector {"\"$sql\""}, true)
-      ->addLine('$result = $cursor->fetch(PDO::FETCH_ASSOC);')
+      ->addLine('$result = DB::query("'.$sql.'");');
       ->startIfBlock('!$result')
       ->addReturn('null')
       ->endIfBlock()

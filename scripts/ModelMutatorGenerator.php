@@ -23,15 +23,10 @@ class ModelMutatorGenerator {
 
   public function generate(): void {
     $name = $this->getName();
-    // Here's an example of how to generate the code for a class.
-    // Notice the fluent interface.  It's possible to generate
-    // everything in the same method, however, for clarity
-    // sometimes it's easier to use helper methods such as
-    // getConstructor or getLoad in this examples.
+
     $class = codegen_class($name)
       ->setIsFinal()
       ->addVar($this->getDataVar())
-      ->addVar($this->getPdoTypeVar())
       ->setConstructor($this->getConstructor())
       ->addMethod($this->getCreateMethod())
       ->addMethod($this->getUpdateMethod())
@@ -39,14 +34,7 @@ class ModelMutatorGenerator {
       ->addMethod($this->getCheckRequiredFieldsMethod())
       ->addMethods($this->getSetters());
 
-    $rc = new \ReflectionClass(get_class($this->schema));
-    $path = $rc->getFileName();
-    $pos = strrpos($path, '/');
-    $dir = substr($path, 0, $pos + 1);
-
-    // This generates a file (we pass the file name) that contains the
-    // class defined above and saves it.
-    codegen_file($dir.$name.'.php')
+    codegen_file('models/'.$name.'.php')
       ->addClass($class)
       ->setIsStrict(true)
       ->setGeneratedFrom(codegen_generated_from_script())
@@ -55,60 +43,18 @@ class ModelMutatorGenerator {
 
 
   private function getDataVar(): CodegenMemberVar {
-    // Example of how to generate a class member variable, including
-    // setting an initial value.
     return codegen_member_var('data')
       ->setType('Map<string, mixed>')
       ->setValue(Map {});
   }
 
-  private function getPdoTypeVar(): CodegenMemberVar {
-    $values = Map {};
-    foreach ($this->schema->getFields() as $field) {
-      switch($field->getType()) {
-        case 'string':
-        case 'DateTime':
-          $type = 'PDO::PARAM_STR';
-          break;
-        case 'int':
-          $type = 'PDO::PARAM_INT';
-          break;
-        case 'bool':
-          $type = 'PDO::PARAM_BOOL';
-          break;
-        default:
-          invariant_violation('Undefined PDO type for %s', $field->getType());
-      }
-      $values[$field->getDbColumn()] = $type;
-    }
-
-    // Here's how we add the code for a Map. In hack_builder, the methods for
-    // adding collections allow to customize the rendering for keys/values
-    // to be either EXPORT or LITERAL.  By default is EXPORT, which will cause,
-    // for example, that if you pass a string, quotes will be added.
-    // LITERAL will just output the value without processing.  Since the values
-    // are, for example PDO::PARAM_STR, if we use EXPORT it would be
-    // 'PDO::PARAM_STR', but using LITERAL it's PDO::PARAM_STR
-    $code = hack_builder()
-      ->addMap($values, HackBuilderKeys::EXPORT, HackBuilderValues::LITERAL);
-
-    return codegen_member_var('pdoType')
-      ->setType('Map<string, int>')
-      ->setIsStatic()
-      ->setLiteralValue($code->getCode());
-  }
-
   private function getConstructor(): CodegenConstructor {
-    // This very simple exampe of generating a constructor shows
-    // how to change its accesibility to private.  The same would
-    // work in a method.
     return codegen_constructor()
       ->addParameter('private ?int $id = null')
       ->setPrivate();
   }
 
   private function getCreateMethod(): CodegenMethod {
-    // This is a very simple example of generating a method
     return codegen_method('create')
       ->setReturnType('this')
       ->setBody(
@@ -119,7 +65,6 @@ class ModelMutatorGenerator {
   }
 
   private function getUpdateMethod(): CodegenMethod {
-    // This is a very simple example of generating a method
     return codegen_method('update')
       ->addParameter('int $id')
       ->setReturnType('this')
@@ -131,38 +76,21 @@ class ModelMutatorGenerator {
   }
 
   private function getSaveMethod(): CodegenMethod {
-    // Here's an example of building a piece of code with hack_builder.
-    // Notice addMultilineCall, which makes easy to call a method and
-    // wrap it in multiple lines if needed to.
-    // Also notice that you can use startIfBlock to write an if statement
     $body = hack_builder()
-      ->addLine('$conn = new PDO(\'%s\');', $this->schema->getDsn())
-      ->addMultilineCall(
-        '$quoted = $this->data->mapWithKey',
-        Vector{'($k, $v) ==> $conn->quote($v, self::$pdoType[$k])'},
-      )
       ->addAssignment('$id', '$this->id')
       ->startIfBlock('$id === null')
       ->addLine('$this->checkRequiredFields();')
-      ->addLine('$names = "(".implode(",", $quoted->keys()).")";')
-      ->addLine('$values = "(".implode(",", $quoted->values()).")";')
       ->addLine(
-        '$st = "insert into %s $names values $values";',
-        $this->schema->getTableName(),
+        'DB::insert("%s", $this->data);',
+        $this->schema->getTableName()
       )
-      ->addLine('$conn->exec($st);')
-      ->addReturn('(int) $conn->lastInsertId()')
+      ->addReturn('(int) DB::insertId()')
       ->addElseBlock()
-      ->addAssignment(
-        '$pairs',
-        '$quoted->mapWithKey(($field, $value) ==>  "$field=$value")',
-      )
       ->addLine(
-        '$st = "update %s set ".implode(",", $pairs)." where %s=".$this->id;',
+        'DB::update("%s", $this->data, "%s=%%s", $this->id);',
         $this->schema->getTableName(),
-        $this->schema->getIdField(),
+        $this->schema->getIdField()
       )
-      ->addLine('$conn->exec($st);')
       ->addReturn('$id')
       ->endIfBlock();
 
