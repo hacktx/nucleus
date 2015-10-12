@@ -4,7 +4,7 @@ final class :nucleus:batch-modify extends :x:element {
   children (:option+);
 
   final protected function render(): :form {
-    return 
+    return
       <form method="post">
         <div class="form-inline form-group">
           <div class="form-group">

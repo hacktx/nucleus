@@ -21,13 +21,24 @@ final class :nucleus:nav-buttons extends :x:element {
         </li>
       </ul>;
 
-    if ($roles->contains(UserRole::Organizer) || $roles->contains(UserRole::Superuser)) {
+    if ($roles->contains(UserRole::Organizer) ||
+        $roles->contains(UserRole::Superuser)) {
       $nav_buttons->appendChild(
         <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Members <span class="caret"></span></a>
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false">
+            Members <span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a href={MembersController::getPath()}>Table</a></li>
-            <li><a href={BatchModifyController::getPath()}>Batch Modify</a></li>
+            <li>
+              <a href={BatchModifyController::getPath()}>Batch Modify</a>
+            </li>
             <li><a href={EmailController::getPath()}>Email</a></li>
           </ul>
         </li>

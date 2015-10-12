@@ -20,7 +20,7 @@ final class :nucleus:accept-invite extends :x:element {
                 can do this later if you want. PDFs only.
               </p>
               <div class="form-group resume">
-                <input type="file" name="resume" /> 
+                <input type="file" name="resume" />
               </div>
               <hr />
 
