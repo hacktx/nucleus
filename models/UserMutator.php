@@ -17,11 +17,11 @@ final class UserMutator {
   private function __construct(private ?int $id = null) {
   }
 
-  public function create(): this {
+  public static function create(): this {
     return new UserMutator();
   }
 
-  public function update(int $id): this {
+  public static function update(int $id): this {
     return new UserMutator($id);
   }
 

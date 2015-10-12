@@ -84,7 +84,26 @@ class ConfirmUserController extends BaseController {
       Route::redirect(FrontpageController::getPath());
     }
 
-    $user = User::create($_SESSION['mlh_user']);
+    $mlh_user = $_SESSION['mlh_user'];
+    $user_id = UserMutator::create()
+      ->setID($mlh_user->getId())
+      ->setEmail($mlh_user->getEmail())
+      ->setFirstName($mlh_user->getFirstName())
+      ->setLastName($mlh_user->getLastName())
+      ->setGraduation($mlh_user->getGraduation())
+      ->setMajor($mlh_user->getMajor())
+      ->setShirtSize($mlh_user->getShirtSize())
+      ->setDietaryRestrictions($mlh_user->getDietaryRestrictions())
+      ->setSpecialNeeds($mlh_user->getSpecialNeeds())
+      ->setBirthday($mlh_user->getBirthday())
+      ->setGender($mlh_user->getGender())
+      ->setPhoneNumber($mlh_user->getPhoneNumber())
+      ->setSchool($mlh_user->getSchool())
+      ->setStatus(UserState::Pending)
+      ->save();
+
+    $user = User::load($user_id);
+
     if (!$user) {
       Flash::set(Flash::ERROR, 'User creation failed');
       Route::redirect('/');

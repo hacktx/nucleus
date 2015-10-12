@@ -24,7 +24,7 @@ class OAuthCallbackController extends BaseController {
     try {
       $mlh_user = $provider->getResourceOwner($token);
 
-      $user = User::genByID($mlh_user->getId());
+      $user = User::load($mlh_user->getId());
 
       if($user) {
         Session::create($user);

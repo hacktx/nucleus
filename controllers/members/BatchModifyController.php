@@ -25,7 +25,6 @@ class BatchModifyController extends BaseController {
 
   public static function post(): void {
     $from = UserState::getValues()[$_POST['from']];
-    $to = UserState::getValues()[$_POST['to']];
     $order = $_POST['place'] === "First" ? "ASC" : "DESC";
 
     // Get [n] applicants who are in the "from" state
@@ -41,7 +40,9 @@ class BatchModifyController extends BaseController {
 
     // Move the [n] applications to the "to" state and email them
     foreach ($query as $row) {
-      User::updateStatusByID($to, (int) $row['id']);
+      UserMutator::update((int) $row['id'])
+        ->setStatus((int) $_POST['to'])
+        ->save();
       $email = new SendGrid\Email();
       $email->addTo($row['email'])
         ->setFrom("noreply@hacktx.com")

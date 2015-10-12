@@ -18,7 +18,9 @@ class AcceptInviteController extends BaseController {
 
     // The user has denied their invite
     if (isset($_POST['deny'])) {
-      User::updateStatusByID(UserState::Rejected, $user->getID());
+      UserMutator::update($user->getID())
+        ->setStatus(UserState::Rejected)
+        ->save();
       Flash::set(
         Flash::SUCCESS,
         "Your invitation was successfully declined.",
@@ -113,7 +115,9 @@ class AcceptInviteController extends BaseController {
     $client->addEvent('confirmation', $data->toArray());
 
     // Set the user to confirmed
-    User::updateStatusByID(UserState::Confirmed, $user->getID());
+    UserMutator::update($user->getID())
+      ->setStatus(UserState::Confirmed)
+      ->save();
     Flash::set(Flash::SUCCESS, "You've successfully confirmed.");
     Route::redirect(DashboardController::getPath());
   }

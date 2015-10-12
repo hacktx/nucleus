@@ -138,7 +138,9 @@ class MembersController extends BaseController {
     $user_id = (int) $_POST['user'];
 
     if ($_POST['status'] !== "") {
-      User::updateStatusByID(UserState::assert($_POST['status']), $user_id);
+      UserMutator::update($user_id)
+        ->setStatus((int) $_POST['status'])
+        ->save();
     } else if ($_POST['role'] !== "") {
       $role = UserRole::assert($_POST['role']);
       if (!Roles::getRoles($user_id)->contains($role)) {

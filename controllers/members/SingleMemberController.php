@@ -13,7 +13,7 @@ class SingleMemberController extends BaseController {
 
   public static function get(): :xhp {
     $id = (int) self::getPathParam('id');
-    $user = User::genByID($id);
+    $user = User::load($id);
     if (!$user) {
       Flash::set(Flash::ERROR, "User not found");
       Route::redirect(MembersController::getPath());

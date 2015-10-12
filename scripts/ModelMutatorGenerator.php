@@ -57,6 +57,7 @@ class ModelMutatorGenerator {
   private function getCreateMethod(): CodegenMethod {
     return codegen_method('create')
       ->setReturnType('this')
+      ->setIsStatic()
       ->setBody(
         hack_builder()
         ->addReturn('new %s()', $this->getName())
@@ -68,6 +69,7 @@ class ModelMutatorGenerator {
     return codegen_method('update')
       ->addParameter('int $id')
       ->setReturnType('this')
+      ->setIsStatic()
       ->setBody(
         hack_builder()
         ->addReturn('new %s($id)', $this->getName())
