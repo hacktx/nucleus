@@ -20,7 +20,7 @@ class DashboardController extends BaseController {
   public static function get(): :xhp {
     $user = Session::getUser();
 
-    $user_status = $user->getStatus();
+    $user_status = $user->getState();
     $status = UserState::getNames()[$user_status];
 
     $child = null;

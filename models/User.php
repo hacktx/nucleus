@@ -3,7 +3,7 @@
  * This file is partially generated. Only make modifications between BEGIN
  * MANUAL SECTION and END MANUAL SECTION designators.
  *
- * @partially-generated SignedSource<<d65aef0bd621a81136bce015c1b5d596>>
+ * @partially-generated SignedSource<<ae9f60fd67105cdfe6f71230ed05e7f2>>
  */
 
 final class User {
@@ -12,7 +12,7 @@ final class User {
   }
 
   public static function load(int $id): ?User {
-    $result = DB::query("select * from users where id=$id");
+    $result = DB::queryFirstRow("SELECT * FROM users WHERE id=%s", $id);
     if (!$result) {
       return null;
     }
@@ -78,6 +78,10 @@ final class User {
   /* BEGIN MANUAL SECTION User_footer */
   public function getRoles(): Set<UserRole> {
     return Roles::getRoles($this->getID());
+  }
+
+  public function getState(): UserState {
+    return UserState::assert($this->getStatus());
   }
   /* END MANUAL SECTION */
 }

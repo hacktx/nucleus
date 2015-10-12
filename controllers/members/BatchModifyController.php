@@ -41,7 +41,7 @@ class BatchModifyController extends BaseController {
     // Move the [n] applications to the "to" state and email them
     foreach ($query as $row) {
       UserMutator::update((int) $row['id'])
-        ->setStatus(UserState::getValues()[$_POST['to']])
+        ->setState(UserState::getValues()[$_POST['to']])
         ->save();
       $email = new SendGrid\Email();
       $email->addTo($row['email'])

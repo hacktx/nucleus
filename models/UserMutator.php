@@ -1,8 +1,9 @@
 <?hh // strict
 /**
- * This file is generated. Do not modify it manually!
+ * This file is partially generated. Only make modifications between BEGIN
+ * MANUAL SECTION and END MANUAL SECTION designators.
  *
- * @generated SignedSource<<d211bbe899b5b8c5385bae79e74ad41d>>
+ * @partially-generated SignedSource<<1218eec815bf380c8897c6f3fdb00cab>>
  */
 
 final class UserMutator {
@@ -130,4 +131,10 @@ final class UserMutator {
     $this->data["status"] = $value;
     return $this;
   }
+
+  /* BEGIN MANUAL SECTION UserMutator_footer */
+  public function setState(UserState $state): this {
+    return $this->setStatus((int) $state);
+  }
+  /* END MANUAL SECTION */
 }

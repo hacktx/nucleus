@@ -99,7 +99,7 @@ class ConfirmUserController extends BaseController {
       ->setGender($mlh_user->getGender())
       ->setPhoneNumber($mlh_user->getPhoneNumber())
       ->setSchool($mlh_user->getSchool())
-      ->setStatus(UserState::Pending)
+      ->setState(UserState::Pending)
       ->save();
 
     $user = User::load($user_id);

@@ -26,7 +26,9 @@ class SingleMemberController extends BaseController {
     }
 
     $age =
-      (new DateTime($user->getBirthday()))->diff(new DateTime('today'))->y;
+      (new DateTime($user->getBirthday()->format('Y-m-d H:i:s')))
+        ->diff(new DateTime('today'))
+        ->y;
 
     return
       <div class="col-md-8 col-md-offset-2">
@@ -34,7 +36,7 @@ class SingleMemberController extends BaseController {
           <div class="panel-heading">
             <h1>{$user->getFirstName().' '.$user->getLastName()}</h1>
           </div>
-          <p>Status: {UserState::getNames()[$user->getStatus()]}</p>
+          <p>Status: {UserState::getNames()[$user->getState()]}</p>
           <p>School: {$user->getSchool()}</p>
           <p>Major: {$user->getMajor()}</p>
           <p>

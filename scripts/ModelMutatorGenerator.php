@@ -33,7 +33,8 @@ class ModelMutatorGenerator {
       ->addMethod($this->getDeleteMethod())
       ->addMethod($this->getSaveMethod())
       ->addMethod($this->getCheckRequiredFieldsMethod())
-      ->addMethods($this->getSetters());
+      ->addMethods($this->getSetters())
+      ->setHasManualMethodSection();
 
     codegen_file(dirname(__FILE__).'/../models/'.$name.'.php')
       ->addClass($class)

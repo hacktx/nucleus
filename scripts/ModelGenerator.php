@@ -41,12 +41,12 @@ class ModelGenerator {
   }
 
   private function getLoad(): CodegenMethod {
-    $sql = 'select * from '.
-      $this->schema->getTableName().
-      ' where '.$this->schema->getIdField().'=$id';
-
     $body = hack_builder()
-      ->addLine('$result = DB::query("'.$sql.'");')
+      ->addLine(
+        '$result = DB::queryFirstRow("SELECT * FROM %s WHERE %s=%%s", $id);',
+        $this->schema->getTableName(),
+        $this->schema->getIdField()
+      )
       ->startIfBlock('!$result')
       ->addReturn('null')
       ->endIfBlock()

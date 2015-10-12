@@ -1,17 +1,5 @@
 <?hh
 class Auth {
-  public static function login(int $id): bool {
-    $user = User::load($id);
-
-    if (!$user) {
-      return false;
-    }
-
-    Session::create($user);
-
-    return true;
-  }
-  
   public static function logout(): void {
     Session::destroy();
   }
