@@ -6,7 +6,7 @@ class Session {
 
     // If there's an active user in the session, refresh it
     if (isset($_SESSION['user'])) {
-      $user = User::genByID($_SESSION['user']->getID());
+      $user = User::load($_SESSION['user']->getID());
       $_SESSION['user'] = $user;
       return $user;
     }

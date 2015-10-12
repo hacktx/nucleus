@@ -1,55 +1,25 @@
 <?hh
+/**
+ * This file is generated. Do not modify it manually!
+ *
+ * To re-generate this file run
+ * /home/rmlynch/nucleus-beta/vendor/codegyre/robo/robo
+ *
+ *
+ * @generated SignedSource<<3fc6f84d3629a26cef4faff73999f2b2>>
+ */
 
-enum UserState : int {
-  Pending = 0;
-  Accepted = 1;
-  Waitlisted = 2;
-  Rejected = 3;
-  Confirmed = 4;
-}
+final class User {
 
-class User {
-  private Map<string, mixed> $data;
-  private Set<UserRole> $roles = Set {};
-
-  private function __construct(Map<string, mixed> $data) {
-    $this->data = $data;
+  private function __construct(private Map<string, mixed> $data) {
   }
 
-  public static function create(
-    League\OAuth2\Client\Provider\MLHUser $mlh_user,
-  ): ?User {
-    DB::query(
-      "SELECT * FROM users WHERE id=%d OR email=%s",
-      $mlh_user->getId(),
-      $mlh_user->getEmail(),
-    );
-
-    if (DB::count() != 0) {
+  public static function load(int $id): ?User {
+    $result = DB::query("select * from user where id=$id");
+    if (!$result) {
       return null;
     }
-
-    DB::insert(
-      'users',
-      Map {
-        'id' => $mlh_user->getId(),
-        'email' => $mlh_user->getEmail(),
-        'fname' => $mlh_user->getFirstName(),
-        'lname' => $mlh_user->getLastName(),
-        'graduation' => $mlh_user->getGraduation(),
-        'major' => $mlh_user->getMajor(),
-        'shirt_size' => $mlh_user->getShirtSize(),
-        'dietary_restrictions' => $mlh_user->getDietaryRestrictions(),
-        'special_needs' => $mlh_user->getSpecialNeeds(),
-        'birthday' => $mlh_user->getBirthday(),
-        'gender' => $mlh_user->getGender(),
-        'phone_number' => $mlh_user->getPhoneNumber(),
-        'school' => $mlh_user->getSchool(),
-        'status' => UserState::Pending,
-      },
-    );
-
-    return self::genByID($mlh_user->getId());
+    return new User(new Map($result));
   }
 
   public function getID(): int {
@@ -68,85 +38,43 @@ class User {
     return (string) $this->data['lname'];
   }
 
-  public function getRoles(): Set<UserRole> {
-    return $this->roles;
-  }
-
-  public function getStatus(): UserState {
-    return UserState::assert($this->data['status']);
-  }
-
-  public function getCreated(): DateTime {
-    return new DateTime($this->data['created']);
-  }
-
-  public function getGender(): string {
-    return (string) $this->data['gender'];
-  }
-
-  public function getSchool(): string {
-    return (string) $this->data['school'];
+  public function getGraduation(): string {
+    return (string) $this->data['graduation'];
   }
 
   public function getMajor(): string {
     return (string) $this->data['major'];
   }
 
-  public function getAge(): int {
-    return
-      (new DateTime($this->data['birthday']))->diff(new DateTime('today'))->y;
+  public function getShirtSize(): string {
+    return (string) $this->data['shirt_size'];
   }
 
-  public function isPending(): bool {
-    return $this->data['status'] == UserState::Pending;
+  public function getDietaryRestrictions(): string {
+    return (string) $this->data['dietary_restrictions'];
   }
 
-  public function isAccepted(): bool {
-    return $this->data['status'] == UserState::Accepted;
+  public function getSpecialNeeds(): string {
+    return (string) $this->data['special_needs'];
   }
 
-  public function isWaitlisted(): bool {
-    return $this->data['status'] == UserState::Waitlisted;
+  public function getBirthday(): DateTime {
+    return new DateTime($this->data['birthday']);
   }
 
-  public function isRejected(): bool {
-    return $this->data['status'] == UserState::Rejected;
+  public function getGender(): string {
+    return (string) $this->data['gender'];
   }
 
-  public function delete(): void {
-    self::deleteByID($this->data['id']);
+  public function getPhoneNumber(): string {
+    return (string) $this->data['phone_number'];
   }
 
-  public static function genByID($user_id): ?User {
-    $query = DB::queryFirstRow("SELECT * FROM users WHERE id=%s", $user_id);
-    if (!$query) {
-      return null;
-    }
-    $user = new User(new Map($query));
-    $user->roles = Roles::getRoles($user->getID());
-
-    return $user;
+  public function getSchool(): string {
+    return (string) $this->data['school'];
   }
 
-  public static function genByEmail(string $email): ?User {
-    $query = DB::queryFirstRow("SELECT * FROM users WHERE email=%s", $email);
-    if (!$query) {
-      return null;
-    }
-    $user = new User(new Map($query));
-    $user->roles = Roles::getRoles($user->getID());
-
-    return $user;
-  }
-
-  public static function updateStatusByID(
-    UserState $status,
-    int $user_id,
-  ): void {
-    DB::update('users', Map{'status' => $status}, "id=%s", $user_id);
-  }
-
-  public static function deleteByID($user_id): void {
-    DB::delete('users', 'id=%s', $user_id);
+  public function getStatus(): int {
+    return (int) $this->data['status'];
   }
 }

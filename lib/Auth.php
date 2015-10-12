@@ -1,10 +1,7 @@
 <?hh
 class Auth {
-  public static function login(
-    string $id,
-    string $password
-  ): bool {
-    $user = User::genByID($id);
+  public static function login(int $id): bool {
+    $user = User::load($id);
 
     if (!$user) {
       return false;
