@@ -34,7 +34,7 @@ class ModelMutatorGenerator {
       ->addMethod($this->getCheckRequiredFieldsMethod())
       ->addMethods($this->getSetters());
 
-    codegen_file('models/'.$name.'.php')
+    codegen_file(dirname(__FILE__).'/../models/'.$name.'.php')
       ->addClass($class)
       ->setIsStrict(true)
       ->setGeneratedFrom(codegen_generated_from_script())

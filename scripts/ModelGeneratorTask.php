@@ -1,5 +1,8 @@
 <?hh
 
+require_once('scripts/ModelGenerator.php');
+require_once('scripts/ModelMutatorGenerator.php');
+
 trait ModelGeneratorTrait {
   public function taskGenModels() {
     return new ModelGeneratorTask();
@@ -26,12 +29,12 @@ class ModelGeneratorTask extends Robo\Task\BaseTask
     );
 
     foreach ($files as $file) {
-      $classes = self::getClassesFromFile($file);
+      $classes = self::getClassesFromFile($file->getPathname());
       foreach ($classes as $class) {
         $controller = new $class();
         if ($controller instanceof ModelSchema) {
-          (new ModelGenerator($controller))->generate(); 
-          (new ModelMutatorGenerator($controller))->generate(); 
+          (new Facebook\HackCodegen\ModelGenerator($controller))->generate(); 
+          (new Facebook\HackCodegen\ModelMutatorGenerator($controller))->generate(); 
         }
       }
     }

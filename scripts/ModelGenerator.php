@@ -28,7 +28,7 @@ class ModelGenerator {
       ->addMethod($this->getLoad())
       ->addMethods($this->getGetters());
 
-    codegen_file('models/'.$this->getSchemaName().'.php')
+    codegen_file(dirname(__FILE__).'/../models/'.$this->getSchemaName().'.php')
       ->addClass($class)
       ->setGeneratedFrom(codegen_generated_from_script())
       ->save();
@@ -46,7 +46,7 @@ class ModelGenerator {
       ' where '.$this->schema->getIdField().'=$id';
 
     $body = hack_builder()
-      ->addLine('$result = DB::query("'.$sql.'");');
+      ->addLine('$result = DB::query("'.$sql.'");')
       ->startIfBlock('!$result')
       ->addReturn('null')
       ->endIfBlock()
