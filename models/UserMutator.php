@@ -2,7 +2,7 @@
 /**
  * This file is generated. Do not modify it manually!
  *
- * @generated SignedSource<<bbab75426ac5dec1127941e137b0756b>>
+ * @generated SignedSource<<d211bbe899b5b8c5385bae79e74ad41d>>
  */
 
 final class UserMutator {
@@ -126,12 +126,7 @@ final class UserMutator {
     return $this;
   }
 
-  public function setStatus(UserState $value): this {
-    $this->data["status"] = $value;
-    return $this;
-  }
-
-  public function setRoles(UserRole $value): this {
+  public function setStatus(int $value): this {
     $this->data["status"] = $value;
     return $this;
   }

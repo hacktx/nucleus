@@ -50,8 +50,4 @@ class ModelField {
   public static function bool_field(string $name): ModelField {
     return new ModelField($name, 'bool');
   }
-
-  public static function custom_field(string $name, string $type): ModelField {
-    return new ModelField($name, $type);
-  }
 }

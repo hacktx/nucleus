@@ -26,7 +26,8 @@ class ModelGenerator {
       ->setIsFinal()
       ->setConstructor($this->getConstructor())
       ->addMethod($this->getLoad())
-      ->addMethods($this->getGetters());
+      ->addMethods($this->getGetters())
+      ->setHasManualMethodSection();
 
     codegen_file(dirname(__FILE__).'/../models/'.$this->getSchemaName().'.php')
       ->addClass($class)

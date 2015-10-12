@@ -16,8 +16,7 @@ class UserSchema implements ModelSchema {
       'Gender' => ModelField::string_field('gender'),
       'PhoneNumber' => ModelField::string_field('phone_number'),
       'School' => ModelField::string_field('school'),
-      'Status' => ModelField::custom_field('status', UserState::class),
-      'Roles' => ModelField::custom_field('status', UserRole::class),
+      'Status' => ModelField::int_field('status'),
     };
   }
 

@@ -1,8 +1,9 @@
 <?hh
 /**
- * This file is generated. Do not modify it manually!
+ * This file is partially generated. Only make modifications between BEGIN
+ * MANUAL SECTION and END MANUAL SECTION designators.
  *
- * @generated SignedSource<<03e2db1d65370c0c67d413a052e09fc7>>
+ * @partially-generated SignedSource<<d65aef0bd621a81136bce015c1b5d596>>
  */
 
 final class User {
@@ -70,11 +71,13 @@ final class User {
     return (string) $this->data['school'];
   }
 
-  public function getStatus(): UserState {
-    return (UserState) $this->data['status'];
+  public function getStatus(): int {
+    return (int) $this->data['status'];
   }
 
-  public function getRoles(): UserRole {
-    return (UserRole) $this->data['status'];
+  /* BEGIN MANUAL SECTION User_footer */
+  public function getRoles(): Set<UserRole> {
+    return Roles::getRoles($this->getID());
   }
+  /* END MANUAL SECTION */
 }
