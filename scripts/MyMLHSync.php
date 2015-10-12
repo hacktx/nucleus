@@ -27,7 +27,7 @@ class MyMLHSync {
 
       DB::update(
         'users',
-        array(
+        Map {
           'email' => $user->email,
           'fname' => $user->first_name,
           'lname' => $user->last_name,
@@ -40,7 +40,7 @@ class MyMLHSync {
           'gender' => $user->gender,
           'phone_number' => $user->phone_number,
           'school' => $user->school->name,
-        ),
+        },
         'id=%i',
         $user->id,
       );

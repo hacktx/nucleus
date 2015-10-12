@@ -36,11 +36,11 @@ class VolunteerController extends BaseController {
 
       DB::insertUpdate(
         'volunteer',
-        array(
+        Map {
           'id' => $volunteer['id'],
           'name' => $volunteer['name'],
           'email' => $volunteer['email'],
-        ),
+        },
       );
     }
 

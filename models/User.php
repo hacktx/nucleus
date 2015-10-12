@@ -31,7 +31,7 @@ class User {
 
     DB::insert(
       'users',
-      array(
+      Map {
         'id' => $mlh_user->getId(),
         'email' => $mlh_user->getEmail(),
         'fname' => $mlh_user->getFirstName(),
@@ -46,7 +46,7 @@ class User {
         'phone_number' => $mlh_user->getPhoneNumber(),
         'school' => $mlh_user->getSchool(),
         'status' => UserState::Pending,
-      ),
+      },
     );
 
     return self::genByID($mlh_user->getId());
@@ -143,7 +143,7 @@ class User {
     UserState $status,
     int $user_id,
   ): void {
-    DB::update('users', array('status' => $status), "id=%s", $user_id);
+    DB::update('users', Map{'status' => $status}, "id=%s", $user_id);
   }
 
   public static function deleteByID($user_id): void {

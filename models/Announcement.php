@@ -10,10 +10,10 @@ final class Announcement {
     string $text,
     string $timestamp
   ): ?Announcement {
-    DB::insert('announcement', array(
+    DB::insert('announcement', Map {
       'text' => $text,
       'timestamp' => date("Y-m-d H:i:s", (int)$timestamp),
-    ));
+    });
 
     return self::genByID(DB::insertId());
   }

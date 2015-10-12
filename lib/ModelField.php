@@ -34,20 +34,20 @@ class ModelField {
   public function isManual(): bool {
     return $this->manual;
   }
-}
 
-function string_field(string $name): ModelField {
-  return new ModelField($name, 'string');
-}
+  public static function string_field(string $name): ModelField {
+    return new ModelField($name, 'string');
+  }
 
-function date_field(string $name): ModelField {
-  return new ModelField($name, 'DateTime');
-}
+  public static function date_field(string $name): ModelField {
+    return new ModelField($name, 'DateTime');
+  }
 
-function int_field(string $name): ModelField {
-  return new ModelField($name, 'int');
-}
+  public static function int_field(string $name): ModelField {
+    return new ModelField($name, 'int');
+  }
 
-function bool_field(string $name): ModelField {
-  return new ModelField($name, 'bool');
+  public static function bool_field(string $name): ModelField {
+    return new ModelField($name, 'bool');
+  }
 }
