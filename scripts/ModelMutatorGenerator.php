@@ -30,6 +30,7 @@ class ModelMutatorGenerator {
       ->setConstructor($this->getConstructor())
       ->addMethod($this->getCreateMethod())
       ->addMethod($this->getUpdateMethod())
+      ->addMethod($this->getDeleteMethod())
       ->addMethod($this->getSaveMethod())
       ->addMethod($this->getCheckRequiredFieldsMethod())
       ->addMethods($this->getSetters());
@@ -37,7 +38,6 @@ class ModelMutatorGenerator {
     codegen_file(dirname(__FILE__).'/../models/'.$name.'.php')
       ->addClass($class)
       ->setIsStrict(true)
-      ->setGeneratedFrom(codegen_generated_from_script())
       ->save();
   }
 
@@ -73,6 +73,22 @@ class ModelMutatorGenerator {
       ->setBody(
         hack_builder()
         ->addReturn('new %s($id)', $this->getName())
+        ->getCode()
+      );
+  }
+
+  private function getDeleteMethod(): CodegenMethod {
+    return codegen_method('delete')
+      ->addParameter('int $id')
+      ->setReturnType('void')
+      ->setIsStatic()
+      ->setBody(
+        hack_builder()
+        ->addLine(
+          'DB::delete("%s", "%s=%%s", $id);', 
+          $this->schema->getTableName(),
+          $this->schema->getIdField()
+        )
         ->getCode()
       );
   }

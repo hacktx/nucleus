@@ -18,7 +18,8 @@ class CheckinApiController extends BaseController {
       return Map {"error" => "Volunteer ID not found"};
     }
 
-    $user = User::genByEmail((string) $post['email']);
+    $user = DB::query("SELECT * FROM users WHERE email=%s", (string) $post['email']);
+    $user = User::load($user['id']);
     if (!$user) {
       http_response_code(404);
       return Map {"error" => "User not found"};

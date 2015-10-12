@@ -30,7 +30,7 @@ class DeleteAccountController extends BaseController {
 
   public static function post(): void {
     $user = Session::getUser();
-    $user->delete();
+    UserMutator::delete($user->getID());
 
     Flash::set(Flash::SUCCESS, "Your account was successfully deleted");
     Route::redirect(FrontpageController::getPath());

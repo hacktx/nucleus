@@ -25,6 +25,9 @@ class SingleMemberController extends BaseController {
       $roles[] = <span>{$role}&nbsp;</span>;
     }
 
+    $age =
+      (new DateTime($user->getBirthday()))->diff(new DateTime('today'))->y;
+
     return
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
@@ -40,7 +43,7 @@ class SingleMemberController extends BaseController {
               {$user->getEmail()}
             </a>
           </p>
-          <p>Age: {$user->getAge()}</p>
+          <p>Age: {$age}</p>
           <p>Attributes: {$roles}</p>
         </div>
       </div>;

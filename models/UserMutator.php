@@ -2,11 +2,7 @@
 /**
  * This file is generated. Do not modify it manually!
  *
- * To re-generate this file run
- * /home/rmlynch/nucleus-beta/vendor/codegyre/robo/robo
- *
- *
- * @generated SignedSource<<541baeed23f17d7d5fa527f137780f7c>>
+ * @generated SignedSource<<bbab75426ac5dec1127941e137b0756b>>
  */
 
 final class UserMutator {
@@ -25,14 +21,18 @@ final class UserMutator {
     return new UserMutator($id);
   }
 
+  public static function delete(int $id): void {
+    DB::delete("users", "id=%s", $id);
+  }
+
   public function save(): int {
     $id = $this->id;
     if ($id === null) {
       $this->checkRequiredFields();
-      DB::insert("user", $this->data);
+      DB::insert("users", $this->data);
       return (int) DB::insertId();
     } else {
-      DB::update("user", $this->data, "id=%s", $this->id);
+      DB::update("users", $this->data, "id=%s", $this->id);
       return $id;
     }
   }
@@ -126,7 +126,12 @@ final class UserMutator {
     return $this;
   }
 
-  public function setStatus(int $value): this {
+  public function setStatus(UserState $value): this {
+    $this->data["status"] = $value;
+    return $this;
+  }
+
+  public function setRoles(UserRole $value): this {
     $this->data["status"] = $value;
     return $this;
   }

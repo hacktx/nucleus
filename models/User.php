@@ -2,11 +2,7 @@
 /**
  * This file is generated. Do not modify it manually!
  *
- * To re-generate this file run
- * /home/rmlynch/nucleus-beta/vendor/codegyre/robo/robo
- *
- *
- * @generated SignedSource<<3fc6f84d3629a26cef4faff73999f2b2>>
+ * @generated SignedSource<<03e2db1d65370c0c67d413a052e09fc7>>
  */
 
 final class User {
@@ -15,7 +11,7 @@ final class User {
   }
 
   public static function load(int $id): ?User {
-    $result = DB::query("select * from user where id=$id");
+    $result = DB::query("select * from users where id=$id");
     if (!$result) {
       return null;
     }
@@ -74,7 +70,11 @@ final class User {
     return (string) $this->data['school'];
   }
 
-  public function getStatus(): int {
-    return (int) $this->data['status'];
+  public function getStatus(): UserState {
+    return (UserState) $this->data['status'];
+  }
+
+  public function getRoles(): UserRole {
+    return (UserRole) $this->data['status'];
   }
 }

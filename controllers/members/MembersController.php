@@ -139,7 +139,7 @@ class MembersController extends BaseController {
 
     if ($_POST['status'] !== "") {
       UserMutator::update($user_id)
-        ->setStatus((int) $_POST['status'])
+        ->setStatus(UserState::getValues()[$_POST['status']])
         ->save();
     } else if ($_POST['role'] !== "") {
       $role = UserRole::assert($_POST['role']);

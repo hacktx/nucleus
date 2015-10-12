@@ -30,7 +30,6 @@ class ModelGenerator {
 
     codegen_file(dirname(__FILE__).'/../models/'.$this->getSchemaName().'.php')
       ->addClass($class)
-      ->setGeneratedFrom(codegen_generated_from_script())
       ->save();
   }
 

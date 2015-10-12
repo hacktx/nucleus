@@ -16,12 +16,13 @@ class UserSchema implements ModelSchema {
       'Gender' => ModelField::string_field('gender'),
       'PhoneNumber' => ModelField::string_field('phone_number'),
       'School' => ModelField::string_field('school'),
-      'Status' => ModelField::int_field('status'),
+      'Status' => ModelField::custom_field('status', UserState::class),
+      'Roles' => ModelField::custom_field('status', UserRole::class),
     };
   }
 
   public function getTableName(): string {
-    return 'user';
+    return 'users';
   }
 
   public function getIdField(): string {

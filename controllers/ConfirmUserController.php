@@ -118,8 +118,6 @@ class ConfirmUserController extends BaseController {
       ],
     );
     $user_data = $_SESSION['mlh_user']->toArray();
-    $user_data['keen']['timestamp'] =
-      $user->getCreated()->format('Y-m-d H:i:s');
     $client->addEvent('sign_ups', $user_data);
 
     unset($_SESSION['mlh_user']);
