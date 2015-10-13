@@ -7,7 +7,6 @@ final class :nucleus:members-table extends :x:element {
   attribute :xhp:html-element;
 
   protected function render(): XHPRoot {
-    // Self-explanatory :)
     $this->constructReactInstance(
       'MembersTable',
       Map {'someAttribute' => 'test' }
