@@ -13,7 +13,10 @@ class SlackApiController extends BaseController {
       return;
     }
 
-    Announcement::create($_POST['text'], $_POST['timestamp']);
+    AnnouncementMutator::create()
+      ->setText($_POST['text'])
+      ->setTimestamp($_POST['timestamp'])
+      ->save();
 
     $push_data = array(
       'alert' => $_POST['text'],

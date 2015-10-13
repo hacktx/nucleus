@@ -1,41 +1,37 @@
 <?hh
+/**
+ * This file is partially generated. Only make modifications between BEGIN
+ * MANUAL SECTION and END MANUAL SECTION designators.
+ *
+ * @partially-generated SignedSource<<7d8f29e8e8044e578602e6e5c8155a07>>
+ */
 
 final class Announcement {
 
-  protected int $id = 0;
-  protected string $text = '';
-  protected string $timestamp = '';
-
-  public static function create(
-    string $text,
-    string $timestamp
-  ): ?Announcement {
-    DB::insert('announcement', Map {
-      'text' => $text,
-      'timestamp' => date("Y-m-d H:i:s", (int)$timestamp),
-    });
-
-    return self::genByID(DB::insertId());
+  private function __construct(private Map<string, mixed> $data) {
   }
 
-  public static function genByID(int $id): ?Announcement {
-    $query = DB::queryFirstRow('SELECT * FROM announcement WHERE id=%s', $id);
-    if (!$query) {
+  public static function load(int $id): ?Announcement {
+    $result = DB::queryFirstRow("SELECT * FROM announcement WHERE id=%s", $id);
+    if (!$result) {
       return null;
     }
+    return new Announcement(new Map($result));
+  }
 
-    $res = new Announcement();
-    $res->id = $query['id'];
-    $res->text = $query['text'];
-    $res->timestamp = $query['timestamp'];
-    return $res;
+  public function getID(): int {
+    return (int) $this->data['id'];
   }
 
   public function getText(): string {
-    return $this->text;
+    return (string) $this->data['text'];
   }
 
-  public function getTimestamp(): string {
-    return $this->timestamp;
+  public function getTimestamp(): DateTime {
+    return new DateTime($this->data['timestamp']);
   }
+
+  /* BEGIN MANUAL SECTION Announcement_footer */
+  // Insert additional methods here
+  /* END MANUAL SECTION */
 }
