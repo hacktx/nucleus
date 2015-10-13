@@ -11,5 +11,6 @@ class RoboFile extends \Robo\Tasks {
   function build() {
     $this->taskGenURIMap()->run();
     $this->taskGenModels()->run();
+    $this->taskGulpRun()->run();
   }
 }

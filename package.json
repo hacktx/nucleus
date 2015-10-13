@@ -1,0 +1,17 @@
+{
+  "description": "Hackathon application and user information system",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hacktx/nucleus.git"
+  },
+  "author": "Robert Lynch",
+  "license": "EPL-1.0",
+  "dependencies": {
+    "browserify": "^9.0.8",
+    "gulp": "^3.9.0",
+    "react": "~0.13.1",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "xhpjs": "^1.0.0"
+  }
+}

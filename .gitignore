@@ -4,3 +4,4 @@ vendor/*
 build/
 config.ini
 uploads/
+node_modules/
