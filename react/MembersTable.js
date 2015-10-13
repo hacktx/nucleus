@@ -1,6 +1,6 @@
 var React = require('react');
 
-var MyReactClass = React.createClass({
+var MembersTable = React.createClass({
   render: function() {
     return (
       <div>
@@ -10,4 +10,4 @@ var MyReactClass = React.createClass({
   }
 });
 
-module.exports = MyReactClass;
+module.exports = MembersTable;

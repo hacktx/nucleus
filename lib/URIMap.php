@@ -2,7 +2,7 @@
 /**
  * This file is generated. Do not modify it manually!
  *
- * @generated SignedSource<<adcc484f777a7bfe4e5ad637c884bb18>>
+ * @generated SignedSource<<11b3e5a2d2b4cab06a9b28d3d924a2e4>>
  */
 
 final class URIMap {
@@ -22,6 +22,7 @@ final class URIMap {
       '/members/(?<id>\\d+)' => 'SingleMemberController',
       '/members/batch' => 'BatchModifyController',
       '/members/email' => 'EmailController',
+      '/members/new' => 'MembersNewController',
       '/oauth/callback' => 'OAuthCallbackController',
       '/settings' => 'SettingsController',
       '/user/confirm' => 'ConfirmUserController',

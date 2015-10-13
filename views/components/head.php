@@ -52,6 +52,7 @@ final class :nucleus:head extends :x:element {
           src=
             "https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js">
         </script>
+        <script src="/js/bundle.js"></script>
       </head>;
   }
 }
