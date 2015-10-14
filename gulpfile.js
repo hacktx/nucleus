@@ -15,6 +15,7 @@ gulp.task('build', function () {
   });
 
   b.require('./react/MembersTable.js', { expose: 'MembersTable' });
+  b.require('./react/Settings.js', { expose: 'Settings' });
   b.require('xhpjs');
 
   return b.bundle()
