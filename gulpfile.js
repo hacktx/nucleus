@@ -11,7 +11,7 @@ var xhpjs       = require('xhpjs');
 gulp.task('build', function () {
   var b = browserify({
     debug: true,
-    transform: [reactify],
+    transform: [[reactify, {"es6": true}]],
   });
 
   b.require('./react/MembersTable.js', { expose: 'MembersTable' });
