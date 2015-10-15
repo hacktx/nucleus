@@ -36,7 +36,7 @@ TODO: Add more instructions about MySQL setup.
 ### Install dependencies
 Nucleus uses [Composer](https://getcomposer.org/) to manage dependencies. Once Nucleus is downloaded, run `composer install` in the root of the project.
 
-### Build the URI Map and Autoloader
-Nucleus uses [Robo](robo.li) as a task runner and build tool. This should have been installed with the rest of the dependencies from Composer. To generate the URI map, which is required for Nucleus to run, run `./vendor/bin/robo build` (or just `robo build` if you have it installed globally). Creating a controller or updating a controller's path will require a re-build.
+### Setup the Frontend
+Nucleus uses [React](https://facebook.github.io/react/) for the rendering of some views, and [Gulp](http://gulpjs.com) as the front-end build tool. npm is used to manage the frontend dependencies. To start, install node.js and npm, and the run `npm install` in the project root. When that's done, install gulp globally, using `npm install -g gulp`. Then, build the front end by running `gulp build`.
 
 #### Learn more about how Nucleus works on [the wiki](https://github.com/hacktx/nucleus/wiki/How-Nucleus-Works).
