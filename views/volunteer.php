@@ -4,7 +4,7 @@ final class :nucleus:volunteer extends :x:element {
   attribute Vector<array> volunteers;
 
   final protected function render(): :form {
-    $volunteers = $this->getAttribute('volunteers');
+    $volunteers = $this->:volunteers;
 
     $rows = Vector {};
 
