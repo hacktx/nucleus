@@ -1,7 +1,7 @@
 <?hh // strict
 
 final class :nucleus:volunteer extends :x:element {
-  attribute Vector<array> volunteers;
+  attribute Vector<array> volunteers @required;
 
   final protected function render(): :form {
     $volunteers = $this->:volunteers;
