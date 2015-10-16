@@ -9,6 +9,9 @@ Hackathon attendee identity system and application portal
 ### Setup Environment
 You can find instructions to setup the Nucleus environment on the [wiki](https://github.com/hacktx/nucleus/wiki/Environment-Setup).
 
+### Setup configurations
+In the root of the project folder, there it the file `exampleconfig.ini`. Copy this to `config.ini` and fill out the desired fields. The DB fields are necessary for the service to run.
+
 ### Install dependencies
 In the root of the project folder, run `composer install` to install the PHP dependencies, and `npm install` for the frontend dependencies.
 
