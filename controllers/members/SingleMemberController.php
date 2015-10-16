@@ -7,7 +7,7 @@ class SingleMemberController extends BaseController {
 
   public static function getConfig(): ControllerConfig {
     return (new ControllerConfig())->setUserRoles(
-      array(UserRole::Superuser, UserRole::Organizer),
+      Vector {UserRole::Superuser, UserRole::Organizer},
     );
   }
 

@@ -2,8 +2,8 @@
 
 class ControllerConfig {
   private string $title = '';
-  private array<UserState> $user_state = array();
-  private array<UserRole> $user_roles = array();
+  private Vector<UserState> $user_state = Vector {};
+  private Vector<UserRole> $user_roles = Vector {};
 
   /**
    * Set the required user states for a controller
@@ -11,12 +11,12 @@ class ControllerConfig {
    * A user must have one of the states specified by this function in order to
    * access the methods of a controller.
    */
-  public function setUserState(array<UserState> $states): this {
+  public function setUserState(Vector<UserState> $states): this {
     $this->user_state = $states;
     return $this;
   }
 
-  public function getUserState(): array<UserState> {
+  public function getUserState(): Vector<UserState> {
     return $this->user_state;
   }
 
@@ -26,12 +26,12 @@ class ControllerConfig {
    * A user must have one of the roles specified by this function in order to
    * access the methods of a controller.
    */
-  public function setUserRoles(array<UserRole> $roles): this {
+  public function setUserRoles(Vector<UserRole> $roles): this {
     $this->user_roles = $roles;
     return $this;
   }
 
-  public function getUserRoles(): array<UserRole> {
+  public function getUserRoles(): Vector<UserRole> {
     return $this->user_roles;
   }
 

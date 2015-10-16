@@ -6,7 +6,8 @@ class AcceptInviteController extends BaseController {
   }
 
   public static function getConfig(): ControllerConfig {
-    return (new ControllerConfig())->setUserState(array(UserState::Accepted));
+    return
+      (new ControllerConfig())->setUserState(Vector {UserState::Accepted});
   }
 
   public static function get(): :xhp {

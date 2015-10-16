@@ -7,13 +7,13 @@ class DashboardController extends BaseController {
 
   public static function getConfig(): ControllerConfig {
     return (new ControllerConfig())->setUserState(
-      array(
+      Vector {
         UserState::Pending,
         UserState::Accepted,
         UserState::Waitlisted,
         UserState::Rejected,
         UserState::Confirmed,
-      ),
+      },
     )->setTitle('Dashboard');
   }
 

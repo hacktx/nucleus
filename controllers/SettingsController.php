@@ -6,8 +6,8 @@ class SettingsController extends BaseController {
   }
 
   public static function getConfig(): ControllerConfig {
-    return (new ControllerConfig())
-      ->setUserRoles(array(UserRole::Superuser));
+    return
+      (new ControllerConfig())->setUserRoles(Vector {UserRole::Superuser});
   }
 
   public static function get(): :xhp {
@@ -22,7 +22,7 @@ class SettingsController extends BaseController {
   }
 
   public static function post(): void {
-    if(isset($_POST['applications_disabled'])) {
+    if (isset($_POST['applications_disabled'])) {
       Settings::set('applications_open', false);
     } else {
       Settings::set('applications_open', true);

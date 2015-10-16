@@ -6,13 +6,14 @@ class DeleteAccountController extends BaseController {
   }
 
   public static function getConfig(): ControllerConfig {
-    return (new ControllerConfig())
-      ->setUserState(array(
+    return (new ControllerConfig())->setUserState(
+      Vector {
         UserState::Pending,
         UserState::Accepted,
         UserState::Waitlisted,
-        UserState::Rejected
-      ));
+        UserState::Rejected,
+      },
+    );
   }
 
   public static function get(): :xhp {
@@ -22,8 +23,17 @@ class DeleteAccountController extends BaseController {
           <p class="emoticon">D:</p>
           <h3>Want to delete your account?</h3>
           <p class="prompt-open">This is permanent and cannot be undone.</p>
-          <form action={self::getPath()} method="post"><button type="submit" class="btn btn-danger">Delete my account</button></form>
-          <a href={DashboardController::getPath()} class="btn btn-default" role="button">Cancel</a>
+          <form action={self::getPath()} method="post">
+            <button type="submit" class="btn btn-danger">
+              Delete my account
+            </button>
+          </form>
+          <a
+            href={DashboardController::getPath()}
+            class="btn btn-default"
+            role="button">
+            Cancel
+          </a>
         </div>
       </x:frag>;
   }

@@ -7,7 +7,7 @@ class BatchModifyController extends BaseController {
 
   public static function getConfig(): ControllerConfig {
     return (new ControllerConfig())->setUserRoles(
-      array(UserRole::Superuser, UserRole::Organizer),
+      Vector {UserRole::Superuser, UserRole::Organizer},
     );
   }
 
@@ -54,10 +54,7 @@ class BatchModifyController extends BaseController {
       $email_client->send($email);
     }
 
-    Flash::set(
-      Flash::SUCCESS,
-      $count." members successfully updated",
-    );
+    Flash::set(Flash::SUCCESS, $count." members successfully updated");
     Route::redirect(self::getPath());
   }
 }
