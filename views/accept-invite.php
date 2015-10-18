@@ -1,10 +1,10 @@
 <?hh // strict
 
 final class :nucleus:accept-invite extends :x:element {
-  attribute User user;
+  attribute User user @required;
 
   final protected function render(): XHPRoot {
-    $user = $this->getAttribute('user');
+    $user = $this->:user;
     return
       <form class="form" method="post" enctype="multipart/form-data">
         <div class="col-md-8 col-md-offset-2">
