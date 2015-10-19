@@ -4,7 +4,19 @@ class Auth {
     Session::destroy();
   }
 
-  public static function verifyStatus(array<UserStatus> $status): void {
+  public static function requireLogin(): (function (): bool) {
+    return () ==> {
+      if (!Session::isActive()) {
+        Flash::set('redirect', $_SERVER['REQUEST_URI']);
+        Flash::set(Flash::ERROR, 'You must be logged in to view this page');
+        Route::redirect(FrontpageController::getPath());
+      }
+
+      return true;
+    };
+  }
+
+  public static function verifyStatus(Vector<UserStatus> $status): void {
     // No status required
     if (empty($status)) {
       return;
@@ -27,7 +39,7 @@ class Auth {
     return;
   }
 
-  public static function verifyRoles(array<UserRole> $roles): void {
+  public static function verifyRoles(Vector<UserRole> $roles): void {
     // No roles required
     if(empty($roles)) {
       return;
@@ -47,6 +59,15 @@ class Auth {
     if(empty($intersection)) {
       Flash::set(Flash::ERROR, 'You do not have the required roles to access this page');
       Route::redirect('/dashboard');
+    }
+  }
+
+  public static function runChecks(Vector<(function (): bool)> $checks): void {
+    foreach($checks as $check) {
+      if(!$check()) {
+        Flash::set(Flash::ERROR, 'You do not have permission to view this page');
+        Route::redirect('/dashboard');
+      }
     }
   }
 }

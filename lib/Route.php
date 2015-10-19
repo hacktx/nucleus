@@ -19,6 +19,7 @@ class Route {
 
         Auth::verifyStatus($controller->getConfig()->getUserState());
         Auth::verifyRoles($controller->getConfig()->getUserRoles());
+        Auth::runChecks($controller->getConfig()->getChecks());
 
         $content = $controller::$method();
         if(is_object($content) && is_a($content, :xhp::class)) {

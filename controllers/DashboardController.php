@@ -6,15 +6,10 @@ class DashboardController extends BaseController {
   }
 
   public static function getConfig(): ControllerConfig {
-    return (new ControllerConfig())->setUserState(
-      Vector {
-        UserState::Pending,
-        UserState::Accepted,
-        UserState::Waitlisted,
-        UserState::Rejected,
-        UserState::Confirmed,
-      },
-    )->setTitle('Dashboard');
+    return
+      (new ControllerConfig())
+        ->setTitle('Dashboard')
+        ->addCheck(Auth::requireLogin());
   }
 
   public static function get(): :xhp {

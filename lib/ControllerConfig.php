@@ -4,6 +4,7 @@ class ControllerConfig {
   private string $title = '';
   private Vector<UserState> $user_state = Vector {};
   private Vector<UserRole> $user_roles = Vector {};
+  private Vector<(function (): bool)> $checks = Vector {};
 
   /**
    * Set the required user states for a controller
@@ -48,5 +49,14 @@ class ControllerConfig {
 
   public function getTitle(): string {
     return $this->title;
+  }
+
+  public function addCheck((function (): bool) $foo): this {
+    $this->checks[] = $foo;
+    return $this;
+  }
+
+  public function getChecks(): Vector<(function (): bool)> {
+    return $this->checks;
   }
 }
