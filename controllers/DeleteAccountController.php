@@ -1,4 +1,4 @@
-<?hh
+<?hh // strict
 
 class DeleteAccountController extends BaseController {
   public static function getPath(): string {
