@@ -7,7 +7,9 @@ class VolunteerController extends BaseController {
 
   public static function getConfig(): ControllerConfig {
     return
-      (new ControllerConfig())->setUserRoles(Vector {UserRole::Superuser});
+      (new ControllerConfig())
+        ->addCheck(Auth::requireLogin())
+        ->addCheck(Auth::requireRoles(Vector {UserRole::Superuser}));
   }
 
   public static function get(): :xhp {

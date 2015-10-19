@@ -7,7 +7,9 @@ class AcceptInviteController extends BaseController {
 
   public static function getConfig(): ControllerConfig {
     return
-      (new ControllerConfig())->setUserState(Vector {UserState::Accepted});
+      (new ControllerConfig())
+        ->addCheck(Auth::requireLogin())
+        ->addCheck(Auth::requireState(Vector {UserState::Accepted}));
   }
 
   public static function get(): :xhp {

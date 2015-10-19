@@ -6,9 +6,14 @@ class MembersController extends BaseController {
   }
 
   public static function getConfig(): ControllerConfig {
-    return (new ControllerConfig())->setUserRoles(
-      Vector {UserRole::Superuser, UserRole::Organizer},
-    );
+    return
+      (new ControllerConfig())
+        ->addCheck(Auth::requireLogin())
+        ->addCheck(
+          Auth::requireRoles(
+            Vector {UserRole::Superuser, UserRole::Organizer},
+          ),
+        );
   }
 
   public static function get(): :xhp {

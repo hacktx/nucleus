@@ -6,14 +6,19 @@ class DeleteAccountController extends BaseController {
   }
 
   public static function getConfig(): ControllerConfig {
-    return (new ControllerConfig())->setUserState(
-      Vector {
-        UserState::Pending,
-        UserState::Accepted,
-        UserState::Waitlisted,
-        UserState::Rejected,
-      },
-    );
+    return
+      (new ControllerConfig())
+        ->addCheck(Auth::requireLogin())
+        ->addCheck(
+          Auth::requireState(
+            Vector {
+              UserState::Pending,
+              UserState::Accepted,
+              UserState::Waitlisted,
+              UserState::Rejected,
+            },
+          ),
+        );
   }
 
   public static function get(): :xhp {
