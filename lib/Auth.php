@@ -84,6 +84,24 @@ class Auth {
     }
   }
 
+  public static function requireRoles(
+    Vector<UserRole> $roles,
+  ): (function(): bool) {
+    invariant(
+      Session::isActive(),
+      "requireStatus called but no user session is active. ".
+      "Try adding requireLogin to controller checks",
+    );
+
+    return () ==> {
+      // If the intersection of the user's roles and the required roles is empty,
+      // the user does not have any of the required roles to view this page
+      $user = Session::getUser();
+      $intersection = array_intersect($roles, $user->getRoles());
+      return !empty($intersection);
+    };
+  }
+
   public static function runChecks(Vector<(function(): bool)> $checks): void {
     foreach ($checks as $check) {
       if (!$check()) {
