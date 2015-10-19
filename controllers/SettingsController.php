@@ -6,8 +6,9 @@ class SettingsController extends BaseController {
   }
 
   public static function getConfig(): ControllerConfig {
-    return
-      (new ControllerConfig())->setUserRoles(Vector {UserRole::Superuser});
+    return (new ControllerConfig())->addCheck(
+      Auth::requireRoles(Vector {UserRole::Superuser}),
+    );
   }
 
   public static function get(): :xhp {
@@ -28,6 +29,6 @@ class SettingsController extends BaseController {
       Settings::set('applications_open', true);
     }
 
-    Route::redirect('/settings');
+    Route::redirect(self::getPath());
   }
 }
