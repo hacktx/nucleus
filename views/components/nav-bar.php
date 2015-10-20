@@ -3,7 +3,7 @@
 final class :nucleus:nav-bar extends :x:element {
   attribute
     User user,
-    string controller;
+    string controller @required;
 
   final protected function render(): :nav {
     $user = $this->:user;

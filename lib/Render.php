@@ -2,8 +2,8 @@
 
 class Render {
   public static function go(
-    :xhp $content,
-    ?string $controller,
+    XHPRoot $content,
+    string $controller,
     ?string $title,
   ): void {
     $user = null;

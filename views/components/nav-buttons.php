@@ -1,11 +1,13 @@
 <?hh // strict
 
 final class :nucleus:nav-buttons extends :x:element {
-  attribute User user, string controller;
+  attribute
+    User user @required,
+    string controller @required;
 
   final protected function render(): :ul {
-    $user = $this->getAttribute('user');
-    $controller = $this->getAttribute('controller');
+    $user = $this->:user;
+    $controller = $this->:controller;
 
     $roles = $user->getRoles();
 

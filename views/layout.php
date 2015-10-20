@@ -3,7 +3,7 @@
 final class :nucleus:layout extends :x:element {
   attribute
     User user,
-    string controller,
+    string controller @required,
     string title;
 
   children (:xhp);
