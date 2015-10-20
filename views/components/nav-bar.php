@@ -1,15 +1,17 @@
-<?hh
+<?hh // strict
 
 final class :nucleus:nav-bar extends :x:element {
-  attribute User user, string controller;
+  attribute
+    User user,
+    string controller;
 
   final protected function render(): :nav {
-    $user = $this->getAttribute('user');
-    $controller = $this->getAttribute('controller');
+    $user = $this->:user;
+    $controller = $this->:controller;
 
     $nav_buttons = null;
     $login = <li><a href="/login">LOGIN</a></li>;
-    if ($user) {
+    if ($user !== null) {
       $nav_buttons =
         <nucleus:nav-buttons user={$user} controller={$controller} />;
 

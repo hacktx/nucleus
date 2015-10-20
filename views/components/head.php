@@ -1,12 +1,12 @@
 <?hh // strict
 
 final class :nucleus:head extends :x:element {
-  attribute ?string title;
+  attribute string title;
 
   final protected function render(): :head {
     $title = "Nucleus";
-    if ($this->getAttribute('title')) {
-      $title = $this->getAttribute('title')." | Nucleus";
+    if ($this->:title !== null) {
+      $title = $this->:title." | Nucleus";
     }
 
     return

@@ -1,7 +1,7 @@
 <?hh
 
 class ControllerConfig {
-  private string $title = '';
+  private ?string $title;
   private Vector<(function (): bool)> $checks = Vector {};
 
   /**
@@ -15,7 +15,7 @@ class ControllerConfig {
     return $this;
   }
 
-  public function getTitle(): string {
+  public function getTitle(): ?string {
     return $this->title;
   }
 
