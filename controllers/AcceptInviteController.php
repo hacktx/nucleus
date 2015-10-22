@@ -21,7 +21,7 @@ class AcceptInviteController extends BaseController {
     $post_params = getPOSTParams();
 
     // The user has denied their invite
-    if (idx($post_params, 'deny', false)) {
+    if (array_key_exists('deny', $post_params)) {
       UserMutator::update($user->getID())
         ->setState(UserState::Rejected)
         ->save();
@@ -33,7 +33,7 @@ class AcceptInviteController extends BaseController {
     }
 
     // An accept wasn't sent, error
-    if (!idx($post_params, 'accept', false)) {
+    if (!array_key_exists('accept', $post_params)) {
       http_response_code(400);
       Flash::set(Flash::SUCCESS, "Something went wrong, please try again");
       Route::redirect(self::getPath());
