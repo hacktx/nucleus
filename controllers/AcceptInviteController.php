@@ -18,9 +18,10 @@ class AcceptInviteController extends BaseController {
 
   public static function post(): void {
     $user = Session::getUser();
+    $post_params = getPOSTParams();
 
     // The user has denied their invite
-    if (isset($_POST['deny'])) {
+    if (idx($post_params, 'deny', false)) {
       UserMutator::update($user->getID())
         ->setState(UserState::Rejected)
         ->save();
@@ -32,14 +33,14 @@ class AcceptInviteController extends BaseController {
     }
 
     // An accept wasn't sent, error
-    if (!isset($_POST['accept'])) {
+    if (!idx($post_params, 'accept', false)) {
       http_response_code(400);
       Flash::set(Flash::SUCCESS, "Something went wrong, please try again");
       Route::redirect(self::getPath());
     }
 
     // Make sure the Code of Conduct is accepted
-    if (!isset($_POST['coc'])) {
+    if (!array_key_exists('coc', $post_params)) {
       Flash::set(
         Flash::ERROR,
         "The MLH Code of Conduct must be accepted before you can confirm your invitation",
@@ -88,13 +89,13 @@ class AcceptInviteController extends BaseController {
         $_POST['first-hackathon'] === "yes" ? true : false;
     }
 
-    if (isset($_POST['year'])) {
+    if (array_key_exists('year', $post_params)) {
       if ($_POST['year'] !== "Select one") {
         $data['year'] = $_POST['year'];
       }
     }
 
-    if (isset($_POST['race'])) {
+    if (array_key_exists('race', $post_params)) {
       $races = Vector {};
       foreach ($_POST['race'] as $race) {
         if ($race === "other") {
@@ -121,6 +122,7 @@ class AcceptInviteController extends BaseController {
     UserMutator::update($user->getID())
       ->setState(UserState::Confirmed)
       ->save();
+
     Flash::set(Flash::SUCCESS, "You've successfully confirmed.");
     Route::redirect(DashboardController::getPath());
   }
