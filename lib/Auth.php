@@ -21,7 +21,7 @@ class Auth {
   ): (function(): bool) {
     invariant(
       Session::isActive(),
-      "requireStatus called but no user session is active. ".
+      "requireState called but no user session is active. ".
       "Try adding requireLogin to controller checks",
     );
 
@@ -37,7 +37,7 @@ class Auth {
   ): (function(): bool) {
     invariant(
       Session::isActive(),
-      "requireStatus called but no user session is active. ".
+      "requireRoles called but no user session is active. ".
       "Try adding requireLogin to controller checks",
     );
 
