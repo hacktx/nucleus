@@ -94,7 +94,7 @@ class ConfirmUserController extends BaseController {
       ->setMajor($mlh_user->getMajor())
       ->setShirtSize($mlh_user->getShirtSize())
       ->setDietaryRestrictions($mlh_user->getDietaryRestrictions())
-      ->setSpecialNeeds(($mlh_user->getSpecialNeeds() == null) ? "" : $mlh_user->getSpecialNeeds())
+      ->setSpecialNeeds($mlh_user->getSpecialNeeds() ?? "")
       ->setBirthday(new DateTime($mlh_user->getBirthday()))
       ->setGender($mlh_user->getGender())
       ->setPhoneNumber($mlh_user->getPhoneNumber())
