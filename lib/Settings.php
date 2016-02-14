@@ -10,9 +10,10 @@ class Settings {
   }
 
   public static function set(string $key, mixed $value): void {
-    DB::insertUpdate('settings', Map {
+    $data = Map {
       'name' => $key,
       'value' => $value
-    }->toArray());
+    };
+    DB::insertUpdate('settings', $data->toArray());
   }
 }
