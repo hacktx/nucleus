@@ -165,7 +165,7 @@ final class :nucleus:accept-invite extends :x:element {
                     href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">
                     MLH Code of Conduct
                   </a>
-                  while at HackTX.
+                  while at Design Hacks.
                 </label>
               </div>
             </div>

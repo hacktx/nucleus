@@ -58,8 +58,8 @@ class EmailController extends BaseController {
     foreach ($query as $row) {
       $email = new SendGrid\Email();
       $email->addTo($row['email'])
-        ->setFrom("noreply@hacktx.com")
-        ->setFromName("Team HackTX")
+        ->setFrom("noreply@freetailhackers.com")
+        ->setFromName("Freetail Hackers")
         ->setSubject($_POST['subject'])
         ->setHtml($_POST['email'])
         ->addSubstitution("%first_name%", array($row['fname']));
