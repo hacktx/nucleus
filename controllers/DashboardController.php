@@ -88,7 +88,7 @@ class DashboardController extends BaseController {
         }
 
         $resume_badge = null;
-        if (file_exists('uploads/'.$user->getID().'/resume.pdf')) {
+        if (file_exists('uploads/resumes/'.$user->getLastName().'_'.$user->getFirstName().'.pdf')) {
           $resume_badge = <span class="badge">&#10004;</span>;
         }
 
@@ -114,9 +114,10 @@ class DashboardController extends BaseController {
       case UserState::Rejected:
         $child =
           <p class="info">
-            We hope to see you next year! If you are interested in
-            volunteering, you can sign up
-            <a href="http://goo.gl/forms/8Ygo93YMXS">here</a>
+            We hope to see you at a future event! Keep up
+            Keep upto date by following us on 
+            <a href="http://twitter.com/FreetailHackers">Twitter</a> 
+            or <a href="http://facebook.com/FreetailHackers">Facebook</a>.
           </p>;
         $status = null;
         break;
@@ -149,7 +150,7 @@ class DashboardController extends BaseController {
         Route::redirect(self::getPath());
       }
 
-      $upload_dir = "uploads/".$user->getID();
+      $upload_dir = "uploads/resumes";
 
       // Create the upload directory for the user
       if (!file_exists($upload_dir)) {
@@ -159,7 +160,7 @@ class DashboardController extends BaseController {
       // Move the file to its final home
       if (!move_uploaded_file(
             $files['resume']['tmp_name'],
-            $upload_dir."/resume.pdf",
+            $upload_dir."/".$user->getLastName()."_".$user->getFirstName().".pdf",
           )) {
         Flash::set(Flash::ERROR, "Résumé was not uploaded successfully");
         Route::redirect(self::getPath());

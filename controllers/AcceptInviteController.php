@@ -59,7 +59,7 @@ class AcceptInviteController extends BaseController {
         Route::redirect(self::getPath());
       }
 
-      $upload_dir = "uploads/".$user->getID();
+      $upload_dir = "uploads/resumes";
 
       // Create the upload directory for the user
       if (!file_exists($upload_dir)) {
@@ -69,7 +69,7 @@ class AcceptInviteController extends BaseController {
       // Move the file to its final home
       if (!move_uploaded_file(
             $_FILES['resume']['tmp_name'],
-            $upload_dir."/resume.pdf",
+            $upload_dir."/".$user->getLastName()."_".$user->getFirstName().".pdf",
           )) {
         Flash::set(Flash::ERROR, "Résumé was not uploaded successfully");
         Route::redirect(self::getPath());
