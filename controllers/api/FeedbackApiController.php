@@ -13,7 +13,7 @@ class FeedbackApiController extends BaseController {
 
     $data = Map {'event_id' => $_POST['id'], 'rating' => $_POST['rating']};
 
-    DB::insert('feedback', $data);
+    DB::insert('feedback', $data->toArray());
 
     $client = KeenIO\Client\KeenIOClient::factory(
       [

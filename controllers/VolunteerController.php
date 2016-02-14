@@ -37,13 +37,15 @@ class VolunteerController extends BaseController {
         $volunteer['id'] = substr(md5(microtime()), 0, 6);
       }
 
-      DB::insertUpdate(
-        'volunteer',
-        Map {
+      $data = Map {
           'id' => $volunteer['id'],
           'name' => $volunteer['name'],
           'email' => $volunteer['email'],
-        },
+        };
+
+      DB::insertUpdate(
+        'volunteer',
+        $data->toArray(),
       );
     }
 

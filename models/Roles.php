@@ -9,10 +9,11 @@ enum UserRole: string {
 
 class Roles {
   public static function insert(UserRole $role, int $user_id): void {
-    DB::insert('roles', Map {
+    $data = Map {
       'role' => $role,
       'user_id' => $user_id
-    });
+    };
+    DB::insert('roles', $data->toArray());
   }
 
   public static function delete(UserRole $role, int $user_id): void {

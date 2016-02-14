@@ -100,13 +100,13 @@ class ModelMutatorGenerator {
       ->startIfBlock('$id === null')
       ->addLine('$this->checkRequiredFields();')
       ->addLine(
-        'DB::insert("%s", $this->data);',
+        'DB::insert("%s", $this->data->toArray());',
         $this->schema->getTableName()
       )
       ->addReturn('(int) DB::insertId()')
       ->addElseBlock()
       ->addLine(
-        'DB::update("%s", $this->data, "%s=%%s", $this->id);',
+        'DB::update("%s", $this->data->toArray(), "%s=%%s", $this->id);',
         $this->schema->getTableName(),
         $this->schema->getIdField()
       )

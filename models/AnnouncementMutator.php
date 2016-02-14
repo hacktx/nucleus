@@ -3,7 +3,7 @@
  * This file is partially generated. Only make modifications between BEGIN
  * MANUAL SECTION and END MANUAL SECTION designators.
  *
- * @partially-generated SignedSource<<3067df1e39651a1661b3f73dcc17f712>>
+ * @partially-generated SignedSource<<014569f64e9e8d3230d67be438eed6a3>>
  */
 
 final class AnnouncementMutator {
@@ -30,10 +30,10 @@ final class AnnouncementMutator {
     $id = $this->id;
     if ($id === null) {
       $this->checkRequiredFields();
-      DB::insert("announcement", $this->data);
+      DB::insert("announcement", $this->data->toArray());
       return (int) DB::insertId();
     } else {
-      DB::update("announcement", $this->data, "id=%s", $this->id);
+      DB::update("announcement", $this->data->toArray(), "id=%s", $this->id);
       return $id;
     }
   }

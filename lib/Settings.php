@@ -13,6 +13,6 @@ class Settings {
     DB::insertUpdate('settings', Map {
       'name' => $key,
       'value' => $value
-    });
+    }->toArray());
   }
 }
