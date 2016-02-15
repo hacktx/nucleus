@@ -20,6 +20,7 @@ class FrontpageController extends BaseController {
 
     return
       <div class="text-center col-md-6 col-md-offset-3 masthead">
+        <img class="img-responsive" src="img/design-hacks.png"/>
         <h3 class="hero-info">Austin, TX  |  March 26, 2016</h3>
         <p class="prompt-open">{$registration}</p>
         <p><a id="signin" class="btn btn-default col-xs-12" role="button" href={LoginController::getPath()}>{$button}</a></p>
