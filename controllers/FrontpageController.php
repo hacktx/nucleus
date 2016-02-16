@@ -12,7 +12,7 @@ class FrontpageController extends BaseController {
     }
 
     $registration = "Registration now open";
-    $button = "APPLY NOW";
+    $button = "REGISTER NOW";
     if (!Settings::get('applications_open')) {
       $registration = "Registration is now closed";
       $button = "CHECK MY STATUS";
