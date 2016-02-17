@@ -3,7 +3,7 @@
  * This file is partially generated. Only make modifications between BEGIN
  * MANUAL SECTION and END MANUAL SECTION designators.
  *
- * @partially-generated SignedSource<<e8d991cdf09cc7e9e3b94362cb11e050>>
+ * @partially-generated SignedSource<<44d3e0103156a689f3ccc239d46dc968>>
  */
 
 final class UserMutator {
@@ -54,6 +54,7 @@ final class UserMutator {
       'phone_number',
       'school',
       'status',
+      'personal_website',
     };
     $missing = $required->removeAll($this->data->keys());;
     invariant(
@@ -129,6 +130,11 @@ final class UserMutator {
 
   public function setStatus(int $value): this {
     $this->data["status"] = $value;
+    return $this;
+  }
+
+  public function setPersonalWebsite(string $value): this {
+    $this->data["personal_website"] = $value;
     return $this;
   }
 

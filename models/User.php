@@ -3,7 +3,7 @@
  * This file is partially generated. Only make modifications between BEGIN
  * MANUAL SECTION and END MANUAL SECTION designators.
  *
- * @partially-generated SignedSource<<ae9f60fd67105cdfe6f71230ed05e7f2>>
+ * @partially-generated SignedSource<<da0f7a29f73f2e7d170a6f4e0bff0206>>
  */
 
 final class User {
@@ -73,6 +73,10 @@ final class User {
 
   public function getStatus(): int {
     return (int) $this->data['status'];
+  }
+
+  public function getPersonalWebsite(): string {
+    return (string) $this->data['personal_website'];
   }
 
   /* BEGIN MANUAL SECTION User_footer */
