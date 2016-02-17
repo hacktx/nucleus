@@ -14,13 +14,14 @@ class CheckinController extends BaseController {
   }
 
   public static function get(): :xhp {
-    $email = Session::getUser();
+    $user = Session::getUser();
 
     return
       <div>
-        <h3>QR Code</h3>
-          <p>Use this code to quickly check-in at the event!</p>
+        <h3>Check-in <small>{$user->getEmail()}</small></h3>
+          <p>Use this code to quickly check-in at the event.</p>
           <img class="img-responsive center-block" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl={$user->getEmail()} &chld=H|0"/>
+          <a class="btn btn-primary" style="margin-top: 20px;" href={DashboardController::getPath()}>Back</a>
       </div>;
   }
 }
