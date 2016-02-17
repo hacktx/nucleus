@@ -2,7 +2,7 @@
 /**
  * This file is generated. Do not modify it manually!
  *
- * @generated SignedSource<<11b3e5a2d2b4cab06a9b28d3d924a2e4>>
+ * @generated SignedSource<<4d6c115efe95c27621adc5fe1fbb7c16>>
  */
 
 final class URIMap {
@@ -16,6 +16,7 @@ final class URIMap {
       '/api/slack' => 'SlackApiController',
       '/api/user' => 'UserApiController',
       '/dashboard' => 'DashboardController',
+      '/dashboard/checkin' => 'CheckinController',
       '/invite/accept' => 'AcceptInviteController',
       '/login' => 'LoginController',
       '/members' => 'MembersController',
