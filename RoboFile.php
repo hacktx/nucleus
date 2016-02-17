@@ -9,6 +9,7 @@ class RoboFile extends \Robo\Tasks {
   use ModelGeneratorTrait;
 
   function build() {
+    $this->taskComposerDumpAutoload()->run();
     $this->taskGenURIMap()->run();
     $this->taskGenModels()->run();
     $this->taskGulpRun()->run();
