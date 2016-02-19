@@ -22,6 +22,15 @@ final class :nucleus:accept-invite extends :x:element {
               <div class="form-group resume">
                 <input type="file" name="resume" />
               </div>
+
+              <h4>PORTFOLIO WEBSITE</h4>
+              <p class="accept-sub-layer">
+                Have a portfolio site which shows off your work? Include it here 
+                and we'll share it with our sponsors.
+              </p>
+              <div class="form-group resume">
+                <input type="text" name="portfolio" />
+              </div>
               <hr />
 
               <h4>ADDITIONAL INFORMATION</h4>

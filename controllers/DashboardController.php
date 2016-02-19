@@ -109,9 +109,11 @@ class DashboardController extends BaseController {
             <br />
             <p>Resume {$resume_badge}</p>
             <input type="file" name="resume" />
+            <p>Portfolio Website</p>
+            <input type="text" name="portfolio" value={$user->getPersonalWebsite()} />
             {$extra}
-            <br />
-            <button type="submit" class="btn btn-default">Upload</button>
+            <br /><br />
+            <button type="submit" class="btn btn-default">Update</button>
           </form>;
         break;
       case UserState::Rejected:
@@ -141,6 +143,7 @@ class DashboardController extends BaseController {
     }
 
     $files = getFILESParams();
+    $post = getPOSTParams();
 
     // Upload a resume
     if ($files->contains('resume') && $files['resume']['name'] !== "") {
@@ -168,6 +171,12 @@ class DashboardController extends BaseController {
         Flash::set(Flash::ERROR, "Résumé was not uploaded successfully");
         Route::redirect(self::getPath());
       }
+    }
+
+    if($post->contains('portfolio') && $post['portfolio'] !== "") {
+      UserMutator::update($user->getID())
+        ->setPersonalWebsite((string) $post['portfolio'])
+        ->save();
     }
 
     $flagged = $user->getRoles()->contains(UserRole::Flagged);

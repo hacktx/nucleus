@@ -76,6 +76,12 @@ class AcceptInviteController extends BaseController {
       }
     }
 
+    if($_POST['portfolio'] !== "") {
+      UserMutator::update($user->getID())
+        ->setPersonalWebsite((string) $_POST['portfolio'])
+        ->save();
+    }
+
     // Get the demographic information
     $data = Map {
       'gender' => $user->getGender(),
