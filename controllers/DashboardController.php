@@ -173,7 +173,7 @@ class DashboardController extends BaseController {
       }
     }
 
-    if($post->contains('portfolio') && $post['portfolio'] !== "") {
+    if($post->contains('portfolio')) {
       UserMutator::update($user->getID())
         ->setPersonalWebsite((string) $post['portfolio'])
         ->save();
