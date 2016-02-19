@@ -24,7 +24,7 @@ class DashboardController extends BaseController {
         $child =
           <x:frag>
             <p class="info">
-              Acceptances will roll out in ~7 days. If accepted, you will
+              Acceptances will roll out within ~7 days. If accepted, you will
               receive a confirmation email at {$user->getEmail()} with further
               instructions.
             </p>
