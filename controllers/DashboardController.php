@@ -99,8 +99,9 @@ class DashboardController extends BaseController {
             enctype="multipart/form-data">
             <h3>You successfully accepted your invitation!</h3>
             <br />
+            <!--
             <a class="btn btn-primary" href={CheckinController::getPath()}>Check-In</a>
-            <br /><br />
+            <br /><br /> -->
             <h4>
               If you need to upload any additional forms or files, you can do
               that here
