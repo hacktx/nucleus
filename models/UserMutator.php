@@ -3,7 +3,7 @@
  * This file is partially generated. Only make modifications between BEGIN
  * MANUAL SECTION and END MANUAL SECTION designators.
  *
- * @partially-generated SignedSource<<44d3e0103156a689f3ccc239d46dc968>>
+ * @partially-generated SignedSource<<e394d36c0deb9d78b5391fee879397b4>>
  */
 
 final class UserMutator {
@@ -54,7 +54,6 @@ final class UserMutator {
       'phone_number',
       'school',
       'status',
-      'personal_website',
     };
     $missing = $required->removeAll($this->data->keys());;
     invariant(

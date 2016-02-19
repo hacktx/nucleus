@@ -17,7 +17,7 @@ class UserSchema implements ModelSchema {
       'PhoneNumber' => ModelField::string_field('phone_number'),
       'School' => ModelField::string_field('school'),
       'Status' => ModelField::int_field('status'),
-      'PersonalWebsite' => ModelField::string_field('personal_website'),
+      'PersonalWebsite' => ModelField::string_field('personal_website')->optional(),
     };
   }
 
