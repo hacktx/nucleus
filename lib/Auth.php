@@ -19,11 +19,11 @@ class Auth {
   public static function requireState(
     Vector<UserState> $status,
   ): (function(): bool) {
-    invariant(
-      Session::isActive(),
-      "requireState called but no user session is active. ".
-      "Try adding requireLogin to controller checks",
-    );
+    if (!Session::isActive()) {
+      Flash::set('redirect', $_SERVER['REQUEST_URI']);
+      Flash::set(Flash::ERROR, 'You must be logged in to view this page');
+      Route::redirect(FrontpageController::getPath());
+    }
 
     return () ==> {
       // Check the users's status against the permitted status
@@ -35,11 +35,11 @@ class Auth {
   public static function requireRoles(
     Vector<UserRole> $roles,
   ): (function(): bool) {
-    invariant(
-      Session::isActive(),
-      "requireRoles called but no user session is active. ".
-      "Try adding requireLogin to controller checks",
-    );
+    if (!Session::isActive()) {
+      Flash::set('redirect', $_SERVER['REQUEST_URI']);
+      Flash::set(Flash::ERROR, 'You must be logged in to view this page');
+      Route::redirect(FrontpageController::getPath());
+    }
 
     return () ==> {
       // If the intersection of the user's roles and the required roles is empty,
