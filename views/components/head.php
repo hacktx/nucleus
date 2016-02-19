@@ -4,9 +4,9 @@ final class :nucleus:head extends :x:element {
   attribute string title;
 
   final protected function render(): :head {
-    $title = "Nucleus";
+    $title = "MyFreetail";
     if ($this->:title !== null) {
-      $title = $this->:title." | Nucleus";
+      $title = $this->:title." | MyFreetail";
     }
 
     return
