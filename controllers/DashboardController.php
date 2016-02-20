@@ -252,7 +252,7 @@ class DashboardController extends BaseController {
       }
     }
 
-    Flash::set(Flash::SUCCESS, "Files uploaded successfully!");
+    Flash::set(Flash::SUCCESS, "Profile updated successfully!");
     Route::redirect(self::getPath());
   }
 }

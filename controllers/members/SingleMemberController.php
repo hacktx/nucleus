@@ -51,6 +51,7 @@ class SingleMemberController extends BaseController {
             </a>
           </p>
           <p>Age: {$age}</p>
+          <p>Portfolio: <a href={$user->getPersonalWebsite()}>{$user->getPersonalWebsite()}</a></p>
           <p>Attributes: {$roles}</p>
         </div>
       </div>;
