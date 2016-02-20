@@ -18,14 +18,14 @@ class UserApiController extends BaseController {
       return Map {"error" => "Volunteer ID not found"};
     }
 
-    $user = DB::query("SELECT * FROM users WHERE email=%s", (string) $get['email']);
-    $user = User::load($user['id']);
+    $user = DB::query("SELECT * FROM users WHERE email=%s", (string) $get['email'])[0];
+    $user = User::load(intval($user['id']));
     if (!$user) {
       http_response_code(404);
       return Map {"error" => "User not found"};
     }
 
-    $age = (new DateTime($user->getBirthday()))->diff(new DateTime('today'))->y;
+    $age = ($user->getBirthday())->diff(new DateTime('today'))->y;
 
     $waver = true;
     if ($user->getRoles()->contains(UserRole::Flagged)) {
