@@ -180,7 +180,7 @@ final class :nucleus:accept-invite extends :x:element {
             </div>
           </div>
           <p class="text-center">
-            <button type="submit" name="deny" class="btn btn-secondary">
+            <button type="submit" name="deny" class="btn btn-default">
               I CAN'T MAKE IT
             </button>
             &nbsp;
