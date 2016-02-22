@@ -35,6 +35,11 @@ class SingleMemberController extends BaseController {
         ->diff(new DateTime('today'))
         ->y;
 
+    $website = $user->getPersonalWebsite();
+    if (strlen(trim($website)) > 0 && strpos($website, 'http://') === false) {
+      $website = 'http://'.$website;
+    }
+
     return
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
@@ -51,7 +56,7 @@ class SingleMemberController extends BaseController {
             </a>
           </p>
           <p>Age: {$age}</p>
-          <p>Portfolio: <a href={$user->getPersonalWebsite()}>{$user->getPersonalWebsite()}</a></p>
+          <p>Portfolio: <a href={$website}>{$website}</a></p>
           <p>Attributes: {$roles}</p>
         </div>
       </div>;
