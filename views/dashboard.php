@@ -9,17 +9,11 @@ final class :nucleus:dashboard extends :x:element {
     $status = $this->:status;
     $application_status = null;
     if ($status === null) {
-      $application_status =
-        <x:frag>
-          <p class="prompt-open">Your Application Status Is</p>
-          <div class="status">
-            <h1>
-              <span class={'label label-info '.strtolower($status)}>
-                {strtoupper($status)}
-              </span>
-            </h1>
-          </div>
-        </x:frag>;
+      return
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <h3>Thanks for applying, {$this->:name}!</h3>
+        {$this->getChildren()}
+      </div>;
     }
 
     return
