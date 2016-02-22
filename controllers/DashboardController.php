@@ -119,7 +119,7 @@ class DashboardController extends BaseController {
       case UserState::Rejected:
         $child =
           <p class="info">
-            We hope to see you at a future event! Keep up
+            We hope to see you at a future event!
             Keep up to date by following us on 
             <a href="http://twitter.com/FreetailHackers">Twitter</a> 
             or <a href="http://facebook.com/FreetailHackers">Facebook</a>.
