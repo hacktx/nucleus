@@ -160,9 +160,14 @@ class MembersController extends BaseController {
     $members = <tbody />;
 
     foreach ($query as $row) {
+      $checkedin_badge = null;
+      if(User::load(intval($row['id']))->getRoles()->contains(UserRole::CheckedIn)) {
+        $checkedin_badge = <span class="badge">&#10004;</span>;
+      }
+
       $status =
         <span>
-          <span class="text">{UserState::getNames()[$row['status']]}</span>
+          <span class="text">{$checkedin_badge} &#160; {UserState::getNames()[$row['status']]}</span>
           <span
             class=
               {strtolower(UserState::getNames()[$row['status']])." circle"}

@@ -1,6 +1,11 @@
 function makeCall(url, postdata) {
   $.post(url, postdata, function( data ) {
     if(postdata['status'] === null) {
+      // Quick hack to show checked in status, doesn't remove check if undoing status
+      if(postdata['role'] == "checked-in") {
+        $("#" + postdata['user'] + "status").find("span").find(".text").prepend('<span class="badge">&#10004;</span>');
+      }
+
       return;
     }
 
