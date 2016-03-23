@@ -48,8 +48,7 @@ class DashboardController extends BaseController {
       case UserState::Waitlisted:
         $child =
           <p class="info">
-            Keep an eye on your email as we send out more invites! Invites are
-            awarded on a first-come-first-serve basis.
+            Sorry, your invite expired! We've extended invites to other applicants, but we'll let you know soon if a spot opens up.
           </p>;
         break;
       case UserState::Confirmed:
@@ -99,9 +98,8 @@ class DashboardController extends BaseController {
             enctype="multipart/form-data">
             <h3>You successfully accepted your invitation!</h3>
             <br />
-            <!--
             <a class="btn btn-primary" href={CheckinController::getPath()}>Check-In</a>
-            <br /><br /> -->
+            <br /><br />
             <h4>
               If you need to upload any additional forms or files, you can do
               that here
