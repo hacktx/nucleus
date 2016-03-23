@@ -161,11 +161,10 @@ class MembersController extends BaseController {
 
     foreach ($query as $row) {
       $checkedin_badge = null;
-      try {
-        if(User::load(intval($row['id']))->getRoles()->contains(UserRole::CheckedIn)) {
-          $checkedin_badge = <span class="badge">&#10004;</span>;
-        }
-      }catch (Exception $e) { }
+      $user = User::load(intval($row['id']));
+      if($user != null && $user->getRoles()->contains(UserRole::CheckedIn)) {
+        $checkedin_badge = <span class="badge">&#10004;</span>;
+      }
 
       $status =
         <span>
