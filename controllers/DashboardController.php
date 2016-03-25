@@ -99,6 +99,7 @@ class DashboardController extends BaseController {
             <h3>You successfully accepted your invitation!</h3>
             <br />
             <a class="btn btn-primary" href={CheckinController::getPath()}>Check-In</a>
+            
             <a class="btn btn-primary" href="http://freetailhackers.com/design-hacks/info">Info Packet</a>
             <br /><br />
             <h4>
